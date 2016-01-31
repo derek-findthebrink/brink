@@ -1,0 +1,25 @@
+{
+  "name": "brink-website",
+  "description": "",
+  "main": "app.coffee",
+  "authors": [
+    "Brink Technology Co."
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/findthebrink/brink",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-icons": "PolymerElements/iron-icons#~1.0.5",
+    "jquery-ui": "~1.11.4",
+    "slicknav": "~1.0.5",
+  }
+}

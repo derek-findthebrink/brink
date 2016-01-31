@@ -1,0 +1,24 @@
+{
+  "apps" : [
+    {
+      "name"      : "brink-server",
+      "script"    : "app.coffee",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production" : {
+        "NODE_ENV": "production"
+      },
+      "env_development": {
+        "NODE_ENV": "dev"
+      }
+    }
+  ],
+  "deploy": {
+    "staging": {
+      "user": "node",
+      "host": "172.28.128.3",
+      "ref": "origin/staging"
+    }
+  }
+}

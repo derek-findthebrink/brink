@@ -1,0 +1,27 @@
+doctype html
+html
+	head
+		title brink | j-design
+		link(rel="stylesheet" href="/css/index.css")
+		link(rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.min.css")
+		link(rel="import" href="/lib/iron-icons/iron-icons.html")
+		block head
+	body
+		header 
+			h1 brink technology co
+		nav
+			block nav
+		main 
+			.content
+				block content
+
+		include includes/footer
+
+		<script src="https://use.typekit.net/rsz1its.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+		script(src="/lib/webcomponentsjs/webcomponents.min.js")
+		script(src="/lib/jquery/dist/jquery.min.js")
+		script(src="/lib/slicknav/dist/jquery.slicknav.min.js")
+
+		block scripts

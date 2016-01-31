@@ -1,0 +1,46 @@
+{
+  "name": "brink-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.coffee",
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
+    "start": "nodemon app.coffee -w api -w app.coffee -w config",
+    "dev": "browser-sync start --proxy localhost:2230 --files='**/*.jade, **/*.css, **/*.js'",
+    "ui:css": "sass -w dev/css/index.sass:assets/css/index.css",
+    "ui:js": "watchify -dvo assets/bundle.js -t coffee-reactify --extension='coffee' --extension='cjsx' dev/js/index.coffee",
+    "watch": "npm run ui:css & npm run ui:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/findthebrink/brink.git"
+  },
+  "author": "Brink Technology Co.",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/findthebrink/brink/issues"
+  },
+  "homepage": "https://github.com/findthebrink/brink#readme",
+  "dependencies": {
+    "async": "^1.5.0",
+    "backbone": "^1.2.3",
+    "body-parser": "^1.14.1",
+    "chai": "^3.4.1",
+    "coffee-reactify": "^4.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "jade": "^1.11.0",
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
+    "moment": "^2.10.6",
+    "mongoose": "^4.3.0",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.2",
+    "passport-local-mongoose": "^3.1.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "underscore": "^1.8.3"
+  }
+}
