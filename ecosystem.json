@@ -15,10 +15,17 @@
     }
   ],
   "deploy": {
-    "staging": {
-      "user": "node",
-      "host": "172.28.128.3",
-      "ref": "origin/staging"
+    "development": {
+      "key": "/home/derek/.ssh/id_rsa.pub",
+      "user": "derek",
+      "host": "192.168.1.65",
+      "ref": "origin/develop",
+      "repo": "git@github.com:findthebrink/brink",
+      "path": "~/programs/brink-server/",
+      "post-deploy": "pm2 startOrRestart ecosystem.json",
+      "env" : {
+        "NODE_ENV": "development"
+      }
     }
   }
 }
