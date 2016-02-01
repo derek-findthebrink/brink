@@ -20,7 +20,7 @@
       "user": "derek",
       "host": "192.168.1.65",
       "ref": "origin/develop",
-      "repo": "git@github.com:findthebrink/brink",
+      "repo": "https://github.com/findthebrink/brink.git",
       "path": "~/programs/brink-server/",
       "post-deploy": "pm2 startOrRestart ecosystem.json",
       "env" : {
