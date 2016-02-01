@@ -16,7 +16,6 @@
   ],
   "deploy": {
     "development": {
-      "key": "/home/derek/.ssh/id_rsa.pub",
       "user": "derek",
       "host": "192.168.1.65",
       "ref": "origin/develop",
