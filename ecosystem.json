@@ -16,10 +16,11 @@
   ],
   "deploy": {
     "development": {
+      "forward-agent": "yes",
       "user": "derek",
       "host": "192.168.1.65",
       "ref": "origin/develop",
-      "repo": "https://github.com/findthebrink/brink.git",
+      "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-server/",
       "post-deploy": "pm2 startOrRestart ecosystem.json",
       "env" : {
