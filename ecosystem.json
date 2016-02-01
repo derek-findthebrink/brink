@@ -22,7 +22,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-server/",
-      "post-deploy": "pm2 startOrRestart ecosystem.json",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env" : {
         "NODE_ENV": "development"
       }
