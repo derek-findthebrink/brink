@@ -1,0 +1,35 @@
+{
+  "apps" : [
+    {
+      "name"      : "brink-server",
+      "script"    : "app.coffee",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production" : {
+        "NODE_ENV": "production"
+      },
+      "env_development": {
+        "NODE_ENV": "development"
+      },
+      "env_staging": {
+        "NODE_ENV": "staging"
+      }
+    }
+  ],
+  "deploy": {
+    "staging": {
+      "forward-agent": "yes",
+      "key": "config/brink-server.pem",
+      "user": "ubuntu",
+      "host": "ec2-54-191-204-25.us-west-2.compute.amazonaws.com",
+      "ref": "origin/develop",
+      "repo": "git@github.com:findthebrink/brink.git",
+      "path": "~/programs/brink-website",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
+      "env" : {
+        "NODE_ENV": "staging"
+      }
+    }
+  }
+}
