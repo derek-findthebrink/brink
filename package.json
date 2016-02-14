@@ -10,7 +10,7 @@
     "ui:css": "sass -w dev/css/index.sass:assets/css/index.css",
     "ui:js": "watchify -dvo assets/bundle.js -t coffee-reactify --extension='coffee' --extension='cjsx' dev/js/index.coffee",
     "watch": "npm run ui:css & npm run ui:js",
-    "deploy:staging": "git add -A && git commit -am 'prep for pm2 deploy' && pm2 deploy ecosystem.json staging"
+    "deploy:staging": "git add -A && git commit -am 'prep for pm2 deploy' && git push origin develop && pm2 deploy ecosystem.json staging"
   },
   "repository": {
     "type": "git",
