@@ -29,7 +29,8 @@
       "path": "~/programs/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env" : {
-        "NODE_ENV": "staging"
+        "NODE_ENV": "staging",
+        "PORT": 2150
       }
     }
   }
