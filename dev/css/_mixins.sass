@@ -1,0 +1,31 @@
+@mixin button($color: $brignt-orange)
+	@include transition(0.5s)
+	margin-top: 5px
+	cursor: pointer
+	border-radius: 5px
+	box-shadow: 0px 3px 5px -2px rgba(darken(grey, 10%), 0.8)
+	&:hover
+		background-color: $color
+
+@mixin square($x)
+	width: $x
+	height: $x
+
+@mixin three-column($one, $two, $three)
+	$sum: $one + $two + $three
+	@debug $sum
+	@include row(table)
+	div:nth-child(1)
+		@include span-columns($one of $sum)
+	div:nth-child(2)
+		@include span-columns($two of $sum)
+	div:nth-child(3)
+		@include span-columns($three of $sum)
+	@include reset-display
+
+// iron icons/svg icons only
+@mixin icon-behaviour($color: #FFBA00)
+	@include transition(0.5s)
+	cursor: pointer
+	&:hover
+		fill: $color

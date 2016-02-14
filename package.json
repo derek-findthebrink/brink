@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
     "start": "nodemon app.coffee -w api -w app.coffee -w config",
-    "dev": "browser-sync start --proxy localhost:2230 --files='**/*.jade, **/*.css, **/*.js'",
+    "dev": "browser-sync start --proxy localhost:2150 --files='**/*.jade, **/*.css, **/*.js'",
     "ui:css": "sass -w dev/css/index.sass:assets/css/index.css",
     "ui:js": "watchify -dvo assets/bundle.js -t coffee-reactify --extension='coffee' --extension='cjsx' dev/js/index.coffee",
     "watch": "npm run ui:css & npm run ui:js"

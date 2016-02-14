@@ -1,0 +1,69 @@
+body
+	margin: 0
+	nav
+		ul 
+			padding: 0
+		a
+			color: black
+			text-decoration: none
+		li
+			list-style-type: none
+
+header
+	margin: 0.5em
+
+html, input, select
+	font-family: "expo-sans-pro"
+
+h1, h2, h3
+	font-family: "ff-enzo-web"
+
+main
+	@include outer-container(100%)
+	@include row()
+	.content
+		margin: 0 2em
+	// @include reset-display
+
+footer
+	text-align: center
+
+form
+	@include fill-parent
+	.form-field
+		@include row(table)
+		vertical-align: middle
+		label
+			@include span-columns(1 of 5)
+			text-align: center
+		input, select
+			@include span-columns(4 of 5)
+		@include reset-display
+	input[type='submit']
+		@include button
+		border: none
+		width: 8em
+		display: block
+		text-align: center
+		margin: 5px 0
+
+.header-section
+	$hs-color: darken(grey, 10%)
+	text-align: center
+	p 
+		margin: 0
+		color: lighten($hs-color, 15%)
+	.page-header
+		font-size: 200%
+		margin-bottom: 0.2em
+		color: $hs-color
+
+.content-menu
+	position: fixed
+	bottom: 0
+	right: 0
+	iron-icon
+		@include square(3em)
+
+iron-icon
+	@include icon-behaviour

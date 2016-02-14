@@ -4,121 +4,12 @@
 @import "./vendor/refills:footer.scss"
 @import "../../assets/lib/slicknav/scss/slicknav.scss"
 
-$brignt-orange: #FFBA00
+@import "config"
 
-@mixin button($color: $brignt-orange)
-	@include transition(0.5s)
-	margin-top: 5px
-	cursor: pointer
-	border-radius: 5px
-	box-shadow: 0px 3px 5px -2px rgba(darken(grey, 10%), 0.8)
-	&:hover
-		background-color: $color
+@import "mixins"
+@import "base"
 
-@mixin square($x)
-	width: $x
-	height: $x
-
-@mixin three-column($one, $two, $three)
-	$sum: $one + $two + $three
-	@debug $sum
-	@include row(table)
-	div:nth-child(1)
-		@include span-columns($one of $sum)
-	div:nth-child(2)
-		@include span-columns($two of $sum)
-	div:nth-child(3)
-		@include span-columns($three of $sum)
-	@include reset-display
-
-// iron icons/svg icons only
-@mixin icon-behaviour($color: #FFBA00)
-	@include transition(0.5s)
-	cursor: pointer
-	&:hover
-		fill: $color
+@import "slicknav-overrides"
 
 
-body
-	margin: 0
 
-header
-	margin: 0.5em
-
-html, input, select
-	font-family: "expo-sans-pro"
-
-h1
-	font-family: "ff-enzo-web"
-
-main
-	@include outer-container(100%)
-	@include row()
-	& > .sidebar
-		@include span-columns(1 of 7)
-	& > .content
-		@include span-columns(6 of 7)
-	// @include reset-display
-
-footer
-	text-align: center
-
-.content > div
-	@include fill-parent
-
-form
-	@include fill-parent
-	.form-field
-		@include row(table)
-		vertical-align: middle
-		label
-			@include span-columns(1 of 5)
-			text-align: center
-		input, select
-			@include span-columns(4 of 5)
-		@include reset-display
-	input[type='submit']
-		@include button
-		border: none
-		width: 8em
-		display: block
-		text-align: center
-		margin: 5px 0
-
-.content-menu
-	position: fixed
-	bottom: 0
-	right: 0
-	iron-icon
-		@include square(3em)
-
-iron-icon
-	@include icon-behaviour
-
-.active-questions
-	// vars
-	$color: #1ED65A
-	@include fill-parent
-	position: fixed 
-	bottom: 0
-	z-index: -10
-	background-color: rgba(lighten(grey, 20%), 0.5)
-	border-top-left-radius: 5px
-	border-top-right-radius: 5px
-	min-height: 1em
-	.question-item
-		width: 50%
-		margin: 0 auto
-		background-color: rgba(#5ECC46, 0.5)
-		@include button($color)
-		iron-icon
-			@include icon-behaviour(lighten($color, 30%))
-
-.question-item
-	// vars
-	$color: #68C874
-	@include three-column(1, 4, 2)
-	@include button($color)
-	background-color: lighten(rgba($color, 0.8), 15%)
-	.menu 
-		text-align: right
