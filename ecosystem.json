@@ -27,7 +27,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-website",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env staging",
       "env" : {
         "NODE_ENV": "staging",
         "PORT": 2150
