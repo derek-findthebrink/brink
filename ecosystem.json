@@ -16,13 +16,6 @@
         "NODE_ENV": "staging",
         "PORT": 2150
       }
-    }, 
-    {
-      "name": "brink-blog",
-      "script": "blog/ghost-0.7.6/index",
-      "env_staging": {
-        "NODE_ENV": "production"
-      }
     }
   ],
   "deploy": {
@@ -34,7 +27,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-website",
-      "post-deploy": "npm install && cd blog/ghost-0.7.6 && npm install --production && cd ../../ && pm2 startOrRestart ecosystem.json --env staging",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env" : {
         "NODE_ENV": "staging",
         "PORT": 2150
