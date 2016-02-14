@@ -30,7 +30,7 @@
       "forward-agent": "yes",
       "key": "config/brink-server.pem",
       "user": "ubuntu",
-      "host": "ec2-54-191-204-25.us-west-2.compute.amazonaws.com",
+      "host": "ec2-54-213-197-207.us-west-2.compute.amazonaws.com",
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-website",
