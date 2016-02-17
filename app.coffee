@@ -1,21 +1,25 @@
 express = require "express"
 bodyParser = require "body-parser"
-logger = require "morgan"
+logger = require "./log/logger"
 
 
 # logic
 # ------------------------------------------
+env = process.env.NODE_ENV
+
 app = express()
-app.applicationName = "brink-server"
+app.application_name = "brink-server"
+
+# logger
+log = new logger(app).initialize()
 
 app.set("views", "views")
 app.set("view engine", "jade")
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
+app.use bodyParser.json()
+app.use bodyParser.urlencoded({
 	extended: true
-	}))
-app.use(logger("dev"))
+	})
 app.use(express.static("./assets"))
 
 
@@ -25,11 +29,10 @@ homeRoutes = require "./api/routes/home"
 app.use("/", homeRoutes)
 
 
-console.log("node env", app.get("env"))
 server = app.listen(process.env.PORT, ->
 	host = server.address().address
 	port = server.address().port
 	if host == "::"
 		host = "localhost"
-	console.log("%s listening at http://%s:%s", app.applicationName, host, port)
+	log.info {host: host, port: port}, "\n----- Server Initialization -----\n"
 	)
