@@ -13,6 +13,7 @@ reqSerializer = (req)->
 requestLogger = (opts)->
 	logger = opts.logger
 	headerName = opts.headerName || "x-request-id"
+	appSegment = opts.appSegment || "unknown"
 	
 	return (req, res, next)->
 		id = req.headers[headerName] || uuid.v4()
@@ -22,6 +23,7 @@ requestLogger = (opts)->
 		req.log = logger.child({
 			type: "request"
 			id: id
+			appSegment: appSegment
 			})
 
 		if req.body
@@ -67,10 +69,12 @@ class BunyanLogger
 
 		if env == "development"
 			logger = bunyan.createLogger(basicLogger)
-			app.use requestLogger({
+			reqOpts = {
 				logger: logger
 				headerName: opts.headerName
-				})
+				}
+			mergedOpts = _.extend(opts, reqOpts)
+			app.use requestLogger(mergedOpts)
 
 		else if env == "production"
 			logger = bunyan.createLogger(basicLogger)
