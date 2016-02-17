@@ -11,7 +11,10 @@ app = express()
 app.application_name = "brink-server"
 
 # logger
-log = new logger(app).initialize()
+logOpts = {
+	appSegment: "main-server"
+}
+log = new logger(app, logOpts).initialize()
 
 app.set("views", "views")
 app.set("view engine", "jade")
