@@ -1,6 +1,7 @@
 bunyan = require "bunyan"
 uuid = require "uuid"
 _ = require "underscore"
+async = require "async"
 
 
 reqSerializer = (req)->
@@ -52,10 +53,11 @@ class BunyanLogger
 		@name = @app["application_name"]
 		@env = @app.get("env")
 
-	initialize: ()=>
-		return @log @name, @env, @app, @opts
+	initialize: (cb)=>
+		return @log @name, @env, @app, @opts, cb
 
-	log: (name, env, app, opts)->
+	log: (name, env, app, opts, cb)->
+		logger = null
 		opts = opts || {}
 		addedSerializers = {
 			req: reqSerializer
@@ -79,7 +81,10 @@ class BunyanLogger
 		else if env == "production"
 			logger = bunyan.createLogger(basicLogger)
 
+		else if env == "staging"
+			logger = bunyan.createLogger(basicLogger)
 
-		return logger
 
+		return cb(null, logger)
+		
 module.exports = BunyanLogger

@@ -48,16 +48,13 @@
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/staging/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
-      "env" : {
-        "NODE_ENV": "staging"
-      }
     },
     "production": {
       "forward-agent": "yes",
       "key": "config/brink-server.pem",
       "user": "ubuntu",
       "host": "findthebrink.com",
-      "ref": "origin/master",
+      "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/production/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
