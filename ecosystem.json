@@ -7,14 +7,32 @@
         "COMMON_VARIABLE": "true"
       },
       "env_production" : {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "PORT": 1005
       },
       "env_development": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "PORT": 3500
       },
       "env_staging": {
         "NODE_ENV": "staging",
         "PORT": 2150
+      }
+    },
+    {
+      "name": "brink-blog",
+      "script": "api/services/blog/ghost-blog.coffee",
+      "env_production": {
+        "NODE_ENV": "production",
+        "NODE_ENV": 1010
+      },
+      "env_development": {
+        "NODE_ENV": "development",
+        "PORT": 3600
+      },
+      "env_staging": {
+        "NODE_ENV": "staging",
+        "PORT": 2368
       }
     }
   ],
@@ -29,8 +47,7 @@
       "path": "~/programs/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env" : {
-        "NODE_ENV": "staging",
-        "PORT": 2150
+        "NODE_ENV": "staging"
       }
     },
     "production": {
@@ -43,8 +60,7 @@
       "path": "~/programs/production/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env": {
-        "NODE_ENV": "production",
-        "PORT": 1005
+        "NODE_ENV": "production"
       }
     }
   }
