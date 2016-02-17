@@ -15,13 +15,16 @@ html
 
 		include includes/footer
 
+		//- typekit
 		<script src="https://use.typekit.net/rsz1its.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
+		//- load external libraries
 		script(src="/lib/webcomponentsjs/webcomponents.min.js")
 		script(src="/lib/jquery/dist/jquery.min.js")
 		script(src="/lib/slicknav/dist/jquery.slicknav.min.js")
 
+		//- load application logic
 		script(src="/bundle.js")
 
 		block scripts

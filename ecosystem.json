@@ -23,7 +23,7 @@
       "forward-agent": "yes",
       "key": "config/brink-server.pem",
       "user": "ubuntu",
-      "host": "findthebrink.com",
+      "host": "staging.findthebrink.com",
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/programs/brink-website",
@@ -31,6 +31,20 @@
       "env" : {
         "NODE_ENV": "staging",
         "PORT": 2150
+      }
+    },
+    "production": {
+      "forward-agent": "yes",
+      "key": "config/brink-server.pem",
+      "user": "ubuntu",
+      "host": "findthebrink.com",
+      "ref": "origin/master",
+      "repo": "git@github.com:findthebrink/brink.git",
+      "path": "~/programs/production/brink-website",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 1005
       }
     }
   }
