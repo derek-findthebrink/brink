@@ -3,37 +3,39 @@
     {
       "name"      : "brink-server",
       "script"    : "app.coffee",
-      "env": {
-        "COMMON_VARIABLE": "true"
-      },
+      // "env": {
+      //   "COMMON_VARIABLE": "true"
+      // },
       "env_production" : {
         "NODE_ENV": "production",
-        "PORT": 1005
+        "PORT": 5000
       },
       "env_development": {
         "NODE_ENV": "development",
-        "PORT": 3500
+        "PORT": 5200
       },
       "env_staging": {
         "NODE_ENV": "staging",
-        "PORT": 2150
-      }
+        "PORT": 5100
+      },
+      "min-uptime": "5000s"
     },
     {
       "name": "brink-blog",
       "script": "api/services/blog/ghost-blog.coffee",
       "env_production": {
         "NODE_ENV": "production",
-        "NODE_ENV": 1010
+        "NODE_ENV": 6000
       },
       "env_development": {
         "NODE_ENV": "development",
-        "PORT": 3600
+        "PORT": 6200
       },
       "env_staging": {
         "NODE_ENV": "staging",
-        "PORT": 2368
-      }
+        "PORT": 6100
+      },
+      "min-uptime": "5000s"
     }
   ],
   "deploy": {
@@ -44,7 +46,7 @@
       "host": "staging.findthebrink.com",
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
-      "path": "~/programs/brink-website",
+      "path": "~/programs/staging/brink-website",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
       "env" : {
         "NODE_ENV": "staging"
