@@ -1,6 +1,6 @@
 module.exports = {
 	home: (req, res)->
-		res.render("home")
+		res.render("pages/home")
 	portfolio: (req,res)->
 		res.render("pages/portfolio")
 	stack: (req, res)->

@@ -5,6 +5,9 @@ html
 		link(rel="stylesheet" href="/css/index.css")
 		link(rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.min.css")
 		link(rel="import" href="/lib/iron-icons/iron-icons.html")
+		//- typekit
+		<script src="https://use.typekit.net/rsz1its.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		block head
 	body
 		nav
@@ -15,9 +18,6 @@ html
 
 		include includes/footer
 
-		//- typekit
-		<script src="https://use.typekit.net/rsz1its.js"></script>
-		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
 		//- load external libraries
 		script(src="/lib/webcomponentsjs/webcomponents.min.js")
