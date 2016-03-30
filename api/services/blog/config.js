@@ -6,6 +6,8 @@
 var path = require('path'),
     config;
 
+var dbconf = require("../../../config/mysql-db.coffee");
+
 config = {
     // ### Production
     // When running Ghost in the wild, use the production environment.
@@ -61,10 +63,8 @@ config = {
             contentPath: path.join(__dirname, "blog-content")
         },
         database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/blog-content/data/ghost-dev.db')
-            },
+            client: 'mysql',
+            connection: dbconf.development.cred,
             debug: false
         },
         server: {

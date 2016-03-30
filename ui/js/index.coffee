@@ -1,10 +1,4 @@
-# window.$ = require "jquery"
-window._ = require "underscore"
-window.Backbone = require "backbone"
-window.React = require "react"
-window.ReactDOM = require "react-dom"
-require "jquery-ui"
-window.moment = require "moment"
+
 
 # slicknav options
 navOpts = {
@@ -28,3 +22,11 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-52466507-2', 'auto');
 ga('send', 'pageview');
 `
+
+Router = require("./router")
+Flux = require("./flux")
+
+app = window.app = {}
+
+app.router = new Router()
+app.flux = new Flux()
