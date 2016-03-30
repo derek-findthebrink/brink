@@ -59,23 +59,20 @@ iron-icon
 		@include span-columns(1 of 5)
 		text-align: center
 		display: inline-block
-		// border-radius: 5px
-		// padding-right: 3px
-		border-top-left-radius: 5px
-		&:first-child
-		&:last-child
 	a
 		$bcg-color: lighten(#40526B, 40%)
 		$color: darken(#676767, 25%)
 		@include transition(0.2s)
 		display: block
 		margin-right: 1px
+		padding-bottom: 2px
+		padding-top: 1px
 		border-top-left-radius: 5px
 		border-top-right-radius: 5px
 		color: $color
 		background-color: $bcg-color
 		text-decoration: none
 		&:hover
-			background-color: darken($bcg-color, 15%)
-			color: lighten($color, 80%)
+			background-color: darken($bcg-color, 7%)
+			color: darken($color, 80%)
 	@include reset-display

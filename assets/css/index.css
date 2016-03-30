@@ -361,19 +361,20 @@ iron-icon {
     display: table-cell;
     width: 20%;
     text-align: center;
-    display: inline-block;
-    border-top-left-radius: 5px; }
+    display: inline-block; }
   .horizontal-menu a {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     transition: 0.2s;
     display: block;
     margin-right: 1px;
+    padding-bottom: 2px;
+    padding-top: 1px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     color: #272727;
     background-color: #abb9cc;
     text-decoration: none; }
     .horizontal-menu a:hover {
-      background-color: #7b91b0;
-      color: #f3f3f3; }
+      background-color: #94a6bf;
+      color: black; }
