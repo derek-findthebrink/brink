@@ -1,0 +1,81 @@
+main
+	@include outer-container(100%)
+	@include row()
+	.content
+		margin: 0 2em
+	// @include reset-display
+
+.header-section
+	$hs-color: darken(grey, 10%)
+	text-align: center
+	p 
+		margin: 0
+		color: lighten($hs-color, 15%)
+	.page-header
+		font-size: 200%
+		margin-bottom: 0.2em
+		color: $hs-color
+
+.content-menu
+	position: fixed
+	bottom: 0
+	right: 0
+	iron-icon
+		@include square(3em)
+
+iron-icon
+	@include icon-behaviour
+
+.stack
+	ul.stack-list
+		list-style-type: none
+		padding: 0
+	li
+		@include row(table)
+		h3
+			display: block
+		div
+			@include omega(2n)
+			vertical-align: middle
+		div.img
+			@include span-columns(3 of 8)
+			@include pad(0.7em)
+		div.description
+			@include span-columns(5 of 8)
+			padding-left: 0.5em
+		@include reset-display()
+	img
+		width: 100%
+		// display: inline-block
+
+.horizontal-menu
+	@include fill-parent
+	ul
+		@include fill-parent
+		@include row(table)
+		list-style-type: none
+		padding: 0
+	li
+		@include span-columns(1 of 5)
+		text-align: center
+		display: inline-block
+		// border-radius: 5px
+		// padding-right: 3px
+		border-top-left-radius: 5px
+		&:first-child
+		&:last-child
+	a
+		$bcg-color: lighten(#40526B, 40%)
+		$color: darken(#676767, 25%)
+		@include transition(0.2s)
+		display: block
+		margin-right: 1px
+		border-top-left-radius: 5px
+		border-top-right-radius: 5px
+		color: $color
+		background-color: $bcg-color
+		text-decoration: none
+		&:hover
+			background-color: darken($bcg-color, 15%)
+			color: lighten($color, 80%)
+	@include reset-display
