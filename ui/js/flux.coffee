@@ -1,11 +1,22 @@
+
+# Helpers
+# ------------------------------------
+renderContent = require("./actions/renderContent")
+
+
+# Flux Class
+# ---------------------------------------
 class Flux
 	constructor: ->
 		@_views = []
 	dispatch: (payload)->
-		console.log payload:payload, "flux"
+		# console.log payload:payload, "flux"
 		switch payload.action
 			when "render_content" then renderContent(payload)
 			else
 				console.error new Error("could not parse payload", payload)
+	registerView: (name, view)->
+		@_views[name] = view
+		console.log "registered view:", {name: name, view: view}
 
 module.exports = Flux
