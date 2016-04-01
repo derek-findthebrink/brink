@@ -40,3 +40,61 @@ iron-icon
 .products
 	.products-list
 		margin-top: 0
+
+%learn-row
+	font-family: "ff-enzo-web"
+	font-size: 110%
+	div
+		@include span-columns(1 of 3, table)
+
+
+.learn
+	@include outer-container(100%)
+	text-align: center
+	& > div
+		@include row(table)
+		height: 60vw
+		div, h2, p, h3, span, button, a
+			display: table-cell
+			vertical-align: middle
+	.learn-nav
+		position: fixed
+		top: 4em
+		left: 0
+	.math
+		$color: rgba($header-color, 0.6)
+		font-size: 6em
+		font-family: "ff-enzo-web"
+		font-weight: light
+		height: 30vw
+		color: $color
+		hr
+			height: 2px
+			background-color: $color
+			border: none
+			color: $color
+	.learn-input-image
+		font-family: "ff-enzo-web"
+		img
+			// width: 50%
+			display: inline-block
+		p
+			text-align: center
+			display: block
+	.learn-header
+	.inputs
+		@extend %learn-row
+	.process
+	.outputs
+		@extend %learn-row
+	.callout.learn-callout
+		height: 2em
+		margin-bottom: 1em
+		a
+			background-color: $theme-base
+			color: white
+			border: 2px solid white
+			border-radius: 10px
+			text-decoration: none
+
+	@include reset-display()

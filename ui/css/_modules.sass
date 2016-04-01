@@ -110,3 +110,15 @@
 						color: black
 
 	@include reset-display()
+
+.learn
+	$c: $header-color
+	.learn-header
+		font-size: 110%
+		.learn-header-text
+			padding-right: 1em
+			color: darken($c, 15%)
+			text-align: right
+		.learn-header-description
+			color: $c
+			text-align: left
