@@ -2,6 +2,8 @@
 Stack = pages.Stack
 Products = pages.Products
 
+_learn = require("./learn")
+
 _c = {
 	home:
 		view: Main
@@ -78,10 +80,14 @@ _c = {
 					link: "/products-and-services/apps"
 				}
 			]
+
 			packages: [
 				{
 					title: "startup package"
 					description: "everything you need to get your organization running."
+					category: "package"
+					product: "startup-package"
+					learn: "/products-and-services/package/startup-package"
 				}
 			]
 			websites: [
@@ -89,10 +95,16 @@ _c = {
 					title: "basic design"
 					description: "want a website? We'll design it, test it and
 					get it running on the web within 5 days."
+					category: "website"
+					product: "basic"
+					learn: "/products-and-services/websites/basic"
 				}
 				{
 					title: "domains"
 					description: "purchase and manage your domain names"
+					category: "website"
+					product: "domain"
+					learn: "/products-and-services/websites/domains"
 				}
 			]
 			email: [
@@ -100,22 +112,34 @@ _c = {
 					title: "small business email"
 					description: "email solutions for your small business. Grow your
 					business with a professional email for your contacts."
+					category: "email"
+					product: "small-business"
+					learn: "/products-and-services/email/small-business"
 				}
 				{
 					title: "personal email"
 					description: "personal email solutions. Can't get the email you want
 					on Gmail? We've got you covered."
+					category: "email"
+					product: "personal"
+					learn: "/products-and-services/email/personal"
 				}
 			]
 			graphics: [
 				{
 					title: "iconography"
 					description: "custom iconography for your print and web projects"
+					category: "graphics"
+					product: "iconography"
+					learn: "/products-and-services/graphics/iconography"
 				}
 				{
 					title: "site layouts"
 					description: "speed up your website development. We'll create custom
 					wireframes based on your business needs and the latest web-standards."
+					category: "graphics"
+					product: "site-layouts"
+					learn: "/products-and-services/graphics/site-layouts"
 				}
 			]
 			apps: [
@@ -123,11 +147,17 @@ _c = {
 					title: "basic app"
 					description: "need more than just a website? Data-driven web applications
 					are the future of the internet. We'll get you started."
+					category: "app"
+					product: "basic"
+					learn: "/products-and-services/apps/basic"
 				}
 				{
 					title: "custom component development"
 					description: "already have your app running but need a new feature?
 					We've got you covered."
+					category: "app"
+					product: "custom-component"
+					learn: "/products-and-services/apps/components"
 				}
 			]
 
@@ -140,6 +170,8 @@ _c = {
 			header:
 				title: "contact"
 				description: "how to get in touch with us"
+
+	learn: _learn
 }
 
 module.exports = _c

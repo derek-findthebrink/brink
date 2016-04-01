@@ -76,7 +76,7 @@ HorizontalMenu = React.createClass({
 # Single Views
 StackItem = React.createClass({
 	render: ->
-		<li>
+		<li className="stack-item">
 			<TradeImage {...@props.img} />
 			<div className="description">
 				<h3>{@props.title}</h3>
@@ -88,24 +88,31 @@ StackItem = React.createClass({
 
 
 ProductItem = React.createClass({
+	learn: (e)->
+		e.preventDefault()
+		h = e.target.href
+		app.flux.dispatch({
+			action: "href_navigate"
+			href: h
+			})
 	render: ->
-		<div className="product-item">
+		<li className="product-item">
 			<div className="img">
 				<img src="/brink-logo-small.svg" alt="brink logo" />
 			</div>
 			<div className="description">
-				<h3>{@props.title}</h3>
-				<p>{@props.description}</p>
+				<h2 className="product-header">{@props.title}</h2>
+				<p className="summary">{@props.description}</p>
 				<ul className="includes">
 					<li>a hat</li>
 					<li>real friendly customer service</li>
 				</ul>
 				<div className="action-callout">
-					<a href="#" className="learn">learn</a>
-					<a href="#" className="quote">quote</a>
+					<a onClick={@learn} href={@props.learn} className="learn">learn more</a>
+					<a onClick={@navigate} href="#" className="quote">quote</a>
 				</div>
 			</div>
-		</div>
+		</li>
 	})
 
 

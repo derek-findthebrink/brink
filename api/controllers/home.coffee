@@ -23,4 +23,8 @@ module.exports = {
 		sub = req.params.sub
 		log.info sub:sub, "productsAndServicesSub"
 		res.render("pages/products-and-services")
+	productLearn: (req, res)->
+		category = req.params.category
+		product = req.params.product
+		res.render("pages/products-and-services")
 }

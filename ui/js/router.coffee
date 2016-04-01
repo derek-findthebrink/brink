@@ -32,13 +32,19 @@ router = Backbone.Router.extend({
 			t = $(e.currentTarget).attr("href")
 			n = t.substring(1, t.length)
 			app.router.navigate n, {trigger: true}
+	hrefNavigator: (href)->
+		l = document.createElement("a")
+		l.href = href
+		n = l.pathname.substring(1, l.pathname.length)
+		app.router.navigate(n, {trigger: true})
 	routes:
-		""								: 	"home"
-		"products-and-services/:sub"	:	"renderProductSub"
-		"portfolio"						: 	"portfolio"
-		"stack"							:	"stack"
-		"products-and-services"			:	"products"
-		"contact"						:	"contact"
+		""										: 	"home"
+		"products-and-services/:sub"			:	"renderProductSub"
+		"products-and-services/:sub/:product"	: 	"renderProductLearn"
+		"portfolio"								: 	"portfolio"
+		"stack"									:	"stack"
+		"products-and-services"					:	"products"
+		"contact"								:	"contact"
 	home: ->
 		_dispatch("home")
 	portfolio: ->
@@ -51,6 +57,13 @@ router = Backbone.Router.extend({
 		_dispatch("contact")
 	renderProductSub: (sub)->
 		_dispatch("products", sub)
+	renderProductLearn: (sub, product)->
+		# console.log sub:sub, product:product
+		app.flux.dispatch({
+			action: "render_learn"
+			category: sub
+			product: product
+			})
 	})
 
 module.exports = router

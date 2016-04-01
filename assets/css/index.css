@@ -1040,7 +1040,7 @@ html {
   to {
     opacity: 1; } }
 
-.fadeIn {
+.fadeIn, .product-transition-enter {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn; }
 
@@ -1518,7 +1518,7 @@ html {
     -webkit-transform: perspective(400px);
     transform: perspective(400px); } }
 
-.flipInX, .product-transition-enter {
+.flipInX {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
   -webkit-animation-name: flipInX;
@@ -2752,13 +2752,13 @@ iron-icon {
 
 .header-section {
   text-align: center; }
-  .header-section p {
-    margin: 0;
-    color: #8d8d8d; }
   .header-section .page-header {
     font-size: 200%;
     margin-bottom: 0.2em;
     color: #676767; }
+  .header-section .page-header-description {
+    margin: 0;
+    color: #8d8d8d; }
 
 .product-item {
   -webkit-transition: 0.5s;
@@ -2772,26 +2772,56 @@ iron-icon {
   margin-bottom: 0.5em; }
   .product-item:hover {
     border-color: #5d779b; }
-  .product-item div.img {
+  .product-item .img {
     display: table-cell;
     width: 30%;
     vertical-align: middle; }
-    .product-item div.img img {
+    .product-item .img img {
       width: 100%; }
-  .product-item div.description {
+  .product-item .description {
     display: table-cell;
     width: 70%;
-    padding-top: 1.5em;
+    padding-top: 1em;
     padding-left: 0.5em;
+    padding-bottom: 1em;
     vertical-align: top;
     padding-right: 2em; }
-    .product-item div.description h3 {
+    .product-item .description .product-header {
       color: #676767;
       margin: 0 0 2px 0;
       padding-bottom: 2px;
       border-bottom: 1px solid rgba(103, 103, 103, 0.5); }
-    .product-item div.description p {
-      margin: 0; }
+    .product-item .description .summary {
+      margin: 0.5em 0;
+      font-style: italic; }
+    .product-item .description ul.includes {
+      list-style-type: none;
+      padding-left: 1.5em;
+      margin: 0.5em 0; }
+    .product-item .description .action-callout {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      margin-top: 0.5em; }
+      .product-item .description .action-callout a {
+        display: table-cell;
+        width: 50%;
+        border: 1px solid white;
+        border-radius: 3px;
+        background-color: #abb9cc;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        color: #272727; }
+        .product-item .description .action-callout a:hover {
+          background-color: #cad3e0; }
+        .product-item .description .action-callout a.learn {
+          background-color: #8b9eb9; }
+          .product-item .description .action-callout a.learn:hover {
+            background-color: #6b84a6;
+            color: white; }
+        .product-item .description .action-callout a.quote:hover {
+          color: black; }
 
 .content {
   -webkit-transition: 1s;
@@ -2803,37 +2833,3 @@ iron-icon {
 .slicknav_brand a {
   text-decoration: none;
   color: inherit; }
-
-.product-item .description {
-  padding: 0.5em;
-  font-size: 90%; }
-  .product-item .description p {
-    padding-top: 5px; }
-  .product-item .description ul.includes {
-    list-style-type: none;
-    padding-left: 1em;
-    margin: 0.5em 0; }
-  .product-item .description .action-callout {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    margin-top: 0.5em; }
-    .product-item .description .action-callout a {
-      display: table-cell;
-      width: 50%;
-      border: 1px solid white;
-      border-radius: 3px;
-      background-color: #abb9cc;
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-      color: #272727; }
-      .product-item .description .action-callout a:hover {
-        background-color: #cad3e0; }
-      .product-item .description .action-callout a.learn {
-        background-color: #8b9eb9; }
-        .product-item .description .action-callout a.learn:hover {
-          background-color: #6b84a6;
-          color: white; }
-      .product-item .description .action-callout a.quote:hover {
-        color: black; }

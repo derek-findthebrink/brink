@@ -7,7 +7,7 @@
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
     "start": "PORT=2150 NODE_ENV=production coffee app.coffee",
     "start:dev": "PORT=2150 NODE_ENV=development nodemon app.coffee | bunyan",
-    "dev": "browser-sync start --reload-delay 1000 --no-notify --proxy localhost:2150 --files='views/**/*.jade, assets/**/*.css, assets/**/*.js'",
+    "dev": "browser-sync start --reload-delay 1000 --proxy localhost:2150 --files='views/**/*.jade, assets/**/*.css, assets/**/*.js'",
     "ui:css": "node-sass -w -o assets/css ui/css/index.sass",
     "ui:js": "watchify -dvo assets/bundle.js -t coffee-reactify --extension='coffee' --extension='cjsx' ui/js/index.coffee",
     "watch": "npm run ui:css & npm run ui:js",

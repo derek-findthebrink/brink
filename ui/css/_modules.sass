@@ -34,38 +34,79 @@
 .header-section
 	$hs-color: $header-color
 	text-align: center
-	p 
-		margin: 0
-		color: lighten($hs-color, 15%)
 	.page-header
 		font-size: 200%
 		margin-bottom: 0.2em
 		color: $hs-color
+	.page-header-description
+		margin: 0
+		color: lighten($hs-color, 15%)
 
 .product-item
+	// shell display options
+	// --------------------------------
 	@include transition(0.5s)
 	@include row(table)
 	border: 5px solid rgba($theme-base, 0.5)
 	border-radius: 10px
 	margin-bottom: 0.5em
+	// adds visual cue to engage deeper
 	&:hover
 		border-color: lighten($theme-base, 15%)
-	div.img
+
+	// content options
+	// --------------------------------
+	// left-side image options
+	.img
 		@include span-columns(3 of 10)
 		vertical-align: middle
 		img
 			width: 100%
-	div.description
+	// text options for right-side
+	.description
 		@include span-columns(7 of 10)
-		padding-top: 1.5em
+		padding-top: 1em
 		padding-left: 0.5em
+		padding-bottom: 1em
 		vertical-align: top
 		padding-right: 2em
-		h3
+		// perhaps an actual selector here isn't ideal
+		.product-header
 			color: $header-color
 			margin: 0 0 2px 0
 			padding-bottom: 2px
 			border-bottom: 1px solid rgba($header-color, 0.5)
-		p
-			margin: 0
+		.summary
+			margin: 0.5em 0
+			font-style: italic
+		ul.includes
+			list-style-type: none
+			padding-left: 1.5em
+			margin: 0.5em 0
+		.action-callout
+			@include row(table)
+			margin-top: 0.5em
+			a
+				$bcg: lighten($theme-base, 40%)
+				$col: darken($header-color, 25%)
+				@include span-columns(1 of 2)
+				border: 1px solid white
+				border-radius: 3px
+				background-color: $bcg
+				display: inline-block
+				text-align: center
+				text-decoration: none
+				color: $col
+				&:hover
+					background-color: lighten($bcg, 10%)
+				&.learn
+					background-color: darken($bcg, 10%)
+					&:hover
+						background-color: darken($bcg, 20%)
+						// color: lighten($col, 30%)
+						color: white
+				&.quote
+					&:hover
+						color: black
+
 	@include reset-display()
