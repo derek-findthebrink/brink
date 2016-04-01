@@ -1,6 +1,7 @@
 {Main, pages} = require("../views/_base")
 Stack = pages.Stack
 Products = pages.Products
+Contact = pages.Contact
 
 class ImgCreator
 	constructor: (@img, @alt, @description)->
@@ -405,7 +406,7 @@ Products = {
 
 
 Contact = {
-	view: Main
+	view: Contact
 	props:
 		header:
 			title: "contact"

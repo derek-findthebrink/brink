@@ -174,7 +174,44 @@ Products = React.createClass({
 		</div>		
 	})
 
+
+
+Field = React.createClass({
+	render: ->
+		label = @props.label || @props.name
+		type = @props.type
+		_i = null
+		if type == "textarea"
+			_i = React.createElement("textarea", @props)
+		else if type == "select"
+			_i = React.createElement("select", @props)
+		else
+			_i = React.createElement("input", @props)
+
+		<div className="field-container">
+			<label htmlFor={@props.name}>{label}</label>
+			<div className="field">
+				{_i}
+			</div>
+		</div>
+	})
+
+# Contact
+Contact = React.createClass({
+	render: ->
+		<div className="contact">
+			<ContentHeader {...@props.header} />
+			<form>
+				<Field name="name" />
+				<Field name="email_address" label="email address" />
+				<Field name="product" />
+				<Field name="description" type="textarea" />
+			</form>
+		</div>
+	})
+
 exports.pages = {
 	Stack
 	Products
+	Contact
 }

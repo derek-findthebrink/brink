@@ -12,7 +12,7 @@ app = window.app = {}
 
 
 # google analytics
-require("./ga")
+require("./modules/ga")
 # slicknav
 require("./modules/slicknav")
 app.flux = new Flux()

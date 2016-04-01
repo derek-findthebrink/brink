@@ -29,9 +29,6 @@ Base = React.createClass({
 			<InputImg {...x} key={i} />
 
 		<div className="learn">
-			<nav className="learn-nav">
-				<iron-icon icon="icons:arrow-back" />
-			</nav>
 			<div className="learn-header">
 				<h2 className="learn-header-text">{@props.title}</h2>
 				<p className="learn-header-description">{@props.description}</p>
