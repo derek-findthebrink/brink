@@ -46,17 +46,17 @@ router = Backbone.Router.extend({
 		"products-and-services"					:	"products"
 		"contact"								:	"contact"
 	home: ->
-		_dispatch("home")
+		_dispatch("Home")
 	portfolio: ->
-		_dispatch("portfolio")
+		_dispatch("Portfolio")
 	stack: ->
-		_dispatch("stack")
+		_dispatch("Stack")
 	products: ->
-		_dispatch("products", "packages")
+		_dispatch("Products", "packages")
 	contact: ->
-		_dispatch("contact")
+		_dispatch("Contact")
 	renderProductSub: (sub)->
-		_dispatch("products", sub)
+		_dispatch("Products", sub)
 	renderProductLearn: (sub, product)->
 		# console.log sub:sub, product:product
 		app.flux.dispatch({

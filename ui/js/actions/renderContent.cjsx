@@ -5,6 +5,7 @@ _ = require("lodash")
 
 ui = $(".content")[0]
 _c = require("../content/index")
+console.log _c
 
 
 _contentMatch = (payload)->

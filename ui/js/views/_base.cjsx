@@ -96,6 +96,10 @@ ProductItem = React.createClass({
 			href: h
 			})
 	render: ->
+		console.log props:@props
+		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
+		console.log learn:_hrefLearn
+
 		<li className="product-item">
 			<div className="img">
 				<img src="/brink-logo-small.svg" alt="brink logo" />
@@ -108,7 +112,7 @@ ProductItem = React.createClass({
 					<li>real friendly customer service</li>
 				</ul>
 				<div className="action-callout">
-					<a onClick={@learn} href={@props.learn} className="learn">learn more</a>
+					<a onClick={@learn} href={_hrefLearn} className="learn">learn more</a>
 					<a onClick={@navigate} href="#" className="quote">quote</a>
 				</div>
 			</div>
