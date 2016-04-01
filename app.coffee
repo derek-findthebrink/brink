@@ -31,7 +31,7 @@ log = new logger(app, logOpts).initialize((err, log)->
 	if err
 		console.error err
 		throw err
-	console.log log
+	# console.log log
 
 	server = app.listen(process.env.PORT, ->
 		host = server.address().address
@@ -41,8 +41,3 @@ log = new logger(app, logOpts).initialize((err, log)->
 		log.info {host: host, port: port}, "\n----- Server Initialization -----\n"
 		)
 	)
-
-
-
-
-

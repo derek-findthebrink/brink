@@ -9,21 +9,19 @@ body
 		li
 			list-style-type: none
 
+ul
+	padding-left: 0
+
 header
 	margin: 0.5em
 
 html, input, select
 	font-family: "expo-sans-pro"
 
-h1, h2, h3
+h1, h2, h3, h4
 	font-family: "ff-enzo-web"
 
-main
-	@include outer-container(100%)
-	@include row()
-	.content
-		margin: 0 2em
-	// @include reset-display
+
 
 footer
 	text-align: center
@@ -46,24 +44,3 @@ form
 		display: block
 		text-align: center
 		margin: 5px 0
-
-.header-section
-	$hs-color: darken(grey, 10%)
-	text-align: center
-	p 
-		margin: 0
-		color: lighten($hs-color, 15%)
-	.page-header
-		font-size: 200%
-		margin-bottom: 0.2em
-		color: $hs-color
-
-.content-menu
-	position: fixed
-	bottom: 0
-	right: 0
-	iron-icon
-		@include square(3em)
-
-iron-icon
-	@include icon-behaviour

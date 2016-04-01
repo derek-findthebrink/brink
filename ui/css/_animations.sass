@@ -1,0 +1,12 @@
+.content
+	@include transition(1s)
+	min-height: 0px
+	max-height: 100000px
+
+.product-transition-enter
+	@extend .animated
+	@extend .fadeIn
+
+.product-transition-leave
+	@extend .animated
+	@extend .fadeOut
