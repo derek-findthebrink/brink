@@ -2,7 +2,7 @@
 navOpts = {
 	closeOnClick: true
 	label: ""
-	brand: "brink technology co."
+	brand: "<a href=\"/\">brink technology co.</a>"
 	init: ->
 		$("nav").hide()
 }

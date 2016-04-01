@@ -2799,3 +2799,41 @@ iron-icon {
   transition: 1s;
   min-height: 0px;
   max-height: 100000px; }
+
+.slicknav_brand a {
+  text-decoration: none;
+  color: inherit; }
+
+.product-item .description {
+  padding: 0.5em;
+  font-size: 90%; }
+  .product-item .description p {
+    padding-top: 5px; }
+  .product-item .description ul.includes {
+    list-style-type: none;
+    padding-left: 1em;
+    margin: 0.5em 0; }
+  .product-item .description .action-callout {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 0.5em; }
+    .product-item .description .action-callout a {
+      display: table-cell;
+      width: 50%;
+      border: 1px solid white;
+      border-radius: 3px;
+      background-color: #abb9cc;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      color: #272727; }
+      .product-item .description .action-callout a:hover {
+        background-color: #cad3e0; }
+      .product-item .description .action-callout a.learn {
+        background-color: #8b9eb9; }
+        .product-item .description .action-callout a.learn:hover {
+          background-color: #6b84a6;
+          color: white; }
+      .product-item .description .action-callout a.quote:hover {
+        color: black; }

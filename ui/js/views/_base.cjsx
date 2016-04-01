@@ -35,7 +35,6 @@ TradeImage = React.createClass({
 
 
 
-
 # Menus
 MenuItem = React.createClass({
 	render: ->
@@ -97,6 +96,14 @@ ProductItem = React.createClass({
 			<div className="description">
 				<h3>{@props.title}</h3>
 				<p>{@props.description}</p>
+				<ul className="includes">
+					<li>a hat</li>
+					<li>real friendly customer service</li>
+				</ul>
+				<div className="action-callout">
+					<a href="#" className="learn">learn</a>
+					<a href="#" className="quote">quote</a>
+				</div>
 			</div>
 		</div>
 	})
