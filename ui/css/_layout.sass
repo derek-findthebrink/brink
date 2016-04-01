@@ -5,17 +5,6 @@ main
 		margin: 0 2em
 	// @include reset-display
 
-.header-section
-	$hs-color: darken(grey, 10%)
-	text-align: center
-	p 
-		margin: 0
-		color: lighten($hs-color, 15%)
-	.page-header
-		font-size: 200%
-		margin-bottom: 0.2em
-		color: $hs-color
-
 .content-menu
 	position: fixed
 	bottom: 0
@@ -48,31 +37,6 @@ iron-icon
 		width: 100%
 		// display: inline-block
 
-.horizontal-menu
-	@include fill-parent
-	ul
-		@include fill-parent
-		@include row(table)
-		list-style-type: none
-		padding: 0
-	li
-		@include span-columns(1 of 5)
-		text-align: center
-		display: inline-block
-	a
-		$bcg-color: lighten(#40526B, 40%)
-		$color: darken(#676767, 25%)
-		@include transition(0.2s)
-		display: block
-		margin-right: 1px
-		padding-bottom: 2px
-		padding-top: 1px
-		border-top-left-radius: 5px
-		border-top-right-radius: 5px
-		color: $color
-		background-color: $bcg-color
-		text-decoration: none
-		&:hover
-			background-color: darken($bcg-color, 7%)
-			color: darken($color, 80%)
-	@include reset-display
+.products
+	.products-list
+		margin-top: 0

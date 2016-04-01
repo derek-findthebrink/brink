@@ -6,13 +6,6 @@ _ = require("lodash")
 # Base
 # ------------------------------
 
-Header = React.createClass({
-	render: ->
-		<div>
-			<h2>{@props.title}</h2>
-		</div>
-	})
-
 ContentHeader = React.createClass({
 	render: ->
 		<div className="header-section">
@@ -20,6 +13,14 @@ ContentHeader = React.createClass({
 			<p className="page-header-description">{@props.description}</p>
 		</div>
 	})
+
+
+
+
+
+
+# Components
+# -----------------------------------
 
 TradeImage = React.createClass({
 	render: ->
@@ -33,11 +34,16 @@ TradeImage = React.createClass({
 MenuItem = React.createClass({
 	render: ->
 		<li>
-			<a href={@props.link}>{@props.title}</a>
+			<a className="app-nav" href={@props.link}>{@props.title}</a>
 		</li>
 	})
 
 HorizontalMenu = React.createClass({
+	componentDidMount: ->
+		try
+			app.router.listeners()
+		catch e
+			console.log "click event handler initialization via router failed, retrying..."
 	render: ->
 		items = @props.menu.map (x, i)->
 			<MenuItem {...x} key={i} />
@@ -49,14 +55,6 @@ HorizontalMenu = React.createClass({
 		</div>
 	})
 
-exports.content = {
-	Header
-	ContentHeader
-}
-
-# Stack
-# ----------------------------
-
 StackItem = React.createClass({
 	render: ->
 		<li>
@@ -67,6 +65,37 @@ StackItem = React.createClass({
 			</div>
 		</li>
 	})
+
+
+
+ProductItem = React.createClass({
+	render: ->
+		<div className="product-item">
+			<div className="img">
+				<img src="/brink-logo-small.svg" alt="brink logo" />
+			</div>
+			<div className="description">
+				<h3>{@props.title}</h3>
+				<p>{@props.description}</p>
+			</div>
+		</div>
+	})
+
+
+
+exports.content = {
+	# Header
+	ContentHeader
+}
+
+
+
+
+
+
+# Stack
+# ----------------------------
+
 
 Stack = React.createClass({
 	render: ->
@@ -85,10 +114,17 @@ Stack = React.createClass({
 # ----------------------------------
 Products = React.createClass({
 	render: ->
+		try
+			items = @props.list.map (x, i)->
+				<ProductItem {...x} key={i} />
+		catch e
+			items = <ProductItem title="no items available" />
 		<div className="products">
 			<ContentHeader {...@props.header} />
 			<HorizontalMenu menu={@props.menu} />
-			<p>hi!</p>
+			<ul className="products-list">
+				{items}
+			</ul>
 		</div>		
 	})
 

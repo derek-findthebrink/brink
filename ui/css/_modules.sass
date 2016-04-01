@@ -1,0 +1,65 @@
+.horizontal-menu
+	@include fill-parent
+	ul
+		@include fill-parent
+		@include row(table)
+		list-style-type: none
+		padding: 0
+		// margin-bottom: 0.5em
+	li
+		@include span-columns(1 of 5)
+		text-align: center
+		display: inline-block
+	a
+		$bcg-color: lighten(#40526B, 40%)
+		$color: darken(#676767, 25%)
+		@include transition(0.2s)
+		display: block
+		margin-right: 1px
+		padding-bottom: 2px
+		padding-top: 1px
+		border-top-left-radius: 5px
+		border-top-right-radius: 5px
+		color: $color
+		background-color: $bcg-color
+		text-decoration: none
+		&:hover
+			background-color: darken($bcg-color, 7%)
+			color: darken($color, 80%)
+	@include reset-display
+
+.header-section
+	$hs-color: $header-color
+	text-align: center
+	p 
+		margin: 0
+		color: lighten($hs-color, 15%)
+	.page-header
+		font-size: 200%
+		margin-bottom: 0.2em
+		color: $hs-color
+
+.product-item
+	@include row(table)
+	border: 5px solid rgba(grey, 0.5)
+	border-radius: 10px
+	margin-bottom: 0.5em
+	div.img
+		@include span-columns(3 of 10)
+		vertical-align: middle
+		img
+			width: 100%
+	div.description
+		@include span-columns(7 of 10)
+		padding-top: 1.5em
+		padding-left: 0.5em
+		vertical-align: top
+		padding-right: 2em
+		h3
+			color: $header-color
+			margin: 0 0 2px 0
+			padding-bottom: 2px
+			border-bottom: 1px solid rgba($header-color, 0.5)
+		p
+			margin: 0
+	@include reset-display()

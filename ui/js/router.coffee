@@ -4,10 +4,11 @@ Backbone = require("backbone")
 
 # Helpers
 # -----------------------
-_dispatch = (page)->
+_dispatch = (page, sub)->
 	x = {
 		action: "render_content"
 		page: page
+		sub: sub || null
 	}
 	return app.flux.dispatch(x)
 
@@ -21,18 +22,23 @@ router = Backbone.Router.extend({
 				pushState: true
 				root: "/"
 				})
-		targets = $("nav.slicknav_nav a")
-		targets.click (e)=>
+		@listeners()
+	listeners: ->
+		console.log "listeners ran(router)"
+		targets = $(".app-nav")
+		targets.off("click")
+		targets.click (e)->
 			e.preventDefault()
 			t = $(e.currentTarget).attr("href")
 			n = t.substring(1, t.length)
-			@navigate n, {trigger: true}
+			app.router.navigate n, {trigger: true}
 	routes:
-		""							: 	"home"
-		"portfolio"					: 	"portfolio"
-		"stack"						:	"stack"
-		"products-and-services"		:	"products"
-		"contact"					:	"contact"
+		""								: 	"home"
+		"products-and-services/:sub"	:	"renderProductSub"
+		"portfolio"						: 	"portfolio"
+		"stack"							:	"stack"
+		"products-and-services"			:	"products"
+		"contact"						:	"contact"
 	home: ->
 		_dispatch("home")
 	portfolio: ->
@@ -40,10 +46,11 @@ router = Backbone.Router.extend({
 	stack: ->
 		_dispatch("stack")
 	products: ->
-		_dispatch("products")
+		_dispatch("products", "packages")
 	contact: ->
 		_dispatch("contact")
-
+	renderProductSub: (sub)->
+		_dispatch("products", sub)
 	})
 
 module.exports = router

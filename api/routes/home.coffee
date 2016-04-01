@@ -9,4 +9,6 @@ home.get("/stack", c.stack)
 home.get("/products-and-services", c.productsAndServices)
 home.get("/contact", c.contact)
 
+home.get("/products-and-services/:sub", c.productsAndServicesSub)
+
 module.exports = home

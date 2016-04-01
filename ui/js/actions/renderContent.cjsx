@@ -12,16 +12,19 @@ ui = $(".content")[0]
 
 _c = {
 	home:
+		view: Header
 		props:
 			title: "home"
 			description: "derp nerp slerp"
-		view: Header
+
 	portfolio:
+		view: Header
 		props:
 			title: "portfolio"
 			description: "some of our best work"
-		view: Header
+
 	stack:
+		view: Stack
 		props:
 			header:
 				title: "stack"
@@ -52,8 +55,9 @@ _c = {
 					description: "a high-performance javascript rendering library"
 				}
 			]
-		view: Stack
+
 	products:
+		view: Products
 		props:
 			header:
 				title: "products & services"
@@ -61,41 +65,96 @@ _c = {
 			menu: [
 				{
 					title: "packages"
-					link: "#"
+					link: "/products-and-services"
 				}
 				{
 					title: "websites"
-					link: "#"
+					link: "/products-and-services/websites"
 				}
 				{
 					title: "email"
-					link: "#"
+					link: "/products-and-services/email"
 				}
 				{
 					title: "graphics"
-					link: "#"
+					link: "/products-and-services/graphics"
 				}
 				{
 					title: "apps"
-					link: "#"
+					link: "/products-and-services/apps"
 				}
-
 			]
-		view: Products
+			packages: [
+				{
+					title: "startup package"
+					description: "derp"
+				}
+			]
+			websites: [
+				{
+					title: "basic design"
+					description: "derp"
+				}
+			]
+			email: [
+				{
+					title: "small business email"
+					description: "derp"
+				}
+				{
+					title: "personal email"
+					description: "derp"
+				}
+			]
+			graphics: [
+				{
+					title: "iconography"
+					description: "derp"
+				}
+				{
+					title: "site layouts"
+					description: "derp"
+				}
+			]
+			apps: [
+				{
+					title: "basic app"
+					description: "derp"
+				}
+				{
+					title: "app maintenance"
+					description: "derp"
+				}
+				{
+					title: "custom component development"
+					description: "herp"
+				}
+			]
+
+
+
+
 	contact:
+		view: Header
 		props:
 			title: "contact"
 			description: "how to get in touch with us"
-		view: Header
 }
+
+
+
 
 _contentMatch = (payload)->
 	return _c[payload.page]
 
 renderContent = (payload)->
+	# console.log payload:payload, "renderContent"
 	c = _contentMatch(payload)
 	props = c.props
 	view = c.view
+	if payload.sub
+		props.list = c.props[payload.sub]
+	# console.log props:props, "props"
 	v = React.createElement(view, props)
 	ReactDOM.render(v, ui)
 
