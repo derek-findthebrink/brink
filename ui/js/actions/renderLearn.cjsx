@@ -7,34 +7,29 @@ _ = require("lodash")
 ui = $(".content")[0]
 
 content = require("../content/index")
-console.log content:content
 
 renderPackage = (payload)->
-	console.log category:payload.category, product:payload.product
+	# console.log category:payload.category, product:payload.product
 	# get props
 	col = content.Products.props[payload.category]
 	props = _.find col, (x)->
 		x.product == payload.product
-	console.log props:props, col:col
+	# console.log props:props, col:col
 	# create element
 	_v = React.createElement(Base, props)
 	# render to root
 	ReactDOM.render(_v, ui)
 
 renderWebsite = (payload)->
-	console.log category:payload.category, product:payload.product
 	renderPackage(payload)
 
 renderEmail = (payload)->
-	console.log category:payload.category, product:payload.product
 	renderPackage(payload)
 
 renderGraphics = (payload)->
-	console.log category:payload.category, product:payload.product
 	renderPackage(payload)
 
 renderApp = (payload)->
-	console.log category:payload.category, product:payload.product
 	renderPackage(payload)
 
 

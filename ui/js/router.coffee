@@ -24,7 +24,6 @@ router = Backbone.Router.extend({
 				})
 		@listeners()
 	listeners: ->
-		console.log "listeners ran(router)"
 		targets = $(".app-nav")
 		targets.off("click")
 		targets.click (e)->

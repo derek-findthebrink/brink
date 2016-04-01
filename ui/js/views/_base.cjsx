@@ -96,9 +96,7 @@ ProductItem = React.createClass({
 			href: h
 			})
 	render: ->
-		console.log props:@props
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
-		console.log learn:_hrefLearn
 
 		<li className="product-item">
 			<div className="img">
