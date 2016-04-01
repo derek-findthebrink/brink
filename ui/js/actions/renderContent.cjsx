@@ -3,25 +3,27 @@ ReactDOM = require("react-dom")
 $ = require("jquery")
 _ = require("lodash")
 
-{content, pages} = require("../views/_base")
-Header = content.ContentHeader
+{Main, pages} = require("../views/_base")
 Stack = pages.Stack
 Products = pages.Products
+
 
 ui = $(".content")[0]
 
 _c = {
 	home:
-		view: Header
+		view: Main
 		props:
-			title: "home"
-			description: "derp nerp slerp"
+			header:
+				title: "home"
+				description: "derp nerp slerp"
 
 	portfolio:
-		view: Header
+		view: Main
 		props:
-			title: "portfolio"
-			description: "some of our best work"
+			header:
+				title: "portfolio"
+				description: "some of our best work"
 
 	stack:
 		view: Stack
@@ -87,13 +89,18 @@ _c = {
 			packages: [
 				{
 					title: "startup package"
-					description: "derp"
+					description: "everything you need to get your organization running."
 				}
 			]
 			websites: [
 				{
 					title: "basic design"
-					description: "derp"
+					description: "want a website? We'll design it, test it and
+					get it running on the web within 5 days."
+				}
+				{
+					title: "domains"
+					description: "purchase and manage your domain names"
 				}
 			]
 			email: [
@@ -135,10 +142,11 @@ _c = {
 
 
 	contact:
-		view: Header
+		view: Main
 		props:
-			title: "contact"
-			description: "how to get in touch with us"
+			header:
+				title: "contact"
+				description: "how to get in touch with us"
 }
 
 

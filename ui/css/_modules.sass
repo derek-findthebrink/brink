@@ -26,6 +26,9 @@
 		&:hover
 			background-color: darken($bcg-color, 7%)
 			color: darken($color, 80%)
+		&.active
+			color: black
+			background-color: lighten($bcg-color, 12%)
 	@include reset-display
 
 .header-section
@@ -40,10 +43,13 @@
 		color: $hs-color
 
 .product-item
+	@include transition(0.5s)
 	@include row(table)
-	border: 5px solid rgba(grey, 0.5)
+	border: 5px solid rgba($theme-base, 0.5)
 	border-radius: 10px
 	margin-bottom: 0.5em
+	&:hover
+		border-color: lighten($theme-base, 15%)
 	div.img
 		@include span-columns(3 of 10)
 		vertical-align: middle

@@ -1,4 +1,5 @@
 React = require("react")
+ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 $ = require("jquery")
 _ = require("lodash")
 
@@ -31,10 +32,19 @@ TradeImage = React.createClass({
 		</div>
 	})
 
+
+
+
+
+# Menus
 MenuItem = React.createClass({
 	render: ->
+		classes = ["app-nav"]
+		if @props.addClass
+			classes.push(@props.addClass)
+		c = classes.join(" ")
 		<li>
-			<a className="app-nav" href={@props.link}>{@props.title}</a>
+			<a className={c} href={@props.link}>{@props.title}</a>
 		</li>
 	})
 
@@ -44,9 +54,14 @@ HorizontalMenu = React.createClass({
 			app.router.listeners()
 		catch e
 			console.log "click event handler initialization via router failed, retrying..."
+
 	render: ->
+		path = location.pathname
 		items = @props.menu.map (x, i)->
-			<MenuItem {...x} key={i} />
+			if x.link == path
+				<MenuItem {...x} key={i} addClass="active" />
+			else
+				<MenuItem {...x} key={i} />
 
 		<div className="horizontal-menu">
 			<ul>
@@ -55,6 +70,11 @@ HorizontalMenu = React.createClass({
 		</div>
 	})
 
+
+
+
+
+# Single Views
 StackItem = React.createClass({
 	render: ->
 		<li>
@@ -83,20 +103,21 @@ ProductItem = React.createClass({
 
 
 
-exports.content = {
-	# Header
-	ContentHeader
-}
 
+# Custom Segments
+# ----------------------------------
 
+Content = React.createClass({
+	render: ->
+		<div>
+			<ContentHeader {...@props.header} />
+			{@props.children}
+		</div>
+	})
 
-
-
+exports.Main = Content
 
 # Stack
-# ----------------------------
-
-
 Stack = React.createClass({
 	render: ->
 		items = @props.list.map (x, i)->
@@ -110,20 +131,29 @@ Stack = React.createClass({
 		</div>
 	})
 
+
 # Products
-# ----------------------------------
+k = 0
 Products = React.createClass({
 	render: ->
 		try
 			items = @props.list.map (x, i)->
-				<ProductItem {...x} key={i} />
+				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
 		<div className="products">
 			<ContentHeader {...@props.header} />
 			<HorizontalMenu menu={@props.menu} />
 			<ul className="products-list">
-				{items}
+				<ReactCSSTransitionGroup 
+				transitionName="product-transition" 
+				transitionAppear={true} 
+				transitionAppearTimeout={1000} 
+				transitionEnterTimeout={1000} 
+				transitionLeave={false}
+				transitionLeaveTimeout={1000}>
+					{items}
+				</ReactCSSTransitionGroup>
 			</ul>
 		</div>		
 	})
