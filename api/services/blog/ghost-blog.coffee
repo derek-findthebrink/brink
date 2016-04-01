@@ -2,15 +2,24 @@ ghost = require "ghost"
 express = require "express"
 path = require "path"
 
-AppLogger = require "../../../log/logger"
 BlogConfig = require "./config"
+
+try
+	log = appLogger.child({
+		type: "service"
+		file: "blog/ghost-blog"
+		})
+catch e
+	log = console
+	log.info = console.log
+
 
 
 # Logic
 # ---------------
 env = process.env.NODE_ENV
 
-console.log BlogConfig[env]
+log.info blogConfig:BlogConfig[env], "blog config"
 
 app = express()
 app.application_name = "brink-blog"
