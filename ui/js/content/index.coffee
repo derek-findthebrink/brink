@@ -84,10 +84,11 @@ _c = {
 			packages: [
 				{
 					title: "startup package"
-					description: "everything you need to get your organization running."
-					category: "package"
+					description: "everything you need to get your company online."
+					category: "packages"
 					product: "startup-package"
 					learn: "/products-and-services/package/startup-package"
+					learnData: _learn.package["startup-package"]
 				}
 			]
 			websites: [
@@ -95,16 +96,18 @@ _c = {
 					title: "basic design"
 					description: "want a website? We'll design it, test it and
 					get it running on the web within 5 days."
-					category: "website"
+					category: "websites"
 					product: "basic"
 					learn: "/products-and-services/websites/basic"
+					learnData: _learn.website["basic"]
 				}
 				{
 					title: "domains"
 					description: "purchase and manage your domain names"
-					category: "website"
+					category: "websites"
 					product: "domain"
 					learn: "/products-and-services/websites/domains"
+					learnData: _learn.website["domain"]
 				}
 			]
 			email: [
@@ -115,6 +118,7 @@ _c = {
 					category: "email"
 					product: "small-business"
 					learn: "/products-and-services/email/small-business"
+					learnData: _learn.email["small-business"]
 				}
 				{
 					title: "personal email"
@@ -123,6 +127,7 @@ _c = {
 					category: "email"
 					product: "personal"
 					learn: "/products-and-services/email/personal"
+					learnData: _learn.email["personal"]
 				}
 			]
 			graphics: [
@@ -132,6 +137,7 @@ _c = {
 					category: "graphics"
 					product: "iconography"
 					learn: "/products-and-services/graphics/iconography"
+					learnData: _learn.graphics["iconography"]
 				}
 				{
 					title: "site layouts"
@@ -140,6 +146,7 @@ _c = {
 					category: "graphics"
 					product: "site-layouts"
 					learn: "/products-and-services/graphics/site-layouts"
+					learnData: _learn.graphics["site-layouts"]
 				}
 			]
 			apps: [
@@ -147,17 +154,19 @@ _c = {
 					title: "basic app"
 					description: "need more than just a website? Data-driven web applications
 					are the future of the internet. We'll get you started."
-					category: "app"
+					category: "apps"
 					product: "basic"
 					learn: "/products-and-services/apps/basic"
+					learnData: _learn.app["basic"]
 				}
 				{
 					title: "custom component development"
-					description: "already have your app running but need a new feature?
+					description: "already have an app but need new features?
 					We've got you covered."
-					category: "app"
+					category: "apps"
 					product: "custom-component"
 					learn: "/products-and-services/apps/components"
+					learnData: _learn.app["custom-component"]
 				}
 			]
 
@@ -170,8 +179,6 @@ _c = {
 			header:
 				title: "contact"
 				description: "how to get in touch with us"
-
-	learn: _learn
 }
 
 module.exports = _c

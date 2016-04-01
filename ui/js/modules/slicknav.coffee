@@ -9,5 +9,3 @@ navOpts = {
 
 # initialize slicknav
 $("nav").slicknav( navOpts )
-
-console.log "slicknav loaded"

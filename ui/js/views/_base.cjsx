@@ -172,7 +172,6 @@ Products = React.createClass({
 		</div>		
 	})
 
-
 exports.pages = {
 	Stack
 	Products
