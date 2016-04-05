@@ -33,6 +33,9 @@ Base = React.createClass({
 				<h2 className="learn-header-text">{@props.title}</h2>
 				<p className="learn-header-description">{@props.description}</p>
 			</div>
+			<div className="learn-description">
+				<p>I'm a description</p>
+			</div>
 			<div className="inputs">
 				{inputs}
 			</div>

@@ -92,6 +92,7 @@ Products = {
 				description: "everything you need to get your company online."
 				category: "packages"
 				product: "startup-package"
+				includes: ["business cards", "email addresses", "website"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -138,6 +139,7 @@ Products = {
 				get it running on the web within 5 days."
 				category: "websites"
 				product: "basic"
+				includes: ["static website"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -170,6 +172,7 @@ Products = {
 				description: "purchase and manage your domain names"
 				category: "websites"
 				product: "domain"
+				includes: ["managed domain", "automatic renewals", "domain hunting"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -205,6 +208,7 @@ Products = {
 				business with a professional email for your contacts."
 				category: "email"
 				product: "small-business"
+				includes: ["two emails", "unlimited aliases", "high-quality interface"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -238,6 +242,7 @@ Products = {
 				on Gmail? We've got you covered."
 				category: "email"
 				product: "personal"
+				includes: ["one email", "unlimited aliases"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -272,6 +277,7 @@ Products = {
 				description: "custom iconography for your print and web projects"
 				category: "graphics"
 				product: "iconography"
+				includes: ["custom iconography set", "brand syncing"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -305,6 +311,11 @@ Products = {
 				wireframes based on your business needs and the latest web-standards."
 				category: "graphics"
 				product: "site-layouts"
+				includes: [
+					"you-own vectors"
+					"up-to-date internet standards"
+					"library recommendations"
+				]
 				learnData:
 					inputs: [
 						new ImgCreator(

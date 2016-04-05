@@ -97,6 +97,12 @@ ProductItem = React.createClass({
 			})
 	render: ->
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
+		includes = null
+		if @props.includes
+			includes = @props.includes.map (x, i)->
+				<li key={i}>{x}</li>
+		else
+			includes = <li>no includes provided</li>
 
 		<li className="product-item">
 			<div className="img">
@@ -106,8 +112,7 @@ ProductItem = React.createClass({
 				<h2 className="product-header">{@props.title}</h2>
 				<p className="summary">{@props.description}</p>
 				<ul className="includes">
-					<li>a hat</li>
-					<li>real friendly customer service</li>
+					{includes}
 				</ul>
 				<div className="action-callout">
 					<a onClick={@learn} href={_hrefLearn} className="learn">learn more</a>
