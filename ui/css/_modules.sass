@@ -113,6 +113,11 @@
 
 .learn
 	$c: $header-color
+	& > div
+		opacity: 0
+		&.active
+			@extend %learn-fade-in
+			opacity: 1
 	.learn-header
 		font-size: 110%
 		.learn-header-text

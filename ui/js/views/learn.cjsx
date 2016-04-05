@@ -2,6 +2,7 @@ React = require("react")
 ReactDOM = require("react-dom")
 _ = require("lodash")
 
+
 InputImg = React.createClass({
 	render: ->
 		<div className="learn-input-image">
@@ -14,11 +15,22 @@ ContactCallout = React.createClass({
 	render: ->
 		<div className="callout learn-callout">
 			<a href="#">+1.604.762.6133</a>
-			<a href="#">I'm ready</a>
+			<a href="#">I'm ready.</a>
 		</div>
 	})
 
 Base = React.createClass({
+	componentDidMount: ->
+		@_wps = $(ReactDOM.findDOMNode(this)).children("div")
+			.waypoint({
+				handler: ->
+					el = this.element
+					$(el).addClass("active")
+				offset: "70%"
+				})
+	componentWillUnmount: ->
+		@_wps.map (x)->
+			x.destroy()
 	render: ->
 		# console.log props:@props
 		inputs = @props.learnData.inputs.map (x, i)->
