@@ -47,12 +47,13 @@ HorizontalMenu = React.createClass({
 			console.log "click event handler initialization via router failed, retrying..."
 
 	render: ->
-		path = location.pathname
+		# path = location.pathname
 		items = @props.menu.map (x, i)->
-			if x.link == path
-				<MenuItem {...x} key={i} addClass="active" />
-			else
-				<MenuItem {...x} key={i} />
+			# Removed for Server-Side rendering issue on location
+			# if x.link == path
+			# 	<MenuItem {...x} key={i} addClass="active" />
+			# else
+			<MenuItem {...x} key={i} />
 
 		<div className="horizontal-menu">
 			<ul>

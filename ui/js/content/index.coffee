@@ -88,7 +88,7 @@ Stack = {
 				img:
 					src: "https://www.browsersync.io/brand-assets/logo-red.png"
 					alt: ""
-					href: ""
+					href: "https://www.browsersync.io/"
 				description: ""
 			}
 			{
@@ -96,7 +96,7 @@ Stack = {
 				img:
 					src: "https://avatars0.githubusercontent.com/u/9338635?v=3&s=400"
 					alt: ""
-					href: ""
+					href: "http://jade-lang.com"
 				description: ""
 			}
 			{
@@ -104,7 +104,7 @@ Stack = {
 				img:
 					src: "https://pbs.twimg.com/profile_images/420347030263701504/9esmqty2_400x400.png"
 					alt: ""
-					href: ""
+					href: "http://browserify.org"
 				description: ""
 			}
 			{
@@ -112,7 +112,7 @@ Stack = {
 				img:
 					src: "http://www.websitemagazine.com/images/blog/amazonaws-mini.png"
 					alt: ""
-					href: ""
+					href: "https://aws.amazon.com/"
 				description: ""
 			}
 			{
@@ -120,7 +120,7 @@ Stack = {
 				img:
 					src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
 					alt: ""
-					href: ""
+					href: "https://google.com/"
 				description: ""
 			}
 			{
@@ -128,7 +128,7 @@ Stack = {
 				img:
 					src: "http://storage.googleapis.com/ix_choosemuse/uploads/2016/02/android-logo.png"
 					alt: ""
-					href: ""
+					href: "https://www.android.com/"
 				description: ""
 			}
 			{
@@ -136,7 +136,7 @@ Stack = {
 				img:
 					src: "http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png"
 					alt: ""
-					href: ""
+					href: "http://facebook.github.io/flux/"
 				description: ""
 			}
 			{
@@ -144,7 +144,7 @@ Stack = {
 				img:
 					src: "https://worldvectorlogo.com/logos/backbone-icon.svg"
 					alt: ""
-					href: ""
+					href: "http://backbonejs.org/"
 				description: ""
 			}
 
