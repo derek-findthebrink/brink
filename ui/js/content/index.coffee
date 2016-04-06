@@ -1,14 +1,9 @@
-{Main, pages} = require("../views/_base")
-Stack = pages.Stack
-Products = pages.Products
-Contact = pages.Contact
-
 class ImgCreator
 	constructor: (@img, @alt, @description)->
 		return this
 
 Home = {
-	view: Main
+	view: "Main"
 	props:
 		header:
 			title: "home"
@@ -16,7 +11,7 @@ Home = {
 }
 
 Portfolio = {
-	view: Main
+	view: "Main"
 	props:
 		header:
 			title: "portfolio"
@@ -24,7 +19,7 @@ Portfolio = {
 }
 
 Stack = {
-	view: Stack
+	view: "Stack"
 	props:
 		header:
 			title: "stack"
@@ -49,16 +44,115 @@ Stack = {
 			{
 				title: "ReactJS"
 				img:
-					src: "http://www.programwitherik.com/content/images/2015/12/reactjs.png"
+					src: "http://red-badger.com/blog/wp-content/uploads/2015/04/react-logo-1000-transparent.png"
 					alt: "ReactJS Logo"
 					href: "https://facebook.github.io/react/"
 				description: "a high-performance javascript rendering library"
 			}
 		]
+		secondaryList: [
+			{
+				title: "Sass"
+				img:
+					src: "http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg"
+					alt: ""
+					href: "http://sass-lang.com"
+				description: ""
+			}
+			{
+				title: "npm"
+				img:
+					src: "https://www.npmjs.com/static/images/npm-logo.svg"
+					alt: ""
+					href: "https://npmjs.com"
+				description: ""
+			}
+			{
+				title: "bower"
+				img:
+					src: "http://bower.io/img/bower-logo.png"
+					alt: ""
+					href: "http://bower.io"
+				description: ""
+			}
+			{
+				title: "grunt"
+				img:
+					src: "https://camo.githubusercontent.com/39242419c60a53e1f3cecdeecb2460acce47366f/687474703a2f2f6772756e746a732e636f6d2f696d672f6772756e742d6c6f676f2d6e6f2d776f72646d61726b2e737667"
+					alt: ""
+					href: "http://gruntjs.com"
+				description: ""
+			}
+			{
+				title: "browser-sync"
+				img:
+					src: "https://www.browsersync.io/brand-assets/logo-red.png"
+					alt: ""
+					href: "https://www.browsersync.io/"
+				description: ""
+			}
+			{
+				title: "jade"
+				img:
+					src: "https://avatars0.githubusercontent.com/u/9338635?v=3&s=400"
+					alt: ""
+					href: "http://jade-lang.com"
+				description: ""
+			}
+			{
+				title: "browserify"
+				img:
+					src: "https://pbs.twimg.com/profile_images/420347030263701504/9esmqty2_400x400.png"
+					alt: ""
+					href: "http://browserify.org"
+				description: ""
+			}
+			{
+				title: "amazon web services"
+				img:
+					src: "http://www.websitemagazine.com/images/blog/amazonaws-mini.png"
+					alt: ""
+					href: "https://aws.amazon.com/"
+				description: ""
+			}
+			{
+				title: "google"
+				img:
+					src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
+					alt: ""
+					href: "https://google.com/"
+				description: ""
+			}
+			{
+				title: "android"
+				img:
+					src: "http://storage.googleapis.com/ix_choosemuse/uploads/2016/02/android-logo.png"
+					alt: ""
+					href: "https://www.android.com/"
+				description: ""
+			}
+			{
+				title: "flux"
+				img:
+					src: "http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png"
+					alt: ""
+					href: "http://facebook.github.io/flux/"
+				description: ""
+			}
+			{
+				title: "backbone"
+				img:
+					src: "https://worldvectorlogo.com/logos/backbone-icon.svg"
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+			}
+
+		]
 }
 
 Products = {
-	view: Products
+	view: "Products"
 	props:
 		header:
 			title: "products & services"
@@ -92,6 +186,7 @@ Products = {
 				description: "everything you need to get your company online."
 				category: "packages"
 				product: "startup-package"
+				includes: ["business cards", "email addresses", "website"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -138,6 +233,7 @@ Products = {
 				get it running on the web within 5 days."
 				category: "websites"
 				product: "basic"
+				includes: ["static website"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -170,6 +266,7 @@ Products = {
 				description: "purchase and manage your domain names"
 				category: "websites"
 				product: "domain"
+				includes: ["managed domain", "automatic renewals", "domain hunting"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -205,6 +302,7 @@ Products = {
 				business with a professional email for your contacts."
 				category: "email"
 				product: "small-business"
+				includes: ["two emails", "unlimited aliases", "high-quality interface"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -238,6 +336,7 @@ Products = {
 				on Gmail? We've got you covered."
 				category: "email"
 				product: "personal"
+				includes: ["one email", "unlimited aliases"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -272,6 +371,7 @@ Products = {
 				description: "custom iconography for your print and web projects"
 				category: "graphics"
 				product: "iconography"
+				includes: ["custom iconography set", "brand syncing"]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -305,6 +405,11 @@ Products = {
 				wireframes based on your business needs and the latest web-standards."
 				category: "graphics"
 				product: "site-layouts"
+				includes: [
+					"you-own vectors"
+					"up-to-date internet standards"
+					"library recommendations"
+				]
 				learnData:
 					inputs: [
 						new ImgCreator(
@@ -406,7 +511,7 @@ Products = {
 
 
 Contact = {
-	view: Contact
+	view: "Contact"
 	props:
 		header:
 			title: "contact"

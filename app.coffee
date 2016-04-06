@@ -1,3 +1,5 @@
+require("coffee-react/register")
+
 express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
@@ -16,7 +18,7 @@ log = appLogger.child({
 # ------------------------------------------
 env = process.env.NODE_ENV || "development"
 
-# mongoose = require("./config/mongoose").mongoose
+mongoose = require("./config/mongoose").mongoose
 
 app = express()
 app.application_name = "brink-server"
@@ -33,6 +35,8 @@ app.use(express.static("./assets"))
 # --------------------------------------------
 homeRoutes = require "./api/routes/home"
 app.use("/", homeRoutes)
+adminRoutes = require("./api/routes/admin")
+app.use("/admin", adminRoutes)
 
 
 

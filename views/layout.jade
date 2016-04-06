@@ -4,6 +4,7 @@ html
 		title brink | j-design
 		link(rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.min.css")
 		link(rel="import" href="/lib/iron-icons/iron-icons.html")
+		link(href="https://fonts.googleapis.com/css?family=Raleway|Droid+Serif" rel="stylesheet" type="text/css")
 		link(rel="stylesheet" href="/css/index.css")
 
 		//- mobile meta
@@ -31,11 +32,13 @@ html
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		block head
 	body
+		header
+			h1 brink technology co.
 		nav
-			block nav
+			.main-nav
+				block nav
 		main 
-			.content
-				block content
+			.content!= content
 
 		include includes/footer
 
@@ -44,6 +47,8 @@ html
 		script(src="/lib/webcomponentsjs/webcomponents.min.js")
 		script(src="/lib/jquery/dist/jquery.min.js")
 		script(src="/lib/slicknav/dist/jquery.slicknav.min.js")
+		script(src="/lib/waypoints/lib/jquery.waypoints.min.js")
+		script(src="/lib/jquery-sticky/jquery.sticky.js")
 
 		//- load application logic
 		script(src="/bundle.js")

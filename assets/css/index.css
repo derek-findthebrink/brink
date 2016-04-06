@@ -217,30 +217,33 @@ html {
  *
  * Copyright (c) 2016 Daniel Eden
  */
-.animated, .product-transition-enter, .product-transition-leave {
+.animated, .product-transition-enter, .product-transition-leave, .learn > div.active {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
 
-.animated.infinite, .infinite.product-transition-enter, .infinite.product-transition-leave {
+.animated.infinite, .infinite.product-transition-enter, .infinite.product-transition-leave, .learn > div.infinite.active {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite; }
 
-.animated.hinge, .hinge.product-transition-enter, .hinge.product-transition-leave {
+.animated.hinge, .hinge.product-transition-enter, .hinge.product-transition-leave, .learn > div.hinge.active {
   -webkit-animation-duration: 2s;
   animation-duration: 2s; }
 
-.animated.flipOutX, .flipOutX.product-transition-enter, .flipOutX.product-transition-leave,
+.animated.flipOutX, .flipOutX.product-transition-enter, .flipOutX.product-transition-leave, .learn > div.flipOutX.active,
 .animated.flipOutY,
 .flipOutY.product-transition-enter,
 .flipOutY.product-transition-leave,
+.learn > div.flipOutY.active,
 .animated.bounceIn,
 .bounceIn.product-transition-enter,
 .bounceIn.product-transition-leave,
+.learn > div.bounceIn.active,
 .animated.bounceOut,
 .bounceOut.product-transition-enter,
-.bounceOut.product-transition-leave {
+.bounceOut.product-transition-leave,
+.learn > div.bounceOut.active {
   -webkit-animation-duration: .75s;
   animation-duration: .75s; }
 
@@ -1208,7 +1211,7 @@ html {
     -webkit-transform: none;
     transform: none; } }
 
-.fadeInUp {
+.fadeInUp, .learn > div.active {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp; }
 
@@ -1466,7 +1469,7 @@ html {
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in; } }
 
-.animated.flip, .flip.product-transition-enter, .flip.product-transition-leave {
+.animated.flip, .flip.product-transition-enter, .flip.product-transition-leave, .learn > div.flip.active {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
   -webkit-animation-name: flip;
@@ -2594,9 +2597,16 @@ div.slicknav_menu {
     border-radius: 10px; }
   div.slicknav_menu .slicknav_btn {
     margin-top: 8px;
-    background-color: #40526B; }
+    background: none; }
     div.slicknav_menu .slicknav_btn span {
       color: #5d779b; }
+
+.content {
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+  min-height: 0px;
+  max-height: 100000px; }
 
 body {
   margin: 0; }
@@ -2615,10 +2625,10 @@ header {
   margin: 0.5em; }
 
 html, input, select {
-  font-family: "expo-sans-pro"; }
+  font-family: "expo-sans-pro", "Droid Serif"; }
 
 h1, h2, h3, h4 {
-  font-family: "ff-enzo-web"; }
+  font-family: "ff-enzo-web", "Raleway"; }
 
 footer {
   text-align: center; }
@@ -2685,33 +2695,76 @@ iron-icon {
   iron-icon:hover {
     fill: #FFBA00; }
 
-.stack ul.stack-list {
+.stack .trade-img a {
+  display: block; }
+  .stack .trade-img a .img {
+    width: 100%;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat; }
+
+.stack ul.stack-list-main {
   list-style-type: none;
   padding: 0; }
+  .stack ul.stack-list-main li {
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    .stack ul.stack-list-main li a {
+      overflow: auto; }
+    .stack ul.stack-list-main li h3 {
+      display: block;
+      margin: 0;
+      border-bottom: 1px solid grey; }
+    .stack ul.stack-list-main li div {
+      vertical-align: middle; }
+      .stack ul.stack-list-main li div:nth-child(2n) {
+        margin-right: 0; }
+      .stack ul.stack-list-main li div:nth-child(2n+1) {
+        clear: left; }
+    .stack ul.stack-list-main li div.trade-img {
+      display: table-cell;
+      width: 37.5%;
+      padding: 0.7em; }
+      .stack ul.stack-list-main li div.trade-img img {
+        display: block; }
+    .stack ul.stack-list-main li div.description {
+      display: table-cell;
+      width: 62.5%;
+      padding-left: 0.5em; }
+  .stack ul.stack-list-main .img {
+    width: 100%;
+    height: 5em; }
 
-.stack li {
-  display: table;
-  width: 100%;
-  table-layout: fixed; }
-  .stack li h3 {
+.stack ul.stack-list-secondary {
+  overflow: auto; }
+  .stack ul.stack-list-secondary a {
     display: block; }
-  .stack li div {
-    vertical-align: middle; }
-    .stack li div:nth-child(2n) {
+  .stack ul.stack-list-secondary li {
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    transition: 0.5s;
+    float: left;
+    display: block;
+    margin-right: 4.82916%;
+    width: 12.64237%;
+    border: 6px solid rgba(64, 82, 107, 0.2);
+    border-radius: 10px;
+    margin-bottom: 0.5em; }
+    .stack ul.stack-list-secondary li:last-child {
       margin-right: 0; }
-    .stack li div:nth-child(2n+1) {
+    .stack ul.stack-list-secondary li:nth-child(6n) {
+      margin-right: 0; }
+    .stack ul.stack-list-secondary li:nth-child(6n+1) {
       clear: left; }
-  .stack li div.img {
-    display: table-cell;
-    width: 37.5%;
-    padding: 0.7em; }
-  .stack li div.description {
-    display: table-cell;
-    width: 62.5%;
-    padding-left: 0.5em; }
-
-.stack img {
-  width: 100%; }
+    .stack ul.stack-list-secondary li:hover {
+      border-color: rgba(64, 82, 107, 0.5); }
+  .stack ul.stack-list-secondary div.trade-img {
+    padding: 0.5em; }
+    .stack ul.stack-list-secondary div.trade-img .img {
+      height: 3.6em; }
+  .stack ul.stack-list-secondary div.description {
+    display: none; }
 
 .products .products-list {
   margin-top: 0; }
@@ -2879,6 +2932,18 @@ iron-icon {
         .product-item .description .action-callout a.quote:hover {
           color: black; }
 
+.content {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s; }
+  .content.fill {
+    margin: 0 0; }
+
+.learn > div {
+  opacity: 0; }
+  .learn > div.active {
+    opacity: 1; }
+
 .learn .learn-header {
   font-size: 110%; }
   .learn .learn-header .learn-header-text {
@@ -2889,13 +2954,33 @@ iron-icon {
     color: #676767;
     text-align: left; }
 
-.content {
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  transition: 1s;
-  min-height: 0px;
-  max-height: 100000px; }
-
 .slicknav_brand a {
   text-decoration: none;
   color: inherit; }
+
+body > header {
+  background-color: #40526B;
+  margin: 0;
+  color: white; }
+  body > header h1 {
+    font-weight: lighter;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    margin: 0; }
+
+body > nav {
+  background-color: #cad3e0; }
+  body > nav ul {
+    margin: 0;
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    body > nav ul li {
+      display: table-cell;
+      width: 20%;
+      font-size: 0.90em;
+      text-align: center;
+      border: 1px solid white;
+      vertical-align: middle; }
+      body > nav ul li a {
+        display: block; }

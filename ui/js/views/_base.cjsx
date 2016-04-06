@@ -23,15 +23,7 @@ ContentHeader = React.createClass({
 # Components
 # -----------------------------------
 
-TradeImage = React.createClass({
-	render: ->
-		<div className="img">
-			<a href={@props.href}>
-				<img src={@props.src} alt={@props.alt} />
-			</a>
-		</div>
-	})
-
+exports.ContentHeader = ContentHeader
 
 
 
@@ -55,12 +47,13 @@ HorizontalMenu = React.createClass({
 			console.log "click event handler initialization via router failed, retrying..."
 
 	render: ->
-		path = location.pathname
+		# path = location.pathname
 		items = @props.menu.map (x, i)->
-			if x.link == path
-				<MenuItem {...x} key={i} addClass="active" />
-			else
-				<MenuItem {...x} key={i} />
+			# Removed for Server-Side rendering issue on location
+			# if x.link == path
+			# 	<MenuItem {...x} key={i} addClass="active" />
+			# else
+			<MenuItem {...x} key={i} />
 
 		<div className="horizontal-menu">
 			<ul>
@@ -73,17 +66,6 @@ HorizontalMenu = React.createClass({
 
 
 
-# Single Views
-StackItem = React.createClass({
-	render: ->
-		<li className="stack-item">
-			<TradeImage {...@props.img} />
-			<div className="description">
-				<h3>{@props.title}</h3>
-				<span>{@props.description}</span>
-			</div>
-		</li>
-	})
 
 
 
@@ -97,6 +79,12 @@ ProductItem = React.createClass({
 			})
 	render: ->
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
+		includes = null
+		if @props.includes
+			includes = @props.includes.map (x, i)->
+				<li key={i}>{x}</li>
+		else
+			includes = <li>no includes provided</li>
 
 		<li className="product-item">
 			<div className="img">
@@ -106,8 +94,7 @@ ProductItem = React.createClass({
 				<h2 className="product-header">{@props.title}</h2>
 				<p className="summary">{@props.description}</p>
 				<ul className="includes">
-					<li>a hat</li>
-					<li>real friendly customer service</li>
+					{includes}
 				</ul>
 				<div className="action-callout">
 					<a onClick={@learn} href={_hrefLearn} className="learn">learn more</a>
@@ -133,19 +120,7 @@ Content = React.createClass({
 
 exports.Main = Content
 
-# Stack
-Stack = React.createClass({
-	render: ->
-		items = @props.list.map (x, i)->
-			<StackItem key={i} {...x} />
-			
-		<div className="stack">
-			<ContentHeader {...@props.header} />
-			<ul className="stack-list">
-				{items}
-			</ul>
-		</div>
-	})
+
 
 
 # Products
@@ -157,6 +132,8 @@ Products = React.createClass({
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
+		speed = 750
+
 		<div className="products">
 			<ContentHeader {...@props.header} />
 			<HorizontalMenu menu={@props.menu} />
@@ -164,10 +141,10 @@ Products = React.createClass({
 				<ReactCSSTransitionGroup 
 				transitionName="product-transition" 
 				transitionAppear={true} 
-				transitionAppearTimeout={1000} 
-				transitionEnterTimeout={1000} 
+				transitionAppearTimeout={speed} 
+				transitionEnterTimeout={speed} 
 				transitionLeave={false}
-				transitionLeaveTimeout={1000}>
+				transitionLeaveTimeout={speed}>
 					{items}
 				</ReactCSSTransitionGroup>
 			</ul>
@@ -211,7 +188,6 @@ Contact = React.createClass({
 	})
 
 exports.pages = {
-	Stack
 	Products
 	Contact
 }

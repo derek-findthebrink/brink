@@ -1,0 +1,4 @@
+{
+	"ext": "*.cjsx, *.coffee, *.js, *.jade",
+	"verbose": true
+}
