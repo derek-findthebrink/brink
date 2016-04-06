@@ -12,29 +12,28 @@ catch e
 
 BASE_DIR = "../../ui/js/"
 _content = require(BASE_DIR + "content/index")
-console.log _content
-{Main, pages} = require(BASE_DIR + "views/_base")
 
-Contact = pages.Contact
-Products = pages.Products
-
-StackView = require(BASE_DIR + "views/_stack")
+HomeView = require(BASE_DIR + "views/home")
+StackView = require(BASE_DIR + "views/stack")
+ProductsView = require(BASE_DIR + "views/product")
+ContactView = require(BASE_DIR + "views/contact")
+PortfolioView = require(BASE_DIR + "views/portfolio")
 
 # Template Cache
 # ----------------------------------------------
 StackEl = React.createElement(StackView, _content["Stack"].props)
 _Stack = ReactServer.renderToString(StackEl)
 
-HomeEl = React.createElement(Main, _content["Home"].props)
+HomeEl = React.createElement(HomeView, _content["Home"].props)
 _Home = ReactServer.renderToString(HomeEl)
 
-PortfolioEl = React.createElement(Main, _content["Portfolio"].props)
+PortfolioEl = React.createElement(PortfolioView, _content["Portfolio"].props)
 _Portfolio = ReactServer.renderToString(PortfolioEl)
 
-ProductsEl = React.createElement(Products, _content["Products"].props)
+ProductsEl = React.createElement(ProductsView, _content["Products"].props)
 _Products = ReactServer.renderToString(ProductsEl)
 
-ContactEl = React.createElement(Contact, _content["Contact"].props)
+ContactEl = React.createElement(ContactView, _content["Contact"].props)
 _Contact = ReactServer.renderToString(ContactEl)
 
 

@@ -3,7 +3,7 @@ class ImgCreator
 		return this
 
 Home = {
-	view: "Main"
+	view: "Home"
 	props:
 		header:
 			title: "home"
@@ -11,7 +11,7 @@ Home = {
 }
 
 Portfolio = {
-	view: "Main"
+	view: "Portfolio"
 	props:
 		header:
 			title: "portfolio"

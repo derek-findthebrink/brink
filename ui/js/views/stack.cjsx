@@ -40,18 +40,22 @@ StackItemSecondary = React.createClass({
 # Stack
 Stack = React.createClass({
 	render: ->
-		items = @props.list.map (x, i)->
+		_primary = _.filter @props.list, (x)->
+			x.secondary == false
+		_secondary = _.filter @props.list, (x)->
+			x.secondary == true
+		primary = _primary.map (x, i)->
 			<StackItemMain key={i} {...x} />
-		secondaryItems = @props.secondaryList.map (x, i)->
+		secondary = _secondary.map (x, i)->
 			<StackItemSecondary key={i} {...x} />
 			
 		<div className="stack">
 			<ContentHeader {...@props.header} />
 			<ul className="stack-list-main">
-				{items}
+				{primary}
 			</ul>
 			<ul className="stack-list-secondary">
-				{secondaryItems}
+				{secondary}
 			</ul>
 		</div>
 	})
