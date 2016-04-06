@@ -2702,6 +2702,8 @@ iron-icon {
     display: table;
     width: 100%;
     table-layout: fixed; }
+    .stack ul.stack-list-main li a {
+      overflow: auto; }
     .stack ul.stack-list-main li h3 {
       display: block;
       margin: 0;
@@ -2727,6 +2729,8 @@ iron-icon {
 
 .stack ul.stack-list-secondary {
   overflow: auto; }
+  .stack ul.stack-list-secondary a {
+    display: block; }
   .stack ul.stack-list-secondary li {
     float: left;
     display: block;
@@ -2742,7 +2746,9 @@ iron-icon {
     .stack ul.stack-list-secondary li:nth-child(6n+1) {
       clear: left; }
   .stack ul.stack-list-secondary div.trade-img {
-    width: 100%; }
+    width: 100%;
+    padding: 0.5em;
+    height: 100%; }
     .stack ul.stack-list-secondary div.trade-img img {
       display: block;
       width: 100%; }

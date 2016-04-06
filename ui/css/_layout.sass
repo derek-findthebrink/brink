@@ -20,6 +20,8 @@ iron-icon
 		list-style-type: none
 		padding: 0
 		li
+			a
+				overflow: auto
 			@include row(table)
 			h3
 				display: block
@@ -43,6 +45,8 @@ iron-icon
 			// display: inline-block
 	ul.stack-list-secondary
 		overflow: auto
+		a
+			display: block
 		li 
 			@include span-columns(1 of 6)
 			@include omega(6n)
@@ -51,6 +55,8 @@ iron-icon
 			margin-bottom: 1em
 		div.trade-img
 			@include fill-parent
+			padding: 0.5em
+			height: 100%
 			img
 				display: block
 				width: 100%

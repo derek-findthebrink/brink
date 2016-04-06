@@ -131,6 +131,8 @@ Products = React.createClass({
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
+		speed = 750
+
 		<div className="products">
 			<ContentHeader {...@props.header} />
 			<HorizontalMenu menu={@props.menu} />
@@ -138,10 +140,10 @@ Products = React.createClass({
 				<ReactCSSTransitionGroup 
 				transitionName="product-transition" 
 				transitionAppear={true} 
-				transitionAppearTimeout={1000} 
-				transitionEnterTimeout={1000} 
+				transitionAppearTimeout={speed} 
+				transitionEnterTimeout={speed} 
 				transitionLeave={false}
-				transitionLeaveTimeout={1000}>
+				transitionLeaveTimeout={speed}>
 					{items}
 				</ReactCSSTransitionGroup>
 			</ul>

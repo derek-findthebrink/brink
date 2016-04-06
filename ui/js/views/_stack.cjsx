@@ -15,7 +15,7 @@ TradeImage = React.createClass({
 
 
 # Single Views
-StackItem = React.createClass({
+StackItemMain = React.createClass({
 	render: ->
 		<li className="stack-item">
 			<TradeImage {...@props.img} />
@@ -26,13 +26,20 @@ StackItem = React.createClass({
 		</li>
 	})
 
+StackItemSecondary = React.createClass({
+	render: ->
+		<li className="stack-item">
+			<TradeImage {...@props.img} />
+		</li>
+	})
+
 # Stack
 Stack = React.createClass({
 	render: ->
 		items = @props.list.map (x, i)->
-			<StackItem key={i} {...x} />
+			<StackItemMain key={i} {...x} />
 		secondaryItems = @props.secondaryList.map (x, i)->
-			<StackItem key={i} {...x} />
+			<StackItemSecondary key={i} {...x} />
 			
 		<div className="stack">
 			<ContentHeader {...@props.header} />
