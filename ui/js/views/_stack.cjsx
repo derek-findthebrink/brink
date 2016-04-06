@@ -6,9 +6,13 @@ _ = require("lodash")
 
 TradeImage = React.createClass({
 	render: ->
+		style = {
+			backgroundImage: ["url(", @props.src, ")"].join("")
+		}
+
 		<div className="trade-img">
-			<a href={@props.href}>
-				<img src={@props.src} alt={@props.alt} />
+			<a href={@props.href} target="_blank">
+				<div className="img" style={style} />
 			</a>
 		</div>
 	})

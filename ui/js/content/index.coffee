@@ -60,16 +60,16 @@ Stack = {
 				title: "Sass"
 				img:
 					src: "http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg"
-					alt: "ReactJS Logo"
-					href: "https://facebook.github.io/react/"
-				description: "a high-performance javascript rendering library"
+					alt: ""
+					href: "http://sass-lang.com"
+				description: ""
 			}
 			{
 				title: "npm"
 				img:
 					src: "https://www.npmjs.com/static/images/npm-logo.svg"
 					alt: ""
-					href: ""
+					href: "https://npmjs.com"
 				description: ""
 			}
 			{
@@ -77,17 +77,66 @@ Stack = {
 				img:
 					src: "http://bower.io/img/bower-logo.png"
 					alt: ""
-					href: ""
+					href: "http://bower.io"
 				description: ""
 			}
 			{
 				title: "grunt"
 				img:
 					src: "https://camo.githubusercontent.com/39242419c60a53e1f3cecdeecb2460acce47366f/687474703a2f2f6772756e746a732e636f6d2f696d672f6772756e742d6c6f676f2d6e6f2d776f72646d61726b2e737667"
-					alt: "ReactJS Logo"
-					href: "https://facebook.github.io/react/"
-				description: "a high-performance javascript rendering library"
+					alt: ""
+					href: "http://gruntjs.com"
+				description: ""
 			}
+			{
+				title: "browser-sync"
+				img:
+					src: "https://www.browsersync.io/brand-assets/logo-red.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "jade"
+				img:
+					src: "https://avatars0.githubusercontent.com/u/9338635?v=3&s=400"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "browserify"
+				img:
+					src: "https://pbs.twimg.com/profile_images/420347030263701504/9esmqty2_400x400.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "amazon web services"
+				img:
+					src: "http://www.websitemagazine.com/images/blog/amazonaws-mini.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "google"
+				img:
+					src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "android"
+				img:
+					src: "http://storage.googleapis.com/ix_choosemuse/uploads/2016/02/android-logo.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+
 
 		]
 }
