@@ -1,3 +1,7 @@
+React = require("react")
+ReactDOM = require("react-dom")
+
+
 try
 	log = appLogger.child({
 		type: "controller"
@@ -15,10 +19,10 @@ module.exports = {
 		res.render("pages/portfolio")
 	stack: (req, res)->
 		res.render("pages/stack")
-	productsAndServices: (req, res)->
-		res.render("pages/products-and-services")
 	contact: (req, res)->
 		res.render("pages/contact")
+	productsAndServices: (req, res)->
+		res.render("pages/products-and-services")
 	productsAndServicesSub: (req, res)->
 		sub = req.params.sub
 		log.info sub:sub, "productsAndServicesSub"

@@ -2625,10 +2625,10 @@ header {
   margin: 0.5em; }
 
 html, input, select {
-  font-family: "expo-sans-pro"; }
+  font-family: "expo-sans-pro", "Droid Serif"; }
 
 h1, h2, h3, h4 {
-  font-family: "ff-enzo-web"; }
+  font-family: "ff-enzo-web", "Raleway"; }
 
 footer {
   text-align: center; }
@@ -2957,3 +2957,30 @@ iron-icon {
 .slicknav_brand a {
   text-decoration: none;
   color: inherit; }
+
+body > header {
+  background-color: #40526B;
+  margin: 0;
+  color: white; }
+  body > header h1 {
+    font-weight: lighter;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    margin: 0; }
+
+body > nav {
+  background-color: #cad3e0; }
+  body > nav ul {
+    margin: 0;
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    body > nav ul li {
+      display: table-cell;
+      width: 20%;
+      font-size: 0.90em;
+      text-align: center;
+      border: 1px solid white;
+      vertical-align: middle; }
+      body > nav ul li a {
+        display: block; }

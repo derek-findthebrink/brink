@@ -4,6 +4,7 @@ html
 		title brink | j-design
 		link(rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.min.css")
 		link(rel="import" href="/lib/iron-icons/iron-icons.html")
+		link(href="https://fonts.googleapis.com/css?family=Raleway|Droid+Serif" rel="stylesheet" type="text/css")
 		link(rel="stylesheet" href="/css/index.css")
 
 		//- mobile meta
@@ -31,8 +32,11 @@ html
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		block head
 	body
+		header
+			h1 brink technology co.
 		nav
-			block nav
+			.main-nav
+				block nav
 		main 
 			.content
 				block content

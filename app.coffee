@@ -1,3 +1,5 @@
+require("coffee-react/register")
+
 express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")

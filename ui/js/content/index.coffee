@@ -1,14 +1,9 @@
-{Main, pages} = require("../views/_base")
-Stack = require("../views/_stack")
-Products = pages.Products
-Contact = pages.Contact
-
 class ImgCreator
 	constructor: (@img, @alt, @description)->
 		return this
 
 Home = {
-	view: Main
+	view: "Main"
 	props:
 		header:
 			title: "home"
@@ -16,7 +11,7 @@ Home = {
 }
 
 Portfolio = {
-	view: Main
+	view: "Main"
 	props:
 		header:
 			title: "portfolio"
@@ -24,7 +19,7 @@ Portfolio = {
 }
 
 Stack = {
-	view: Stack
+	view: "Stack"
 	props:
 		header:
 			title: "stack"
@@ -49,7 +44,7 @@ Stack = {
 			{
 				title: "ReactJS"
 				img:
-					src: "http://www.programwitherik.com/content/images/2015/12/reactjs.png"
+					src: "http://red-badger.com/blog/wp-content/uploads/2015/04/react-logo-1000-transparent.png"
 					alt: "ReactJS Logo"
 					href: "https://facebook.github.io/react/"
 				description: "a high-performance javascript rendering library"
@@ -136,13 +131,28 @@ Stack = {
 					href: ""
 				description: ""
 			}
-
+			{
+				title: "flux"
+				img:
+					src: "http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "backbone"
+				img:
+					src: "https://worldvectorlogo.com/logos/backbone-icon.svg"
+					alt: ""
+					href: ""
+				description: ""
+			}
 
 		]
 }
 
 Products = {
-	view: Products
+	view: "Products"
 	props:
 		header:
 			title: "products & services"
@@ -501,7 +511,7 @@ Products = {
 
 
 Contact = {
-	view: Contact
+	view: "Contact"
 	props:
 		header:
 			title: "contact"
