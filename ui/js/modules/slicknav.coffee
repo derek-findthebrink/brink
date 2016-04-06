@@ -11,7 +11,7 @@ navOpts = {
 	brand: "<a href=\"/\">brink technology co.</a>"
 	init: ->
 		$("nav").hide()
-		initSticky()
+		# initSticky()
 }
 
 # initialize slicknav

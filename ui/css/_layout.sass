@@ -16,26 +16,46 @@ iron-icon
 	@include icon-behaviour
 
 .stack
-	ul.stack-list
+	ul.stack-list-main
 		list-style-type: none
 		padding: 0
-	li
-		@include row(table)
-		h3
-			display: block
-		div
-			@include omega(2n)
-			vertical-align: middle
-		div.img
-			@include span-columns(3 of 8)
-			@include pad(0.7em)
+		li
+			@include row(table)
+			h3
+				display: block
+				margin: 0
+				border-bottom: 1px solid grey
+			div
+				@include omega(2n)
+				vertical-align: middle
+			div.trade-img
+				@include span-columns(3 of 8)
+				@include pad(0.7em)
+				img
+					display: block
+			div.description
+				@include span-columns(5 of 8)
+				// padding-top: 2.5em
+				padding-left: 0.5em
+			@include reset-display()
+		img
+			@include fill-parent
+			// display: inline-block
+	ul.stack-list-secondary
+		overflow: auto
+		li 
+			@include span-columns(1 of 6)
+			@include omega(6n)
+			border: 2px solid $theme-base
+			border-radius: 10px
+			margin-bottom: 1em
+		div.trade-img
+			@include fill-parent
+			img
+				display: block
+				width: 100%
 		div.description
-			@include span-columns(5 of 8)
-			padding-left: 0.5em
-		@include reset-display()
-	img
-		width: 100%
-		// display: inline-block
+			display: none
 
 .products
 	.products-list

@@ -111,6 +111,12 @@
 
 	@include reset-display()
 
+
+.content
+	@include transition(0.5s)
+	&.fill
+		margin: 0 0
+
 .learn
 	$c: $header-color
 	& > div
@@ -127,3 +133,12 @@
 		.learn-header-description
 			color: $c
 			text-align: left
+
+	// & > div:nth-child(even)
+	// 	// @include linear-gradient(white 2%, $theme-base 20%, $theme-base 80%, white 98%)
+	// 	background-color: $theme-base
+	// 	color: white
+	// 	.learn-header-text
+	// 		color: white
+	// 	.learn-header-description
+	// 		color: mix(white, $theme-base)

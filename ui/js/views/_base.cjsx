@@ -25,7 +25,7 @@ ContentHeader = React.createClass({
 
 TradeImage = React.createClass({
 	render: ->
-		<div className="img">
+		<div className="trade-img">
 			<a href={@props.href}>
 				<img src={@props.src} alt={@props.alt} />
 			</a>
@@ -143,11 +143,16 @@ Stack = React.createClass({
 	render: ->
 		items = @props.list.map (x, i)->
 			<StackItem key={i} {...x} />
+		secondaryItems = @props.secondaryList.map (x, i)->
+			<StackItem key={i} {...x} />
 			
 		<div className="stack">
 			<ContentHeader {...@props.header} />
-			<ul className="stack-list">
+			<ul className="stack-list-main">
 				{items}
+			</ul>
+			<ul className="stack-list-secondary">
+				{secondaryItems}
 			</ul>
 		</div>
 	})

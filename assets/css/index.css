@@ -2586,9 +2586,7 @@ html {
   animation-name: slideOutUp; }
 
 div.slicknav_menu {
-  background-color: #40526B;
-  position: relative;
-  z-index: 100; }
+  background-color: #40526B; }
   div.slicknav_menu ul {
     margin-left: 0; }
   div.slicknav_menu .slicknav_brand {
@@ -2596,12 +2594,10 @@ div.slicknav_menu {
     font-size: 200%; }
   div.slicknav_menu .slicknav_nav {
     background-color: #4d6381;
-    border-radius: 10px;
-    z-index: 105; }
+    border-radius: 10px; }
   div.slicknav_menu .slicknav_btn {
     margin-top: 8px;
-    background: none;
-    z-index: 110; }
+    background: none; }
     div.slicknav_menu .slicknav_btn span {
       color: #5d779b; }
 
@@ -2699,33 +2695,59 @@ iron-icon {
   iron-icon:hover {
     fill: #FFBA00; }
 
-.stack ul.stack-list {
+.stack ul.stack-list-main {
   list-style-type: none;
   padding: 0; }
+  .stack ul.stack-list-main li {
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    .stack ul.stack-list-main li h3 {
+      display: block;
+      margin: 0;
+      border-bottom: 1px solid grey; }
+    .stack ul.stack-list-main li div {
+      vertical-align: middle; }
+      .stack ul.stack-list-main li div:nth-child(2n) {
+        margin-right: 0; }
+      .stack ul.stack-list-main li div:nth-child(2n+1) {
+        clear: left; }
+    .stack ul.stack-list-main li div.trade-img {
+      display: table-cell;
+      width: 37.5%;
+      padding: 0.7em; }
+      .stack ul.stack-list-main li div.trade-img img {
+        display: block; }
+    .stack ul.stack-list-main li div.description {
+      display: table-cell;
+      width: 62.5%;
+      padding-left: 0.5em; }
+  .stack ul.stack-list-main img {
+    width: 100%; }
 
-.stack li {
-  display: table;
-  width: 100%;
-  table-layout: fixed; }
-  .stack li h3 {
-    display: block; }
-  .stack li div {
-    vertical-align: middle; }
-    .stack li div:nth-child(2n) {
+.stack ul.stack-list-secondary {
+  overflow: auto; }
+  .stack ul.stack-list-secondary li {
+    float: left;
+    display: block;
+    margin-right: 4.82916%;
+    width: 12.64237%;
+    border: 2px solid #40526B;
+    border-radius: 10px;
+    margin-bottom: 1em; }
+    .stack ul.stack-list-secondary li:last-child {
       margin-right: 0; }
-    .stack li div:nth-child(2n+1) {
+    .stack ul.stack-list-secondary li:nth-child(6n) {
+      margin-right: 0; }
+    .stack ul.stack-list-secondary li:nth-child(6n+1) {
       clear: left; }
-  .stack li div.img {
-    display: table-cell;
-    width: 37.5%;
-    padding: 0.7em; }
-  .stack li div.description {
-    display: table-cell;
-    width: 62.5%;
-    padding-left: 0.5em; }
-
-.stack img {
-  width: 100%; }
+  .stack ul.stack-list-secondary div.trade-img {
+    width: 100%; }
+    .stack ul.stack-list-secondary div.trade-img img {
+      display: block;
+      width: 100%; }
+  .stack ul.stack-list-secondary div.description {
+    display: none; }
 
 .products .products-list {
   margin-top: 0; }
@@ -2892,6 +2914,13 @@ iron-icon {
             color: white; }
         .product-item .description .action-callout a.quote:hover {
           color: black; }
+
+.content {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s; }
+  .content.fill {
+    margin: 0 0; }
 
 .learn > div {
   opacity: 0; }

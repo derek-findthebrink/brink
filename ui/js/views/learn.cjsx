@@ -21,6 +21,7 @@ ContactCallout = React.createClass({
 
 Base = React.createClass({
 	componentDidMount: ->
+		# $(".content").addClass("fill")
 		@_wps = $(ReactDOM.findDOMNode(this)).children("div")
 			.waypoint({
 				handler: ->
@@ -31,6 +32,7 @@ Base = React.createClass({
 	componentWillUnmount: ->
 		@_wps.map (x)->
 			x.destroy()
+		# $(".content").removeClass("fill")
 	render: ->
 		# console.log props:@props
 		inputs = @props.learnData.inputs.map (x, i)->
@@ -48,22 +50,22 @@ Base = React.createClass({
 			<div className="learn-description">
 				<p>I'm a description</p>
 			</div>
-			<div className="inputs">
+			<div className="learn-process inputs">
 				{inputs}
 			</div>
-			<div className="math add">
+			<div className="learn-process math add">
 				<span>+</span>
 			</div>
-			<div className="process">
+			<div className="learn-process process">
 				{process}
 			</div>
-			<div className="math equals">
+			<div className="learn-process math equals">
 				<span>=</span>
 			</div>
-			<div className="results">
+			<div className="learn-process results">
 				<h3>{@props.learnData.result}</h3>
 			</div>
-			<div className="outputs">
+			<div className="learn-process outputs">
 				{outputs}
 			</div>
 			<ContactCallout />

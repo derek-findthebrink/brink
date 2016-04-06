@@ -55,6 +55,41 @@ Stack = {
 				description: "a high-performance javascript rendering library"
 			}
 		]
+		secondaryList: [
+			{
+				title: "Sass"
+				img:
+					src: "http://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg"
+					alt: "ReactJS Logo"
+					href: "https://facebook.github.io/react/"
+				description: "a high-performance javascript rendering library"
+			}
+			{
+				title: "npm"
+				img:
+					src: "https://www.npmjs.com/static/images/npm-logo.svg"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "bower"
+				img:
+					src: "http://bower.io/img/bower-logo.png"
+					alt: ""
+					href: ""
+				description: ""
+			}
+			{
+				title: "grunt"
+				img:
+					src: "https://camo.githubusercontent.com/39242419c60a53e1f3cecdeecb2460acce47366f/687474703a2f2f6772756e746a732e636f6d2f696d672f6772756e742d6c6f676f2d6e6f2d776f72646d61726b2e737667"
+					alt: "ReactJS Logo"
+					href: "https://facebook.github.io/react/"
+				description: "a high-performance javascript rendering library"
+			}
+
+		]
 }
 
 Products = {
