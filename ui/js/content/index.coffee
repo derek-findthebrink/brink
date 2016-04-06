@@ -1,5 +1,5 @@
 {Main, pages} = require("../views/_base")
-Stack = pages.Stack
+Stack = require("../views/_stack")
 Products = pages.Products
 Contact = pages.Contact
 

@@ -23,15 +23,7 @@ ContentHeader = React.createClass({
 # Components
 # -----------------------------------
 
-TradeImage = React.createClass({
-	render: ->
-		<div className="trade-img">
-			<a href={@props.href}>
-				<img src={@props.src} alt={@props.alt} />
-			</a>
-		</div>
-	})
-
+exports.ContentHeader = ContentHeader
 
 
 
@@ -73,17 +65,6 @@ HorizontalMenu = React.createClass({
 
 
 
-# Single Views
-StackItem = React.createClass({
-	render: ->
-		<li className="stack-item">
-			<TradeImage {...@props.img} />
-			<div className="description">
-				<h3>{@props.title}</h3>
-				<span>{@props.description}</span>
-			</div>
-		</li>
-	})
 
 
 
@@ -138,24 +119,7 @@ Content = React.createClass({
 
 exports.Main = Content
 
-# Stack
-Stack = React.createClass({
-	render: ->
-		items = @props.list.map (x, i)->
-			<StackItem key={i} {...x} />
-		secondaryItems = @props.secondaryList.map (x, i)->
-			<StackItem key={i} {...x} />
-			
-		<div className="stack">
-			<ContentHeader {...@props.header} />
-			<ul className="stack-list-main">
-				{items}
-			</ul>
-			<ul className="stack-list-secondary">
-				{secondaryItems}
-			</ul>
-		</div>
-	})
+
 
 
 # Products
@@ -221,7 +185,6 @@ Contact = React.createClass({
 	})
 
 exports.pages = {
-	Stack
 	Products
 	Contact
 }
