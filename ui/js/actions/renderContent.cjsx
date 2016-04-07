@@ -7,13 +7,15 @@ ui = $(".content")[0]
 _c = require("../content/index")
 
 
-{Main, pages} = require("../views/_base")
-Stack = require("../views/_stack")
-Products = pages.Products
-Contact = pages.Contact
+Home = require("../views/home")
+Portfolio = require("../views/portfolio")
+Stack = require("../views/stack")
+Products = require("../views/product")
+Contact = require("../views/contact")
 
 Views = {
-	"Main": Main
+	"Home": Home
+	"Portfolio": Portfolio
 	"Stack": Stack
 	"Products": Products
 	"Contact": Contact

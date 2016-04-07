@@ -11,15 +11,16 @@ body
 
 ul
 	padding-left: 0
+	list-style-type: none
 
 header
 	margin: 0.5em
 
-html, input, select
-	font-family: "expo-sans-pro", "Droid Serif"
+html, input, select, button, textarea
+	font-family: $fonts-content
 
 h1, h2, h3, h4
-	font-family: "ff-enzo-web", "Raleway"
+	font-family: $fonts-header
 
 
 
@@ -28,19 +29,30 @@ footer
 
 form
 	@include fill-parent
+	margin: 1em 0
 	.form-field
 		@include row(table)
-		vertical-align: middle
+		margin-top: 0.5em
+		padding: 0 1em
 		label
-			@include span-columns(1 of 5)
+			@include span-columns(3 of 10)
+			vertical-align: middle
 			text-align: center
-		input, select
-			@include span-columns(4 of 5)
-		@include reset-display
+		.field
+			@include span-columns(7 of 10)
+			input, select, textarea
+				width: 100%
+				padding: 3px
+	.button-field
+		@include row(table)	
+		button, input[type="submit"], input[type="reset"]
+			@include span-columns(1 of 5)
+			// display: block
 	input[type='submit']
 		@include button
 		border: none
-		width: 8em
-		display: block
+		// width: 8em
+		// display: block
 		text-align: center
-		margin: 5px 0
+		// margin: 5px 0
+	@include reset-display

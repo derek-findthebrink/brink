@@ -2619,34 +2619,48 @@ body {
     list-style-type: none; }
 
 ul {
-  padding-left: 0; }
+  padding-left: 0;
+  list-style-type: none; }
 
 header {
   margin: 0.5em; }
 
-html, input, select {
-  font-family: "expo-sans-pro", "Droid Serif"; }
+html, input, select, button, textarea {
+  font-family: "expo-sans-pro", "Droid Serif", serif; }
 
 h1, h2, h3, h4 {
-  font-family: "ff-enzo-web", "Raleway"; }
+  font-family: "ff-enzo-web", "Raleway", sans-serif; }
 
 footer {
   text-align: center; }
 
 form {
-  width: 100%; }
+  width: 100%;
+  margin: 1em 0; }
   form .form-field {
     display: table;
     width: 100%;
     table-layout: fixed;
-    vertical-align: middle; }
+    margin-top: 0.5em;
+    padding: 0 1em; }
     form .form-field label {
       display: table-cell;
-      width: 20%;
+      width: 30%;
+      vertical-align: middle;
       text-align: center; }
-    form .form-field input, form .form-field select {
+    form .form-field .field {
       display: table-cell;
-      width: 80%; }
+      width: 70%; }
+      form .form-field .field input, form .form-field .field select, form .form-field .field textarea {
+        width: 100%;
+        padding: 3px; }
+  form .button-field {
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+    form .button-field button, form .button-field input[type="submit"], form .button-field input[type="reset"] {
+      display: table-cell;
+      width: 20%; }
   form input[type='submit'] {
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
@@ -2656,10 +2670,7 @@ form {
     border-radius: 5px;
     box-shadow: 0px 3px 5px -2px rgba(103, 103, 103, 0.8);
     border: none;
-    width: 8em;
-    display: block;
-    text-align: center;
-    margin: 5px 0; }
+    text-align: center; }
     form input[type='submit']:hover {
       background-color: #FFBA00; }
 
@@ -2953,6 +2964,40 @@ iron-icon {
   .learn .learn-header .learn-header-description {
     color: #676767;
     text-align: left; }
+
+.contact form.contact-form {
+  background: -webkit-radial-gradient(#eaeef3, #abb9cc);
+  background: radial-gradient(#eaeef3, #abb9cc);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 4px solid #40526B;
+  color: #10151b;
+  box-shadow: 0 10px 25px -6px #676767; }
+  .contact form.contact-form input, .contact form.contact-form select, .contact form.contact-form textarea, .contact form.contact-form button {
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 2px solid #6b84a6; }
+  .contact form.contact-form .button-field {
+    margin-top: 1em;
+    padding-top: 0.5em; }
+    .contact form.contact-form .button-field button, .contact form.contact-form .button-field input {
+      -webkit-transition: 0.5s;
+      -moz-transition: 0.5s;
+      transition: 0.5s;
+      cursor: pointer; }
+    .contact form.contact-form .button-field input[type="submit"], .contact form.contact-form .button-field input[type="reset"], .contact form.contact-form .button-field button {
+      float: right;
+      margin: 0;
+      border: none;
+      border-radius: 0; }
+    .contact form.contact-form .button-field input[type="submit"] {
+      background-color: #40AF40; }
+      .contact form.contact-form .button-field input[type="submit"]:hover {
+        background-color: #71cb71; }
+    .contact form.contact-form .button-field button[type="back"] {
+      background-color: #DB5050; }
+      .contact form.contact-form .button-field button[type="back"]:hover {
+        background-color: #e88f8f; }
 
 .slicknav_brand a {
   text-decoration: none;

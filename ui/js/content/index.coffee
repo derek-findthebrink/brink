@@ -3,7 +3,7 @@ class ImgCreator
 		return this
 
 Home = {
-	view: "Main"
+	view: "Home"
 	props:
 		header:
 			title: "home"
@@ -11,7 +11,7 @@ Home = {
 }
 
 Portfolio = {
-	view: "Main"
+	view: "Portfolio"
 	props:
 		header:
 			title: "portfolio"
@@ -32,6 +32,7 @@ Stack = {
 					alt: "node.js logo"
 					href: "https://nodejs.org/en/"
 				description: "a super cool javascript-based server platform"
+				secondary: false
 			}
 			{
 				title: "MongoDB"
@@ -40,6 +41,7 @@ Stack = {
 					alt: "MongoDB logo"
 					href: "https://www.mongodb.org/"
 				description: "a super cool key-value store"
+				secondary: false
 			}
 			{
 				title: "ReactJS"
@@ -48,9 +50,8 @@ Stack = {
 					alt: "ReactJS Logo"
 					href: "https://facebook.github.io/react/"
 				description: "a high-performance javascript rendering library"
+				secondary: false
 			}
-		]
-		secondaryList: [
 			{
 				title: "Sass"
 				img:
@@ -58,6 +59,7 @@ Stack = {
 					alt: ""
 					href: "http://sass-lang.com"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "npm"
@@ -66,6 +68,7 @@ Stack = {
 					alt: ""
 					href: "https://npmjs.com"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "bower"
@@ -74,6 +77,7 @@ Stack = {
 					alt: ""
 					href: "http://bower.io"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "grunt"
@@ -82,6 +86,7 @@ Stack = {
 					alt: ""
 					href: "http://gruntjs.com"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "browser-sync"
@@ -90,6 +95,7 @@ Stack = {
 					alt: ""
 					href: "https://www.browsersync.io/"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "jade"
@@ -98,6 +104,7 @@ Stack = {
 					alt: ""
 					href: "http://jade-lang.com"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "browserify"
@@ -106,6 +113,7 @@ Stack = {
 					alt: ""
 					href: "http://browserify.org"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "amazon web services"
@@ -114,6 +122,7 @@ Stack = {
 					alt: ""
 					href: "https://aws.amazon.com/"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "google"
@@ -122,6 +131,7 @@ Stack = {
 					alt: ""
 					href: "https://google.com/"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "android"
@@ -130,6 +140,7 @@ Stack = {
 					alt: ""
 					href: "https://www.android.com/"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "flux"
@@ -138,6 +149,7 @@ Stack = {
 					alt: ""
 					href: "http://facebook.github.io/flux/"
 				description: ""
+				secondary: true
 			}
 			{
 				title: "backbone"
@@ -146,6 +158,7 @@ Stack = {
 					alt: ""
 					href: "http://backbonejs.org/"
 				description: ""
+				secondary: true
 			}
 
 		]

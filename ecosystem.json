@@ -41,7 +41,7 @@
   "deploy": {
     "staging": {
       "forward-agent": "yes",
-      "key": "config/brink-server.pem",
+      "key": "/home/derek/.ssh/brink-server.pem",
       "user": "ubuntu",
       "host": "staging.findthebrink.com",
       "ref": "origin/develop",
