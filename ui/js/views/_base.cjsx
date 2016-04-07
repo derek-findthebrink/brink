@@ -22,7 +22,7 @@ exports.ContentHeader = ContentHeader
 # Components
 # -----------------------------------
 
-# Menus
+# Horizontal Menu
 MenuItem = React.createClass({
 	render: ->
 		classes = ["app-nav"]
@@ -64,12 +64,17 @@ exports.HorizontalMenu = HorizontalMenu
 # Custom Segments
 # ----------------------------------
 
-Content = React.createClass({
+PageContainer = React.createClass({
 	render: ->
-		<div>
+		cssClasses = ["page"]
+		if @props.CSSClass
+			cssClasses.push @props.CSSClass
+		cssFinal = cssClasses.join(" ")
+
+		<div className={cssFinal}>
 			<ContentHeader {...@props.header} />
 			{@props.children}
 		</div>
 	})
 
-exports.Main = Content
+exports.PageContainer = PageContainer

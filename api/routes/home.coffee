@@ -32,7 +32,7 @@ checkCaptcha = (req, res, next)->
 	reqOpts = {
 		body:
 			response: body["g-recaptcha-response"]
-			secret: "6LcEyRwTAAAAADTR-vRl5zOVP2h5tWo1c1tSru_1"
+			secret: process.env.GOOGLE_RECAPTCHA_SECRET
 			remoteip: req.ip
 		json: true
 		method: "POST"

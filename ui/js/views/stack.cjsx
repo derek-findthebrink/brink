@@ -2,7 +2,7 @@ React = require("react")
 ReactDOM = require("react-dom")
 _ = require("lodash")
 
-{ContentHeader} = require("./_base")
+{ContentHeader, PageContainer} = require("./_base")
 
 TradeImage = React.createClass({
 	render: ->
@@ -49,15 +49,14 @@ Stack = React.createClass({
 		secondary = _secondary.map (x, i)->
 			<StackItemSecondary key={i} {...x} />
 			
-		<div className="stack">
-			<ContentHeader {...@props.header} />
+		<PageContainer {...@props}>
 			<ul className="stack-list-main">
 				{primary}
 			</ul>
 			<ul className="stack-list-secondary">
 				{secondary}
 			</ul>
-		</div>
+		</PageContainer>
 	})
 
 module.exports = Stack

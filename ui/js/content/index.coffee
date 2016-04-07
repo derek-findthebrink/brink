@@ -5,6 +5,7 @@ class ImgCreator
 Home = {
 	view: "Home"
 	props:
+		CSSClass: "home"
 		header:
 			title: "home"
 			description: "derp nerp slerp"
@@ -13,6 +14,7 @@ Home = {
 Portfolio = {
 	view: "Portfolio"
 	props:
+		CSSClass: "portfolio"
 		header:
 			title: "portfolio"
 			description: "some of our best work"
@@ -21,6 +23,7 @@ Portfolio = {
 Stack = {
 	view: "Stack"
 	props:
+		CSSClass: "stack"
 		header:
 			title: "stack"
 			description: "what we use and why we like to use it"
@@ -167,6 +170,7 @@ Stack = {
 Products = {
 	view: "Products"
 	props:
+		CSSClass: "products"
 		header:
 			title: "products & services"
 			description: "what we would like to do for you"
@@ -526,6 +530,7 @@ Products = {
 Contact = {
 	view: "Contact"
 	props:
+		CSSClass: "contact"
 		header:
 			title: "contact"
 			description: "how to get in touch with us"

@@ -4,7 +4,7 @@ $ = require("jquery")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
-{ContentHeader, HorizontalMenu} = require("./_base")
+{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
 
 ProductItem = React.createClass({
 	learn: (e)->
@@ -56,8 +56,7 @@ Products = React.createClass({
 			items = <ProductItem title="no items available" />
 		speed = 750
 
-		<div className="products">
-			<ContentHeader {...@props.header} />
+		<PageContainer {...@props}>
 			<HorizontalMenu menu={@props.menu} />
 			<ul className="products-list">
 				<ReactCSSTransitionGroup 
@@ -70,7 +69,7 @@ Products = React.createClass({
 					{items}
 				</ReactCSSTransitionGroup>
 			</ul>
-		</div>		
+		</PageContainer>		
 	})
 
 module.exports = Products

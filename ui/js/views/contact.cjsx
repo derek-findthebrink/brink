@@ -2,7 +2,7 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-{ContentHeader, HorizontalMenu} = require("./_base")
+{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
 
 Field = React.createClass({
 	render: ->
@@ -64,11 +64,10 @@ LocationInfo = React.createClass({
 # Contact
 Contact = React.createClass({
 	render: ->
-		<div className="contact">
-			<ContentHeader {...@props.header} />
+		<PageContainer {...@props}>
 			<ContactForm />
 			<LocationInfo />
-		</div>
+		</PageContainer>
 	})
 
 module.exports = Contact
