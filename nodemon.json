@@ -1,5 +1,5 @@
 {
-	"ext": "*.cjsx, *.coffee, *.js, *.jade",
+	"ext": "*.coffee, *.js, *.jade",
 	"verbose": true,
 	"watch": ["api", "ui"]
 }
