@@ -49,8 +49,6 @@
     "react-addons-css-transition-group": "^0.14.8",
     "react-addons-transition-group": "^0.14.8",
     "react-dom": "^0.14.3",
-    "react-dom-server": "0.0.5",
-    "react-universal": "0.0.4",
     "request": "^2.70.0",
     "uuid": "^2.0.1",
     "waypoints": "^4.0.0"
