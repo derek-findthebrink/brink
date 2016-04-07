@@ -43,7 +43,7 @@ ContactForm = React.createClass({
 			<Field name="email_address" label="email address" />
 			<Field name="product" />
 			<Field name="description" type="textarea" />
-			{# add captcha here}
+			<Captcha />
 			<ButtonField>
 				<input type="submit" value="submit" />
 				<button type="back">back</button>
