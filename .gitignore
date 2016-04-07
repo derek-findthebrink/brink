@@ -3,3 +3,4 @@ config
 node_modules
 .fuse_*
 assets/stack/
+.env

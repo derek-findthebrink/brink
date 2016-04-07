@@ -31,21 +31,43 @@ ButtonField = React.createClass({
 		</div>
 	})
 
+Captcha = React.createClass({
+	render: ->
+		<div className="g-recaptcha" data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
+	})
+
+ContactForm = React.createClass({
+	render: ->
+		<form className="contact-form" method="post" action="/contact">
+			<Field name="name" />
+			<Field name="email_address" label="email address" />
+			<Field name="product" />
+			<Field name="description" type="textarea" />
+			{# add captcha here}
+			<ButtonField>
+				<input type="submit" value="submit" />
+				<button type="back">back</button>
+			</ButtonField>
+		</form>
+	})
+
+LocationInfo = React.createClass({
+	render: ->
+		<div>
+			<h2>Location</h2>
+			<p>vancouver, bc</p>
+			<p>canada</p>
+			<p>604.762.6133</p>
+		</div>
+	})
+
 # Contact
 Contact = React.createClass({
 	render: ->
 		<div className="contact">
 			<ContentHeader {...@props.header} />
-			<form className="contact-form">
-				<Field name="name" />
-				<Field name="email_address" label="email address" />
-				<Field name="product" />
-				<Field name="description" type="textarea" />
-				<ButtonField>
-					<input type="submit" value="submit" />
-					<button type="back">back</button>
-				</ButtonField>
-			</form>
+			<ContactForm />
+			<LocationInfo />
 		</div>
 	})
 
