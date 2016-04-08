@@ -21,6 +21,14 @@ Home = {
 				}
 				{
 					img:
+						src: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTyxGYHKGvqPHzzLyWurwXGZmjk2qPGWHU-LgCv_CmgOn0qnlLrLQ"
+						alt: "dude with head getting weird"
+					title: "we make cool shit"
+					description: "seriously..."
+					href: "/products-and-services/"
+				}
+				{
+					img:
 						src: "https://i.ytimg.com/vi/RvIK7Ch4kGE/hqdefault.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
@@ -37,13 +45,12 @@ Home = {
 				}
 				{
 					img:
-						src: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTyxGYHKGvqPHzzLyWurwXGZmjk2qPGWHU-LgCv_CmgOn0qnlLrLQ"
+						src: "https://i.ytimg.com/vi/RvIK7Ch4kGE/hqdefault.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."
 					href: "/products-and-services/"
 				}
-
 			]
 }
 

@@ -6,30 +6,45 @@ _ = require("lodash")
 
 CarouselItem = React.createClass({
 	render: ->
-		style = {
-			backgroundImage: "url(" + @props.img.src + ")"
-			backgroundPosition: "cover"
-			height: "7em"
-		}
-		<div style={style} className="item">
-			<h3>{@props.title}</h3>
-		</div>
+		href = @props.href || "#"
+		classes = []
+		classes.push(@props.animationClass)
+		_cl = classes.join(" ")
+
+		<li id={@props.id} className={_cl}>
+			<a href={href}>
+				<img {...@props.img} />
+			</a>
+			<div className="tooltip">
+				<h1>{@props.title}</h1>
+				<p>{@props.description}</p>
+			</div>
+		</li>
 	})
 
 Carousel = React.createClass({
 	componentDidMount: ->
-		node = ReactDOM.findDOMNode(this)
-		$(node).owlCarousel({
-			loop: true
-			margin: 10
-			nav: true
-			})
+		return
 	render: ->
+		carouselKeys = ["alpha", "beta", "gamma", "theta"]
 		items = @props.items.map (x, i)->
-			<CarouselItem key={i} {...x} />
+			i++
+			y = {}
+			y.slideId = ["slide-", i].join("")
+			y.animationClass = ["anim-slider-", i].join("")
+			<CarouselItem key={i} {...x} {...y} />
 
-		<div className="owl-carousel owl-theme">
-			{items}
+		<div className="carousel">
+			<div id="content-slider">
+				<div id="slider">
+					<div id="mask">
+						<ul>
+							{items}
+						</ul>
+					</div>
+					<div className="progress-bar" />
+				</div>
+			</div>
 		</div>
 	})
 
@@ -37,7 +52,6 @@ BlogWidget = React.createClass({
 	render: ->
 		<div className="blog-widget">
 			<p>I'm a blog-widget!</p>
-			<p>goat turd</p>
 		</div>
 	})
 
