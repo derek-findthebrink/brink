@@ -7,7 +7,7 @@ ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 {ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
 
 ProductItem = React.createClass({
-	learn: (e)->
+	navigate: (e)->
 		e.preventDefault()
 		h = e.target.href
 		app.flux.dispatch({
@@ -16,6 +16,7 @@ ProductItem = React.createClass({
 			})
 	render: ->
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
+		_hrefContact = ["/contact", @props.category, @props.product].join("/")
 		includes = null
 		if @props.includes
 			includes = @props.includes.map (x, i)->
@@ -41,8 +42,8 @@ ProductItem = React.createClass({
 					</div>
 				</div>
 				<div className="action-callout">
-					<a onClick={@learn} href={_hrefLearn} className="learn">learn more</a>
-					<a onClick={@navigate} href="#" className="quote">quote</a>
+					<a onClick={@navigate} href={_hrefLearn} className="learn">learn more</a>
+					<a onClick={@navigate} href={_hrefContact} className="quote">quote</a>
 				</div>
 			</div>
 		</li>
