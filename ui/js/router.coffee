@@ -40,11 +40,10 @@ router = Backbone.Router.extend({
 		app.router.navigate(n, {trigger: true})
 	routes:
 		""										: 	"home"
-		"products-and-services/:sub"			:	"renderProductSub"
+		"products-and-services(/:sub)"			:	"products"
 		"products-and-services/:sub/:product"	: 	"renderProductLearn"
 		"portfolio"								: 	"portfolio"
 		"stack"									:	"stack"
-		"products-and-services"					:	"products"
 		"contact"								:	"contact"
 	home: ->
 		_dispatch("Home")
@@ -52,11 +51,13 @@ router = Backbone.Router.extend({
 		_dispatch("Portfolio")
 	stack: ->
 		_dispatch("Stack")
-	products: ->
-		_dispatch("Products", "packages")
+	products: (sub)->
+		console.log sub:sub
+		section = sub || "packages"
+		_dispatch("Products", section)
 	contact: ->
 		_dispatch("Contact")
-	renderProductSub: (sub)->
+	renderProduct: (sub)->
 		_dispatch("Products", sub)
 	renderProductLearn: (sub, product)->
 		# console.log sub:sub, product:product
