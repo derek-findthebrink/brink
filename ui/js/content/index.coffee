@@ -199,6 +199,51 @@ Stack = {
 				description: ""
 				secondary: true
 			}
+			{
+				title: "adobe illustrator"
+				img:
+					src: "/brink-logo-small.svg"
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+				secondary: true
+			}
+			{
+				title: "webpack"
+				img:
+					src: "/brink-logo-small.svg"
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+				secondary: true
+			}
+			{
+				title: "express.js"
+				img:
+					src: "/brink-logo-small.svg"
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+				secondary: true
+			}
+			{
+				title: "CoffeeScript"
+				img:
+					src: ""
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+				secondary: true
+			}
+			{
+				title: "Linux Ubuntu"
+				img:
+					src: "/brink-logo-small.svg"
+					alt: ""
+					href: "http://backbonejs.org/"
+				description: ""
+				secondary: true
+			}
 
 		]
 }

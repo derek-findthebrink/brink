@@ -6,8 +6,11 @@ _ = require("lodash")
 
 TradeImage = React.createClass({
 	render: ->
+		imgSrc = @props.src || "/brink-logo-small.svg"
+		if imgSrc == ""
+			imgSrc = "/brink-logo-small.svg"
 		style = {
-			backgroundImage: ["url(", @props.src, ")"].join("")
+			backgroundImage: ["url(", imgSrc, ")"].join("")
 		}
 
 		<div className="trade-img">
@@ -24,7 +27,7 @@ StackItemMain = React.createClass({
 		<li className="stack-item">
 			<TradeImage {...@props.img} />
 			<div className="description">
-				<h3>{@props.title}</h3>
+				<h3 className="trade-image-header">{@props.title}</h3>
 				<span>{@props.description}</span>
 			</div>
 		</li>
