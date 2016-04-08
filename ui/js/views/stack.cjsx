@@ -24,6 +24,7 @@ TradeImage = React.createClass({
 		<div className="trade-img">
 			<a href={@props.href} target="_blank">
 				<div className="img" style={style} />
+				{overlay}
 			</a>
 		</div>
 	})
