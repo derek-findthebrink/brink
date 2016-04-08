@@ -13,7 +13,7 @@ Home = {
 			[
 				{
 					img:
-						src: "http://64.207.154.48/wp-content/uploads/2014/05/25-Tech-Gifts-that-will-Make-Dads-Giddy-MainPhoto.jpg"
+						src: "http://gamingbolt.com/wp-content/uploads/2012/03/datacore3.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."
@@ -21,7 +21,7 @@ Home = {
 				}
 				{
 					img:
-						src: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTyxGYHKGvqPHzzLyWurwXGZmjk2qPGWHU-LgCv_CmgOn0qnlLrLQ"
+						src: "http://gamingbolt.com/wp-content/uploads/2012/03/datacore3.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."
@@ -29,7 +29,7 @@ Home = {
 				}
 				{
 					img:
-						src: "https://i.ytimg.com/vi/RvIK7Ch4kGE/hqdefault.jpg"
+						src: "http://gamingbolt.com/wp-content/uploads/2012/03/datacore3.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."
@@ -37,7 +37,7 @@ Home = {
 				}
 				{
 					img:
-						src: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTyxGYHKGvqPHzzLyWurwXGZmjk2qPGWHU-LgCv_CmgOn0qnlLrLQ"
+						src: "http://gamingbolt.com/wp-content/uploads/2012/03/datacore3.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."
@@ -45,7 +45,7 @@ Home = {
 				}
 				{
 					img:
-						src: "https://i.ytimg.com/vi/RvIK7Ch4kGE/hqdefault.jpg"
+						src: "http://gamingbolt.com/wp-content/uploads/2012/03/datacore3.jpg"
 						alt: "dude with head getting weird"
 					title: "we make cool shit"
 					description: "seriously..."

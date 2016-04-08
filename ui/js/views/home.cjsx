@@ -11,7 +11,7 @@ CarouselItem = React.createClass({
 		classes.push(@props.animationClass)
 		_cl = classes.join(" ")
 
-		<li id={@props.id} className={_cl}>
+		<li id={@props.slideId} className={_cl}>
 			<a href={href}>
 				<img {...@props.img} />
 			</a>
@@ -26,11 +26,11 @@ Carousel = React.createClass({
 	componentDidMount: ->
 		return
 	render: ->
-		carouselKeys = ["alpha", "beta", "gamma", "theta"]
+		carouselKeys = ["alpha", "beta", "gamma", "theta", "delta"]
 		items = @props.items.map (x, i)->
 			i++
 			y = {}
-			y.slideId = ["slide-", i].join("")
+			y.slideId = carouselKeys[i]
 			y.animationClass = ["anim-slider-", i].join("")
 			<CarouselItem key={i} {...x} {...y} />
 

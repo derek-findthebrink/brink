@@ -161,10 +161,15 @@
 
 #slider li
 	width: 680px
-	height: 320px
+	height: 315px
 	position: absolute
 	top: -325px
 	list-style: none
+	img
+		width: 100%
+	&#alpha,& #gamma, &#beta, &#theta, &#delta
+		&:hover .tooltip
+			left: 0px
 
 
 #slider li.anim-slider-1
@@ -177,3 +182,51 @@
 	@include carousel-anim(carousel-cycle-4)
 #slider li.anim-slider-5
 	@include carousel-anim(carousel-cycle-5)
+
+@keyframes fullexpand
+   /* In these keyframes, the progress-bar is stationary */
+   0%, 20%, 40%, 60%, 80%, 100%
+   		width: 0%
+   		opacity: 0
+   /* In these keyframes, the progress-bar starts to come alive */
+   4%, 24%, 44%, 64%, 84%
+   		width: 0%
+   		opacity: 0.3
+   /* In these keyframes, the progress-bar moves forward for 3 seconds */
+   16%, 36%, 56%, 76%, 96%
+   		width: 100%
+   		opacity: 0.7
+   /* In these keyframes, the progress-bar has finished his path */
+   17%, 37%, 57%, 77%, 97%
+   		width: 100%
+   		opacity: 0.3
+   /* In these keyframes, the progress-bar will disappear and then resume the cycle */
+   18%, 38%, 58%, 78%, 98%
+   		width: 100%
+   		opacity: 0
+
+.progress-bar
+	position: relative
+	top: -5px
+	width: 680px
+	height: 5px
+	background: #000
+	z-index: 10
+	animation: fullexpand 25s ease-out infinite
+
+#slider .tooltip
+	@include transition(all 0.3s ease-in-out)
+	background: rgba(0,0,0,0.7)
+	width: 300px
+	height: 60px
+	position: relative
+	bottom: 75px
+	left: -325px
+	z-index: 15
+
+#slider .tooltip h1
+	color: #fff
+	font-size: 24px
+	font-weight: 300
+	line-height: 60px
+	padding: 0 0 0 10px
