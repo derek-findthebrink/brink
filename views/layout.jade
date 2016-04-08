@@ -2,11 +2,11 @@ doctype html
 html
 	head
 		title brink | j-design
-		link(rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.min.css")
 		link(rel="import" href="/lib/iron-icons/iron-icons.html")
 		link(href="https://fonts.googleapis.com/css?family=Raleway|Droid+Serif" rel="stylesheet" type="text/css")
 		link(rel="stylesheet" href="/lib/owl.carousel/dist/assets/owl.carousel.min.css")
-		link(rel="stylesheet" href="/css/index.css")
+		link(rel="stylesheet" href="/lib/owl.carousel/dist/assets/owl.theme.default.min.css")
+		link(rel="stylesheet" href="/bundle.css")
 
 		//- mobile meta
 		meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -25,9 +25,9 @@ html
 		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileColor" content="#40526B">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-		<meta name="theme-color" content="#ffffff">
+		<meta name="theme-color" content="#40526B">
 		//- typekit
 		<script src="https://use.typekit.net/rsz1its.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -55,6 +55,6 @@ html
 		script(src="/lib/owl.carousel/dist/owl.carousel.min.js")
 
 		//- load application logic
-		script(src="/bundle.js")
+		script(src="/main.js")
 
 		block scripts

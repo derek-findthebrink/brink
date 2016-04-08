@@ -17,7 +17,9 @@ _dispatch = (page, sub)->
 # ----------------------------------------------
 router = Backbone.Router.extend({
 	initialize: ->
+		console.log "router init"
 		if !Backbone.History.started
+			console.log "starting backbone history..."
 			Backbone.history.start({
 				pushState: true
 				root: "/"

@@ -1,4 +1,5 @@
 React = require("react")
+ReactDOM = require("react-dom")
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 $ = require("jquery")
 _ = require("lodash")
@@ -10,8 +11,13 @@ _ = require("lodash")
 ContentHeader = React.createClass({
 	render: ->
 		<div className="header-section">
-			<h2 className="page-header">{@props.title}</h2>
-			<p className="page-header-description">{@props.description}</p>
+			<div className="header-inner">
+				<img className="header-logo" src="/brink-logo-small.svg" alt="products" />
+				<div className="header-copy">
+					<h2 className="page-header">{@props.title}</h2>
+					<p className="page-header-description">{@props.description}</p>
+				</div>
+			</div>
 		</div>
 	})
 
@@ -29,8 +35,8 @@ MenuItem = React.createClass({
 		if @props.addClass
 			classes.push(@props.addClass)
 		c = classes.join(" ")
-		<li>
-			<a className={c} href={@props.link}>{@props.title}</a>
+		<li className={@props.addClass || null}>
+			<a className="app-nav" href={@props.link}>{@props.title}</a>
 		</li>
 	})
 
@@ -40,15 +46,14 @@ HorizontalMenu = React.createClass({
 			app.router.listeners()
 		catch e
 			console.log "click event handler initialization via router failed, retrying..."
-
 	render: ->
 		# path = location.pathname
 		items = @props.menu.map (x, i)->
 			# Removed for Server-Side rendering issue on location
-			# if x.link == path
-			# 	<MenuItem {...x} key={i} addClass="active" />
-			# else
-			<MenuItem {...x} key={i} />
+			if (typeof location == "object" && x.link == location.pathname)
+				<MenuItem {...x} key={i} addClass="active" />
+			else
+				<MenuItem {...x} key={i} />
 
 		<div className="horizontal-menu">
 			<ul>

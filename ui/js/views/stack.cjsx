@@ -6,9 +6,20 @@ _ = require("lodash")
 
 TradeImage = React.createClass({
 	render: ->
+		imgSrc = @props.src || "/brink-logo-small.svg"
+		if imgSrc == ""
+			imgSrc = "/brink-logo-small.svg"
 		style = {
-			backgroundImage: ["url(", @props.src, ")"].join("")
+			backgroundImage: ["url(", imgSrc, ")"].join("")
 		}
+
+		overlay = null
+		if @props.overlay
+			overlay = (
+				<div className="overlay">
+					<h4 className="overlay-text">{@props.title}</h4>
+				</div>
+				)
 
 		<div className="trade-img">
 			<a href={@props.href} target="_blank">
@@ -22,9 +33,9 @@ TradeImage = React.createClass({
 StackItemMain = React.createClass({
 	render: ->
 		<li className="stack-item">
-			<TradeImage {...@props.img} />
+			<TradeImage {...@props.img} title={@props.title} />
 			<div className="description">
-				<h3>{@props.title}</h3>
+				<h3 className="trade-image-header">{@props.title}</h3>
 				<span>{@props.description}</span>
 			</div>
 		</li>
@@ -33,7 +44,7 @@ StackItemMain = React.createClass({
 StackItemSecondary = React.createClass({
 	render: ->
 		<li className="stack-item">
-			<TradeImage {...@props.img} />
+			<TradeImage {...@props.img} title={@props.title} overlay={true} />
 		</li>
 	})
 
