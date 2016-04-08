@@ -14,11 +14,33 @@ $header: $header-color
 	.stack-item
 
 	.trade-img
+		position: relative
 		.img
 			@include fill-parent
 			background-position: center center
 			background-size: 100%
 			background-repeat: no-repeat
+		.overlay
+			@include transition(0.5s)
+			position: absolute
+			display: flex
+			align-items: center
+			justify-content: center
+			top: 0
+			bottom: 0
+			right: 0
+			overflow: hidden
+			height: 100%
+			width: 0
+			background: rgba(lighten($theme-base, 15%), 0)
+			.overlay-text
+				color: white
+				text-align: center
+				font-weight: bold
+		&:hover .overlay, .overlay:hover
+			width: 100%
+			background: rgba(lighten($theme-base, 15%), 0.7)
+
 	.trade-image-header
 		display: block
 		border-bottom: $border
@@ -48,7 +70,7 @@ $header: $header-color
 		.stack-item
 			@include transition-duration(0.5s)
 			@include transition-property(border)
-			@include thin-border
+			@include thin-border(false)
 			// border-radius: 10px
 			margin-bottom: 0.5em
 

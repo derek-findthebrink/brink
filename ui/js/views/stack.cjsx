@@ -13,6 +13,14 @@ TradeImage = React.createClass({
 			backgroundImage: ["url(", imgSrc, ")"].join("")
 		}
 
+		overlay = null
+		if @props.overlay
+			overlay = (
+				<div className="overlay">
+					<h4 className="overlay-text">{@props.title}</h4>
+				</div>
+				)
+
 		<div className="trade-img">
 			<a href={@props.href} target="_blank">
 				<div className="img" style={style} />
@@ -25,7 +33,7 @@ TradeImage = React.createClass({
 StackItemMain = React.createClass({
 	render: ->
 		<li className="stack-item">
-			<TradeImage {...@props.img} />
+			<TradeImage {...@props.img} title={@props.title} />
 			<div className="description">
 				<h3 className="trade-image-header">{@props.title}</h3>
 				<span>{@props.description}</span>
@@ -36,7 +44,7 @@ StackItemMain = React.createClass({
 StackItemSecondary = React.createClass({
 	render: ->
 		<li className="stack-item">
-			<TradeImage {...@props.img} />
+			<TradeImage {...@props.img} title={@props.title} overlay={true} />
 		</li>
 	})
 

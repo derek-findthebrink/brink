@@ -1,11 +1,12 @@
 $thin-border-color-inactive: rgba($theme-base, 0.2)
 $thin-border-color-active: rgba($theme-base, 0.7)
 
-@mixin thin-border
+@mixin thin-border($hover: true)
 	border: 1px solid $thin-border-color-inactive
 	border-radius: 0
-	&:hover
-		border-color: $thin-border-color-active
+	@if $hover == true
+		&:hover
+			border-color: $thin-border-color-active
 
 
 // Horizontal Menu
@@ -62,11 +63,15 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 	$hs-color: $header-color
 	text-align: center
 	padding-bottom: 3em
+	@include thin-border(false)
+	border-right: none
+	border-left: none
+	margin-top: 1em
 	.header-inner
 		@include outer-container
 		@include clearfix
 		margin: auto
-		padding: 3.5em
+		padding: 3em 3.5em 4.5em 3.5em
 		text-align: center
 		.header-logo
 			height: 5em
@@ -74,6 +79,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		.page-header
 			font-size: 200%
 			margin-bottom: 0.2em
+			margin-top: 0
 			color: $hs-color
 		.page-header-description
 			margin: 0
