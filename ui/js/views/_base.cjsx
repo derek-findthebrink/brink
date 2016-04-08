@@ -1,4 +1,5 @@
 React = require("react")
+ReactDOM = require("react-dom")
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 $ = require("jquery")
 _ = require("lodash")
@@ -24,9 +25,16 @@ exports.ContentHeader = ContentHeader
 
 # Horizontal Menu
 MenuItem = React.createClass({
+	getInitialState: ->
+		return {addClass: null}
+	componentDidMount: ->
+		l = location.pathname
+		console.log l:l, props:@props
+		if l == @props.link
+			@setState({addClass: "active"})
 	render: ->
 		classes = ["app-nav"]
-		if @props.addClass
+		if @state.addClass
 			classes.push(@props.addClass)
 		c = classes.join(" ")
 		<li>

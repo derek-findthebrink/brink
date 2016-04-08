@@ -1,10 +1,15 @@
+$thin-border-color-inactive: rgba($theme-base, 0.2)
+$thin-border-color-active: rgba($theme-base, 0.7)
+
 @mixin thin-border
-	border: 1px solid rgba($theme-base, 0.2)
+	border: 1px solid $thin-border-color-inactive
 	border-radius: 0
 	&:hover
-		border-color: rgba($theme-base, 0.7)
+		border-color: $thin-border-color-active
 
 .horizontal-menu
+	$bcg-color: lighten(#40526B, 40%)
+	$color: darken(#676767, 25%)
 	@include fill-parent
 	ul
 		@include fill-parent
@@ -14,23 +19,26 @@
 		// margin-bottom: 0.5em
 	li
 		@include span-columns(1 of 5)
+		@include thin-border
+		border-right: none
 		text-align: center
 		display: inline-block
-	a
-		$bcg-color: lighten(#40526B, 40%)
-		$color: darken(#676767, 25%)
-		@include transition(0.2s)
-		@include thin-border
-		display: block
-		margin-right: 1px
-		padding-bottom: 2px
-		padding-top: 1px
-		color: $color
-		background-color: $bcg-color
-		text-decoration: none
+		border-collapse: separate
+		&:last-child
+			border-right: 1px solid $thin-border-color-inactive
 		&:hover
 			background-color: darken($bcg-color, 7%)
 			color: darken($color, 80%)
+			border-right: 1px solid $thin-border-color-active
+	a
+		@include transition(0.2s)
+		display: block
+		// margin-right: 1px
+		padding-bottom: 2px
+		padding-top: 1px
+		color: $color
+		// background-color: $bcg-color
+		text-decoration: none
 		&.active
 			color: black
 			background-color: lighten($bcg-color, 12%)

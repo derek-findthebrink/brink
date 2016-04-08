@@ -2718,26 +2718,29 @@ iron-icon {
   .horizontal-menu li {
     display: table-cell;
     width: 20%;
+    border: 1px solid rgba(64, 82, 107, 0.2);
+    border-radius: 0;
+    border-right: none;
     text-align: center;
-    display: inline-block; }
+    display: inline-block;
+    border-collapse: separate; }
+    .horizontal-menu li:hover {
+      border-color: rgba(64, 82, 107, 0.7); }
+    .horizontal-menu li:last-child {
+      border-right: 1px solid rgba(64, 82, 107, 0.2); }
+    .horizontal-menu li:hover {
+      background-color: #94a6bf;
+      color: black;
+      border-right: 1px solid rgba(64, 82, 107, 0.7); }
   .horizontal-menu a {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     transition: 0.2s;
-    border: 1px solid rgba(64, 82, 107, 0.2);
-    border-radius: 0;
     display: block;
-    margin-right: 1px;
     padding-bottom: 2px;
     padding-top: 1px;
     color: #272727;
-    background-color: #abb9cc;
     text-decoration: none; }
-    .horizontal-menu a:hover {
-      border-color: rgba(64, 82, 107, 0.7); }
-    .horizontal-menu a:hover {
-      background-color: #94a6bf;
-      color: black; }
     .horizontal-menu a.active {
       color: black;
       background-color: #d1d9e3; }
