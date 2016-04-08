@@ -20,28 +20,35 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 	li
 		@include span-columns(1 of 5)
 		@include thin-border
+		@include transition-speed(0.25s)
+		@include transition-property(border)
 		border-right: none
+		padding: 5px
 		text-align: center
 		display: inline-block
 		border-collapse: separate
 		&:last-child
-			border-right: 1px solid $thin-border-color-inactive
+			// border-right: 1px solid $thin-border-color-inactive
 		&:hover
 			background-color: darken($bcg-color, 7%)
 			color: darken($color, 80%)
 			border-right: 1px solid $thin-border-color-active
-	a
-		@include transition(0.2s)
-		display: block
-		// margin-right: 1px
-		padding-bottom: 2px
-		padding-top: 1px
-		color: $color
-		// background-color: $bcg-color
-		text-decoration: none
+			border-bottom: 1px solid $thin-border-color-active
 		&.active
 			color: black
 			background-color: lighten($bcg-color, 12%)
+			border-bottom: 1px solid $thin-border-color-active
+			& > a
+				cursor: default
+	a
+		@include transition(0.2s)
+		display: block
+		padding-bottom: 2px
+		padding-top: 1px
+		color: $color
+		font-family: $fonts-header
+		font-size: 110%
+		text-decoration: none
 	@include reset-display
 
 .header-section

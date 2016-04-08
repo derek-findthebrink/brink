@@ -2721,17 +2721,23 @@ iron-icon {
     border: 1px solid rgba(64, 82, 107, 0.2);
     border-radius: 0;
     border-right: none;
+    padding: 5px;
     text-align: center;
     display: inline-block;
     border-collapse: separate; }
     .horizontal-menu li:hover {
       border-color: rgba(64, 82, 107, 0.7); }
-    .horizontal-menu li:last-child {
-      border-right: 1px solid rgba(64, 82, 107, 0.2); }
     .horizontal-menu li:hover {
       background-color: #94a6bf;
       color: black;
-      border-right: 1px solid rgba(64, 82, 107, 0.7); }
+      border-right: 1px solid rgba(64, 82, 107, 0.7);
+      border-bottom: 1px solid rgba(64, 82, 107, 0.7); }
+    .horizontal-menu li.active {
+      color: black;
+      background-color: #d1d9e3;
+      border-bottom: 1px solid rgba(64, 82, 107, 0.7); }
+      .horizontal-menu li.active > a {
+        cursor: default; }
   .horizontal-menu a {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
@@ -2740,10 +2746,9 @@ iron-icon {
     padding-bottom: 2px;
     padding-top: 1px;
     color: #272727;
+    font-family: "ff-enzo-web", "Raleway", sans-serif;
+    font-size: 110%;
     text-decoration: none; }
-    .horizontal-menu a.active {
-      color: black;
-      background-color: #d1d9e3; }
 
 .header-section {
   text-align: center; }

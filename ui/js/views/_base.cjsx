@@ -30,8 +30,8 @@ MenuItem = React.createClass({
 		if @props.addClass
 			classes.push(@props.addClass)
 		c = classes.join(" ")
-		<li>
-			<a className={c} href={@props.link}>{@props.title}</a>
+		<li className={@props.addClass || null}>
+			<a className="app-nav" href={@props.link}>{@props.title}</a>
 		</li>
 	})
 
