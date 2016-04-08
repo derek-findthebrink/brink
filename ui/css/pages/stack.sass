@@ -1,0 +1,71 @@
+
+$border: 1px solid grey
+$header: $header-color
+
+
+.page.stack
+	ul
+		list-style-type: none
+		padding: 0
+		overflow: auto
+	a
+		overflow: auto
+		display: block
+	.stack-item
+
+	.trade-img
+		.img
+			@include fill-parent
+			background-position: center center
+			background-size: 100%
+			background-repeat: no-repeat
+	.trade-image-header
+		display: block
+		border-bottom: $border
+		color: $header-color
+		margin: 0
+
+	ul.stack-list-main
+		li
+			@include row(table)
+			div
+				// @include omega(2n)
+				vertical-align: middle
+			div.trade-img
+				@include span-columns(3 of 8)
+				@include pad(0.7em)
+			div.description
+				@include span-columns(5 of 8)
+				// padding-top: 2.5em
+				padding-left: 0.5em
+			@include reset-display()
+		.img
+			height: 5em
+
+
+	ul.stack-list-secondary
+		@include outer-container(100%)
+		.stack-item
+			@include transition-duration(0.5s)
+			@include transition-property(border)
+			@include thin-border
+			// border-radius: 10px
+			margin-bottom: 0.5em
+
+			// media queries
+			@include media($bp-desktop)
+				@include span-columns(1 of 6)
+				@include omega(6n)
+			@include media($bp-tablet)
+				@include span-columns(1 of 4)
+				@include omega(4n)
+			@include media($bp-smartphone)
+				@include span-columns(1 of 2)
+				@include omega(2n)
+
+		
+
+		.trade-img
+			padding: 0.5em
+			.img
+				height: 3.6em
