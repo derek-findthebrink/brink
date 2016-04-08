@@ -25,16 +25,9 @@ exports.ContentHeader = ContentHeader
 
 # Horizontal Menu
 MenuItem = React.createClass({
-	getInitialState: ->
-		return {addClass: null}
-	componentDidMount: ->
-		l = location.pathname
-		console.log l:l, props:@props
-		if l == @props.link
-			@setState({addClass: "active"})
 	render: ->
 		classes = ["app-nav"]
-		if @state.addClass
+		if @props.addClass
 			classes.push(@props.addClass)
 		c = classes.join(" ")
 		<li>
@@ -48,15 +41,14 @@ HorizontalMenu = React.createClass({
 			app.router.listeners()
 		catch e
 			console.log "click event handler initialization via router failed, retrying..."
-
 	render: ->
 		# path = location.pathname
 		items = @props.menu.map (x, i)->
 			# Removed for Server-Side rendering issue on location
-			# if x.link == path
-			# 	<MenuItem {...x} key={i} addClass="active" />
-			# else
-			<MenuItem {...x} key={i} />
+			if (typeof location == "object" && x.link == location.pathname)
+				<MenuItem {...x} key={i} addClass="active" />
+			else
+				<MenuItem {...x} key={i} />
 
 		<div className="horizontal-menu">
 			<ul>
