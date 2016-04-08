@@ -39,6 +39,7 @@ Captcha = React.createClass({
 ContactForm = React.createClass({
 	render: ->
 		<form className="contact-form" method="post" action="/contact">
+			{@props.children}
 			<Field name="name" />
 			<Field name="email_address" label="email address" />
 			<Field name="product" />
@@ -51,13 +52,26 @@ ContactForm = React.createClass({
 		</form>
 	})
 
+LocationRow = React.createClass({
+	render: ->
+		info = @props.value
+		header = @props.header
+		if header == "phone"
+			info = "604.762.6133"
+		<div className="location-row">
+			<span className="location-header">{header}</span>
+			<span className="location-info">{info}</span>
+		</div>
+	})
+
 LocationInfo = React.createClass({
 	render: ->
-		<div>
-			<h2>Location</h2>
-			<p>vancouver, bc</p>
-			<p>canada</p>
-			<p>604.762.6133</p>
+		c = 0
+		items = _.map @props.location, (x, i)->
+			<LocationRow header={i} value={x} key={c++} />
+
+		<div className="location">
+			{items}
 		</div>
 	})
 
@@ -65,8 +79,10 @@ LocationInfo = React.createClass({
 Contact = React.createClass({
 	render: ->
 		<PageContainer {...@props}>
-			<ContactForm />
-			<LocationInfo />
+			<LocationInfo {...@props} />
+			<ContactForm>
+				<h2 className="form-header">send us a message</h2>
+			</ContactForm>
 		</PageContainer>
 	})
 

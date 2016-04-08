@@ -2645,12 +2645,12 @@ form {
     padding: 0 1em; }
     form .form-field label {
       display: table-cell;
-      width: 30%;
+      width: 25%;
       vertical-align: middle;
       text-align: center; }
     form .form-field .field {
       display: table-cell;
-      width: 70%; }
+      width: 75%; }
       form .form-field .field input, form .form-field .field select, form .form-field .field textarea {
         width: 100%;
         padding: 3px; }
@@ -2668,7 +2668,6 @@ form {
     margin-top: 5px;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px -2px rgba(103, 103, 103, 0.8);
     border: none;
     text-align: center; }
     form input[type='submit']:hover {
@@ -2794,39 +2793,75 @@ iron-icon {
   .content.fill {
     margin: 0 0; }
 
-.contact form.contact-form {
-  background: -webkit-radial-gradient(#eaeef3, #abb9cc);
-  background: radial-gradient(#eaeef3, #abb9cc);
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border: 4px solid #40526B;
-  color: #10151b;
-  box-shadow: 0 10px 25px -6px #676767; }
-  .contact form.contact-form input, .contact form.contact-form select, .contact form.contact-form textarea, .contact form.contact-form button {
-    padding: 0.5em;
-    border-radius: 5px;
-    border: 2px solid #6b84a6; }
-  .contact form.contact-form .button-field {
-    margin-top: 1em;
-    padding-top: 0.5em; }
-    .contact form.contact-form .button-field button, .contact form.contact-form .button-field input {
-      -webkit-transition: 0.25s;
-      -moz-transition: 0.25s;
-      transition: 0.25s;
-      cursor: pointer; }
-    .contact form.contact-form .button-field input[type="submit"], .contact form.contact-form .button-field input[type="reset"], .contact form.contact-form .button-field button {
-      float: right;
-      margin: 0;
-      border: none;
-      border-radius: 0; }
-    .contact form.contact-form .button-field input[type="submit"] {
-      background-color: #40AF40; }
-      .contact form.contact-form .button-field input[type="submit"]:hover {
-        background-color: #71cb71; }
-    .contact form.contact-form .button-field button[type="back"] {
-      background-color: #DB5050; }
-      .contact form.contact-form .button-field button[type="back"]:hover {
-        background-color: #e88f8f; }
+.contact.page {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
+  .contact.page::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .contact.page .location {
+    width: 100%;
+    margin: 2em 0; }
+    .contact.page .location .location-row {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      padding: 0.25em 0; }
+      .contact.page .location .location-row span {
+        display: table-cell;
+        width: 50%;
+        text-align: center;
+        font-family: "ff-enzo-web", "Raleway", sans-serif; }
+      .contact.page .location .location-row .location-info {
+        text-transform: uppercase; }
+  .contact.page .contact-form {
+    color: #10151b;
+    border: 1px solid rgba(64, 82, 107, 0.2);
+    border-radius: 0;
+    border-top: none;
+    border-bottom: none; }
+    .contact.page .contact-form input, .contact.page .contact-form select, .contact.page .contact-form textarea, .contact.page .contact-form button {
+      border: 1px solid rgba(64, 82, 107, 0.2);
+      border-radius: 0;
+      padding: 0.5em; }
+      .contact.page .contact-form input:hover, .contact.page .contact-form select:hover, .contact.page .contact-form textarea:hover, .contact.page .contact-form button:hover {
+        border-color: rgba(64, 82, 107, 0.7); }
+    .contact.page .contact-form .g-recaptcha {
+      margin: 1em auto;
+      width: 10em;
+      display: flex;
+      content-align: center;
+      display: block;
+      text-align: center; }
+    .contact.page .contact-form .form-header {
+      text-align: center; }
+    .contact.page .contact-form .form-field label {
+      font-family: "ff-enzo-web", "Raleway", sans-serif;
+      padding-right: 2em;
+      text-align: right; }
+    .contact.page .contact-form .button-field {
+      margin-top: 1em;
+      padding-top: 0.5em; }
+      .contact.page .contact-form .button-field button, .contact.page .contact-form .button-field input {
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        transition: 0.25s;
+        cursor: pointer; }
+      .contact.page .contact-form .button-field input[type="submit"], .contact.page .contact-form .button-field input[type="reset"], .contact.page .contact-form .button-field button {
+        float: right;
+        margin: 0;
+        border: none;
+        border-radius: 0; }
+      .contact.page .contact-form .button-field input[type="submit"] {
+        background-color: #40AF40; }
+        .contact.page .contact-form .button-field input[type="submit"]:hover {
+          background-color: #71cb71; }
+      .contact.page .contact-form .button-field button[type="back"] {
+        background-color: #DB5050; }
+        .contact.page .contact-form .button-field button[type="back"]:hover {
+          background-color: #e88f8f; }
 
 .learn .inputs, .learn .outputs {
   font-family: "ff-enzo-web";

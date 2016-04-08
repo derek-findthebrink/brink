@@ -615,6 +615,10 @@ Contact = {
 		header:
 			title: "contact"
 			description: "how to get in touch with us"
+		location:
+			city: "vancouver, bc"
+			country: "canada"
+			phone: "+16047626133"
 }
 
 module.exports = {
