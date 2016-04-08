@@ -11,8 +11,13 @@ _ = require("lodash")
 ContentHeader = React.createClass({
 	render: ->
 		<div className="header-section">
-			<h2 className="page-header">{@props.title}</h2>
-			<p className="page-header-description">{@props.description}</p>
+			<div className="header-inner">
+				<img className="header-logo" src="/brink-logo-small.svg" alt="products" />
+				<div className="header-copy">
+					<h2 className="page-header">{@props.title}</h2>
+					<p className="page-header-description">{@props.description}</p>
+				</div>
+			</div>
 		</div>
 	})
 

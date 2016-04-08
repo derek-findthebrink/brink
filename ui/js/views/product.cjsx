@@ -30,15 +30,15 @@ ProductItem = React.createClass({
 			<div className="description">
 				<h2 className="product-header">{@props.title}</h2>
 				<p className="summary">{@props.description}</p>
-				<div>
+				<div className="details">
 					<p className="includes-header">includes:</p>
 					<ul className="includes">
 						{includes}
 					</ul>
-				</div>
-				<div className="pricing">
-					<span className="price">starting at: $100</span>
-					<span className="deal">for you: $50</span>
+					<div className="pricing">
+						<span className="price">starting at: $100</span>
+						<span className="deal">for you: $50</span>
+					</div>
 				</div>
 				<div className="action-callout">
 					<a onClick={@learn} href={_hrefLearn} className="learn">learn more</a>

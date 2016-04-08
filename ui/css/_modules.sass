@@ -7,6 +7,10 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 	&:hover
 		border-color: $thin-border-color-active
 
+
+// Horizontal Menu
+// ---------------------------------------------
+
 .horizontal-menu
 	$bcg-color: lighten(#40526B, 40%)
 	$color: darken(#676767, 25%)
@@ -20,17 +24,16 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 	li
 		@include span-columns(1 of 5)
 		@include thin-border
-		@include transition-speed(0.25s)
+		@include transition-duration(0.25s)
 		@include transition-property(border)
 		border-right: none
-		padding: 5px
 		text-align: center
 		display: inline-block
 		border-collapse: separate
 		&:last-child
-			// border-right: 1px solid $thin-border-color-inactive
+			border-right: 1px solid $thin-border-color-inactive
 		&:hover
-			background-color: darken($bcg-color, 7%)
+			background-color: lighten($bcg-color, 12%)
 			color: darken($color, 80%)
 			border-right: 1px solid $thin-border-color-active
 			border-bottom: 1px solid $thin-border-color-active
@@ -41,26 +44,40 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 			& > a
 				cursor: default
 	a
-		@include transition(0.2s)
+		// @include transition(0.2s)
 		display: block
-		padding-bottom: 2px
-		padding-top: 1px
+		padding: 5px
 		color: $color
 		font-family: $fonts-header
 		font-size: 110%
 		text-decoration: none
 	@include reset-display
 
+
+
+// Header Section
+// ---------------------------------------------
+
 .header-section
 	$hs-color: $header-color
 	text-align: center
-	.page-header
-		font-size: 200%
-		margin-bottom: 0.2em
-		color: $hs-color
-	.page-header-description
-		margin: 0
-		color: lighten($hs-color, 15%)
+	padding-bottom: 3em
+	.header-inner
+		@include outer-container
+		@include clearfix
+		margin: auto
+		padding: 3.5em
+		text-align: center
+		.header-logo
+			height: 5em
+	.header-copy
+		.page-header
+			font-size: 200%
+			margin-bottom: 0.2em
+			color: $hs-color
+		.page-header-description
+			margin: 0
+			color: lighten($hs-color, 15%)
 
 
 

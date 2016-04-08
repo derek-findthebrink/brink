@@ -2720,15 +2720,22 @@ iron-icon {
     width: 20%;
     border: 1px solid rgba(64, 82, 107, 0.2);
     border-radius: 0;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-property: border;
+    -moz-transition-property: border;
+    transition-property: border;
     border-right: none;
-    padding: 5px;
     text-align: center;
     display: inline-block;
     border-collapse: separate; }
     .horizontal-menu li:hover {
       border-color: rgba(64, 82, 107, 0.7); }
+    .horizontal-menu li:last-child {
+      border-right: 1px solid rgba(64, 82, 107, 0.2); }
     .horizontal-menu li:hover {
-      background-color: #94a6bf;
+      background-color: #d1d9e3;
       color: black;
       border-right: 1px solid rgba(64, 82, 107, 0.7);
       border-bottom: 1px solid rgba(64, 82, 107, 0.7); }
@@ -2739,24 +2746,38 @@ iron-icon {
       .horizontal-menu li.active > a {
         cursor: default; }
   .horizontal-menu a {
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    transition: 0.2s;
     display: block;
-    padding-bottom: 2px;
-    padding-top: 1px;
+    padding: 5px;
     color: #272727;
     font-family: "ff-enzo-web", "Raleway", sans-serif;
     font-size: 110%;
     text-decoration: none; }
 
 .header-section {
-  text-align: center; }
-  .header-section .page-header {
+  text-align: center;
+  padding-bottom: 3em; }
+  .header-section .header-inner {
+    max-width: 68em;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    padding: 3.5em;
+    text-align: center; }
+    .header-section .header-inner::after {
+      clear: both;
+      content: "";
+      display: table; }
+    .header-section .header-inner::after {
+      clear: both;
+      content: "";
+      display: table; }
+    .header-section .header-inner .header-logo {
+      height: 5em; }
+  .header-section .header-copy .page-header {
     font-size: 200%;
     margin-bottom: 0.2em;
     color: #676767; }
-  .header-section .page-header-description {
+  .header-section .header-copy .page-header-description {
     margin: 0;
     color: #8d8d8d; }
 
