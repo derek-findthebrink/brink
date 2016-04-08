@@ -9,9 +9,9 @@ CarouselItem = React.createClass({
 		style = {
 			backgroundImage: "url(" + @props.img.src + ")"
 			backgroundPosition: "cover"
-			height: "5em"
+			height: "7em"
 		}
-		<div style={style}>
+		<div style={style} className="item">
 			<h3>{@props.title}</h3>
 		</div>
 	})
@@ -19,7 +19,11 @@ CarouselItem = React.createClass({
 Carousel = React.createClass({
 	componentDidMount: ->
 		node = ReactDOM.findDOMNode(this)
-		$(node).owlCarousel()
+		$(node).owlCarousel({
+			loop: true
+			margin: 10
+			nav: true
+			})
 	render: ->
 		items = @props.items.map (x, i)->
 			<CarouselItem key={i} {...x} />
@@ -33,6 +37,7 @@ BlogWidget = React.createClass({
 	render: ->
 		<div className="blog-widget">
 			<p>I'm a blog-widget!</p>
+			<p>goat turd</p>
 		</div>
 	})
 

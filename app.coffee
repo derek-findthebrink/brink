@@ -5,6 +5,10 @@ express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
 cookieParser = require("cookie-parser")
+webpack = require("webpack")
+webpackMiddleware = require("webpack-dev-middleware")
+webpackHotMiddleware = require("webpack-hot-middleware")
+config = require("./webpack.config.coffee")
 _ = require("lodash")
 
 
@@ -25,6 +29,11 @@ log = appLogger.child({
 	file: "app"
 	})
 
+# Webpack
+# --------------------------
+# remove for production?
+compiler = webpack(config)
+
 
 # Database
 # -----------------------------------------
@@ -43,6 +52,8 @@ app.use bodyParser.urlencoded({
 	extended: true
 	})
 app.use cookieParser()
+app.use(webpackMiddleware(compiler))
+app.use(webpackHotMiddleware(compiler))
 app.use(express.static("./assets"))
 
 # Request Logger

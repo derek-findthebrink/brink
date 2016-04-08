@@ -2,14 +2,24 @@ nodepath = require("path")
 webpack = require("webpack")
 
 module.exports = {
-	entry: "./ui/js/index.coffee"
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx"]
+	devtool: "eval-source-map"
+
+	plugins: [
+		new webpack.HotModuleReplacementPlugin()
+	]
+
+	entry: [
+		"webpack-hot-middleware/client"
+		"./ui/js/index.coffee"
+	]
 	output:
 		path: nodepath.join __dirname, "assets"
 		filename: "webpack-bundle.js"
+	
 	module:
 		loaders: [
 			{
@@ -18,7 +28,7 @@ module.exports = {
 			}
 			{
 				test: /\.cjsx$/
-				loaders: ["coffee", "cjsx"]
+				loaders: ["react-hot", "coffee", "cjsx"]
 			}
 		]
 }
