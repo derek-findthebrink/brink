@@ -42,6 +42,7 @@ router = Backbone.Router.extend({
 		""										: 	"home"
 		"products-and-services(/:sub)"			:	"products"
 		"products-and-services/:sub/:product"	: 	"renderProductLearn"
+		"contact/:category/:product"			:	"contactProduct"
 		"portfolio"								: 	"portfolio"
 		"stack"									:	"stack"
 		"contact"								:	"contact"
@@ -65,6 +66,16 @@ router = Backbone.Router.extend({
 			action: "render_learn"
 			category: sub
 			product: product
+			})
+	contactProduct: (category, product)->
+		console.log "contactProduct"
+		console.log category:category, product:product
+		x = category:category, product:product
+		app.flux.dispatch({
+			action: "render_content"
+			page: "Contact"
+			merge:
+				product: x
 			})
 	})
 

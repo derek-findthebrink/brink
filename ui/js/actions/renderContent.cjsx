@@ -30,12 +30,14 @@ _pageMatch = (page)->
 	return _v
 
 renderContent = (payload)->
-	# console.log payload:payload, "renderContent"
+	console.log payload:payload, "renderContent"
 	c = _contentMatch(payload)
 	props = c.props
 	view = _pageMatch(c)
 	if payload.sub
 		props.list = c.props[payload.sub]
+	if payload.merge
+		props = _.extend props, payload.merge
 	# console.log props:props, "props"
 	v = React.createElement(view, props)
 	ReactDOM.render(v, ui)

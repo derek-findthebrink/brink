@@ -1,5 +1,6 @@
 React = require("react")
 ReactServer = require("react-dom/server")
+_ = require("underscore")
 
 try
 	log = appLogger.child({
@@ -66,4 +67,15 @@ module.exports = {
 		category = req.params.category
 		product = req.params.product
 		res.render("pages/products-and-services")
+	contactProduct: (req, res)->
+		category = req.params.category
+		product = req.params.product
+		x = category:category, product:product
+		newProps = _.extend _content["Contact"].props, product:x
+		console.log newProps:newProps
+		y = React.createElement(ContactView, newProps)
+		z = ReactServer.renderToString(y)
+		res.render("pages/contact", {
+			content: z
+			})
 }
