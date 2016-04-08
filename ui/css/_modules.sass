@@ -1,3 +1,9 @@
+@mixin thin-border
+	border: 1px solid rgba($theme-base, 0.2)
+	border-radius: 0
+	&:hover
+		border-color: rgba($theme-base, 0.7)
+
 .horizontal-menu
 	@include fill-parent
 	ul
@@ -14,12 +20,11 @@
 		$bcg-color: lighten(#40526B, 40%)
 		$color: darken(#676767, 25%)
 		@include transition(0.2s)
+		@include thin-border
 		display: block
 		margin-right: 1px
 		padding-bottom: 2px
 		padding-top: 1px
-		border-top-left-radius: 5px
-		border-top-right-radius: 5px
 		color: $color
 		background-color: $bcg-color
 		text-decoration: none
@@ -42,74 +47,7 @@
 		margin: 0
 		color: lighten($hs-color, 15%)
 
-.product-item
-	// shell display options
-	// --------------------------------
-	@include transition(0.5s)
-	@include row(table)
-	border: 5px solid rgba($theme-base, 0.5)
-	border-radius: 10px
-	margin-bottom: 0.5em
-	// adds visual cue to engage deeper
-	&:hover
-		border-color: lighten($theme-base, 15%)
 
-	// content options
-	// --------------------------------
-	// left-side image options
-	.img
-		@include span-columns(3 of 10)
-		vertical-align: middle
-		img
-			width: 100%
-	// text options for right-side
-	.description
-		@include span-columns(7 of 10)
-		padding-top: 1em
-		padding-left: 0.5em
-		padding-bottom: 1em
-		vertical-align: top
-		padding-right: 2em
-		// perhaps an actual selector here isn't ideal
-		.product-header
-			color: $header-color
-			margin: 0 0 2px 0
-			padding-bottom: 2px
-			border-bottom: 1px solid rgba($header-color, 0.5)
-		.summary
-			margin: 0.5em 0
-			font-style: italic
-		ul.includes
-			list-style-type: none
-			padding-left: 1.5em
-			margin: 0.5em 0
-		.action-callout
-			@include row(table)
-			margin-top: 0.5em
-			a
-				$bcg: lighten($theme-base, 40%)
-				$col: darken($header-color, 25%)
-				@include span-columns(1 of 2)
-				border: 1px solid white
-				border-radius: 3px
-				background-color: $bcg
-				display: inline-block
-				text-align: center
-				text-decoration: none
-				color: $col
-				&:hover
-					background-color: lighten($bcg, 10%)
-				&.learn
-					background-color: darken($bcg, 10%)
-					&:hover
-						background-color: darken($bcg, 20%)
-						// color: lighten($col, 30%)
-						color: white
-				&.quote
-					&:hover
-						color: black
-
-	@include reset-display()
 
 
 .content
@@ -117,67 +55,4 @@
 	&.fill
 		margin: 0 0
 
-.learn
-	$c: $header-color
-	& > div
-		opacity: 0
-		&.active
-			@extend %learn-fade-in
-			opacity: 1
-	.learn-header
-		font-size: 110%
-		.learn-header-text
-			padding-right: 1em
-			color: darken($c, 15%)
-			text-align: right
-		.learn-header-description
-			color: $c
-			text-align: left
 
-	// & > div:nth-child(even)
-	// 	// @include linear-gradient(white 2%, $theme-base 20%, $theme-base 80%, white 98%)
-	// 	background-color: $theme-base
-	// 	color: white
-	// 	.learn-header-text
-	// 		color: white
-	// 	.learn-header-description
-	// 		color: mix(white, $theme-base)
-
-.contact
-	form.contact-form
-		@include background(radial-gradient(lighten($theme-base, 60%), lighten($theme-base, 40%)))
-		border-top-right-radius: 10px
-		border-top-left-radius: 10px
-		// border-bottom-left-radius: 10px
-		border: 4px solid $theme-base
-		color: darken($theme-base, 25%)
-		box-shadow: 0 10px 25px -6px $header-color
-		.form-field
-
-		.field
-
-		input, select, textarea, button
-			padding: 0.5em
-			border-radius: 5px
-			border: 2px solid lighten($theme-base, 20%)
-		.button-field
-			margin-top: 1em
-			// background-color: lighten($theme-base, 20%)
-			// background-color: white
-			padding-top: 0.5em
-			button, input
-				@include transition(0.5s)
-				cursor: pointer
-			input[type="submit"], input[type="reset"], button
-				float: right
-				margin: 0
-				border: none
-				border-radius: 0
-			input[type="submit"]
-				background-color: $go-green
-				&:hover
-					background-color: lighten($go-green, 15%)
-			button[type="back"]
-				background-color: $rowdy-red
-				&:hover
-					background-color: lighten($rowdy-red, 15%)
