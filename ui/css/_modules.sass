@@ -24,7 +24,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		// margin-bottom: 0.5em
 	li
 		@include span-columns(1 of 5)
-		@include thin-border
+		@include thin-border(false)
 		@include transition-duration(0.25s)
 		@include transition-property(border)
 		border-right: none
@@ -36,7 +36,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		&:hover
 			background-color: lighten($bcg-color, 12%)
 			color: darken($color, 80%)
-			border-right: 1px solid $thin-border-color-active
+			// border-right: 1px solid $thin-border-color-active
 			border-bottom: 1px solid $thin-border-color-active
 		&.active
 			color: black
