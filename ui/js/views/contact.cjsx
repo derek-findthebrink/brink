@@ -73,7 +73,7 @@ ContactForm = React.createClass({
 				return x
 				)
 	render: ->
-		console.log props:@props
+		# console.log props:@props
 		<form className="contact-form" method="post" action="/contact">
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />

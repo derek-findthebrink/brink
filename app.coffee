@@ -9,6 +9,10 @@ cookieParser = require("cookie-parser")
 # webpackMiddleware = require("webpack-dev-middleware")
 # webpackHotMiddleware = require("webpack-hot-middleware")
 # config = require("./webpack.config.coffee")
+passport = require("passport")
+LocalStrategy = require("passport-local").Strategy
+session = require("express-session")
+MongoStore = require("connect-mongo")(session)
 _ = require("lodash")
 
 
@@ -60,7 +64,30 @@ app.use(express.static("./assets"))
 # app.use(webpackHotMiddleware(compiler))
 
 
+# Passport
+# ------------------------------------
+mongoStoreOptions = {
+	mongooseConnection: mongoose.connection
+	ttl: 14 * 24 * 60 * 60
+}
+
+app.use session({
+	secret: process.env.SESSION_KEY
+	store: new MongoStore(mongoStoreOptions)
+	resave: false
+	saveUninitialized: true
+})
+app.use passport.initialize()
+app.use passport.session()
+Account = mongoose.model("Account")
+passport.use new LocalStrategy Account.authenticate()
+
+passport.serializeUser Account.serializeUser()
+passport.deserializeUser Account.deserializeUser()
+
+
 # Request Logger
+# -----------------------------
 app.use logBase.requestLogger({
 	logger: log
 	})
