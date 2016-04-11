@@ -7,22 +7,31 @@ try
 		file: "mongoose"
 		})
 catch e
-	log = console
-	log.info = console.log
+	log = require("bunyan").createLogger({
+		name: "db-config"
+		type: "config"
+		file: "mongoose"
+		})
 
 
-loadModels = (arr)->
-	modelDir = "../api/models"
-	_.map arr, (x)->
-		loc = modelDir + "/" + x
-		require(loc)
+# loadModels = (arr)->
+# 	modelDir = "../api/models"
+# 	_.map arr, (x)->
+# 		loc = modelDir + "/" + x
+# 		require(loc)
 
-Models = ["account", "applications", "products"]
-loadModels(Models)
+# Models = ["account", "applications", "products"]
+# loadModels(Models)
+
+require("../api/models/account")
+require("../api/models/applications")
+require("../api/models/products")
 
 url = process.env.MONGOOSE_DB
-mongoose.connect(url)
+mongoose.connect(url, (err)->
+	if err
+		return log.error {err:err}, "mongoose connection error"
+	)
+# mongoose.Promise = require("q")
 
 exports.mongoose = mongoose
-
-log.info models:mongoose.modelNames(), "loaded models"

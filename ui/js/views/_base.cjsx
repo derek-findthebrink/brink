@@ -64,7 +64,37 @@ HorizontalMenu = React.createClass({
 
 exports.HorizontalMenu = HorizontalMenu
 
+# Field
+# -----------------------------------
 
+Field = React.createClass({
+	render: ->
+		label = @props.label || @props.name
+		type = @props.type
+		change = @props.change
+		x = {
+			name: @props.name
+			label: label
+			type: type
+			onChange: change
+		}
+		_i = null
+		if type == "textarea"
+			_i = React.createElement("textarea", x)
+		else if type == "select"
+			_i = React.createElement("select", x)
+		else
+			_i = React.createElement("input", x)
+
+		<div className="form-field">
+			<label htmlFor={@props.name}>{label}</label>
+			<div className="field">
+				{_i}
+			</div>
+		</div>
+	})
+
+exports.Field = Field
 
 # Custom Segments
 # ----------------------------------

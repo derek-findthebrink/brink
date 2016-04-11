@@ -42,6 +42,7 @@ log = appLogger.child({
 # Database
 # -----------------------------------------
 mongoose = require("./config/mongoose").mongoose
+Account = mongoose.model("Account")
 
 
 # Server Initialization
@@ -79,9 +80,9 @@ app.use session({
 })
 app.use passport.initialize()
 app.use passport.session()
-Account = mongoose.model("Account")
-passport.use new LocalStrategy Account.authenticate()
 
+
+passport.use Account.createStrategy()
 passport.serializeUser Account.serializeUser()
 passport.deserializeUser Account.deserializeUser()
 

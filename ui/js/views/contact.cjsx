@@ -2,34 +2,9 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
+{ContentHeader, HorizontalMenu, PageContainer, Field} = require("./_base")
 
-Field = React.createClass({
-	render: ->
-		label = @props.label || @props.name
-		type = @props.type
-		change = @props.change
-		x = {
-			name: @props.name
-			label: label
-			type: type
-			onChange: change
-		}
-		_i = null
-		if type == "textarea"
-			_i = React.createElement("textarea", x)
-		else if type == "select"
-			_i = React.createElement("select", x)
-		else
-			_i = React.createElement("input", x)
 
-		<div className="form-field">
-			<label htmlFor={@props.name}>{label}</label>
-			<div className="field">
-				{_i}
-			</div>
-		</div>
-	})
 
 ButtonField = React.createClass({
 	render: ->
