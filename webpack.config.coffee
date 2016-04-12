@@ -32,7 +32,6 @@ _entryVendor = [
 	"lodash"
 	"webcomponentsjs/webcomponents.min.js"
 	"jquery"
-	"jquery-ui/jquery-ui.min.js"
 	"slicknav/dist/jquery.slicknav.js"
 	"waypoints/lib/jquery.waypoints.min.js"
 ]
