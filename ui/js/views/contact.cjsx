@@ -22,19 +22,19 @@ ContactForm = React.createClass({
 	getInitialState: ->
 		return {
 			name: ""
-			email_address: ""
+			email: ""
 			product: ""
 			description: ""
 		}
 	submit: (e)->
-		e.preventDefault()
-		console.log state:@state, props:@props
-		# add recaptcha here
-		# make sure to capture any other needed data (user? csrf? etc.)
-		app.flux.dispatch({
-			action: "submit_contact"
-			payload: @state
-			})
+		# e.preventDefault()
+		# console.log state:@state, props:@props
+		# # add recaptcha here
+		# # make sure to capture any other needed data (user? csrf? etc.)
+		# app.flux.dispatch({
+		# 	action: "submit_contact"
+		# 	payload: @state
+		# 	})
 	back: ->
 		console.log "back clicked"
 	change: (key)->
@@ -47,12 +47,28 @@ ContactForm = React.createClass({
 				x[key] = val
 				return x
 				)
+	componentWillMount: ->
+		console.log props: @props, state: @state
+		if @props.product
+			if (@props.product.product && @props.product.category)
+				product = @props.product.product
+				category = @props.product.category
+				@setState({
+					product: category + "/" + product
+					})
+		if @props.user
+			name = @props.user.name || ""
+			email = @props.user.email || ""
+			@setState({
+				name: name
+				email: email
+				})
 	render: ->
 		# console.log props:@props
 		<form className="contact-form" method="post" action="/contact">
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
-			<Field name="email_address" label="email address" value={@state.email_address} change={@change("email_address")} />
+			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
 			<Field name="product" value={@state.product} change={@change("product")} />
 			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />

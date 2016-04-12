@@ -72,11 +72,13 @@ Field = React.createClass({
 		label = @props.label || @props.name
 		type = @props.type
 		change = @props.change
+		value = @props.value || null
 		x = {
 			name: @props.name
 			label: label
 			type: type
 			onChange: change
+			value: value
 		}
 		_i = null
 		if type == "textarea"

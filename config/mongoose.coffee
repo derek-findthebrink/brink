@@ -26,6 +26,7 @@ catch e
 require("../api/models/account")
 require("../api/models/applications")
 require("../api/models/products")
+require("../api/models/contact")
 
 url = process.env.MONGOOSE_DB
 mongoose.connect(url, (err)->

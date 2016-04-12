@@ -21,12 +21,13 @@ acctOpts = {
 Account = new Schema({
 	username: String
 	email: String
+	name: String
 	password: String
 	phone: Number
-	# accessAdmin:
-	# 	type: Boolean
-	# 	default: false
-	# adminType: String
+	accessAdmin:
+		type: Boolean
+		default: false
+	adminType: String
 	})
 
 acctOpts = acctOpts || {}

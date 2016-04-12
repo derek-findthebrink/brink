@@ -54,8 +54,9 @@ ProductItem = React.createClass({
 k = 0
 Products = React.createClass({
 	render: ->
+		# console.log props:@props
 		try
-			items = @props.list.map (x, i)->
+			items = @props.items.map (x, i)->
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />

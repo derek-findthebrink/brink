@@ -47,6 +47,20 @@ html
 
 		include includes/footer
 
+		if user
+			script#user.
+				var User = {
+					username: "#{user.username}",
+					email: "#{user.email}",
+					name: "#{user.name}"
+				};
+		else
+			script#user.
+				var User = {
+					username: "",
+					email: "",
+					name: ""
+				};
 
 		//- load external libraries
 		script(src="/lib/webcomponentsjs/webcomponents.min.js")

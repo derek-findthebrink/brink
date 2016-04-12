@@ -7,6 +7,7 @@ Dashboard = React.createClass({
 		<div>
 			<h2>Admin Dashboard</h2>
 			<p>you are logged in as: {@props.username}</p>
+			<a href="/admin/logout">logout</a>
 		</div>
 	})
 

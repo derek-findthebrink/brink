@@ -54,6 +54,7 @@ renderLogin = (req, res)->
 	}
 	res.render("admin/login", {
 		content: renderWithProps(LoginView, props)
+		user: req.user
 		})
 
 renderDashboard = (req, res)->
@@ -62,6 +63,7 @@ renderDashboard = (req, res)->
 	}
 	res.render("admin/dashboard", {
 		content: renderWithProps(DashboardView, props)
+		user: req.user
 		})
 
 renderRegister = (req, res)->
@@ -71,6 +73,7 @@ renderRegister = (req, res)->
 	}
 	res.render("admin/login", {
 		content: renderWithProps(LoginView, props)
+		user: req.user
 		})
 
 
@@ -98,7 +101,6 @@ register = (req, res, next)->
 		)
 
 isLoggedIn = (req, res, next)->
-	log.info user: req.user, "user"
 	if !req.user
 		log.warn {user: req.user}, "no user logged in!"
 		return res.redirect("/admin/login")

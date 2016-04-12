@@ -262,6 +262,7 @@ Products = {
 		header:
 			title: "products & services"
 			description: "what we would like to do for you"
+		baseCategory: "packages"
 		menu: [
 			{
 				title: "packages"
@@ -284,8 +285,7 @@ Products = {
 				link: "/products-and-services/apps"
 			}
 		]
-
-		packages: [
+		list: [
 			{
 				title: "startup package"
 				description: "everything you need to get your company online."
@@ -330,8 +330,6 @@ Products = {
 							"/icons/brink-icons_brand.svg")
 					]
 			}
-		]
-		websites: [
 			{
 				title: "basic design"
 				description: "want a website? We'll design it, test it and
@@ -399,8 +397,6 @@ Products = {
 
 					callout: []
 			}
-		]
-		email: [
 			{
 				title: "small business email"
 				description: "email solutions for your small business. Grow your
@@ -469,8 +465,6 @@ Products = {
 
 					callout: []
 			}
-		]
-		graphics: [
 			{
 				title: "iconography"
 				description: "custom iconography for your print and web projects"
@@ -542,8 +536,6 @@ Products = {
 
 					callout: []
 			}
-		]
-		apps: [
 			{
 				title: "basic app"
 				description: "need more than just a website? Data-driven web applications

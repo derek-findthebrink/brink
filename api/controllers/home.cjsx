@@ -20,49 +20,73 @@ ProductsView = require(BASE_DIR + "views/product")
 ContactView = require(BASE_DIR + "views/contact")
 PortfolioView = require(BASE_DIR + "views/portfolio")
 
-# Template Cache
-# ----------------------------------------------
-StackEl = React.createElement(StackView, _content["Stack"].props)
-_Stack = ReactServer.renderToString(StackEl)
+views = {
+	"Home": HomeView
+	"Stack": StackView
+	"Products": ProductsView
+	"Contact": ContactView
+	"Portfolio": PortfolioView
+}
 
-HomeEl = React.createElement(HomeView, _content["Home"].props)
-_Home = ReactServer.renderToString(HomeEl)
+render = (name, req)->
+	user = req.user || null
+	x = {
+		content: _render(name, user)
+		user: user
+	}
+	return x
 
-PortfolioEl = React.createElement(PortfolioView, _content["Portfolio"].props)
-_Portfolio = ReactServer.renderToString(PortfolioEl)
+_render = (name, user)->
+	contentProps = _content[name].props
+	view = views[name]
+	props = _createProps(user, contentProps)
+	html = _renderView(view, props)
+	return html
 
-ProductsEl = React.createElement(ProductsView, _content["Products"].props)
-_Products = ReactServer.renderToString(ProductsEl)
+_createProps = (user, props)->
+	_base = {
+		user: user
+	}
+	x = _.extend _base, props
+	return x
 
-ContactEl = React.createElement(ContactView, _content["Contact"].props)
-_Contact = ReactServer.renderToString(ContactEl)
+_renderView = (view, props)->
+	x = React.createElement(view, props)
+	str = ReactServer.renderToString(x)
+	return str
+
+
+
+inputData = (req, res, next)->
+	data = req.body
+	log.info data:data, "contact post data"
+	x = new Contact(data)
+	x.save (err)->
+		if err then log.error {err}, "contact save error"
+		next(err)
+
+renderThanks = (req, res)->
+	res.redirect("/contact")
+
+
+
 
 
 module.exports = {
 	home: (req, res)->
-		res.render("pages/home", {
-			content: _Home
-			})
+		res.render("pages/home", render("Home", req))
 	portfolio: (req,res)->
-		res.render("pages/portfolio", {
-			content: _Portfolio
-			})
+		res.render("pages/portfolio", render("Portfolio", req))
 	stack: (req, res)->
-		res.render("pages/stack", {
-			content: _Stack
-			})
+		res.render("pages/stack", render("Stack", req))
 	contact: (req, res)->
-		res.render("pages/contact", {
-			content: _Contact
-			})
+		res.render("pages/contact", render("Contact", req))
 	productsAndServices: (req, res)->
-		res.render("pages/products-and-services", {
-			content: _Products
-			})
+		res.render("pages/products-and-services", render("Products", req))
 	productsAndServicesSub: (req, res)->
 		sub = req.params.sub
 		log.info sub:sub, "productsAndServicesSub"
-		res.render("pages/products-and-services")
+		res.render("pages/products-and-services", render("Products", req))
 	productLearn: (req, res)->
 		category = req.params.category
 		product = req.params.product
@@ -70,12 +94,13 @@ module.exports = {
 	contactProduct: (req, res)->
 		category = req.params.category
 		product = req.params.product
+		user = req.user || null
 		x = category:category, product:product
-		newProps = _.extend _content["Contact"].props, product:x
-		console.log newProps:newProps
+		newProps = _.extend _content["Contact"].props, product:x, user:user
 		y = React.createElement(ContactView, newProps)
 		z = ReactServer.renderToString(y)
-		res.render("pages/contact", {
-			content: z
-			})
+		res.render("pages/contact", render("Contact", req))
+
+	inputData: inputData
+	renderThanks: renderThanks
 }

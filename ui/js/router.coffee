@@ -53,7 +53,7 @@ router = Backbone.Router.extend({
 	stack: ->
 		_dispatch("Stack")
 	products: (sub)->
-		console.log sub:sub
+		# console.log sub:sub
 		section = sub || "packages"
 		_dispatch("Products", section)
 	contact: ->
@@ -68,8 +68,8 @@ router = Backbone.Router.extend({
 			product: product
 			})
 	contactProduct: (category, product)->
-		console.log "contactProduct"
-		console.log category:category, product:product
+		# console.log "contactProduct"
+		# console.log category:category, product:product
 		x = category:category, product:product
 		app.flux.dispatch({
 			action: "render_content"
