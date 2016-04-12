@@ -13,7 +13,6 @@ model = new Schema({
 	title: String
 	description: String
 	includes: [String]
-	active: Boolean
 	learnData: {
 		inputs: [img]
 		process: [img]

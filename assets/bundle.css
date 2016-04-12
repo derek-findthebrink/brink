@@ -74,6 +74,62 @@ html {
     max-width: 35em;
     text-align: center; }
 
+.checkbox-fancy {
+  border-radius: 32px;
+  cursor: pointer;
+  display: inline-block;
+  height: 32px;
+  position: relative;
+  width: 52px; }
+  .checkbox-fancy input[type="checkbox"] {
+    display: none; }
+    .checkbox-fancy input[type="checkbox"] + .checkbox {
+      background: #e8e8e8;
+      border: 0;
+      border-radius: 32px;
+      cursor: pointer;
+      height: 32px;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      transition: all 0.3s ease;
+      width: 52px;
+      z-index: 0; }
+      .checkbox-fancy input[type="checkbox"] + .checkbox::before {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        bottom: 0;
+        left: 2px;
+        background: white;
+        border-radius: 32px;
+        content: "";
+        height: 28px;
+        transform: scale(1);
+        transition: all 0.3s ease;
+        width: 48px;
+        z-index: 1; }
+      .checkbox-fancy input[type="checkbox"] + .checkbox::after {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        bottom: 0;
+        left: 2px;
+        height: 28px;
+        width: 28px;
+        background: white;
+        border-radius: 28px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        content: "";
+        transition: all 0.3s ease;
+        z-index: 2; }
+    .checkbox-fancy input[type="checkbox"]:checked + .checkbox {
+      background: #477DCA; }
+      .checkbox-fancy input[type="checkbox"]:checked + .checkbox::before {
+        transform: scale(0); }
+      .checkbox-fancy input[type="checkbox"]:checked + .checkbox::after {
+        left: 22px; }
+
 .slicknav_btn {
   position: relative;
   display: block;
@@ -3028,6 +3084,28 @@ iron-icon {
   .content.fill {
     margin: 0 0; }
 
+.button-field {
+  margin-top: 1em;
+  padding-top: 0.5em; }
+  .button-field button, .button-field input {
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    transition: 0.25s;
+    cursor: pointer; }
+  .button-field input[type="submit"], .button-field input[type="reset"], .button-field button {
+    float: right;
+    margin: 0;
+    border: none;
+    border-radius: 0; }
+  .button-field input[type="submit"] {
+    background-color: #40AF40; }
+    .button-field input[type="submit"]:hover {
+      background-color: #71cb71; }
+  .button-field button[type="back"] {
+    background-color: #DB5050; }
+    .button-field button[type="back"]:hover {
+      background-color: #e88f8f; }
+
 .contact.page {
   max-width: 100%;
   margin-left: auto;
@@ -3076,27 +3154,6 @@ iron-icon {
       font-family: "ff-enzo-web", "Raleway", sans-serif;
       padding-right: 2em;
       text-align: right; }
-    .contact.page .contact-form .button-field {
-      margin-top: 1em;
-      padding-top: 0.5em; }
-      .contact.page .contact-form .button-field button, .contact.page .contact-form .button-field input {
-        -webkit-transition: 0.25s;
-        -moz-transition: 0.25s;
-        transition: 0.25s;
-        cursor: pointer; }
-      .contact.page .contact-form .button-field input[type="submit"], .contact.page .contact-form .button-field input[type="reset"], .contact.page .contact-form .button-field button {
-        float: right;
-        margin: 0;
-        border: none;
-        border-radius: 0; }
-      .contact.page .contact-form .button-field input[type="submit"] {
-        background-color: #40AF40; }
-        .contact.page .contact-form .button-field input[type="submit"]:hover {
-          background-color: #71cb71; }
-      .contact.page .contact-form .button-field button[type="back"] {
-        background-color: #DB5050; }
-        .contact.page .contact-form .button-field button[type="back"]:hover {
-          background-color: #e88f8f; }
 
 .learn .inputs, .learn .outputs {
   font-family: "ff-enzo-web";

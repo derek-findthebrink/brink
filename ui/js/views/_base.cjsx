@@ -67,6 +67,17 @@ exports.HorizontalMenu = HorizontalMenu
 # Field
 # -----------------------------------
 
+InputSwitch = React.createClass({
+	render: ->
+		console.log props:@props, "input switch"
+		<div className="form-field">
+			<label className="checkbox-fancy">
+				<input type="checkbox" checked={@props.value} />
+				<div className="checkbox" />
+			</label>
+		</div>
+	})
+
 Field = React.createClass({
 	render: ->
 		label = @props.label || @props.name
@@ -85,6 +96,9 @@ Field = React.createClass({
 			_i = React.createElement("textarea", x)
 		else if type == "select"
 			_i = React.createElement("select", x)
+		else if type == "checkbox"
+			# switch type
+			_i = React.createElement(InputSwitch, x)
 		else
 			_i = React.createElement("input", x)
 

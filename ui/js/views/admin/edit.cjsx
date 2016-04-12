@@ -3,6 +3,16 @@ _ = require("lodash")
 
 {Field, ButtonField} = require("../_base")
 
+
+ImgEditor = React.createClass({
+	render: ->
+		<div>
+			
+		</div>
+	})
+
+
+
 ProductsItem = React.createClass({
 	render: ->
 		console.log props:@props
@@ -12,7 +22,8 @@ ProductsItem = React.createClass({
 				<Field name="product" type="text" value={@props.product} />
 				<Field name="title" type="text" value={@props.title} />
 				<Field name="description" type="textarea" value={@props.description} />
-				<Field name="unitsAvailable" type="number" value={@props.unitsAvailable} />
+				<Field name="unitsAvailable" label="units available" type="number" value={@props.unitsAvailable} />
+				<Field name="available" label="is available" type="checkbox" value={@props.available} />
 				<ButtonField>
 					<input type="submit" value="submit" />
 				</ButtonField>
@@ -23,7 +34,14 @@ ProductsItem = React.createClass({
 StackItem = React.createClass({
 	render: ->
 		<li>
-			<p>stack item</p>
+			<form>
+				<Field name="title" type="text" value={@props.title} />
+				<Field name="description" type="textarea" value={@props.description} />
+				<Field name="secondary" label="is secondary" type="checkbox" value={@props.secondary} />
+				<ButtonField>
+					<input type="submit" value="submit" />
+				</ButtonField>
+			</form>
 		</li>
 	})
 

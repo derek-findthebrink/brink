@@ -16,7 +16,7 @@ StatsItem = React.createClass({
 
 Dashboard = React.createClass({
 	render: ->
-		items = ["products", "contacts", "stack"]
+		items = ["products", "stack"]
 
 		stats = items.map (x, i)->
 			<StatsItem title={x} key={i} />

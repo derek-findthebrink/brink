@@ -42,24 +42,3 @@
 				font-family: $fonts-header
 				padding-right: 2em
 				text-align: right
-
-		.button-field
-			margin-top: 1em
-			padding-top: 0.5em
-			button, input
-				@include transition(0.25s)
-				cursor: pointer
-			input[type="submit"], input[type="reset"], button
-				float: right
-				margin: 0
-				border: none
-				border-radius: 0
-
-			input[type="submit"]
-				background-color: $go-green
-				&:hover
-					background-color: lighten($go-green, 15%)
-			button[type="back"]
-				background-color: $rowdy-red
-				&:hover
-					background-color: lighten($rowdy-red, 15%)
