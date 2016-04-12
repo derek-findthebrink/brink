@@ -27,7 +27,7 @@ Account = mongoose.model("Account")
 
 # View Controllers
 # ------------------------
-_viewsDir = nodepath.join(process.cwd(), "ui/js/views/admin/")
+_viewsDir = nodepath.join(process.cwd(), "views/react/admin/")
 
 LoginView = require(_viewsDir + "login")
 DashboardView = require(_viewsDir + "dashboard")

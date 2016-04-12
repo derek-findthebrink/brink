@@ -4,15 +4,18 @@ $ = require("jquery")
 _ = require("lodash")
 
 ui = $(".content")[0]
-_c = require("../content/index")
 # console.log _c:_c
 
+VIEW_DIR = "../../../../views/react/"
+CONTENT_DIR = "../../../../content/"
 
-Home = require("../views/home")
-Portfolio = require("../views/portfolio")
-Stack = require("../views/stack")
-Products = require("../views/product")
-Contact = require("../views/contact")
+_c = require(CONTENT_DIR + "index")
+
+Home = require VIEW_DIR + "home"
+Portfolio = require VIEW_DIR + "portfolio"
+Stack = require VIEW_DIR + "stack"
+Products = require VIEW_DIR + "product"
+Contact = require VIEW_DIR + "contact"
 
 Views = {
 	"Home": Home

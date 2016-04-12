@@ -11,14 +11,15 @@ catch e
 	log = console
 	log.info = console.log
 
-BASE_DIR = "../../ui/js/"
-_content = require(BASE_DIR + "content/index")
+BASE_DIR = "../../views/react/"
+CONTENT_DIR = "../../content/"
+_content = require(CONTENT_DIR + "index")
 
-HomeView = require(BASE_DIR + "views/home")
-StackView = require(BASE_DIR + "views/stack")
-ProductsView = require(BASE_DIR + "views/product")
-ContactView = require(BASE_DIR + "views/contact")
-PortfolioView = require(BASE_DIR + "views/portfolio")
+HomeView = require(BASE_DIR + "home")
+StackView = require(BASE_DIR + "stack")
+ProductsView = require(BASE_DIR + "product")
+ContactView = require(BASE_DIR + "contact")
+PortfolioView = require(BASE_DIR + "portfolio")
 
 views = {
 	"Home": HomeView
