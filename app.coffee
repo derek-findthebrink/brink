@@ -87,9 +87,10 @@ app.use logBase.requestLogger({
 # Routes
 # --------------------------------------------
 homeRoutes = require "./api/routes/home"
-adminRoutes = require("./api/routes/admin")
-
 app.use("/", homeRoutes)
+
+# disabled admin for massive ui changes
+adminRoutes = require("./api/routes/admin")
 app.use("/admin", adminRoutes)
 
 

@@ -14,6 +14,7 @@ _plugins = [
 		$: "jquery"
 		jQuery: "jquery"
 		"window.jQuery": "jquery"
+		React: "react"
 		})
 	new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
 	new webpack.optimize.OccurrenceOrderPlugin()

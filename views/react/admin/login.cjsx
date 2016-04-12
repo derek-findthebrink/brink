@@ -1,7 +1,8 @@
 React = require("react")
 _ = require("lodash")
 
-{PageContainer, Field} = require("../_base")
+{Field, ButtonField} = require("../modules/form")
+
 
 Login = React.createClass({
 	getInitialState: ->

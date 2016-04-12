@@ -1,7 +1,7 @@
 React = require("react")
 _ = require("lodash")
 
-{Field, ButtonField} = require("../_base")
+{Field, ButtonField} = require("../modules/form")
 
 
 ImgEditor = React.createClass({
