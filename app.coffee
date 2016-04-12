@@ -5,10 +5,6 @@ express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
 cookieParser = require("cookie-parser")
-# webpack = require("webpack")
-# webpackMiddleware = require("webpack-dev-middleware")
-# webpackHotMiddleware = require("webpack-hot-middleware")
-# config = require("./webpack.config.coffee")
 passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
 session = require("express-session")
@@ -33,11 +29,6 @@ log = appLogger.child({
 	file: "app"
 	})
 
-# Webpack
-# --------------------------
-# remove for production?
-# compiler = webpack(config)
-
 
 # Database
 # -----------------------------------------
@@ -48,6 +39,10 @@ Account = mongoose.model("Account")
 # Server Initialization
 # ------------------------------------------
 app = express()
+
+if process.env.NODE_ENV == "development"
+	require("./webpack-middleware.coffee")(app)
+
 app.application_name = "brink-server"
 app.set("views", "views")
 app.set("view engine", "jade")
@@ -58,11 +53,6 @@ app.use bodyParser.urlencoded({
 	})
 app.use cookieParser()
 app.use(express.static("./assets"))
-
-# Webpack
-# -----------------------------------
-# app.use(webpackMiddleware(compiler))
-# app.use(webpackHotMiddleware(compiler))
 
 
 # Passport

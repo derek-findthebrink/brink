@@ -4,6 +4,7 @@
 renderContent = require("./actions/renderContent")
 renderLearn = require("./actions/renderLearn")
 
+
 hrefNavigate = (payload)->
 	app.router.hrefNavigator(payload.href)
 

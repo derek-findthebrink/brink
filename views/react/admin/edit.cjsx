@@ -16,7 +16,7 @@ ImgEditor = React.createClass({
 ProductsItem = React.createClass({
 	render: ->
 		console.log props:@props
-		<li>
+		<li className="edit-item inactive">
 			<form>
 				<Field name="category" type="text" value={@props.category} />
 				<Field name="product" type="text" value={@props.product} />
@@ -47,6 +47,10 @@ StackItem = React.createClass({
 
 
 Editor = React.createClass({
+	componentDidMount: ->
+		# create collapsible sections
+
+
 	render: ->
 		console.log props:@props
 
@@ -63,7 +67,7 @@ Editor = React.createClass({
 
 		<div className="editor">
 			<h4>Editor</h4>
-			<ul>
+			<ul className="editor-list">
 				{items}
 			</ul>
 		</div>

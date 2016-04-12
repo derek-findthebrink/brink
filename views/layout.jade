@@ -63,13 +63,11 @@ html
 				};
 
 		//- load external libraries
-		script(src="/lib/webcomponentsjs/webcomponents.min.js")
-		script(src="/lib/jquery/dist/jquery.min.js")
-		script(src="/lib/slicknav/dist/jquery.slicknav.min.js")
-		script(src="/lib/waypoints/lib/jquery.waypoints.min.js")
+		script(src="vendor.bundle.js")
+		//- script(src="vendor_addon.bundle.js")
 
 		//- load application logic
 		if base == "app"
-			script(src="/main.js")
+			script(src="/app.js")
 
 		block scripts

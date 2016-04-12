@@ -3,10 +3,10 @@ ReactDOM = require("react-dom")
 $ = require("jquery")
 _ = require("lodash")
 
-{Package, Base} = require("../views/learn")
 ui = $(".content")[0]
 
-content = require("../content/index")
+{Package, Base} = require("views/react/learn.cjsx")
+content = require("content/index.coffee")
 
 renderPackage = (payload)->
 	# console.log category:payload.category, product:payload.product
