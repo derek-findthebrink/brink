@@ -65,8 +65,8 @@ FeaturedProducts = React.createClass({
 
 Home = React.createClass({
 	render: ->
+		# <Carousel items={@props.carousel} />
 		<PageContainer {...@props}>
-			<Carousel items={@props.carousel} />
 			<BlogWidget />
 			<FeaturedProducts />
 		</PageContainer>

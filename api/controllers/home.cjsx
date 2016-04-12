@@ -33,6 +33,7 @@ render = (name, req)->
 	x = {
 		content: _render(name, user)
 		user: user
+		base: "app"
 	}
 	return x
 

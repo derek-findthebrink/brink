@@ -98,6 +98,14 @@ Field = React.createClass({
 
 exports.Field = Field
 
+ButtonField = React.createClass({
+	render: ->
+		<div className="button-field">
+			{@props.children}
+		</div>
+	})
+exports.ButtonField = ButtonField
+
 # Custom Segments
 # ----------------------------------
 

@@ -55,6 +55,7 @@ k = 0
 Products = React.createClass({
 	render: ->
 		# console.log props:@props
+		menuItems = []
 		try
 			items = @props.items.map (x, i)->
 				<ProductItem {...x} key={k++} />

@@ -11,6 +11,7 @@ model = new Schema({
 	category: String
 	product: String
 	title: String
+	description: String
 	includes: [String]
 	active: Boolean
 	learnData: {

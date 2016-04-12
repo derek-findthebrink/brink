@@ -69,6 +69,7 @@ html
 		script(src="/lib/waypoints/lib/jquery.waypoints.min.js")
 
 		//- load application logic
-		script(src="/main.js")
+		if base == "app"
+			script(src="/main.js")
 
 		block scripts

@@ -2,16 +2,11 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-{ContentHeader, HorizontalMenu, PageContainer, Field} = require("./_base")
+{ContentHeader, HorizontalMenu, PageContainer, Field, ButtonField} = require("./_base")
 
 
 
-ButtonField = React.createClass({
-	render: ->
-		<div className="button-field">
-			{@props.children}
-		</div>
-	})
+
 
 Captcha = React.createClass({
 	render: ->
