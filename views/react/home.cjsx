@@ -2,7 +2,7 @@ React = require("react")
 ReactDOM = require("react-dom")
 _ = require("lodash")
 
-{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
+PageContainer = require("./modules/container-page")
 
 CarouselItem = React.createClass({
 	render: ->

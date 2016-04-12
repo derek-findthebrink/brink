@@ -1,4 +1,4 @@
-# require("index.sass")
+require("../../css/index.sass")
 
 # Requires
 # -----------------------------

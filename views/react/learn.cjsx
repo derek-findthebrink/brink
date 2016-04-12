@@ -34,7 +34,7 @@ Base = React.createClass({
 			x.destroy()
 		# $(".content").removeClass("fill")
 	render: ->
-		# console.log props:@props
+		console.log props:@props
 		inputs = @props.learnData.inputs.map (x, i)->
 			<InputImg {...x} key={i} />
 		process = @props.learnData.process.map (x, i)->

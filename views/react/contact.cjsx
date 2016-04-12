@@ -2,11 +2,9 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-{ContentHeader, HorizontalMenu, PageContainer, Field, ButtonField} = require("./_base")
 
-
-
-
+PageContainer = require("./modules/container-page")
+{Field, ButtonField} = require("./modules/form")
 
 Captcha = React.createClass({
 	render: ->

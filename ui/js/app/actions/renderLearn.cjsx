@@ -7,11 +7,12 @@ ui = $(".content")[0]
 
 {Package, Base} = require("views/react/learn.cjsx")
 content = require("content/index.coffee")
+console.log content:content
 
 renderPackage = (payload)->
 	# console.log category:payload.category, product:payload.product
 	# get props
-	col = content.Products.props[payload.category]
+	col = content.Products.props.list
 	props = _.find col, (x)->
 		x.product == payload.product
 	# console.log props:props, col:col
@@ -35,7 +36,7 @@ renderApp = (payload)->
 
 
 render = (payload)->
-	# console.log payload:payload
+	console.log payload:payload
 	switch payload.category
 		when "packages" then renderPackage(payload)
 		when "websites" then renderWebsite(payload)

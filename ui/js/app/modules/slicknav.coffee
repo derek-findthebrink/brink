@@ -1,4 +1,3 @@
-# slicknav options
 initSticky = ->
 	$el = $(".slicknav_menu")
 	$el.sticky({

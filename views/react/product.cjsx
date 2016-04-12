@@ -4,7 +4,10 @@ $ = require("jquery")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
-{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
+
+PageContainer = require("./modules/container-page")
+HorizontalMenu = require("./modules/menu").HorizontalMenu
+
 
 ProductItem = React.createClass({
 	navigate: (e)->

@@ -18,6 +18,9 @@ _plugins = [
 	new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
 	new webpack.optimize.OccurrenceOrderPlugin()
 	new webpack.NoErrorsPlugin()
+	new ExtractTextPlugin("assets/bundle.css", {
+		allChunks: true
+		})
 ]
 
 # entries
@@ -49,10 +52,10 @@ module.exports = {
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
 	resolve:
-		# extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
+		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: [nodepath.resolve(".")]
-		extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/lib"]
+		# extensions: ["", ".js", ".coffee", ".cjsx"]
+		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/lib", "ui/css"]
 	devtool: "eval-source-map"
 
 	plugins: _plugins
@@ -81,11 +84,21 @@ module.exports = {
 				test: /\.cjsx$/
 				loaders: ["react-hot", "coffee", "cjsx"]
 			}
-			# {
-			# 	test: /\.sass$/
-			# 	loader: ExtractTextPlugin.extract("style", "css!sass")
-			# 	# loaders: ["style", "css", "sass"]
-			# 	include: sassDir
-			# }
+			{
+				test: /\.sass$/
+				# loader: ExtractTextPlugin.extract("style!css!sass")
+				loaders: ["style", "css", "sass"]
+				# include: sassDir
+			}
+			{
+				test: /\.scss$/
+				# loader: ExtractTextPlugin.extract("css!sass")
+				loaders: ["style", "css", "sass"]
+			}
+			{
+				test: /\.css$/
+				# loader: ExtractTextPlugin.extract("css")
+				loaders: ["style", "css"]
+			}
 		]
 }

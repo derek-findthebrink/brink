@@ -2,7 +2,7 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-{ContentHeader, HorizontalMenu, PageContainer} = require("./_base")
+PageContainer = require("./modules/container-page")
 
 Portfolio = React.createClass({
 	render: ->

@@ -1,8 +1,7 @@
 React = require("react")
-ReactDOM = require("react-dom")
 _ = require("lodash")
 
-{ContentHeader, PageContainer} = require("./_base")
+PageContainer = require("./modules/container-page")
 
 TradeImage = React.createClass({
 	render: ->
