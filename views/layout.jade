@@ -30,44 +30,7 @@ html
 		<script src="https://use.typekit.net/rsz1its.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
-		script.
-			var RecaptchaOptions = {
-				theme: "clean"
-			};
-		<script src="https://www.google.com/recaptcha/api.js"></script>
-		block head
 	body
-		header
-			h1 brink technology co.
-		nav
-			.main-nav
-				block nav
-		main 
-			.content!= content
-
-		include includes/footer
-
-		if user
-			script#user.
-				var User = {
-					username: "#{user.username}",
-					email: "#{user.email}",
-					name: "#{user.name}"
-				};
-		else
-			script#user.
-				var User = {
-					username: "",
-					email: "",
-					name: ""
-				};
-
-		//- load external libraries
+		.app-container
 		script(src="/vendor.bundle.js")
-		//- script(src="vendor_addon.bundle.js")
-
-		//- load application logic
-		if base == "app"
-			script(src="/app.js")
-
-		block scripts
+		script(src="/app.js")

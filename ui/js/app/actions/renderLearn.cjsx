@@ -7,7 +7,6 @@ ui = $(".content")[0]
 
 {Package, Base} = require("views/react/learn.cjsx")
 content = require("content/index.coffee")
-console.log content:content
 
 renderPackage = (payload)->
 	# console.log category:payload.category, product:payload.product

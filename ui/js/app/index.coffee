@@ -14,6 +14,6 @@ app = window.app = {}
 # google analytics
 require("./modules/ga")
 # slicknav
-require("./modules/slicknav")
-app.flux = new Flux()
-app.router = new Router()
+# require("./modules/slicknav")
+app.flux = new Flux().initialize()
+# app.router = new Router()

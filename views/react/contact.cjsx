@@ -97,11 +97,13 @@ LocationInfo = React.createClass({
 
 # Contact
 Contact = React.createClass({
+	getInitialState: ->
+		return app.content.Contact
 	render: ->
 		# console.log props:@props
-		<PageContainer {...@props}>
-			<LocationInfo {...@props} />
-			<ContactForm {...@props}>
+		<PageContainer {...@state}>
+			<LocationInfo {...@state} />
+			<ContactForm {...@state}>
 				<h2 className="form-header">send us a message</h2>
 			</ContactForm>
 		</PageContainer>

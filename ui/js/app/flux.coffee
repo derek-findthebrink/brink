@@ -3,6 +3,7 @@
 # ------------------------------------
 renderContent = require("./actions/renderContent")
 renderLearn = require("./actions/renderLearn")
+{getContent} = require('./actions/content-provider')
 
 
 hrefNavigate = (payload)->
@@ -21,8 +22,9 @@ class Flux
 			when "href_navigate" then hrefNavigate(payload)
 			else
 				console.error new Error("could not parse payload: " + payload.action)
-	registerView: (name, view)->
-		@_views[name] = view
-		console.log "registered view:", {name: name, view: view}
+	initialize: ->
+		getContent()
+		require("./_router")
+
 
 module.exports = Flux

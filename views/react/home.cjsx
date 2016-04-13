@@ -6,11 +6,12 @@ PageContainer = require("./modules/container-page")
 BlogWidget = require("./modules/widget-blog")
 FeaturedProducts = require("./modules/widget-featured-products")
 
-
 Home = React.createClass({
+	getInitialState: ->
+		return app.content.Home
 	render: ->
-		# <Carousel items={@props.carousel} />
-		<PageContainer {...@props}>
+		console.log state:@state
+		<PageContainer {...@state}>
 			<BlogWidget />
 			<FeaturedProducts />
 		</PageContainer>

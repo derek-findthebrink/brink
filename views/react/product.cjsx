@@ -56,18 +56,20 @@ ProductItem = React.createClass({
 # Products
 k = 0
 Products = React.createClass({
+	getInitialState: ->
+		return app.content.Products
 	render: ->
-		# console.log props:@props
+		console.log state:@state
 		menuItems = []
 		try
-			items = @props.items.map (x, i)->
+			items = @state.list.map (x, i)->
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
 		speed = 750
 
-		<PageContainer {...@props}>
-			<HorizontalMenu menu={@props.menu} />
+		<PageContainer {...@state}>
+			<HorizontalMenu menu={@state.menu} />
 			<ul className="products-list">
 				<ReactCSSTransitionGroup 
 				transitionName="product-transition" 

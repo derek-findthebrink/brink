@@ -1,6 +1,10 @@
 React = require("react")
 
 ContentHeader = React.createClass({
+	propTypes: {
+		title: React.PropTypes.string.isRequired
+		description: React.PropTypes.string
+	}
 	render: ->
 		<div className="header-section">
 			<div className="header-inner">
