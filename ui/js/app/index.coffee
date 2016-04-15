@@ -1,15 +1,12 @@
-require("../../css/index.sass")
+# require("../../css/index.sass")
 
 # Requires
 # -----------------------------
-Router = require("./router")
 Flux = require("./flux")
 
 # App
 # ---------------------------
 app = window.app = {}
-
-
 
 # google analytics
 require("./modules/ga")

@@ -1,3 +1,8 @@
+@import "../bourbon/bourbon.scss";
+@import "../neat/neat.scss";
+
+$gutter: modular-scale(1, 1em, $golden);
+
 .footer {
   $base-spacing: 1.5em !default;
   $action-color: #477DCA !default;

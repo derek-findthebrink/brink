@@ -6,19 +6,20 @@ PageContainer = require("./modules/container-page")
 
 # Stack
 Stack = React.createClass({
-	getInitialState: ->
-		return app.content.Stack
+	contextTypes:
+		content: React.PropTypes.object
 	render: ->
-		_primary = _.filter @state.list, (x)->
+		content = @context.content["Stack"]
+		_primary = _.filter content.list, (x)->
 			x.secondary == false
-		_secondary = _.filter @state.list, (x)->
+		_secondary = _.filter content.list, (x)->
 			x.secondary == true
 		primary = _primary.map (x, i)->
 			<StackItemMain key={i} {...x} />
 		secondary = _secondary.map (x, i)->
 			<StackItemSecondary key={i} {...x} />
 			
-		<PageContainer {...@state}>
+		<PageContainer {...content}>
 			<ul className="stack-list-main">
 				{primary}
 			</ul>

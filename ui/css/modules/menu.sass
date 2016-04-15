@@ -1,18 +1,6 @@
-$thin-border-color-inactive: rgba($theme-base, 0.2)
-$thin-border-color-active: rgba($theme-base, 0.7)
+@import "../_config.sass"
 
-@mixin thin-border($hover: true)
-	border: 1px solid $thin-border-color-inactive
-	border-radius: 0
-	@if $hover == true
-		&:hover
-			border-color: $thin-border-color-active
-
-
-// Horizontal Menu
-// ---------------------------------------------
-
-.horizontal-menu
+.horizontal
 	$bcg-color: lighten(#40526B, 40%)
 	$color: darken(#676767, 25%)
 	@include fill-parent
@@ -53,40 +41,3 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		font-size: 110%
 		text-decoration: none
 	@include reset-display
-
-
-
-// Header Section
-// ---------------------------------------------
-
-
-
-
-
-
-.content
-	@include transition(0.5s)
-	&.fill
-		margin: 0 0
-
-
-.button-field
-	margin-top: 1em
-	padding-top: 0.5em
-	button, input
-		@include transition(0.25s)
-		cursor: pointer
-	input[type="submit"], input[type="reset"], button
-		float: right
-		margin: 0
-		border: none
-		border-radius: 0
-
-	input[type="submit"]
-		background-color: $go-green
-		&:hover
-			background-color: lighten($go-green, 15%)
-	button[type="back"]
-		background-color: $rowdy-red
-		&:hover
-			background-color: lighten($rowdy-red, 15%)

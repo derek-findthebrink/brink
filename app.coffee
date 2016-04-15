@@ -1,6 +1,8 @@
 require("coffee-react/register")
 require("dotenv").config()
 
+nodepath = require("path")
+
 express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
@@ -9,7 +11,13 @@ passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
 session = require("express-session")
 MongoStore = require("connect-mongo")(session)
-_ = require("lodash")
+# favicon = require("serve-favicon")
+
+
+# vars
+# -------------------------------
+static_dir = nodepath.resolve(process.cwd(), "assets")
+
 
 
 # Logger
@@ -29,6 +37,9 @@ log = appLogger.child({
 	file: "app"
 	})
 
+log.info {static: static_dir}, "static dir"
+
+
 
 # Database
 # -----------------------------------------
@@ -36,12 +47,18 @@ mongoose = require("./config/mongoose").mongoose
 Account = mongoose.model("Account")
 
 
+
+
+
+
+
 # Server Initialization
 # ------------------------------------------
 app = express()
 
-if process.env.NODE_ENV == "development"
-	require("./webpack-middleware.coffee")(app)
+if process.env.HMR == "true"
+	log.info "loading webpack middleware..."
+	require("./loaders/webpack-middleware.coffee")(app)
 
 app.application_name = "brink-server"
 app.set("views", "views")
@@ -52,7 +69,18 @@ app.use bodyParser.urlencoded({
 	extended: true
 	})
 app.use cookieParser()
-app.use(express.static("./assets"))
+
+# static dir
+log.info {static: static_dir}, "static dir location"
+app.use(express.static(static_dir))
+# app.use(favicon(favicon_location))
+
+
+
+
+
+
+
 
 
 # Passport
@@ -68,20 +96,28 @@ app.use session({
 	resave: false
 	saveUninitialized: true
 })
-app.use passport.initialize()
-app.use passport.session()
+
+auth = require("./config/auth")
+auth(app, passport, Account)
 
 
-passport.use Account.createStrategy()
-passport.serializeUser Account.serializeUser()
-passport.deserializeUser Account.deserializeUser()
+
+
+
+
 
 
 # Request Logger
 # -----------------------------
-app.use logBase.requestLogger({
-	logger: log
-	})
+if process.env.LOG_REQUESTS == "true"
+	app.use logBase.requestLogger({
+		logger: log
+		})
+
+
+
+
+
 
 
 # Routes
@@ -92,6 +128,11 @@ app.use("/", homeRoutes)
 # disabled admin for massive ui changes
 adminRoutes = require("./api/routes/admin")
 app.use("/admin", adminRoutes)
+
+
+
+
+
 
 
 # Server Start

@@ -5,10 +5,11 @@ $ = require("jquery")
 PageContainer = require("./modules/container-page")
 
 Portfolio = React.createClass({
-	getInitialState: ->
-		return app.content.Portfolio
+	contextTypes:
+		content: React.PropTypes.object
 	render: ->
-		<PageContainer {...@state}>
+		content = @context.content["Portfolio"]
+		<PageContainer {...content}>
 			<p>portfolio content here</p>
 		</PageContainer>
 	})

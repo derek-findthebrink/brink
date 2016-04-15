@@ -4,7 +4,7 @@ html
 		title brink | j-design
 		link(rel="import" href="/lib/iron-icons/iron-icons.html")
 		link(href="https://fonts.googleapis.com/css?family=Raleway|Droid+Serif" rel="stylesheet" type="text/css")
-		//- link(rel="stylesheet" href="/bundle.css")
+		link(rel="stylesheet" href="/style.css")
 
 		//- mobile meta
 		meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -31,6 +31,6 @@ html
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
 	body
-		.app-container
+		#app-container!=content
 		script(src="/vendor.bundle.js")
 		script(src="/app.js")

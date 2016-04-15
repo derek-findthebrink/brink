@@ -1,7 +1,17 @@
 React = require("react")
 ReactServer = require("react-dom/server")
+{
+	RouterContext
+	match
+	createRoutes
+	createMemoryHistory
+	} = require("react-router")
+Q = require("q")
 _ = require("underscore")
+nodepath = require("path")
 
+# Logger
+# ----------------------------------
 try
 	log = appLogger.child({
 		type: "controller"
@@ -11,98 +21,52 @@ catch e
 	log = console
 	log.info = console.log
 
-BASE_DIR = "../../views/react/"
+# Content
+# -------------------------------------
 CONTENT_DIR = "../../content/"
-_content = require(CONTENT_DIR + "index")
+content = require(CONTENT_DIR + "index")
 
-HomeView = require(BASE_DIR + "home")
-StackView = require(BASE_DIR + "stack")
-ProductsView = require(BASE_DIR + "product")
-ContactView = require(BASE_DIR + "contact")
-PortfolioView = require(BASE_DIR + "portfolio")
-
-views = {
-	"Home": HomeView
-	"Stack": StackView
-	"Products": ProductsView
-	"Contact": ContactView
-	"Portfolio": PortfolioView
-}
-
-render = (name, req)->
-	user = req.user || null
-	x = {
-		content: _render(name, user)
-		user: user
-		base: "app"
-	}
-	return x
-
-_render = (name, user)->
-	contentProps = _content[name].props
-	view = views[name]
-	props = _createProps(user, contentProps)
-	html = _renderView(view, props)
-	return html
-
-_createProps = (user, props)->
-	_base = {
-		user: user
-	}
-	x = _.extend _base, props
-	return x
-
-_renderView = (view, props)->
-	x = React.createElement(view, props)
-	str = ReactServer.renderToString(x)
-	return str
+# Router
+# -----------------------------------------
+AppRouter = require("../../router/app-router")
+log.info {dir: process.cwd(), cd: __dirname}, "current working dir"
 
 
+baseRender = (req, res)->
+	log.info "base render"
+	views = require("../../views/react/index.cjsx")
+	log.info views:views, dir: process.cwd(), cd: __dirname, "base render on express router home"
 
-inputData = (req, res, next)->
-	data = req.body
-	log.info data:data, "contact post data"
-	x = new Contact(data)
-	x.save (err)->
-		if err then log.error {err}, "contact save error"
-		next(err)
+	log.info AppRouter:AppRouter, url:req.url, "app router"
+	_h = createMemoryHistory()
+	routes = AppRouter(_h, views)
+	location = _h.createLocation(req.url)
 
-renderThanks = (req, res)->
-	res.redirect("/contact")
+	match({routes, location}, (err, redirectLocation, renderProps)->
+		if err
+			log.error err, "error"
+			res.status(500).end()
+		else if redirectLocation
+			log.info redirectLocation, "redirect"
+		else if renderProps
+			log.info renderProps, "renderProps"
+			res.status(200).send(ReactServer.renderToString(<RouterContext {...renderProps} />))
+		)
 
-
+# each must expose locals "content", "user"
 
 
 
 module.exports = {
-	home: (req, res)->
-		res.render("pages/home", render("Home", req))
-	portfolio: (req,res)->
-		res.render("pages/portfolio", render("Portfolio", req))
-	stack: (req, res)->
-		res.render("pages/stack", render("Stack", req))
-	contact: (req, res)->
-		res.render("pages/contact", render("Contact", req))
-	productsAndServices: (req, res)->
-		res.render("pages/products-and-services", render("Products", req))
-	productsAndServicesSub: (req, res)->
-		sub = req.params.sub
-		log.info sub:sub, "productsAndServicesSub"
-		res.render("pages/products-and-services", render("Products", req))
-	productLearn: (req, res)->
-		category = req.params.category
-		product = req.params.product
-		res.render("pages/products-and-services")
-	contactProduct: (req, res)->
-		category = req.params.category
-		product = req.params.product
-		user = req.user || null
-		x = category:category, product:product
-		newProps = _.extend _content["Contact"].props, product:x, user:user
-		y = React.createElement(ContactView, newProps)
-		z = ReactServer.renderToString(y)
-		res.render("pages/contact", render("Contact", req))
+	home: baseRender
+	portfolio: baseRender
+	stack: baseRender
+	contact: baseRender
+	productsAndServices: baseRender
+	productsAndServicesSub: baseRender
+	productLearn: baseRender
+	contactProduct: baseRender
 
-	inputData: inputData
-	renderThanks: renderThanks
+	# inputData: inputData
+	# renderThanks: renderThanks
 }

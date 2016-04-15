@@ -41,7 +41,7 @@ ContactForm = React.createClass({
 				return x
 				)
 	componentWillMount: ->
-		console.log props: @props, state: @state
+		# console.log props: @props, state: @state
 		if @props.product
 			if (@props.product.product && @props.product.category)
 				product = @props.product.product
@@ -86,9 +86,8 @@ LocationRow = React.createClass({
 
 LocationInfo = React.createClass({
 	render: ->
-		c = 0
 		items = _.map @props.location, (x, i)->
-			<LocationRow header={i} value={x} key={c++} />
+			<LocationRow header={i} value={x} key={i} />
 
 		<div className="location">
 			{items}
@@ -97,13 +96,14 @@ LocationInfo = React.createClass({
 
 # Contact
 Contact = React.createClass({
-	getInitialState: ->
-		return app.content.Contact
+	contextTypes:
+		content: React.PropTypes.object
 	render: ->
 		# console.log props:@props
-		<PageContainer {...@state}>
-			<LocationInfo {...@state} />
-			<ContactForm {...@state}>
+		content = @context.content["Contact"]
+		<PageContainer {...content}>
+			<LocationInfo {...content} />
+			<ContactForm {...content}>
 				<h2 className="form-header">send us a message</h2>
 			</ContactForm>
 		</PageContainer>

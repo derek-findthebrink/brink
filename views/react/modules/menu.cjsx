@@ -1,4 +1,7 @@
 React = require("react")
+CSSModules = require("react-css-modules")
+
+styles = require("modules/menu.sass")
 
 MenuItem = React.createClass({
 	render: ->
@@ -26,13 +29,15 @@ HorizontalMenu = React.createClass({
 			else
 				<MenuItem {...x} key={i} />
 
-		<div className="horizontal-menu">
+		<div className={styles.horizontal}>
 			<ul>
 				{items}
 			</ul>
 		</div>
 	})
 
+_HorizontalMenu = CSSModules(HorizontalMenu, styles)
+
 module.exports = {
-	HorizontalMenu
+	_HorizontalMenu
 }

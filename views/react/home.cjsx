@@ -6,12 +6,25 @@ PageContainer = require("./modules/container-page")
 BlogWidget = require("./modules/widget-blog")
 FeaturedProducts = require("./modules/widget-featured-products")
 
+try
+	log = appLogger.child({
+		type: "views"
+		file: "react/home"
+	})
+catch
+	log = console
+	log.info = console.log
+
+
+
+
 Home = React.createClass({
-	getInitialState: ->
-		return app.content.Home
+	contextTypes:
+		content: React.PropTypes.object
 	render: ->
-		console.log state:@state
-		<PageContainer {...@state}>
+		# console.log @context.content
+		home = @context.content["Home"]
+		<PageContainer {...home}>
 			<BlogWidget />
 			<FeaturedProducts />
 		</PageContainer>

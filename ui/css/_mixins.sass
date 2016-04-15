@@ -29,3 +29,9 @@
 	&:hover
 		fill: $color
 
+@mixin thin-border($hover: true)
+	border: 1px solid $thin-border-color-inactive
+	border-radius: 0
+	@if $hover == true
+		&:hover
+			border-color: $thin-border-color-active
