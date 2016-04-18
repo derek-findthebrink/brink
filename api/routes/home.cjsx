@@ -54,7 +54,6 @@ base = (req, res)->
 			# console.log "rendering props..", props
 			final = <RouterContext {...props} />
 			html = ReactServer.renderToString final
-			console.log html:html
 			res.render("layout", {
 				content: html
 				})

@@ -1,93 +1,159 @@
+@import "../_config.sass"
 
 $border: 1px solid grey
 $header: $header-color
 
+$overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 
-.page.stack
-	ul
-		list-style-type: none
-		padding: 0
-		overflow: auto
+// Layouts
+// ----------------------------------
+%list
+	// @include fill-parent
+	overflow: auto
+	padding: 0
 	a
-		overflow: auto
 		display: block
-	.stack-item
-
-	.trade-img
 		position: relative
-		.img
-			@include fill-parent
-			background-position: center center
-			background-size: 100%
-			background-repeat: no-repeat
-		.overlay
-			@include transition(0.5s)
-			position: absolute
-			display: flex
-			align-items: center
-			justify-content: center
-			top: 0
-			bottom: 0
-			right: 0
-			overflow: hidden
-			height: 100%
-			width: 0
-			background: rgba(lighten($theme-base, 15%), 0)
-			.overlay-text
-				color: white
-				text-align: center
-				font-weight: bold
-		&:hover .overlay, .overlay:hover
+		div
+			margin: 0 auto
+
+.listMain
+	@extend %list
+	// @include fill-parent()
+	padding: 0
+	li
+		@include row(table)
+		& > div
+			vertical-align: middle
+			@include span-columns(1 of 2)
+
+	@include reset-display()
+
+.listSecondary
+	@extend %list
+	width: 80%
+	margin: 2em auto
+	li
+		@include span-columns(1 of 5)
+		@include omega(5n)
+		@include thin-border
+		margin-bottom: 1em
+		&:hover .overlay
 			width: 100%
-			background: rgba(lighten($theme-base, 15%), 0.7)
+		a
+			padding: 5px 0
 
-	.trade-image-header
+.trade
+	position: relative
+	display: block
+	a
 		display: block
-		border-bottom: $border
-		color: $header-color
-		margin: 0
-
-	ul.stack-list-main
-		li
-			@include row(table)
-			div
-				// @include omega(2n)
-				vertical-align: middle
-			div.trade-img
-				@include span-columns(3 of 8)
-				@include pad(0.7em)
-			div.description
-				@include span-columns(5 of 8)
-				// padding-top: 2.5em
-				padding-left: 0.5em
-			@include reset-display()
-		.img
-			height: 5em
 
 
-	ul.stack-list-secondary
-		@include outer-container(100%)
-		.stack-item
-			@include transition-duration(0.5s)
-			@include transition-property(border)
-			@include thin-border(false)
-			// border-radius: 10px
-			margin-bottom: 0.5em
+// Trade Image Layouts and Behaviour
+// -------------------------------------------------
+%img
+	@include fill-parent
+	background-position: center center
+	background-size: 100%
+	background-repeat: no-repeat
 
-			// media queries
-			@include media($bp-desktop)
-				@include span-columns(1 of 6)
-				@include omega(6n)
-			@include media($bp-tablet)
-				@include span-columns(1 of 4)
-				@include omega(4n)
-			@include media($bp-smartphone)
-				@include span-columns(1 of 2)
-				@include omega(2n)
+.mainTradeImg
+	@extend %img
+	height: 5em
+	width: 80%
+	background-size: cover
+
+.secondaryTradeImg
+	@extend %img
+	@include square(5em)
+
+.stackHeader
+	margin: 0
+	font-family: $fonts-header
+	color: $theme-base
+	margin-bottom: 5px
+	border-bottom: 1px solid lighten($theme-base, 40%)
+
+.stackDescription
+	display: inline-block
+	margin: 0.25em 0 1.5em 0
+	font-family: $fonts-content
+
+.overlay
+	@include transition(0.5s)
+	position: absolute
+	display: flex
+	align-items: center
+	justify-content: center
+	top: 0
+	bottom: 0
+	right: 0
+	overflow: hidden
+	height: 100%
+	width: 0
+	background-color: $overlay-background
+
+
+
+
+.overlay-text
+	color: white
+	text-align: center
+	font-weight: bold
+	whitespace: nowrap
+
+
+// &:hover .overlay, .overlay:hover
+// 	width: 100%
+// 	background: rgba(lighten($theme-base, 15%), 0.7)
+
+// .trade-image-header
+// 	display: block
+// 	border-bottom: $border
+// 	color: $header-color
+// 	margin: 0
+
+// .listMain
+// 	li
+// 		@include row(table)
+// 		div
+// 			// @include omega(2n)
+// 			vertical-align: middle
+// .trade-img
+// 	@include span-columns(3 of 8)
+// 	@include pad(0.7em)
+// .description
+// 	@include span-columns(5 of 8)
+// 	// padding-top: 2.5em
+// 	padding-left: 0.5em
+// 	.img
+// 		height: 5em
+
+
+// .listSecondary
+// 	@include outer-container(100%)
+// 	.stack-item
+// 		@include transition-duration(0.5s)
+// 		@include transition-property(border)
+// 		@include thin-border(false)
+// 		// border-radius: 10px
+// 		margin-bottom: 0.5em
+
+// 		// media queries
+// 		@include media($bp-desktop)
+// 			@include span-columns(1 of 6)
+// 			@include omega(6n)
+// 		@include media($bp-tablet)
+// 			@include span-columns(1 of 4)
+// 			@include omega(4n)
+// 		@include media($bp-smartphone)
+// 			@include span-columns(1 of 2)
+// 			@include omega(2n)
 
 		
 
-		.trade-img
-			padding: 0.5em
-			.img
-				height: 3.6em
+// 		.trade-img
+// 			padding: 0.5em
+// 			.img
+// 				height: 3.6em

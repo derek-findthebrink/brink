@@ -23,7 +23,6 @@ App = React.createClass({
 		# 	})
 	render: ->
 		<div>
-			<link rel="stylesheet" href="/app.css" />
 			<Header />
 			<main>
 				{@props.children}

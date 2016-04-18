@@ -59,7 +59,8 @@ _loaders = [
 	}
 ]
 
-__css_browser_pipe = "css?modules&importLoaders=1&localIdentName=[name]___[local]__[hash:base64:5]"
+__css_browser_pipe = "css?sourceMap&modules&importLoaders=1&localIdentName=[name]___[local]__[hash:base64:5]"
+__sass_browser_pipe = "sass?sourceMap"
 
 
 # BROWSER
@@ -71,11 +72,11 @@ _cssLoaderBrowser = {
 }
 _scssLoaderBrowser = {
 	test: /\.scss$/
-	loaders: ["style", __css_browser_pipe, "sass"]
+	loaders: ["style", __css_browser_pipe, __sass_browser_pipe]
 }
 _sassLoaderBrowser = {
 	test: /\.sass$/
-	loaders: ["style", __css_browser_pipe, "sass"]
+	loaders: ["style", __css_browser_pipe, __sass_browser_pipe]
 }
 _cjsxLoaderBrowser = {
 	test: /\.cjsx$/
@@ -98,7 +99,7 @@ browser = {
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: [nodepath.resolve(".")]
 		# extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/lib", "ui/css", "router", "content"]
+		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/public/lib", "ui/css", "router", "content"]
 	devtool: "source-map"
 
 	plugins: _browserPlugins
@@ -109,7 +110,7 @@ browser = {
 		# views: _entryViews
 	}
 	output:
-		path: nodepath.join(__dirname, "assets")
+		path: nodepath.join(__dirname, "assets/public/")
 		filename: "[name].js"
 		publicPath: "/"
 	module:

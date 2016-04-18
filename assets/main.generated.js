@@ -57,7 +57,7 @@ module.exports =
 
 	stack = __webpack_require__(19);
 
-	app = __webpack_require__(22);
+	app = __webpack_require__(21);
 
 	views = {
 	  home: home,
@@ -715,7 +715,7 @@ module.exports =
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var PageContainer, React, Stack, StackItemMain, StackItemSecondary, _, ref;
+	var PageContainer, React, Stack, StackItemMain, StackItemSecondary, TradeImage, _, styles;
 
 	React = __webpack_require__(2);
 
@@ -723,51 +723,37 @@ module.exports =
 
 	PageContainer = __webpack_require__(5);
 
-	ref = __webpack_require__(20), StackItemMain = ref.StackItemMain, StackItemSecondary = ref.StackItemSecondary;
+	styles = __webpack_require__(20);
 
-	Stack = React.createClass({
-	  contextTypes: {
-	    content: React.PropTypes.object
-	  },
+	TradeImage = React.createClass({
 	  render: function() {
-	    var _primary, _secondary, content, primary, secondary;
-	    content = this.context.content["Stack"];
-	    _primary = _.filter(content.list, function(x) {
-	      return x.secondary === false;
-	    });
-	    _secondary = _.filter(content.list, function(x) {
-	      return x.secondary === true;
-	    });
-	    primary = _primary.map(function(x, i) {
-	      return React.createElement(StackItemMain, React.__spread({
-	        "key": i
-	      }, x));
-	    });
-	    secondary = _secondary.map(function(x, i) {
-	      return React.createElement(StackItemSecondary, React.__spread({
-	        "key": i
-	      }, x));
-	    });
-	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("ul", {
-	      "className": "stack-list-main"
-	    }, primary), React.createElement("ul", {
-	      "className": "stack-list-secondary"
-	    }, secondary));
+	    var imgSrc, overlay, style;
+	    imgSrc = this.props.src || "/brink-logo-small.svg";
+	    if (imgSrc === "") {
+	      imgSrc = "/brink-logo-small.svg";
+	    }
+	    style = {
+	      backgroundImage: ["url(", imgSrc, ")"].join("")
+	    };
+	    overlay = null;
+	    if (this.props.overlay) {
+	      overlay = React.createElement("div", {
+	        "className": "overlay"
+	      }, React.createElement("h4", {
+	        "className": "overlay-text"
+	      }, this.props.title));
+	    }
+	    return React.createElement("div", {
+	      "className": styles.tradeImg
+	    }, React.createElement("a", {
+	      "href": this.props.href,
+	      "target": "_blank"
+	    }, React.createElement("div", {
+	      "className": "img",
+	      "style": style
+	    }), overlay));
 	  }
 	});
-
-	module.exports = Stack;
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React, StackItemMain, StackItemSecondary, TradeImage;
-
-	React = __webpack_require__(2);
-
-	TradeImage = __webpack_require__(21);
 
 	StackItemMain = React.createClass({
 	  render: function() {
@@ -794,68 +780,62 @@ module.exports =
 	  }
 	});
 
-	module.exports = {
-	  StackItemMain: StackItemMain,
-	  StackItemSecondary: StackItemSecondary
-	};
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React, TradeImage;
-
-	React = __webpack_require__(2);
-
-	TradeImage = React.createClass({
+	Stack = React.createClass({
+	  contextTypes: {
+	    content: React.PropTypes.object
+	  },
 	  render: function() {
-	    var imgSrc, overlay, style;
-	    imgSrc = this.props.src || "/brink-logo-small.svg";
-	    if (imgSrc === "") {
-	      imgSrc = "/brink-logo-small.svg";
-	    }
-	    style = {
-	      backgroundImage: ["url(", imgSrc, ")"].join("")
-	    };
-	    overlay = null;
-	    if (this.props.overlay) {
-	      overlay = React.createElement("div", {
-	        "className": "overlay"
-	      }, React.createElement("h4", {
-	        "className": "overlay-text"
-	      }, this.props.title));
-	    }
-	    return React.createElement("div", {
-	      "className": "trade-img"
-	    }, React.createElement("a", {
-	      "href": this.props.href,
-	      "target": "_blank"
-	    }, React.createElement("div", {
-	      "className": "img",
-	      "style": style
-	    }), overlay));
+	    var _primary, _secondary, content, primary, secondary;
+	    content = this.context.content["Stack"];
+	    _primary = _.filter(content.list, function(x) {
+	      return x.secondary === false;
+	    });
+	    _secondary = _.filter(content.list, function(x) {
+	      return x.secondary === true;
+	    });
+	    primary = _primary.map(function(x, i) {
+	      return React.createElement(StackItemMain, React.__spread({
+	        "key": i
+	      }, x));
+	    });
+	    secondary = _secondary.map(function(x, i) {
+	      return React.createElement(StackItemSecondary, React.__spread({
+	        "key": i
+	      }, x));
+	    });
+	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("ul", {
+	      "className": styles.listMain
+	    }, primary), React.createElement("ul", {
+	      "className": styles.listSecondary
+	    }, secondary));
 	  }
 	});
 
-	module.exports = TradeImage;
+	module.exports = Stack;
 
 
 /***/ },
-/* 22 */
+/* 20 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"tradeImg":"stack___tradeImg__2Wbgv","img":"stack___img__2FYS-","overlay":"stack___overlay__2sKFo","overlay-text":"stack___overlay-text__36bZh","trade-image-header":"stack___trade-image-header__25G8d","listMain":"stack___listMain__gde13","trade-img":"stack___trade-img__LYEif","description":"stack___description__3Cysn","listSecondary":"stack___listSecondary__3NcR0","stack-item":"stack___stack-item__2oumm"};
+
+/***/ },
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var App, Footer, Header, Link, React, content;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(23).Link;
+	Link = __webpack_require__(22).Link;
 
-	Footer = __webpack_require__(24);
+	Footer = __webpack_require__(23);
 
-	Header = __webpack_require__(26);
+	Header = __webpack_require__(25);
 
-	content = __webpack_require__(30);
+	content = __webpack_require__(29);
 
 	App = React.createClass({
 	  childContextTypes: {
@@ -868,10 +848,7 @@ module.exports =
 	  },
 	  componentDidMount: function() {},
 	  render: function() {
-	    return React.createElement("div", null, React.createElement("link", {
-	      "rel": "stylesheet",
-	      "href": "/app.css"
-	    }), React.createElement(Header, null), React.createElement("main", null, this.props.children), React.createElement(Footer, null));
+	    return React.createElement("div", null, React.createElement(Header, null), React.createElement("main", null, this.props.children), React.createElement(Footer, null));
 	  }
 	});
 
@@ -879,46 +856,52 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-router");
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Footer, React, styles;
 
 	React = __webpack_require__(2);
 
-	styles = __webpack_require__(25);
+	styles = __webpack_require__(24);
 
 	Footer = React.createClass({
 	  render: function() {
 	    return React.createElement("footer", {
-	      "className": styles.footer,
+	      "className": styles.container,
 	      "role": "contentinfo"
 	    }, React.createElement("div", {
-	      "className": "footer-logo"
+	      "className": styles.logo
 	    }, React.createElement("img", {
 	      "src": "/brink-logo-small.svg",
 	      "alt": "Logo image"
 	    })), React.createElement("div", {
-	      "className": "footer-links"
-	    }, React.createElement("ul", null, React.createElement("li", null, React.createElement("h3", null, "Follow Us")), React.createElement("li", null, React.createElement("a", {
+	      "className": styles.linksContainer
+	    }, React.createElement("ul", {
+	      "className": styles.linkList
+	    }, React.createElement("li", null, React.createElement("h3", null, "Follow Us")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
 	    }, "Facebook")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
 	    }, "Twitter")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
-	    }, "YouTube"))), React.createElement("ul", null, React.createElement("li", null, React.createElement("h3", null, "Content")), React.createElement("li", null, React.createElement("a", {
+	    }, "YouTube"))), React.createElement("ul", {
+	      "className": styles.linkList
+	    }, React.createElement("li", null, React.createElement("h3", null, "Content")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
 	    }, "About")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
 	    }, "Contact")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
-	    }, "Products"))), React.createElement("ul", null, React.createElement("li", null, React.createElement("h3", null, "Legal")), React.createElement("li", null, React.createElement("a", {
+	    }, "Products"))), React.createElement("ul", {
+	      "className": styles.linkList
+	    }, React.createElement("li", null, React.createElement("h3", null, "Legal")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
 	    }, "Terms and Conditions")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
@@ -930,27 +913,27 @@ module.exports =
 
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"footer":"refills_footer___footer__1YOKN","footer-logo":"refills_footer___footer-logo__3X1O2","footer-links":"refills_footer___footer-links__fdAIl"};
+	module.exports = {"container":"refills_footer___container__spV9d","logo":"refills_footer___logo__3zvgg","linksContainer":"refills_footer___linksContainer__1ytpy","linkList":"refills_footer___linkList__1IfG6"};
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, Header, Link, Nav, React, styles;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(23).Link;
+	Link = __webpack_require__(22).Link;
 
 	CSSModules = __webpack_require__(17);
 
-	Nav = __webpack_require__(27);
+	Nav = __webpack_require__(26);
 
-	styles = __webpack_require__(29);
+	styles = __webpack_require__(28);
 
 	Header = React.createClass({
 	  render: function() {
@@ -968,16 +951,16 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Link, Nav, React, styles;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(23).Link;
+	Link = __webpack_require__(22).Link;
 
-	styles = __webpack_require__(28);
+	styles = __webpack_require__(27);
 
 	Nav = React.createClass({
 	  render: function() {
@@ -999,21 +982,21 @@ module.exports =
 
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"main":"main-nav___main__1HWc-"};
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"app":"header___app__3p2me","header":"header___header__2ZUVm"};
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	var Contact, Home, ImgCreator, Portfolio, Products, Stack;

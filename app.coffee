@@ -16,7 +16,8 @@ MongoStore = require("connect-mongo")(session)
 
 # vars
 # -------------------------------
-static_dir = nodepath.resolve(process.cwd(), "assets")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
+STATIC_DIR = nodepath.resolve(ROOT, process.env.STATIC_DIR)
 
 
 
@@ -36,9 +37,6 @@ log = appLogger.child({
 	type: "app"
 	file: "app"
 	})
-
-log.info {static: static_dir}, "static dir"
-
 
 
 # Database
@@ -71,8 +69,7 @@ app.use bodyParser.urlencoded({
 app.use cookieParser()
 
 # static dir
-log.info {static: static_dir}, "static dir location"
-app.use(express.static(static_dir))
+app.use(express.static(STATIC_DIR))
 # app.use(favicon(favicon_location))
 
 
