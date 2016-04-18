@@ -51,13 +51,13 @@ module.exports =
 
 	contact = __webpack_require__(10);
 
-	portfolio = __webpack_require__(13);
+	portfolio = __webpack_require__(14);
 
-	product = __webpack_require__(14);
+	product = __webpack_require__(15);
 
-	stack = __webpack_require__(19);
+	stack = __webpack_require__(20);
 
-	app = __webpack_require__(21);
+	app = __webpack_require__(22);
 
 	views = {
 	  home: home,
@@ -244,7 +244,7 @@ module.exports =
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $, ButtonField, Captcha, Contact, ContactForm, Field, LocationInfo, LocationRow, PageContainer, React, _, ref;
+	var $, ButtonField, Captcha, Contact, ContactForm, Field, LocationInfo, LocationRow, PageContainer, React, _, ref, styles;
 
 	React = __webpack_require__(2);
 
@@ -255,6 +255,8 @@ module.exports =
 	PageContainer = __webpack_require__(5);
 
 	ref = __webpack_require__(12), Field = ref.Field, ButtonField = ref.ButtonField;
+
+	styles = __webpack_require__(13);
 
 	Captcha = React.createClass({
 	  render: function() {
@@ -478,6 +480,13 @@ module.exports =
 
 /***/ },
 /* 13 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"contact":"contact___contact__9tnJe","page":"contact___page__3p1XK","location":"contact___location__9jLYJ","location-row":"contact___location-row__3fmLR","location-info":"contact___location-info__1Yl0H","contact-form":"contact___contact-form__1gFws","g-recaptcha":"contact___g-recaptcha__2EOlU","form-header":"contact___form-header__1wnq7","form-field":"contact___form-field__Is8am"};
+
+/***/ },
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $, PageContainer, Portfolio, React, _;
@@ -505,7 +514,7 @@ module.exports =
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $, HorizontalMenu, PageContainer, ProductItem, Products, React, ReactCSSTransitionGroup, _, k;
@@ -516,11 +525,11 @@ module.exports =
 
 	$ = __webpack_require__(11);
 
-	ReactCSSTransitionGroup = __webpack_require__(15);
+	ReactCSSTransitionGroup = __webpack_require__(16);
 
 	PageContainer = __webpack_require__(5);
 
-	HorizontalMenu = __webpack_require__(16).HorizontalMenu;
+	HorizontalMenu = __webpack_require__(17).HorizontalMenu;
 
 	ProductItem = React.createClass({
 	  navigate: function(e) {
@@ -627,22 +636,22 @@ module.exports =
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-css-transition-group");
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, HorizontalMenu, MenuItem, React, _HorizontalMenu, styles;
 
 	React = __webpack_require__(2);
 
-	CSSModules = __webpack_require__(17);
+	CSSModules = __webpack_require__(18);
 
-	styles = __webpack_require__(18);
+	styles = __webpack_require__(19);
 
 	MenuItem = React.createClass({
 	  render: function() {
@@ -699,31 +708,35 @@ module.exports =
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-css-modules");
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"horizontal":"menu___horizontal__2Y3fh","active":"menu___active__1HJO1"};
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var PageContainer, React, Stack, StackItemMain, StackItemSecondary, TradeImage, _, styles;
+	var CSSModules, PageContainer, React, Stack, StackItemMain, StackItemSecondary, TradeImage, _, styles;
 
 	React = __webpack_require__(2);
 
 	_ = __webpack_require__(4);
 
+	CSSModules = __webpack_require__(18);
+
 	PageContainer = __webpack_require__(5);
 
-	styles = __webpack_require__(20);
+	styles = __webpack_require__(21);
+
+	console.log(styles);
 
 	TradeImage = React.createClass({
 	  render: function() {
@@ -738,18 +751,18 @@ module.exports =
 	    overlay = null;
 	    if (this.props.overlay) {
 	      overlay = React.createElement("div", {
-	        "className": "overlay"
+	        "className": styles.overlay
 	      }, React.createElement("h4", {
-	        "className": "overlay-text"
+	        "className": styles["overlay-text"]
 	      }, this.props.title));
 	    }
 	    return React.createElement("div", {
-	      "className": styles.tradeImg
+	      "styleName": "trade"
 	    }, React.createElement("a", {
 	      "href": this.props.href,
 	      "target": "_blank"
 	    }, React.createElement("div", {
-	      "className": "img",
+	      "className": this.props.addClass,
 	      "style": style
 	    }), overlay));
 	  }
@@ -757,23 +770,22 @@ module.exports =
 
 	StackItemMain = React.createClass({
 	  render: function() {
-	    return React.createElement("li", {
-	      "className": "stack-item"
-	    }, React.createElement(TradeImage, React.__spread({}, this.props.img, {
+	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({
+	      "addClass": styles.mainTradeImg
+	    }, this.props.img, {
 	      "title": this.props.title
-	    })), React.createElement("div", {
-	      "className": "description"
-	    }, React.createElement("h3", {
-	      "className": "trade-image-header"
-	    }, this.props.title), React.createElement("span", null, this.props.description)));
+	    })), React.createElement("div", null, React.createElement("h3", {
+	      "className": styles.stackHeader
+	    }, this.props.title), React.createElement("span", {
+	      "className": styles.stackDescription
+	    }, this.props.description)));
 	  }
 	});
 
 	StackItemSecondary = React.createClass({
 	  render: function() {
-	    return React.createElement("li", {
-	      "className": "stack-item"
-	    }, React.createElement(TradeImage, React.__spread({}, this.props.img, {
+	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({}, this.props.img, {
+	      "addClass": styles.secondaryTradeImg,
 	      "title": this.props.title,
 	      "overlay": true
 	    })));
@@ -804,38 +816,38 @@ module.exports =
 	      }, x));
 	    });
 	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("ul", {
-	      "className": styles.listMain
+	      "styleName": "listMain"
 	    }, primary), React.createElement("ul", {
-	      "className": styles.listSecondary
+	      "styleName": "listSecondary"
 	    }, secondary));
 	  }
 	});
 
-	module.exports = Stack;
+	module.exports = CSSModules(Stack, styles);
 
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"tradeImg":"stack___tradeImg__2Wbgv","img":"stack___img__2FYS-","overlay":"stack___overlay__2sKFo","overlay-text":"stack___overlay-text__36bZh","trade-image-header":"stack___trade-image-header__25G8d","listMain":"stack___listMain__gde13","trade-img":"stack___trade-img__LYEif","description":"stack___description__3Cysn","listSecondary":"stack___listSecondary__3NcR0","stack-item":"stack___stack-item__2oumm"};
 
 /***/ },
 /* 21 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"listMain":"stack___listMain__gde13","listSecondary":"stack___listSecondary__3NcR0","overlay":"stack___overlay__2sKFo","trade":"stack___trade__3ALzx","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay-text":"stack___overlay-text__36bZh"};
+
+/***/ },
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var App, Footer, Header, Link, React, content;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(22).Link;
+	Link = __webpack_require__(23).Link;
 
-	Footer = __webpack_require__(23);
+	Footer = __webpack_require__(24);
 
-	Header = __webpack_require__(25);
+	Header = __webpack_require__(26);
 
-	content = __webpack_require__(29);
+	content = __webpack_require__(30);
 
 	App = React.createClass({
 	  childContextTypes: {
@@ -856,20 +868,20 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-router");
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Footer, React, styles;
 
 	React = __webpack_require__(2);
 
-	styles = __webpack_require__(24);
+	styles = __webpack_require__(25);
 
 	Footer = React.createClass({
 	  render: function() {
@@ -913,27 +925,27 @@ module.exports =
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"refills_footer___container__spV9d","logo":"refills_footer___logo__3zvgg","linksContainer":"refills_footer___linksContainer__1ytpy","linkList":"refills_footer___linkList__1IfG6"};
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, Header, Link, Nav, React, styles;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(22).Link;
+	Link = __webpack_require__(23).Link;
 
-	CSSModules = __webpack_require__(17);
+	CSSModules = __webpack_require__(18);
 
-	Nav = __webpack_require__(26);
+	Nav = __webpack_require__(27);
 
-	styles = __webpack_require__(28);
+	styles = __webpack_require__(29);
 
 	Header = React.createClass({
 	  render: function() {
@@ -951,16 +963,16 @@ module.exports =
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Link, Nav, React, styles;
 
 	React = __webpack_require__(2);
 
-	Link = __webpack_require__(22).Link;
+	Link = __webpack_require__(23).Link;
 
-	styles = __webpack_require__(27);
+	styles = __webpack_require__(28);
 
 	Nav = React.createClass({
 	  render: function() {
@@ -982,21 +994,21 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"main":"main-nav___main__1HWc-"};
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"app":"header___app__3p2me","header":"header___header__2ZUVm"};
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	var Contact, Home, ImgCreator, Portfolio, Products, Stack;

@@ -26,15 +26,15 @@ viewsLocation = nodepath.resolve ROOT_DIR, "assets"
 views_post = ".generated.js"
 
 routesGenerator = require routerLocation
-# views = {
-# 	home: require(nodepath.join(viewsLocation, "home" + views_post))
-# 	portfolio: require(nodepath.join(viewsLocation, "portfolio" + views_post))
-# 	stack: require(nodepath.join(viewsLocation, "stack" + views_post))
-# 	product: require(nodepath.join(viewsLocation, "product" + views_post))
-# 	contact: require(nodepath.join(viewsLocation, "contact" + views_post))
-# 	app: require(nodepath.join(viewsLocation, "app" + views_post))
-# }
-views = require(nodepath.join(viewsLocation, "main" + views_post))
+views = {
+	home: require(nodepath.join(viewsLocation, "home" + views_post))
+	portfolio: require(nodepath.join(viewsLocation, "portfolio" + views_post))
+	stack: require(nodepath.join(viewsLocation, "stack" + views_post))
+	product: require(nodepath.join(viewsLocation, "product" + views_post))
+	contact: require(nodepath.join(viewsLocation, "contact" + views_post))
+	app: require(nodepath.join(viewsLocation, "app" + views_post))
+}
+# views = require(nodepath.join(viewsLocation, "main" + views_post))
 console.log views
 
 base = (req, res)->
@@ -66,6 +66,7 @@ home.get "/", base
 home.get "/portfolio", base
 home.get "/stack", base
 home.get "/products-and-services", base
+home.get "/products-and-services/:sub", base
 home.get "/contact", base
 
 

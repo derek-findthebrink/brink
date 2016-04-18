@@ -4,9 +4,6 @@ webpack = require("webpack")
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-hotMiddlewareScript = "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true"
-
-
 # Plugins
 # -----------------------------------
 _browserPlugins = [
@@ -22,7 +19,7 @@ _browserPlugins = [
 ]
 
 _serverPlugins = [
-	new ExtractTextPlugin("style.css", {
+	new ExtractTextPlugin("public/global.css", {
 		allChunks: true
 		})
 	new webpack.NoErrorsPlugin()
@@ -33,7 +30,7 @@ _serverPlugins = [
 
 # Entry Points
 # --------------------------------------------
-_entryApp = ["./ui/js/app/index.coffee"]
+# _entryApp = ["./ui/js/app/index.coffee"]
 _entryVendor = [
 	"react"
 	"react-dom"
@@ -45,15 +42,15 @@ _entryVendor = [
 ]
 # _entryViews = "./views/react/index.cjsx"
 view_dir = nodepath.resolve(".", "views/react")
-# _entryViews = {
-# 	home: nodepath.join(view_dir, "home.cjsx")
-# 	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
-# 	stack: nodepath.join(view_dir, "stack.cjsx")
-# 	product: nodepath.join(view_dir, "product.cjsx")
-# 	contact: nodepath.join(view_dir, "contact.cjsx")
-# 	app: nodepath.join(view_dir, "app.cjsx")
-# }
-_entryViews = nodepath.join(view_dir, "index.cjsx")
+_entryViews = {
+	home: nodepath.join(view_dir, "home.cjsx")
+	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
+	stack: nodepath.join(view_dir, "stack.cjsx")
+	product: nodepath.join(view_dir, "product.cjsx")
+	contact: nodepath.join(view_dir, "contact.cjsx")
+	app: nodepath.join(view_dir, "app.cjsx")
+}
+# _entryViews = nodepath.join(view_dir, "index.cjsx")
 
 # Development Additions
 # ------------------------------------
@@ -139,46 +136,6 @@ _cjsxLoaderServer = {
 
 # Final
 # --------------------------------------
-
-# Browser
-browser = {
-	name: "browser-app"
-	context: __dirname
-	resolveLoader:
-		modulesDirectories: ["node_modules"]
-	resolve:
-		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
-		root: [nodepath.resolve(".")]
-		# extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/lib", "ui/css", "router", "content"]
-	devtool: "source-map"
-
-	plugins: _browserPlugins
-
-	postcss: [
-		autoprefixer({
-			browsers: ["last 2 versions"]
-			})
-	]
-
-	entry: {
-		app: _entryApp
-		vendor: _entryVendor
-		# views: _entryViews
-	}
-	output:
-		path: nodepath.join(__dirname, "assets")
-		filename: "[name].js"
-		publicPath: "/"
-	module:
-		loaders: _loaders.concat([_cssLoaderBrowser, _scssLoaderBrowser, _sassLoaderBrowser, _cjsxLoaderBrowser])
-}
-
-
-
-
-
-
 # Server
 serverViews = {
 	name: "server-side-views-package"
@@ -205,5 +162,3 @@ serverViews = {
 }
 
 module.exports = serverViews
-
-# module.exports = serverViews

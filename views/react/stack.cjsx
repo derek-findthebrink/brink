@@ -5,8 +5,6 @@ PageContainer = require("./modules/container-page")
 
 styles = require("pages/stack.sass")
 
-console.log styles
-
 # Trade Image
 # --------------------------------------------------------
 TradeImage = React.createClass({

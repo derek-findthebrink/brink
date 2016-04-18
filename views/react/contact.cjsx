@@ -2,14 +2,19 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-
 PageContainer = require("./modules/container-page")
 {Field, ButtonField} = require("./modules/form")
 
+CSSModules = require("react-css-modules")
+styles = require("pages/contact.sass")
+
+
 Captcha = React.createClass({
 	render: ->
-		<div className="g-recaptcha" data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
+		<div className={styles["g-recaptcha"]} data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
 	})
+
+
 
 ContactForm = React.createClass({
 	getInitialState: ->
@@ -58,7 +63,7 @@ ContactForm = React.createClass({
 				})
 	render: ->
 		# console.log props:@props
-		<form className="contact-form" method="post" action="/contact">
+		<form className={styles["contact-form"]} method="post" action="/contact">
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
 			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
@@ -72,27 +77,34 @@ ContactForm = React.createClass({
 		</form>
 	})
 
+
+
 LocationRow = React.createClass({
 	render: ->
 		info = @props.value
 		header = @props.header
 		if header == "phone"
 			info = "604.762.6133"
-		<div className="location-row">
+		<div className={styles["location-row"]}>
 			<span className="location-header">{header}</span>
-			<span className="location-info">{info}</span>
+			<span className={styles["location-info"]}>{info}</span>
 		</div>
 	})
+
+
 
 LocationInfo = React.createClass({
 	render: ->
 		items = _.map @props.location, (x, i)->
 			<LocationRow header={i} value={x} key={i} />
 
-		<div className="location">
+		<div className={styles.location}>
 			{items}
 		</div>
 	})
+
+
+
 
 # Contact
 Contact = React.createClass({
@@ -104,9 +116,9 @@ Contact = React.createClass({
 		<PageContainer {...content}>
 			<LocationInfo {...content} />
 			<ContactForm {...content}>
-				<h2 className="form-header">send us a message</h2>
+				<h2 className={styles["form-header"]}>send us a message</h2>
 			</ContactForm>
 		</PageContainer>
 	})
 
-module.exports = Contact
+module.exports = CSSModules(Contact, styles)

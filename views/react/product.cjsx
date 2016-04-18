@@ -4,11 +4,13 @@ $ = require("jquery")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
+styles = require("pages/product.sass")
 
-PageContainer = require("./modules/container-page")
-HorizontalMenu = require("./modules/menu").HorizontalMenu
+PageContainer = require("modules/container-page.cjsx")
+HorizontalMenu = require("modules/menu.cjsx").HorizontalMenu
 
 
+# Single View
 ProductItem = React.createClass({
 	navigate: (e)->
 		e.preventDefault()
@@ -27,16 +29,16 @@ ProductItem = React.createClass({
 		else
 			includes = <li>no includes provided</li>
 
-		<li className="product-item">
-			<div className="img">
+		<li className={styles["product-item"]}>
+			<div className={styles.img}>
 				<img src="/brink-logo-small.svg" alt="brink logo" />
 			</div>
-			<div className="description">
-				<h2 className="product-header">{@props.title}</h2>
-				<p className="summary">{@props.description}</p>
+			<div className={styles.description}>
+				<h2 className={styles["product-header"]}>{@props.title}</h2>
+				<p className={styles.summary}>{@props.description}</p>
 				<div className="details">
-					<p className="includes-header">includes:</p>
-					<ul className="includes">
+					<p className={styles["includes-header"]}>includes:</p>
+					<ul className={styles.includes}>
 						{includes}
 					</ul>
 					<div className="pricing">
@@ -44,7 +46,7 @@ ProductItem = React.createClass({
 						<span className="deal">for you: $50</span>
 					</div>
 				</div>
-				<div className="action-callout">
+				<div className={styles["action-callout"]}>
 					<a onClick={@navigate} href={_hrefLearn} className="learn">learn more</a>
 					<a onClick={@navigate} href={_hrefContact} className="quote">quote</a>
 				</div>
@@ -59,20 +61,36 @@ Products = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		speed = 750
 		content = @context.content["Products"]
-		menuItems = []
+		# console.log products:content
+		# console.log props:@props
+		section = @props.params.section
+
+		# if section, then filter out items to match category
+		if section
+			base = _.filter(content.list, (x)->
+				x.category == section
+				)
+			# console.log base:base
+		else
+			base = content.list
+		# else show all items
 		try
-			items = content.list.map (x, i)->
+			items = base.map (x, i)->
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
-		speed = 750
 
 		<PageContainer {...content}>
 			<HorizontalMenu menu={content.menu} />
-			<ul className="products-list">
+			<ul className={styles["products-list"]}>
 				<ReactCSSTransitionGroup 
-				transitionName="product-transition" 
+				transitionName={{
+					enter: styles["product-trans-enter"]
+					leave: styles["product-trans-leave"]
+					appear: styles["product-trans-enter"]
+					}}
 				transitionAppear={true} 
 				transitionAppearTimeout={speed} 
 				transitionEnterTimeout={speed} 

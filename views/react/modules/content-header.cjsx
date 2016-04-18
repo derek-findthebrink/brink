@@ -8,7 +8,14 @@ ContentHeader = React.createClass({
 		description: React.PropTypes.string
 	}
 	render: ->
-		<div className={styles.container}>
+		if @props.background
+			style = {
+				backgroundImage: "url(" + @props.background + ")"
+			}
+		else
+			style = null
+
+		<div className={styles.container} style={style}>
 			<div className={styles.inner}>
 				<img className={styles.logo} src="/brink-logo-small.svg" alt="products" />
 				<div className={styles.copy}>

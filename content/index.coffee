@@ -254,7 +254,7 @@ Products = {
 	menu: [
 		{
 			title: "packages"
-			link: "/products-and-services"
+			link: "/products-and-services/packages"
 		}
 		{
 			title: "websites"
@@ -600,6 +600,7 @@ Contact = {
 	header:
 		title: "contact"
 		description: "how to get in touch with us"
+		background: "/brink-contact-lg.png"
 	location:
 		city: "vancouver, bc"
 		country: "canada"

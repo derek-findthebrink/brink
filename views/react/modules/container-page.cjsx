@@ -8,12 +8,7 @@ PageContainer = React.createClass({
 		children: React.PropTypes.any.isRequired
 	}
 	render: ->
-		cssClasses = ["page"]
-		if @props.CSSClass
-			cssClasses.push @props.CSSClass
-		cssFinal = cssClasses.join(" ")
-
-		<div className={cssFinal}>
+		<div>
 			<ContentHeader {...@props.header} />
 			{@props.children}
 		</div>

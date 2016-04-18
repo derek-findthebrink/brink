@@ -21,12 +21,12 @@ _browserPlugins = [
 	new webpack.NoErrorsPlugin()
 ]
 
-_serverPlugins = [
-	new ExtractTextPlugin("style.css", {
-		allChunks: true
-		})
-	new webpack.NoErrorsPlugin()
-]
+# _serverPlugins = [
+# 	new ExtractTextPlugin("style.css", {
+# 		allChunks: true
+# 		})
+# 	new webpack.NoErrorsPlugin()
+# ]
 
 
 
@@ -40,7 +40,6 @@ _entryVendor = [
 	"lodash"
 	"webcomponentsjs/webcomponents.min.js"
 	"jquery"
-	"slicknav/dist/jquery.slicknav.js"
 	"waypoints/lib/jquery.waypoints.min.js"
 ]
 

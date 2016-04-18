@@ -8,9 +8,7 @@
     "start": "NODE_ENV=production coffee app.coffee",
     "prestartdev": "webpack --progress --display-error-details",
     "startdev": "coffee app.coffee | bunyan",
-    "dev": "browser-sync start --reload-delay 1200 --proxy localhost:2150 --files='views/**/*.jade, ui/**/*.*, api/**/*.*'",
-    "ui:css": "node-sass -w ./ui/css/index.sass ./assets/bundle.css",
-    "ui:js": "watchify -dvo assets/bundle.js -t coffee-reactify --extension='coffee' --extension='cjsx' ui/js/index.coffee",
+    "ui:css": "node-sass -w ./ui/css/global.sass ./assets/public/global.css",
     "watch": "npm run ui:css & npm run ui:js",
     "deploy:staging": "git commit -am 'prep for pm2 deploy' && git push origin develop && pm2 deploy ecosystem.json staging",
     "ssh:staging": "sh tasks/ssh-server.sh"

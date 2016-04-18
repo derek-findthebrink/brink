@@ -3,13 +3,15 @@
 $hs-color: $header-color
 
 .container
+	@include thin-border(false)
 	font-family: $fonts-header
 	text-align: center
 	padding-bottom: 3em
-	@include thin-border(false)
 	border-right: none
 	border-left: none
 	margin-top: 1em
+	background-size: cover
+	background-position: center center
 
 .inner
 	@include outer-container

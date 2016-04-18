@@ -1,7 +1,6 @@
 @import "./bourbon/_bourbon.scss"
 @import "./neat/_neat.scss"
 
-@import "mixins.sass"
 
 $bright-orange: #FFBA00
 $header-color: darken(grey, 10%)
@@ -24,13 +23,13 @@ $bp-desktop: new-breakpoint(min-width 795px)
 $bp-tablet: new-breakpoint(min-width 500px max-width 794px)
 $bp-smartphone: new-breakpoint(max-width 499px)
 
-html
-	margin: 0
-	padding: 0
 
-body
-	font-family: $fonts-content
-	margin: 0
 
-h1, h2, h3, h4, h5, h6
-	font-family: $fonts-header
+%animated
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-fill-mode: both
+  animation-fill-mode: both
+
+
+@import "mixins.sass"
