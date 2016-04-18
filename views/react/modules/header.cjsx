@@ -10,7 +10,7 @@ Header = React.createClass({
 	render: ->
 		<header className={styles.app}>
 			<Link to="/">
-				<h1 className={styles.header}>brink technology co.</h1>
+				<h1>brink technology co.</h1>
 			</Link>
 			<Nav />
 		</header>

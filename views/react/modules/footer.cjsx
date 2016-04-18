@@ -1,5 +1,7 @@
 React = require("react")
 
+{Link} = require("react-router")
+
 styles = require("vendor/refills_footer.scss")
 
 Footer = React.createClass({
@@ -11,15 +13,14 @@ Footer = React.createClass({
 			<div className={styles.linksContainer}>
 				<ul className={styles.linkList}>
 					<li><h3>Follow Us</h3></li>
-					<li><a href="javascript:void(0)">Facebook</a></li>
-					<li><a href="javascript:void(0)">Twitter</a></li>
-					<li><a href="javascript:void(0)">YouTube</a></li>
+					<li><a target="_blank" href="https://www.facebook.com/findthebrink/">Facebook</a></li>
+					<li><a target="_blank" href="https://twitter.com/findthebrink">Twitter</a></li>
 				</ul>
 				<ul className={styles.linkList}>
 					<li><h3>Content</h3></li>
 					<li><a href="javascript:void(0)">About</a></li>
-					<li><a href="javascript:void(0)">Contact</a></li>
-					<li><a href="javascript:void(0)">Products</a></li>
+					<li><Link to="/contact">Contact</Link></li>
+					<li><Link to="/products-and-services">Products</Link></li>
 				</ul>
 				<ul className={styles.linkList}>
 					<li><h3>Legal</h3></li>
