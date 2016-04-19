@@ -68,6 +68,7 @@ home.get "/stack", base
 home.get "/products-and-services", base
 home.get "/products-and-services/:sub", base
 home.get "/contact", base
+home.get "/about", base
 
 
 # Receive Customer Data

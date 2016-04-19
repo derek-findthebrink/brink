@@ -18,7 +18,7 @@ Footer = React.createClass({
 				</ul>
 				<ul className={styles.linkList}>
 					<li><h3>Content</h3></li>
-					<li><a href="javascript:void(0)">About</a></li>
+					<li><Link to="/about">About</Link></li>
 					<li><Link to="/contact">Contact</Link></li>
 					<li><Link to="/products-and-services">Products</Link></li>
 				</ul>

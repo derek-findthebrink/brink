@@ -1,6 +1,7 @@
 React = require("react")
 _ = require("lodash")
 $ = require("jquery")
+{Link} = require("react-router")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
@@ -12,13 +13,6 @@ HorizontalMenu = require("modules/menu.cjsx").HorizontalMenu
 
 # Single View
 ProductItem = React.createClass({
-	navigate: (e)->
-		e.preventDefault()
-		h = e.target.href
-		app.flux.dispatch({
-			action: "href_navigate"
-			href: h
-			})
 	render: ->
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
 		_hrefContact = ["/contact", @props.category, @props.product].join("/")
@@ -33,24 +27,32 @@ ProductItem = React.createClass({
 			<div className={styles.img}>
 				<img src="/brink-logo-small.svg" alt="brink logo" />
 			</div>
+			
 			<div className={styles.description}>
-				<h2 className={styles["product-header"]}>{@props.title}</h2>
-				<p className={styles.summary}>{@props.description}</p>
-				<div className="details">
-					<p className={styles["includes-header"]}>includes:</p>
-					<ul className={styles.includes}>
-						{includes}
-					</ul>
-					<div className="pricing">
-						<span className="price">starting at: $100</span>
-						<span className="deal">for you: $50</span>
+				<div className={styles.header}>
+					<h2>{@props.title}</h2>
+					<p>{@props.description}</p>
+				</div>
+				
+				<div className={styles.details}>
+					<div className={styles.includes}>
+						<p>includes:</p>
+						<ul>
+							{includes}
+						</ul>
+					</div>
+					<div className={styles.pricing}>
+						<h2>{@props.price} <span className={styles.currency}>CAD</span></h2>
+						<p>{@props.priceType}</p>
 					</div>
 				</div>
+				
 				<div className={styles["action-callout"]}>
-					<a onClick={@navigate} href={_hrefLearn} className="learn">learn more</a>
-					<a onClick={@navigate} href={_hrefContact} className="quote">quote</a>
+					<Link to={_hrefLearn} className={styles.learn}>learn more</Link>
+					<Link to={_hrefContact} className={styles.quote}>quote</Link>
 				</div>
 			</div>
+
 		</li>
 	})
 
@@ -78,12 +80,14 @@ Products = React.createClass({
 		# else show all items
 		try
 			items = base.map (x, i)->
+				if x.active == false
+					return
 				<ProductItem {...x} key={k++} />
 		catch e
 			items = <ProductItem title="no items available" />
 
 		<PageContainer {...content}>
-			<HorizontalMenu menu={content.menu} />
+			<HorizontalMenu menu={content.menu} location={@props.location} />
 			<ul className={styles["products-list"]}>
 				<ReactCSSTransitionGroup 
 				transitionName={{

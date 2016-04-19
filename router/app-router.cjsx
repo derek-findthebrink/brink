@@ -24,6 +24,7 @@ AppRouter = (history, views)->
 		<Route path="/" component={views["app"]}>
 			<IndexRoute component={views["home"]} />
 			<Route path="portfolio" component={views["portfolio"]} />
+			<Route path="about" component={views["about"]} />
 			<Route path="stack" component={views["stack"]} />
 			<Route path="contact" component={views["contact"]} />
 			<Route path="products-and-services(/:section)" component={views["product"]} />

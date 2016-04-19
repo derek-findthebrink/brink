@@ -1,6 +1,4 @@
 React = require("react")
-ReactDOM = require("react-dom")
-_ = require("lodash")
 
 PageContainer = require("./modules/container-page")
 BlogWidget = require("./modules/widget-blog")

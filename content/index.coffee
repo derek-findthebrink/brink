@@ -51,6 +51,12 @@ Home = {
 		]
 }
 
+About = {
+	header:
+		title: "about"
+		description: "what makes us tick"
+}
+
 Portfolio = {
 	header:
 		title: "portfolio"
@@ -279,6 +285,8 @@ Products = {
 			description: "everything you need to get your company online."
 			category: "packages"
 			product: "startup-package"
+			price: "$1000"
+			priceType: "base price"
 			includes: ["business cards", "email addresses", "website"]
 			learnData:
 				inputs: [
@@ -324,7 +332,9 @@ Products = {
 			get it running on the web within 5 days."
 			category: "websites"
 			product: "basic"
-			includes: ["static website"]
+			price: "$400"
+			priceType: "base price"
+			includes: ["a website", "mobile optimization", "up-to-date html standards"]
 			learnData:
 				inputs: [
 					new ImgCreator(
@@ -357,6 +367,8 @@ Products = {
 			description: "purchase and manage your domain names"
 			category: "websites"
 			product: "domain"
+			price: "varies"
+			active: false
 			includes: ["managed domain", "automatic renewals", "domain hunting"]
 			learnData:
 				inputs: [
@@ -391,7 +403,9 @@ Products = {
 			business with a professional email for your contacts."
 			category: "email"
 			product: "small-business"
-			includes: ["two emails", "unlimited aliases", "high-quality interface"]
+			price: "$50"
+			priceType: "per month"
+			includes: ["two emails", "unlimited aliases", "premium support"]
 			learnData:
 				inputs: [
 					new ImgCreator(
@@ -425,7 +439,9 @@ Products = {
 			on Gmail? We've got you covered."
 			category: "email"
 			product: "personal"
-			includes: ["one email", "unlimited aliases"]
+			price: "$20"
+			priceType: "per month"
+			includes: ["one email", "high-quality interface"]
 			learnData:
 				inputs: [
 					new ImgCreator(
@@ -458,6 +474,8 @@ Products = {
 			description: "custom iconography for your print and web projects"
 			category: "graphics"
 			product: "iconography"
+			price: "$30"
+			priceType: "per hour"
 			includes: ["custom iconography set", "brand syncing"]
 			learnData:
 				inputs: [
@@ -491,6 +509,8 @@ Products = {
 			description: "speed up your website development. We'll create custom
 			wireframes based on your business needs and the latest web-standards."
 			category: "graphics"
+			price: "$30"
+			priceType: "per hour"
 			product: "site-layouts"
 			includes: [
 				"you-own vectors"
@@ -529,6 +549,14 @@ Products = {
 			description: "need more than just a website? Data-driven web applications
 			are the future of the internet. We'll get you started."
 			category: "apps"
+			price: "$40"
+			priceType: "per hour"
+			includes: [
+				"our custom-built library with monthly updates"
+				"everything customizeable"
+				"api integration with external services"
+				"premium support"
+			]
 			product: "basic"
 			learnData:
 				inputs: [
@@ -563,6 +591,11 @@ Products = {
 			We've got you covered."
 			category: "apps"
 			product: "custom-component"
+			price: "$40"
+			priceType: "per hour"
+			includes: [
+				"complete integration with your stack"
+			]
 			learnData:
 				inputs: [
 					new ImgCreator(
@@ -609,6 +642,7 @@ Contact = {
 
 module.exports = {
 	Home
+	About
 	Portfolio
 	Stack
 	Products

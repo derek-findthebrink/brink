@@ -10,6 +10,7 @@ MenuItem = React.createClass({
 		if @props.addClass
 			classes.push(@props.addClass)
 		c = classes.join(" ")
+
 		<li className={@props.addClass || null}>
 			<Link to={@props.link}>{@props.title}</Link>
 		</li>
@@ -19,10 +20,11 @@ HorizontalMenu = React.createClass({
 	componentDidMount: ->
 	render: ->
 		# path = location.pathname
+		location = @props.location
 		items = @props.menu.map (x, i)->
 			# Removed for Server-Side rendering issue on location
 			if (typeof location == "object" && x.link == location.pathname)
-				<MenuItem {...x} key={i} addClass="active" />
+				<MenuItem {...x} key={i} addClass={styles.active} />
 			else
 				<MenuItem {...x} key={i} />
 
