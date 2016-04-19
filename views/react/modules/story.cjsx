@@ -38,9 +38,19 @@ How = React.createClass({
 			<div className={styles.twoCol}>
 				<div>
 					<h3>Universal Code</h3>
+					<p>
+						Gone are the days of using a different language for each target device. Our custom servers, web sites and 
+						applications are all written in universal javascript. 
+					</p>
+					<h3 className={styles.callout}>One codebase, one language, super fast development.</h3>
 				</div>
 				<div>
 					<h3>Sprint Development</h3>
+					<p>
+						We like to get things done quickly too. Our tools help us move quickly, freeing up more time for working
+						with you to make the best online presence for your business.
+					</p>
+					<h3 className={styles.callout}>Less time developing, more time earning.</h3>
 				</div>
 			</div>
 		</div>
@@ -54,16 +64,14 @@ Benefits = React.createClass({
 				<div>
 					<h3>speed</h3>
 					<p>
-						Want it done fast? No problem. Leveraging the latest and greatest of the
-						node.js and javascript ecosystem, our tools (which we love) and our philosophy
+						Want it done fast? No problem. Our tools (which we love) and our philosophy
 						lets us move quickly from conception to completion.
 					</p>
 				</div>
 				<div>
 					<h3>money in your pocket</h3>
 					<p>
-						We're cheap! It's true, check out our competition. We're a startup company too, looking
-						to make our mark on the world wide web. Being a startup, like many of you know, teaches
+						We're cheap! It's true, check out our competition. Being a startup teaches
 						you how to keep your operation lean. Our lean operation keeps our costs down and your
 						wallet happy.
 					</p>
@@ -71,14 +79,13 @@ Benefits = React.createClass({
 				<div>
 					<h3>quality, reusable code</h3>
 					<p>
-						The internet is getting smarter, and being brink technology we're keeping ourselves 
-						on the cutting edge. Newcomers like React, Node and the Isomorphic philosophy have enabled us
+						The internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us
 						to write compatible, standards-compliant code quickly using our custom-built library.
 					</p>
 				</div>
 			</div>
-			<h3>
-				Find out what it means to use one universal codebase. Let us build your online presence.
+			<h3 className={styles.callout}>
+				Your business will love our universal codebase. Let us build your online presence.
 			</h3>
 		</div>
 	})
