@@ -49,13 +49,13 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	Link = __webpack_require__(2).Link;
+	Link = __webpack_require__(5).Link;
 
-	Footer = __webpack_require__(3);
+	Footer = __webpack_require__(6);
 
-	Header = __webpack_require__(5);
+	Header = __webpack_require__(8);
 
-	content = __webpack_require__(10);
+	content = __webpack_require__(13);
 
 	App = React.createClass({
 	  childContextTypes: {
@@ -82,20 +82,25 @@ module.exports =
 	module.exports = require("react");
 
 /***/ },
-/* 2 */
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-router");
 
 /***/ },
-/* 3 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Footer, React, styles;
+	var Footer, Link, React, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(4);
+	Link = __webpack_require__(5).Link;
+
+	styles = __webpack_require__(7);
 
 	Footer = React.createClass({
 	  render: function() {
@@ -112,19 +117,19 @@ module.exports =
 	    }, React.createElement("ul", {
 	      "className": styles.linkList
 	    }, React.createElement("li", null, React.createElement("h3", null, "Follow Us")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
+	      "target": "_blank",
+	      "href": "https://www.facebook.com/findthebrink/"
 	    }, "Facebook")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
-	    }, "Twitter")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
-	    }, "YouTube"))), React.createElement("ul", {
+	      "target": "_blank",
+	      "href": "https://twitter.com/findthebrink"
+	    }, "Twitter"))), React.createElement("ul", {
 	      "className": styles.linkList
 	    }, React.createElement("li", null, React.createElement("h3", null, "Content")), React.createElement("li", null, React.createElement("a", {
 	      "href": "javascript:void(0)"
-	    }, "About")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
-	    }, "Contact")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
+	    }, "About")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/contact"
+	    }, "Contact")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/products-and-services"
 	    }, "Products"))), React.createElement("ul", {
 	      "className": styles.linkList
 	    }, React.createElement("li", null, React.createElement("h3", null, "Legal")), React.createElement("li", null, React.createElement("a", {
@@ -139,27 +144,27 @@ module.exports =
 
 
 /***/ },
-/* 4 */
+/* 7 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"refills_footer___container__spV9d","logo":"refills_footer___logo__3zvgg","linksContainer":"refills_footer___linksContainer__1ytpy","linkList":"refills_footer___linkList__1IfG6"};
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, Header, Link, Nav, React, styles;
 
 	React = __webpack_require__(1);
 
-	Link = __webpack_require__(2).Link;
+	Link = __webpack_require__(5).Link;
 
-	CSSModules = __webpack_require__(6);
+	CSSModules = __webpack_require__(9);
 
-	Nav = __webpack_require__(7);
+	Nav = __webpack_require__(10);
 
-	styles = __webpack_require__(9);
+	styles = __webpack_require__(12);
 
 	Header = React.createClass({
 	  render: function() {
@@ -167,9 +172,7 @@ module.exports =
 	      "className": styles.app
 	    }, React.createElement(Link, {
 	      "to": "/"
-	    }, React.createElement("h1", {
-	      "className": styles.header
-	    }, "brink technology co.")), React.createElement(Nav, null));
+	    }, React.createElement("h1", null, "brink technology co.")), React.createElement(Nav, null));
 	  }
 	});
 
@@ -177,34 +180,36 @@ module.exports =
 
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-css-modules");
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Link, Nav, React, styles;
 
 	React = __webpack_require__(1);
 
-	Link = __webpack_require__(2).Link;
+	Link = __webpack_require__(5).Link;
 
-	styles = __webpack_require__(8);
+	styles = __webpack_require__(11);
 
 	Nav = React.createClass({
 	  render: function() {
 	    return React.createElement("nav", {
 	      "className": styles.main
 	    }, React.createElement("ul", null, React.createElement("li", null, React.createElement(Link, {
-	      "to": "/portfolio"
-	    }, "portfolio")), React.createElement("li", null, React.createElement(Link, {
-	      "to": "/stack"
-	    }, "stack")), React.createElement("li", null, React.createElement(Link, {
 	      "to": "/products-and-services"
 	    }, "products")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/portfolio"
+	    }, "portfolio")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/about"
+	    }, "about")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/stack"
+	    }, "stack")), React.createElement("li", null, React.createElement(Link, {
 	      "to": "/contact"
 	    }, "contact"))));
 	  }
@@ -214,24 +219,24 @@ module.exports =
 
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"main":"main-nav___main__1HWc-"};
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"app":"header___app__3p2me","header":"header___header__2ZUVm"};
+	module.exports = {"app":"header___app__3p2me"};
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports) {
 
-	var Contact, Home, ImgCreator, Portfolio, Products, Stack;
+	var About, Contact, Home, ImgCreator, Portfolio, Products, Stack;
 
 	ImgCreator = (function() {
 	  function ImgCreator(img, alt, description) {
@@ -293,6 +298,13 @@ module.exports =
 	      href: "/products-and-services/"
 	    }
 	  ]
+	};
+
+	About = {
+	  header: {
+	    title: "about",
+	    description: "what makes us tick"
+	  }
 	};
 
 	Portfolio = {
@@ -652,6 +664,7 @@ module.exports =
 
 	module.exports = {
 	  Home: Home,
+	  About: About,
 	  Portfolio: Portfolio,
 	  Stack: Stack,
 	  Products: Products,

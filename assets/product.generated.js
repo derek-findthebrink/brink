@@ -49,17 +49,17 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(11);
+	_ = __webpack_require__(14);
 
-	$ = __webpack_require__(12);
+	$ = __webpack_require__(15);
 
-	ReactCSSTransitionGroup = __webpack_require__(21);
+	ReactCSSTransitionGroup = __webpack_require__(20);
 
-	styles = __webpack_require__(22);
+	styles = __webpack_require__(21);
 
-	PageContainer = __webpack_require__(13);
+	PageContainer = __webpack_require__(2);
 
-	HorizontalMenu = __webpack_require__(23).HorizontalMenu;
+	HorizontalMenu = __webpack_require__(22).HorizontalMenu;
 
 	ProductItem = React.createClass({
 	  navigate: function(e) {
@@ -184,44 +184,13 @@ module.exports =
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	module.exports = require("react-router");
-
-/***/ },
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ function(module, exports) {
-
-	module.exports = require("react-css-modules");
-
-/***/ },
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = require("lodash");
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	module.exports = require("jquery");
-
-/***/ },
-/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, PageContainer, React;
 
 	React = __webpack_require__(1);
 
-	ContentHeader = __webpack_require__(14);
+	ContentHeader = __webpack_require__(3);
 
 	PageContainer = React.createClass({
 	  propTypes: {
@@ -237,14 +206,14 @@ module.exports =
 
 
 /***/ },
-/* 14 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, React, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(15);
+	styles = __webpack_require__(4);
 
 	ContentHeader = React.createClass({
 	  propTypes: {
@@ -279,43 +248,73 @@ module.exports =
 
 
 /***/ },
-/* 15 */
+/* 4 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = require("react-router");
+
+/***/ },
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = require("react-css-modules");
+
+/***/ },
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = require("lodash");
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = require("jquery");
+
+/***/ },
 /* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */,
-/* 21 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-css-transition-group");
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"product-trans-enter":"product___product-trans-enter__1vKIT","product-trans-leave":"product___product-trans-leave__2OT7P","fadeIn":"product___fadeIn__3Jefo","fadeOut":"product___fadeOut__3x4MY","products-list":"product___products-list__1X-N4","product-item":"product___product-item__3gLpk","includes-header":"product___includes-header__1SP4M","includes":"product___includes__NLVvy","img":"product___img__3lwZp","description":"product___description__2jNPB","product-header":"product___product-header__2i9Ol","summary":"product___summary__cTfzV","action-callout":"product___action-callout__2m09Y","learn":"product___learn__20KlH","quote":"product___quote__DZjQo"};
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, HorizontalMenu, Link, MenuItem, React, styles;
 
 	React = __webpack_require__(1);
 
-	CSSModules = __webpack_require__(6);
+	CSSModules = __webpack_require__(9);
 
-	Link = __webpack_require__(2).Link;
+	Link = __webpack_require__(5).Link;
 
-	styles = __webpack_require__(24);
+	styles = __webpack_require__(23);
 
 	MenuItem = React.createClass({
 	  render: function() {
@@ -361,7 +360,7 @@ module.exports =
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -45,19 +45,15 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var BlogWidget, FeaturedProducts, Home, PageContainer, React, ReactDOM, _, error, log;
+	var BlogWidget, FeaturedProducts, Home, PageContainer, React, error, log;
 
 	React = __webpack_require__(1);
 
-	ReactDOM = __webpack_require__(18);
+	PageContainer = __webpack_require__(2);
 
-	_ = __webpack_require__(11);
+	BlogWidget = __webpack_require__(18);
 
-	PageContainer = __webpack_require__(13);
-
-	BlogWidget = __webpack_require__(19);
-
-	FeaturedProducts = __webpack_require__(20);
+	FeaturedProducts = __webpack_require__(19);
 
 	try {
 	  log = appLogger.child({
@@ -90,30 +86,14 @@ module.exports =
 	module.exports = require("react");
 
 /***/ },
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = require("lodash");
-
-/***/ },
-/* 12 */,
-/* 13 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, PageContainer, React;
 
 	React = __webpack_require__(1);
 
-	ContentHeader = __webpack_require__(14);
+	ContentHeader = __webpack_require__(3);
 
 	PageContainer = React.createClass({
 	  propTypes: {
@@ -129,14 +109,14 @@ module.exports =
 
 
 /***/ },
-/* 14 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, React, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(15);
+	styles = __webpack_require__(4);
 
 	ContentHeader = React.createClass({
 	  propTypes: {
@@ -171,22 +151,27 @@ module.exports =
 
 
 /***/ },
-/* 15 */
+/* 4 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */
-/***/ function(module, exports) {
-
-	module.exports = require("react-dom");
-
-/***/ },
-/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BlogWidget, React;
@@ -205,7 +190,7 @@ module.exports =
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var FeaturedProducts, React;

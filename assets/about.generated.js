@@ -45,28 +45,24 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $, PageContainer, Portfolio, React, _;
+	var About, PageContainer, React;
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(14);
-
-	$ = __webpack_require__(15);
-
 	PageContainer = __webpack_require__(2);
 
-	Portfolio = React.createClass({
+	About = React.createClass({
 	  contextTypes: {
 	    content: React.PropTypes.object
 	  },
 	  render: function() {
-	    var content;
-	    content = this.context.content["Portfolio"];
-	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("p", null, "portfolio content here"));
+	    var about;
+	    about = this.context.content["About"];
+	    return React.createElement(PageContainer, React.__spread({}, about), React.createElement("p", null, "about content here"));
 	  }
 	});
 
-	module.exports = Portfolio;
+	module.exports = About;
 
 
 /***/ },
@@ -146,27 +142,6 @@ module.exports =
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
-
-/***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = require("lodash");
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = require("jquery");
 
 /***/ }
 /******/ ]);
