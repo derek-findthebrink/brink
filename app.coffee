@@ -11,6 +11,7 @@ passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
 session = require("express-session")
 MongoStore = require("connect-mongo")(session)
+compression = require("compression")
 # favicon = require("serve-favicon")
 
 
@@ -61,6 +62,7 @@ if process.env.HMR == "true"
 app.application_name = "brink-server"
 app.set("views", "views")
 app.set("view engine", "jade")
+app.use(compression())
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({

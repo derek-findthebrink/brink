@@ -41,21 +41,22 @@ module.exports =
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, PageContainer, React, Stack, StackItemMain, StackItemSecondary, TradeImage, _, styles;
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(14);
+	_ = __webpack_require__(15);
 
 	CSSModules = __webpack_require__(9);
 
 	PageContainer = __webpack_require__(2);
 
-	styles = __webpack_require__(24);
+	styles = __webpack_require__(28);
 
 	TradeImage = React.createClass({
 	  render: function() {
@@ -146,13 +147,15 @@ module.exports =
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, PageContainer, React;
@@ -175,7 +178,8 @@ module.exports =
 
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, React, styles;
@@ -217,47 +221,35 @@ module.exports =
 
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */
+
+/***/ 9:
 /***/ function(module, exports) {
 
 	module.exports = require("react-css-modules");
 
 /***/ },
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
+
+/***/ 15:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */
+
+/***/ 28:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"listMain":"stack___listMain__gde13","listSecondary":"stack___listSecondary__3NcR0","overlay":"stack___overlay__2sKFo","trade":"stack___trade__3ALzx","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay-text":"stack___overlay-text__36bZh"};
 
 /***/ }
-/******/ ]);
+
+/******/ });

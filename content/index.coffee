@@ -4,7 +4,7 @@ class ImgCreator
 
 Home = {
 	header:
-		title: "ambitions javascript design"
+		title: "ambitious javascript design"
 		description: "cutting-edge web design"
 	carousel:
 		[

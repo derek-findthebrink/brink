@@ -3,6 +3,9 @@ React = require("react")
 PageContainer = require("./modules/container-page")
 BlogWidget = require("./modules/widget-blog")
 FeaturedProducts = require("./modules/widget-featured-products")
+Story = require("./modules/story")
+
+styles = require("pages/home.sass")
 
 try
 	log = appLogger.child({
@@ -16,6 +19,9 @@ catch
 
 
 
+
+
+
 Home = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
@@ -23,8 +29,11 @@ Home = React.createClass({
 		# console.log @context.content
 		home = @context.content["Home"]
 		<PageContainer {...home}>
-			<BlogWidget />
-			<FeaturedProducts />
+			<Story />
+			<div className={styles.check}>
+				<BlogWidget />
+				<FeaturedProducts />
+			</div>
 		</PageContainer>
 	})
 

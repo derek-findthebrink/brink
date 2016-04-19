@@ -3,7 +3,7 @@ React = require("react")
 FeaturedProducts = React.createClass({
 	render: ->
 		<div className="featured-products">
-			<p>some featured products!</p>
+			<h3>featured products</h3>
 		</div>
 	})
 

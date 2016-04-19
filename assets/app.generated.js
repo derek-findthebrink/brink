@@ -45,7 +45,7 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var App, Footer, Header, Link, React, content;
+	var App, Footer, Header, Link, React, content, styles;
 
 	React = __webpack_require__(1);
 
@@ -55,7 +55,9 @@ module.exports =
 
 	Header = __webpack_require__(8);
 
-	content = __webpack_require__(13);
+	styles = __webpack_require__(13);
+
+	content = __webpack_require__(14);
 
 	App = React.createClass({
 	  childContextTypes: {
@@ -124,8 +126,8 @@ module.exports =
 	      "href": "https://twitter.com/findthebrink"
 	    }, "Twitter"))), React.createElement("ul", {
 	      "className": styles.linkList
-	    }, React.createElement("li", null, React.createElement("h3", null, "Content")), React.createElement("li", null, React.createElement("a", {
-	      "href": "javascript:void(0)"
+	    }, React.createElement("li", null, React.createElement("h3", null, "Content")), React.createElement("li", null, React.createElement(Link, {
+	      "to": "/about"
 	    }, "About")), React.createElement("li", null, React.createElement(Link, {
 	      "to": "/contact"
 	    }, "Contact")), React.createElement("li", null, React.createElement(Link, {
@@ -236,6 +238,13 @@ module.exports =
 /* 13 */
 /***/ function(module, exports) {
 
+	// removed by extract-text-webpack-plugin
+	module.exports = {"form-field":"global___form-field__26vSD","field":"global___field__3-IsQ","button-field":"global___button-field__1srWr"};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
 	var About, Contact, Home, ImgCreator, Portfolio, Products, Stack;
 
 	ImgCreator = (function() {
@@ -252,7 +261,7 @@ module.exports =
 
 	Home = {
 	  header: {
-	    title: "ambitions javascript design",
+	    title: "ambitious javascript design",
 	    description: "cutting-edge web design"
 	  },
 	  carousel: [
@@ -534,6 +543,8 @@ module.exports =
 	      description: "everything you need to get your company online.",
 	      category: "packages",
 	      product: "startup-package",
+	      price: "$1000",
+	      priceType: "base price",
 	      includes: ["business cards", "email addresses", "website"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_brand.svg", "brand input", "survey"), new ImgCreator("/icons/brink-icons_brand.svg", "brand input", "business requirements")],
@@ -547,7 +558,9 @@ module.exports =
 	      description: "want a website? We'll design it, test it and get it running on the web within 5 days.",
 	      category: "websites",
 	      product: "basic",
-	      includes: ["static website"],
+	      price: "$600",
+	      priceType: "base price",
+	      includes: ["a website", "mobile optimization", "up-to-date html standards"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
 	        process: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer"), new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer")],
@@ -560,6 +573,8 @@ module.exports =
 	      description: "purchase and manage your domain names",
 	      category: "websites",
 	      product: "domain",
+	      price: "varies",
+	      active: false,
 	      includes: ["managed domain", "automatic renewals", "domain hunting"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
@@ -573,7 +588,9 @@ module.exports =
 	      description: "email solutions for your small business. Grow your business with a professional email for your contacts.",
 	      category: "email",
 	      product: "small-business",
-	      includes: ["two emails", "unlimited aliases", "high-quality interface"],
+	      price: "$50",
+	      priceType: "per month",
+	      includes: ["two emails", "unlimited aliases", "premium support"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
 	        process: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer"), new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer")],
@@ -586,7 +603,9 @@ module.exports =
 	      description: "personal email solutions. Can't get the email you want on Gmail? We've got you covered.",
 	      category: "email",
 	      product: "personal",
-	      includes: ["one email", "unlimited aliases"],
+	      price: "$20",
+	      priceType: "per month",
+	      includes: ["one email", "high-quality interface"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
 	        process: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer"), new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer")],
@@ -599,6 +618,8 @@ module.exports =
 	      description: "custom iconography for your print and web projects",
 	      category: "graphics",
 	      product: "iconography",
+	      price: "$30",
+	      priceType: "per hour",
 	      includes: ["custom iconography set", "brand syncing"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
@@ -611,6 +632,8 @@ module.exports =
 	      title: "site layouts",
 	      description: "speed up your website development. We'll create custom wireframes based on your business needs and the latest web-standards.",
 	      category: "graphics",
+	      price: "$30",
+	      priceType: "per hour",
 	      product: "site-layouts",
 	      includes: ["you-own vectors", "up-to-date internet standards", "library recommendations"],
 	      learnData: {
@@ -624,6 +647,9 @@ module.exports =
 	      title: "basic app",
 	      description: "need more than just a website? Data-driven web applications are the future of the internet. We'll get you started.",
 	      category: "apps",
+	      price: "$40",
+	      priceType: "per hour",
+	      includes: ["our custom-built library with monthly updates", "everything customizeable", "api integration with external services", "premium support"],
 	      product: "basic",
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
@@ -637,6 +663,9 @@ module.exports =
 	      description: "already have an app but need new features? We've got you covered.",
 	      category: "apps",
 	      product: "custom-component",
+	      price: "$40",
+	      priceType: "per hour",
+	      includes: ["complete integration with your stack"],
 	      learnData: {
 	        inputs: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "herp")],
 	        process: [new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer"), new ImgCreator("/icons/brink-icons_computer.svg", "computer", "a computer")],

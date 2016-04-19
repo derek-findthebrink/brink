@@ -45,32 +45,25 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $, HorizontalMenu, PageContainer, ProductItem, Products, React, ReactCSSTransitionGroup, _, k, styles;
+	var $, HorizontalMenu, Link, PageContainer, ProductItem, Products, React, ReactCSSTransitionGroup, _, k, styles;
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(14);
+	_ = __webpack_require__(15);
 
-	$ = __webpack_require__(15);
+	$ = __webpack_require__(16);
 
-	ReactCSSTransitionGroup = __webpack_require__(20);
+	Link = __webpack_require__(5).Link;
 
-	styles = __webpack_require__(21);
+	ReactCSSTransitionGroup = __webpack_require__(24);
+
+	styles = __webpack_require__(25);
 
 	PageContainer = __webpack_require__(2);
 
-	HorizontalMenu = __webpack_require__(22).HorizontalMenu;
+	HorizontalMenu = __webpack_require__(26).HorizontalMenu;
 
 	ProductItem = React.createClass({
-	  navigate: function(e) {
-	    var h;
-	    e.preventDefault();
-	    h = e.target.href;
-	    return app.flux.dispatch({
-	      action: "href_navigate",
-	      href: h
-	    });
-	  },
 	  render: function() {
 	    var _hrefContact, _hrefLearn, includes;
 	    _hrefLearn = ["/products-and-services", this.props.category, this.props.product].join("/");
@@ -94,32 +87,24 @@ module.exports =
 	      "alt": "brink logo"
 	    })), React.createElement("div", {
 	      "className": styles.description
-	    }, React.createElement("h2", {
-	      "className": styles["product-header"]
-	    }, this.props.title), React.createElement("p", {
-	      "className": styles.summary
-	    }, this.props.description), React.createElement("div", {
-	      "className": "details"
-	    }, React.createElement("p", {
-	      "className": styles["includes-header"]
-	    }, "includes:"), React.createElement("ul", {
+	    }, React.createElement("div", {
+	      "className": styles.header
+	    }, React.createElement("h2", null, this.props.title), React.createElement("p", null, this.props.description)), React.createElement("div", {
+	      "className": styles.details
+	    }, React.createElement("div", {
 	      "className": styles.includes
-	    }, includes), React.createElement("div", {
-	      "className": "pricing"
-	    }, React.createElement("span", {
-	      "className": "price"
-	    }, "starting at: $100"), React.createElement("span", {
-	      "className": "deal"
-	    }, "for you: $50"))), React.createElement("div", {
+	    }, React.createElement("p", null, "includes:"), React.createElement("ul", null, includes)), React.createElement("div", {
+	      "className": styles.pricing
+	    }, React.createElement("h2", null, this.props.price, " ", React.createElement("span", {
+	      "className": styles.currency
+	    }, "CAD")), React.createElement("p", null, this.props.priceType))), React.createElement("div", {
 	      "className": styles["action-callout"]
-	    }, React.createElement("a", {
-	      "onClick": this.navigate,
-	      "href": _hrefLearn,
-	      "className": "learn"
-	    }, "learn more"), React.createElement("a", {
-	      "onClick": this.navigate,
-	      "href": _hrefContact,
-	      "className": "quote"
+	    }, React.createElement(Link, {
+	      "to": _hrefLearn,
+	      "className": styles.learn
+	    }, "learn more"), React.createElement(Link, {
+	      "to": _hrefContact,
+	      "className": styles.quote
 	    }, "quote"))));
 	  }
 	});
@@ -144,6 +129,9 @@ module.exports =
 	    }
 	    try {
 	      items = base.map(function(x, i) {
+	        if (x.active === false) {
+	          return;
+	        }
 	        return React.createElement(ProductItem, React.__spread({}, x, {
 	          "key": k++
 	        }));
@@ -155,7 +143,8 @@ module.exports =
 	      });
 	    }
 	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement(HorizontalMenu, {
-	      "menu": content.menu
+	      "menu": content.menu,
+	      "location": this.props.location
 	    }), React.createElement("ul", {
 	      "className": styles["products-list"]
 	    }, React.createElement(ReactCSSTransitionGroup, {
@@ -274,36 +263,40 @@ module.exports =
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-/* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-css-transition-group");
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"product-trans-enter":"product___product-trans-enter__1vKIT","product-trans-leave":"product___product-trans-leave__2OT7P","fadeIn":"product___fadeIn__3Jefo","fadeOut":"product___fadeOut__3x4MY","products-list":"product___products-list__1X-N4","product-item":"product___product-item__3gLpk","includes-header":"product___includes-header__1SP4M","includes":"product___includes__NLVvy","img":"product___img__3lwZp","description":"product___description__2jNPB","product-header":"product___product-header__2i9Ol","summary":"product___summary__cTfzV","action-callout":"product___action-callout__2m09Y","learn":"product___learn__20KlH","quote":"product___quote__DZjQo"};
+	module.exports = {"product-trans-enter":"product___product-trans-enter__1vKIT","product-trans-leave":"product___product-trans-leave__2OT7P","fadeIn":"product___fadeIn__3Jefo","fadeOut":"product___fadeOut__3x4MY","products-list":"product___products-list__1X-N4","product-item":"product___product-item__3gLpk","description":"product___description__2jNPB","img":"product___img__3lwZp","header":"product___header__1Tfep","details":"product___details__1bNtR","includes":"product___includes__NLVvy","pricing":"product___pricing__3Qxc7","action-callout":"product___action-callout__2m09Y","learn":"product___learn__20KlH","quote":"product___quote__DZjQo","currency":"product___currency__3VoSO"};
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, HorizontalMenu, Link, MenuItem, React, styles;
@@ -314,7 +307,7 @@ module.exports =
 
 	Link = __webpack_require__(5).Link;
 
-	styles = __webpack_require__(23);
+	styles = __webpack_require__(27);
 
 	MenuItem = React.createClass({
 	  render: function() {
@@ -335,12 +328,13 @@ module.exports =
 	HorizontalMenu = React.createClass({
 	  componentDidMount: function() {},
 	  render: function() {
-	    var items;
+	    var items, location;
+	    location = this.props.location;
 	    items = this.props.menu.map(function(x, i) {
 	      if (typeof location === "object" && x.link === location.pathname) {
 	        return React.createElement(MenuItem, React.__spread({}, x, {
 	          "key": i,
-	          "addClass": "active"
+	          "addClass": styles.active
 	        }));
 	      } else {
 	        return React.createElement(MenuItem, React.__spread({}, x, {
@@ -360,7 +354,7 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

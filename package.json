@@ -29,6 +29,7 @@
     "body-parser": "^1.14.1",
     "bunyan": "^1.8.0",
     "coffee-react": "^4.1.0",
+    "compression": "^1.6.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.1.0",
     "cookie-parser": "^1.4.0",

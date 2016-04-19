@@ -3,6 +3,7 @@ React = require("react")
 
 Footer = require("./modules/footer")
 Header = require("./modules/header")
+styles = require("global.sass")
 
 content = require("../../content/index")
 # console.log content

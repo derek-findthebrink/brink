@@ -49,17 +49,17 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(14);
+	_ = __webpack_require__(15);
 
-	$ = __webpack_require__(15);
+	$ = __webpack_require__(16);
 
 	PageContainer = __webpack_require__(2);
 
-	ref = __webpack_require__(16), Field = ref.Field, ButtonField = ref.ButtonField;
+	ref = __webpack_require__(17), Field = ref.Field, ButtonField = ref.ButtonField;
 
 	CSSModules = __webpack_require__(9);
 
-	styles = __webpack_require__(17);
+	styles = __webpack_require__(18);
 
 	Captcha = React.createClass({
 	  render: function() {
@@ -294,19 +294,20 @@ module.exports =
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ButtonField, Field, InputSwitch, React;
@@ -380,7 +381,7 @@ module.exports =
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
