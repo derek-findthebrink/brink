@@ -49,6 +49,7 @@ _entryViews = {
 	product: nodepath.join(view_dir, "product.cjsx")
 	contact: nodepath.join(view_dir, "contact.cjsx")
 	app: nodepath.join(view_dir, "app.cjsx")
+	about: nodepath.join(view_dir, "about.cjsx")
 }
 # _entryViews = nodepath.join(view_dir, "index.cjsx")
 
