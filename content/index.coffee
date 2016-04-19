@@ -332,7 +332,7 @@ Products = {
 			get it running on the web within 5 days."
 			category: "websites"
 			product: "basic"
-			price: "$400"
+			price: "$600"
 			priceType: "base price"
 			includes: ["a website", "mobile optimization", "up-to-date html standards"]
 			learnData:
