@@ -25,35 +25,6 @@ h1, h2, h3, h4, h5, h6
 footer
 	text-align: center
 
-form
-	@include fill-parent
-	margin: 1em 0
-	.form-field
-		@include row(table)
-		margin-top: 0.5em
-		padding: 0 1em
-		label
-			@include span-columns(2.5 of 10)
-			vertical-align: middle
-			text-align: center
-		.field
-			@include span-columns(7.5 of 10)
-			input, select, textarea
-				width: 100%
-				padding: 3px
-	.button-field
-		@include row(table)	
-		button, input[type="submit"], input[type="reset"]
-			@include span-columns(1 of 5)
-			// display: block
-	input[type='submit']
-		@include button
-		border: none
-		// width: 8em
-		// display: block
-		text-align: center
-		// margin: 5px 0
-	@include reset-display
 
 html
 	margin: 0

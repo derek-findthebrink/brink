@@ -71,8 +71,8 @@ ContactForm = React.createClass({
 			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />
 			<ButtonField>
-				<input type="submit" value="submit" onClick={@submit} />
 				<button type="back" onClick={@back}>back</button>
+				<input type="submit" value="submit" onClick={@submit} />
 			</ButtonField>
 		</form>
 	})
