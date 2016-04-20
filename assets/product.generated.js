@@ -49,19 +49,19 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(15);
+	_ = __webpack_require__(16);
 
-	$ = __webpack_require__(16);
+	$ = __webpack_require__(17);
 
-	Link = __webpack_require__(5).Link;
+	Link = __webpack_require__(6).Link;
 
-	ReactCSSTransitionGroup = __webpack_require__(24);
+	ReactCSSTransitionGroup = __webpack_require__(27);
 
-	styles = __webpack_require__(25);
+	styles = __webpack_require__(28);
 
 	PageContainer = __webpack_require__(2);
 
-	HorizontalMenu = __webpack_require__(26).HorizontalMenu;
+	HorizontalMenu = __webpack_require__(29).HorizontalMenu;
 
 	ProductItem = React.createClass({
 	  render: function() {
@@ -244,70 +244,73 @@ module.exports =
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
-/* 5 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-router");
 
 /***/ },
-/* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-css-modules");
 
 /***/ },
-/* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-/* 17 */,
 /* 18 */,
 /* 19 */,
 /* 20 */,
 /* 21 */,
 /* 22 */,
 /* 23 */,
-/* 24 */
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-css-transition-group");
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"product-trans-enter":"product___product-trans-enter__1vKIT","product-trans-leave":"product___product-trans-leave__2OT7P","fadeIn":"product___fadeIn__3Jefo","fadeOut":"product___fadeOut__3x4MY","products-list":"product___products-list__1X-N4","product-item":"product___product-item__3gLpk","description":"product___description__2jNPB","img":"product___img__3lwZp","header":"product___header__1Tfep","details":"product___details__1bNtR","includes":"product___includes__NLVvy","pricing":"product___pricing__3Qxc7","action-callout":"product___action-callout__2m09Y","learn":"product___learn__20KlH","quote":"product___quote__DZjQo","currency":"product___currency__3VoSO"};
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, HorizontalMenu, Link, MenuItem, React, styles;
 
 	React = __webpack_require__(1);
 
-	CSSModules = __webpack_require__(9);
+	CSSModules = __webpack_require__(10);
 
-	Link = __webpack_require__(5).Link;
+	Link = __webpack_require__(6).Link;
 
-	styles = __webpack_require__(27);
+	styles = __webpack_require__(30);
 
 	MenuItem = React.createClass({
 	  render: function() {
@@ -354,7 +357,7 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

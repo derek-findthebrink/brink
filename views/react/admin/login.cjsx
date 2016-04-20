@@ -1,7 +1,7 @@
 React = require("react")
 _ = require("lodash")
 
-{Field, ButtonField} = require("../modules/form")
+{Field, ButtonField} = require("../modules/form.cjsx")
 
 
 Login = React.createClass({

@@ -45,11 +45,13 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var About, PageContainer, React;
+	var About, PageContainer, React, styles;
 
 	React = __webpack_require__(1);
 
 	PageContainer = __webpack_require__(2);
+
+	styles = __webpack_require__(5);
 
 	About = React.createClass({
 	  contextTypes: {
@@ -58,7 +60,21 @@ module.exports =
 	  render: function() {
 	    var about;
 	    about = this.context.content["About"];
-	    return React.createElement(PageContainer, React.__spread({}, about), React.createElement("p", null, "about content here"));
+	    return React.createElement(PageContainer, React.__spread({}, about), React.createElement("div", {
+	      "className": styles.container
+	    }, React.createElement("div", {
+	      "className": styles.row
+	    }, React.createElement("div", {
+	      "className": styles.img
+	    }, React.createElement("img", {
+	      "src": "/brink-logo-small.svg"
+	    })), React.createElement("div", {
+	      "className": styles.description
+	    }, React.createElement("h2", {
+	      "className": styles.name
+	    }, "Derek"), React.createElement("p", {
+	      "className": styles.personDescription
+	    }, "\t\t\t\t\t\t\ta cool guy who likes code!\t")))));
 	  }
 	});
 
@@ -142,6 +158,13 @@ module.exports =
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"container":"about___container__NEArH","row":"about___row__2xXQK","img":"about___img__3qguG"};
 
 /***/ }
 /******/ ]);

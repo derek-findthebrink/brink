@@ -125,8 +125,8 @@ homeRoutes = require "./api/routes/home"
 app.use("/", homeRoutes)
 
 # disabled admin for massive ui changes
-adminRoutes = require("./api/routes/admin")
-app.use("/admin", adminRoutes)
+# adminRoutes = require("./api/routes/admin")
+# app.use("/admin", adminRoutes)
 
 
 

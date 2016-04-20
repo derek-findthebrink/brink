@@ -41,19 +41,22 @@ module.exports =
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $, PageContainer, Portfolio, React, _;
+	var $, PageContainer, Portfolio, React, _, styles;
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(15);
+	_ = __webpack_require__(16);
 
-	$ = __webpack_require__(16);
+	$ = __webpack_require__(17);
 
 	PageContainer = __webpack_require__(2);
+
+	styles = __webpack_require__(26);
 
 	Portfolio = React.createClass({
 	  contextTypes: {
@@ -62,7 +65,15 @@ module.exports =
 	  render: function() {
 	    var content;
 	    content = this.context.content["Portfolio"];
-	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("p", null, "portfolio content here"));
+	    return React.createElement(PageContainer, React.__spread({}, content), React.createElement("div", {
+	      "className": styles.container
+	    }, React.createElement("div", {
+	      "className": styles.row
+	    }, React.createElement("h2", null, "Cleanify")), React.createElement("div", {
+	      "className": styles.row
+	    }, React.createElement("h2", null, "Pyrrha")), React.createElement("div", {
+	      "className": styles.row
+	    }, React.createElement("h2", null, "One Ocean"))));
 	  }
 	});
 
@@ -70,13 +81,15 @@ module.exports =
 
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, PageContainer, React;
@@ -99,7 +112,8 @@ module.exports =
 
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, React, styles;
@@ -141,33 +155,35 @@ module.exports =
 
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */
+
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 16 */
+
+/***/ 17:
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
+/***/ },
+
+/***/ 26:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"container":"portfolio___container__cLtjZ"};
+
 /***/ }
-/******/ ]);
+
+/******/ });

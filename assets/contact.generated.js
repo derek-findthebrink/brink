@@ -49,17 +49,17 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(15);
+	_ = __webpack_require__(16);
 
-	$ = __webpack_require__(16);
+	$ = __webpack_require__(17);
 
 	PageContainer = __webpack_require__(2);
 
-	ref = __webpack_require__(17), Field = ref.Field, ButtonField = ref.ButtonField;
+	ref = __webpack_require__(18), Field = ref.Field, ButtonField = ref.ButtonField;
 
-	CSSModules = __webpack_require__(9);
+	CSSModules = __webpack_require__(10);
 
-	styles = __webpack_require__(18);
+	styles = __webpack_require__(20);
 
 	Captcha = React.createClass({
 	  render: function() {
@@ -140,14 +140,14 @@ module.exports =
 	      "type": "textarea",
 	      "change": this.change("description"),
 	      "value": this.state.description
-	    }), React.createElement(Captcha, null), React.createElement(ButtonField, null, React.createElement("input", {
+	    }), React.createElement(Captcha, null), React.createElement(ButtonField, null, React.createElement("button", {
+	      "type": "back",
+	      "onClick": this.back
+	    }, "back"), React.createElement("input", {
 	      "type": "submit",
 	      "value": "submit",
 	      "onClick": this.submit
-	    }), React.createElement("button", {
-	      "type": "back",
-	      "onClick": this.back
-	    }, "back")));
+	    })));
 	  }
 	});
 
@@ -284,35 +284,38 @@ module.exports =
 /* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-css-modules");
 
 /***/ },
-/* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ButtonField, Field, InputSwitch, React;
+	var ButtonField, Field, InputSwitch, React, styles;
 
 	React = __webpack_require__(1);
+
+	styles = __webpack_require__(19);
 
 	InputSwitch = React.createClass({
 	  render: function() {
@@ -357,11 +360,11 @@ module.exports =
 	      _i = React.createElement("input", x);
 	    }
 	    return React.createElement("div", {
-	      "className": "form-field"
+	      "className": styles["form-field"]
 	    }, React.createElement("label", {
 	      "htmlFor": this.props.name
 	    }, label), React.createElement("div", {
-	      "className": "field"
+	      "className": styles.field
 	    }, _i));
 	  }
 	});
@@ -369,7 +372,7 @@ module.exports =
 	ButtonField = React.createClass({
 	  render: function() {
 	    return React.createElement("div", {
-	      "className": "button-field"
+	      "className": styles["button-field"]
 	    }, this.props.children);
 	  }
 	});
@@ -381,7 +384,14 @@ module.exports =
 
 
 /***/ },
-/* 18 */
+/* 19 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"form-field":"form___form-field__5Bdtc","field":"form___field__3U_gR","button-field":"form___button-field__2_kpe"};
+
+/***/ },
+/* 20 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

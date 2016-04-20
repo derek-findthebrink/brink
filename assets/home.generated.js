@@ -51,13 +51,13 @@ module.exports =
 
 	PageContainer = __webpack_require__(2);
 
-	BlogWidget = __webpack_require__(19);
+	BlogWidget = __webpack_require__(21);
 
-	FeaturedProducts = __webpack_require__(20);
+	FeaturedProducts = __webpack_require__(22);
 
-	Story = __webpack_require__(21);
+	Story = __webpack_require__(23);
 
-	styles = __webpack_require__(23);
+	styles = __webpack_require__(25);
 
 	try {
 	  log = appLogger.child({
@@ -178,7 +178,9 @@ module.exports =
 /* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */,
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BlogWidget, React;
@@ -197,7 +199,7 @@ module.exports =
 
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var FeaturedProducts, React;
@@ -216,30 +218,64 @@ module.exports =
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, Story, StoryItem, items, styles;
+	var Benefits, How, Now, React, Story, StoryItem, Why, items, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(22);
+	styles = __webpack_require__(24);
 
 	items = [
 	  {
-	    title: "why",
+	    title: "Because it shouldn't be hard to get your business on the internet.",
 	    description: "this is why we exist"
 	  }, {
-	    title: "how",
+	    title: "by using the latest tricks and tools",
 	    description: "this is how we do our thing"
 	  }, {
-	    title: "what you get",
+	    title: "you get:",
 	    description: "this is why you should choose us"
 	  }, {
-	    title: "callout",
+	    title: "check out our products",
 	    description: "this is what you should do now"
 	  }
 	];
+
+	Why = React.createClass({
+	  render: function() {
+	    return React.createElement("div", null, React.createElement("h2", null, items[0].title), React.createElement("p", null, "Thanks to the internet, the speed of commerce has never been faster. And it keeps speeding up."), React.createElement("p", null, "We specialize in getting you online, fast, with a code-base that will grow as fast as your company does."));
+	  }
+	});
+
+	How = React.createClass({
+	  render: function() {
+	    return React.createElement("div", null, React.createElement("h2", null, items[1].title), React.createElement("div", {
+	      "className": styles.twoCol
+	    }, React.createElement("div", null, React.createElement("h3", null, "Universal Code"), React.createElement("p", null, "\t\t\t\t\t\tGone are the days of using a different language for each target device. Our custom servers, web sites and \n\t\t\t\t\t\tapplications are all written in universal javascript. "), React.createElement("h3", {
+	      "className": styles.callout
+	    }, "One codebase, one language, super fast development.")), React.createElement("div", null, React.createElement("h3", null, "Sprint Development"), React.createElement("p", null, "\t\t\t\t\t\tWe like to get things done quickly too. Our tools help us move quickly, freeing up more time for working\n\t\t\t\t\t\twith you to make the best online presence for your business."), React.createElement("h3", {
+	      "className": styles.callout
+	    }, "Less time developing, more time earning."))));
+	  }
+	});
+
+	Benefits = React.createClass({
+	  render: function() {
+	    return React.createElement("div", null, React.createElement("h2", null, items[2].title), React.createElement("div", {
+	      "className": styles.threeCol
+	    }, React.createElement("div", null, React.createElement("h3", null, "speed"), React.createElement("p", null, "\t\t\t\t\t\tWant it done fast? No problem. Our tools (which we love) and our philosophy\n\t\t\t\t\t\tlets us move quickly from conception to completion.")), React.createElement("div", null, React.createElement("h3", null, "money in your pocket"), React.createElement("p", null, "\t\t\t\t\t\tWe\'re cheap! It\'s true, check out our competition. Being a startup teaches\n\t\t\t\t\t\tyou how to keep your operation lean. Our lean operation keeps our costs down and your\n\t\t\t\t\t\twallet happy.")), React.createElement("div", null, React.createElement("h3", null, "quality, reusable code"), React.createElement("p", null, "\t\t\t\t\t\tThe internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us\n\t\t\t\t\t\tto write compatible, standards-compliant code quickly using our custom-built library."))), React.createElement("h3", {
+	      "className": styles.callout
+	    }, "\t\t\t\tYour business will love our universal codebase. Let us build your online presence."));
+	  }
+	});
+
+	Now = React.createClass({
+	  render: function() {
+	    return React.createElement("div", null, React.createElement("h2", null, items[3].title));
+	  }
+	});
 
 	StoryItem = React.createClass({
 	  render: function() {
@@ -247,25 +283,20 @@ module.exports =
 	      "className": styles.storyItem
 	    }, React.createElement("div", {
 	      "className": styles.inner
-	    }, React.createElement("h2", null, this.props.title), React.createElement("p", null, this.props.description)));
+	    }, this.props.children));
 	  }
 	});
 
 	Story = React.createClass({
 	  render: function() {
-	    var storyboard, style;
+	    var style;
 	    style = {
 	      backgroundImage: "url(/backgrounds/square_bg.png)"
 	    };
-	    storyboard = items.map(function(x, i) {
-	      return React.createElement(StoryItem, React.__spread({}, x, {
-	        "key": i
-	      }));
-	    });
 	    return React.createElement("div", {
 	      "className": styles.container,
 	      "style": style
-	    }, storyboard);
+	    }, React.createElement(StoryItem, null, React.createElement(Why, null)), React.createElement(StoryItem, null, React.createElement(How, null)), React.createElement(StoryItem, null, React.createElement(Benefits, null)), React.createElement(StoryItem, null, React.createElement(Now, null)));
 	  }
 	});
 
@@ -273,14 +304,14 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"container":"story___container__2NNsF","storyItem":"story___storyItem__34eUm","inner":"story___inner__2Y7YD"};
+	module.exports = {"container":"story___container__2NNsF","storyItem":"story___storyItem__34eUm","inner":"story___inner__2Y7YD","threeCol":"story___threeCol__1x1Al","twoCol":"story___twoCol__2gzEi","callout":"story___callout__3i0xM"};
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
