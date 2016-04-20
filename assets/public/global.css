@@ -54,19 +54,8 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
-.stack___listMain__gde13, .stack___listSecondary__3NcR0 {
-  padding: 0; }
-  .stack___listMain__gde13 li, .stack___listSecondary__3NcR0 li {
-    height: 100%; }
-  .stack___listMain__gde13 a, .stack___listSecondary__3NcR0 a {
-    display: block;
-    position: relative;
-    height: 100%; }
-    .stack___listMain__gde13 a div, .stack___listSecondary__3NcR0 a div {
-      margin: 0 auto; }
-
 .stack___listMain__gde13 {
-  max-width: 68em;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 0; }
@@ -82,8 +71,9 @@ html {
       vertical-align: middle;
       display: table-cell;
       width: 50%; }
-    .stack___listMain__gde13 li a {
-      padding: 0.25em; }
+  .stack___listMain__gde13 .stack___mainDescription__1E6qU {
+    padding-left: 1em;
+    padding-right: 1em; }
 
 .stack___listSecondary__3NcR0 {
   max-width: 80%;
@@ -94,16 +84,6 @@ html {
     clear: both;
     content: "";
     display: table; }
-  .stack___listSecondary__3NcR0 li {
-    border: 1px solid rgba(64, 82, 107, 0.2);
-    border-radius: 0;
-    margin-bottom: 1em; }
-    .stack___listSecondary__3NcR0 li:hover {
-      border-color: rgba(64, 82, 107, 0.7); }
-    .stack___listSecondary__3NcR0 li:hover .stack___overlay__2sKFo {
-      width: 100%; }
-    .stack___listSecondary__3NcR0 li a {
-      padding: 5px 5px; }
   @media screen and (max-width: 499px) {
     .stack___listSecondary__3NcR0 li {
       float: left;
@@ -150,6 +130,9 @@ html {
     display: block;
     height: 100%;
     width: 100%; }
+
+.stack___secondaryTradeImg__3DbtU {
+  height: 5em; }
 
 .stack___stackHeader__ORmWE {
   margin: 0;

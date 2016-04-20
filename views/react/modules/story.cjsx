@@ -37,19 +37,25 @@ How = React.createClass({
 			<h2>{items[1].title}</h2>
 			<div className={styles.twoCol}>
 				<div>
-					<h3>Universal Code</h3>
-					<p>
-						Gone are the days of using a different language for each target device. Our custom servers, web sites and 
-						applications are all written in universal javascript. 
-					</p>
+					<div className={styles.colorContainer}>
+						<img src="/icons/brink-icons_business\ cards.svg" />
+						<h3>Universal Code</h3>
+						<p>
+							Gone are the days of using a different language for each target device. Our custom servers, web sites and 
+							applications are all written in universal javascript. 
+						</p>
+					</div>
 					<h3 className={styles.callout}>One codebase, one language, super fast development.</h3>
 				</div>
 				<div>
-					<h3>Sprint Development</h3>
-					<p>
-						We like to get things done quickly too. Our tools help us move quickly, freeing up more time for working
-						with you to make the best online presence for your business.
-					</p>
+					<div className={styles.colorContainer}>
+						<img src="/icons/brink-icons_domain.svg" />
+						<h3>Sprint Development</h3>
+						<p>
+							We like to get things done quickly too. Our tools help us move quickly, freeing up more time for working
+							with you to make the best online presence for your business.
+						</p>
+					</div>
 					<h3 className={styles.callout}>Less time developing, more time earning.</h3>
 				</div>
 			</div>
@@ -62,6 +68,7 @@ Benefits = React.createClass({
 			<h2>{items[2].title}</h2>
 			<div className={styles.threeCol}>
 				<div>
+					<img src="/icons/brink-icons_uptime.svg" />
 					<h3>speed</h3>
 					<p>
 						Want it done fast? No problem. Our tools (which we love) and our philosophy
@@ -69,6 +76,7 @@ Benefits = React.createClass({
 					</p>
 				</div>
 				<div>
+					<img src="/icons/brink-icons_oil.svg" />
 					<h3>money in your pocket</h3>
 					<p>
 						We're cheap! It's true, check out our competition. Being a startup teaches
@@ -77,6 +85,7 @@ Benefits = React.createClass({
 					</p>
 				</div>
 				<div>
+					<img src="/icons/brink-icons_trends.svg" />
 					<h3>quality, reusable code</h3>
 					<p>
 						The internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us

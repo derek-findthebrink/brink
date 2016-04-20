@@ -62,14 +62,14 @@ module.exports =
 	  render: function() {
 	    var imgsrc, overlay, theClassName;
 	    if (this.props.secondary) {
-	      theClassName = styles.mainTradeImg;
+	      theClassName = styles.secondaryTradeImg;
 	      overlay = React.createElement("div", {
 	        "className": styles.overlay
 	      }, React.createElement("h4", {
 	        "className": styles["overlay-text"]
 	      }, this.props.title));
 	    } else {
-	      theClassName = styles.secondaryTradeImg;
+	      theClassName = styles.mainTradeImg;
 	      overlay = null;
 	    }
 	    if (this.props.src === "" || !this.props.src) {
@@ -93,7 +93,9 @@ module.exports =
 	  render: function() {
 	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({}, this.props.img, {
 	      "title": this.props.title
-	    })), React.createElement("div", null, React.createElement("h3", {
+	    })), React.createElement("div", {
+	      "className": styles.mainDescription
+	    }, React.createElement("h3", {
 	      "className": styles.stackHeader
 	    }, this.props.title), React.createElement("span", {
 	      "className": styles.stackDescription
@@ -246,7 +248,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"listMain":"stack___listMain__gde13","listSecondary":"stack___listSecondary__3NcR0","overlay":"stack___overlay__2sKFo","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay-text":"stack___overlay-text__36bZh"};
+	module.exports = {"listMain":"stack___listMain__gde13","mainDescription":"stack___mainDescription__1E6qU","listSecondary":"stack___listSecondary__3NcR0","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay":"stack___overlay__2sKFo","overlay-text":"stack___overlay-text__36bZh"};
 
 /***/ }
 

@@ -253,9 +253,17 @@ module.exports =
 	  render: function() {
 	    return React.createElement("div", null, React.createElement("h2", null, items[1].title), React.createElement("div", {
 	      "className": styles.twoCol
-	    }, React.createElement("div", null, React.createElement("h3", null, "Universal Code"), React.createElement("p", null, "\t\t\t\t\t\tGone are the days of using a different language for each target device. Our custom servers, web sites and \n\t\t\t\t\t\tapplications are all written in universal javascript. "), React.createElement("h3", {
+	    }, React.createElement("div", null, React.createElement("div", {
+	      "className": styles.colorContainer
+	    }, React.createElement("img", {
+	      "src": "/icons/brink-icons_business\ cards.svg"
+	    }), React.createElement("h3", null, "Universal Code"), React.createElement("p", null, "\t\t\t\t\t\t\tGone are the days of using a different language for each target device. Our custom servers, web sites and \n\t\t\t\t\t\t\tapplications are all written in universal javascript. ")), React.createElement("h3", {
 	      "className": styles.callout
-	    }, "One codebase, one language, super fast development.")), React.createElement("div", null, React.createElement("h3", null, "Sprint Development"), React.createElement("p", null, "\t\t\t\t\t\tWe like to get things done quickly too. Our tools help us move quickly, freeing up more time for working\n\t\t\t\t\t\twith you to make the best online presence for your business."), React.createElement("h3", {
+	    }, "One codebase, one language, super fast development.")), React.createElement("div", null, React.createElement("div", {
+	      "className": styles.colorContainer
+	    }, React.createElement("img", {
+	      "src": "/icons/brink-icons_domain.svg"
+	    }), React.createElement("h3", null, "Sprint Development"), React.createElement("p", null, "\t\t\t\t\t\t\tWe like to get things done quickly too. Our tools help us move quickly, freeing up more time for working\n\t\t\t\t\t\t\twith you to make the best online presence for your business.")), React.createElement("h3", {
 	      "className": styles.callout
 	    }, "Less time developing, more time earning."))));
 	  }
@@ -265,7 +273,13 @@ module.exports =
 	  render: function() {
 	    return React.createElement("div", null, React.createElement("h2", null, items[2].title), React.createElement("div", {
 	      "className": styles.threeCol
-	    }, React.createElement("div", null, React.createElement("h3", null, "speed"), React.createElement("p", null, "\t\t\t\t\t\tWant it done fast? No problem. Our tools (which we love) and our philosophy\n\t\t\t\t\t\tlets us move quickly from conception to completion.")), React.createElement("div", null, React.createElement("h3", null, "money in your pocket"), React.createElement("p", null, "\t\t\t\t\t\tWe\'re cheap! It\'s true, check out our competition. Being a startup teaches\n\t\t\t\t\t\tyou how to keep your operation lean. Our lean operation keeps our costs down and your\n\t\t\t\t\t\twallet happy.")), React.createElement("div", null, React.createElement("h3", null, "quality, reusable code"), React.createElement("p", null, "\t\t\t\t\t\tThe internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us\n\t\t\t\t\t\tto write compatible, standards-compliant code quickly using our custom-built library."))), React.createElement("h3", {
+	    }, React.createElement("div", null, React.createElement("img", {
+	      "src": "/icons/brink-icons_uptime.svg"
+	    }), React.createElement("h3", null, "speed"), React.createElement("p", null, "\t\t\t\t\t\tWant it done fast? No problem. Our tools (which we love) and our philosophy\n\t\t\t\t\t\tlets us move quickly from conception to completion.")), React.createElement("div", null, React.createElement("img", {
+	      "src": "/icons/brink-icons_oil.svg"
+	    }), React.createElement("h3", null, "money in your pocket"), React.createElement("p", null, "\t\t\t\t\t\tWe\'re cheap! It\'s true, check out our competition. Being a startup teaches\n\t\t\t\t\t\tyou how to keep your operation lean. Our lean operation keeps our costs down and your\n\t\t\t\t\t\twallet happy.")), React.createElement("div", null, React.createElement("img", {
+	      "src": "/icons/brink-icons_trends.svg"
+	    }), React.createElement("h3", null, "quality, reusable code"), React.createElement("p", null, "\t\t\t\t\t\tThe internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us\n\t\t\t\t\t\tto write compatible, standards-compliant code quickly using our custom-built library."))), React.createElement("h3", {
 	      "className": styles.callout
 	    }, "\t\t\t\tYour business will love our universal codebase. Let us build your online presence."));
 	  }
@@ -308,7 +322,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"container":"story___container__2NNsF","storyItem":"story___storyItem__34eUm","inner":"story___inner__2Y7YD","threeCol":"story___threeCol__1x1Al","twoCol":"story___twoCol__2gzEi","callout":"story___callout__3i0xM"};
+	module.exports = {"container":"story___container__2NNsF","storyItem":"story___storyItem__34eUm","inner":"story___inner__2Y7YD","threeCol":"story___threeCol__1x1Al","twoCol":"story___twoCol__2gzEi","callout":"story___callout__3i0xM","colorContainer":"story___colorContainer__PV6ST"};
 
 /***/ },
 /* 25 */

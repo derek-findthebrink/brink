@@ -17,6 +17,8 @@
 		background-color: rgba(white, 0.4)
 		p
 			color: mix(white, black, 30%)
+	img
+		max-width: 6em
 
 .storyItem
 	@include row()
@@ -37,6 +39,10 @@
 	@include fill-parent()
 	& > div
 		@include span-columns(1 of 3)
+		@include thin-border(false)
+		padding: 1em
+		border-top: none
+		border-bottom: none
 
 .twoCol
 	@include fill-parent()
@@ -46,3 +52,13 @@
 .callout
 	font-family: $fonts-header
 	font-size: 130%
+
+.colorContainer
+	padding: 1em
+	border-radius: 2em
+	background-color: white
+	color: $theme-base
+	h3
+		color: black
+	p
+		color: $theme-base !important

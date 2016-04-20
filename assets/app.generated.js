@@ -175,7 +175,9 @@ module.exports =
 	      "className": styles.app
 	    }, React.createElement(Link, {
 	      "to": "/"
-	    }, React.createElement("h1", null, "brink technology co.")), React.createElement(Nav, null));
+	    }, React.createElement("img", {
+	      "src": "/brink-logo-small.svg"
+	    }), React.createElement("h1", null, "brink technology co.")), React.createElement(Nav, null));
 	  }
 	});
 
@@ -336,7 +338,7 @@ module.exports =
 	        alt: "node.js logo",
 	        href: "https://nodejs.org/en/"
 	      },
-	      description: "a super cool javascript-based server platform",
+	      description: "Our specialty: the latest and greatest arrival on the web scene. Based on javascript, an event-driven server engine that turned Universal Code from an idea into a reality.",
 	      secondary: false
 	    }, {
 	      title: "MongoDB",
@@ -345,7 +347,7 @@ module.exports =
 	        alt: "MongoDB logo",
 	        href: "https://www.mongodb.org/"
 	      },
-	      description: "a super cool key-value store",
+	      description: "About as fast as they get. A database engine that natively speaks javascript and delivers results ridiculously fast. Our go-to when it comes to new builds.",
 	      secondary: false
 	    }, {
 	      title: "ReactJS",
@@ -354,7 +356,7 @@ module.exports =
 	        alt: "ReactJS Logo",
 	        href: "https://facebook.github.io/react/"
 	      },
-	      description: "a high-performance javascript rendering library",
+	      description: "The latest and greatest website rendering library. Enables us to create beautiful webpages that are easily maintainable while remaining compatible with the rest of the web as older computers slowly catch up.",
 	      secondary: false
 	    }, {
 	      title: "Sass",
@@ -604,6 +606,7 @@ module.exports =
 	      category: "email",
 	      product: "personal",
 	      price: "$20",
+	      active: false,
 	      priceType: "per month",
 	      includes: ["one email", "high-quality interface"],
 	      learnData: {
@@ -619,6 +622,7 @@ module.exports =
 	      category: "graphics",
 	      product: "iconography",
 	      price: "$30",
+	      active: false,
 	      priceType: "per hour",
 	      includes: ["custom iconography set", "brand syncing"],
 	      learnData: {
@@ -633,6 +637,7 @@ module.exports =
 	      description: "speed up your website development. We'll create custom wireframes based on your business needs and the latest web-standards.",
 	      category: "graphics",
 	      price: "$30",
+	      active: false,
 	      priceType: "per hour",
 	      product: "site-layouts",
 	      includes: ["you-own vectors", "up-to-date internet standards", "library recommendations"],
