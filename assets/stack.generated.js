@@ -60,39 +60,38 @@ module.exports =
 
 	TradeImage = React.createClass({
 	  render: function() {
-	    var imgSrc, overlay, style;
-	    imgSrc = this.props.src || "/brink-logo-small.svg";
-	    if (imgSrc === "") {
-	      imgSrc = "/brink-logo-small.svg";
-	    }
-	    style = {
-	      backgroundImage: ["url(", imgSrc, ")"].join("")
-	    };
-	    overlay = null;
-	    if (this.props.overlay) {
+	    var imgsrc, overlay, theClassName;
+	    if (this.props.secondary) {
+	      theClassName = styles.mainTradeImg;
 	      overlay = React.createElement("div", {
 	        "className": styles.overlay
 	      }, React.createElement("h4", {
 	        "className": styles["overlay-text"]
 	      }, this.props.title));
+	    } else {
+	      theClassName = styles.secondaryTradeImg;
+	      overlay = null;
+	    }
+	    if (this.props.src === "" || !this.props.src) {
+	      imgsrc = "/brink-logo-small.svg";
+	    } else {
+	      imgsrc = this.props.src;
 	    }
 	    return React.createElement("div", {
-	      "styleName": "trade"
+	      "className": theClassName
 	    }, React.createElement("a", {
 	      "href": this.props.href,
 	      "target": "_blank"
-	    }, React.createElement("div", {
-	      "className": this.props.addClass,
-	      "style": style
+	    }, React.createElement("iron-image", {
+	      "src": imgsrc,
+	      "sizing": "contain"
 	    }), overlay));
 	  }
 	});
 
 	StackItemMain = React.createClass({
 	  render: function() {
-	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({
-	      "addClass": styles.mainTradeImg
-	    }, this.props.img, {
+	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({}, this.props.img, {
 	      "title": this.props.title
 	    })), React.createElement("div", null, React.createElement("h3", {
 	      "className": styles.stackHeader
@@ -105,9 +104,8 @@ module.exports =
 	StackItemSecondary = React.createClass({
 	  render: function() {
 	    return React.createElement("li", null, React.createElement(TradeImage, React.__spread({}, this.props.img, {
-	      "addClass": styles.secondaryTradeImg,
 	      "title": this.props.title,
-	      "overlay": true
+	      "secondary": true
 	    })));
 	  }
 	});
@@ -248,7 +246,7 @@ module.exports =
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"listMain":"stack___listMain__gde13","listSecondary":"stack___listSecondary__3NcR0","overlay":"stack___overlay__2sKFo","trade":"stack___trade__3ALzx","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay-text":"stack___overlay-text__36bZh"};
+	module.exports = {"listMain":"stack___listMain__gde13","listSecondary":"stack___listSecondary__3NcR0","overlay":"stack___overlay__2sKFo","mainTradeImg":"stack___mainTradeImg__1DM9e","secondaryTradeImg":"stack___secondaryTradeImg__3DbtU","stackHeader":"stack___stackHeader__ORmWE","stackDescription":"stack___stackDescription__27a0u","overlay-text":"stack___overlay-text__36bZh"};
 
 /***/ }
 

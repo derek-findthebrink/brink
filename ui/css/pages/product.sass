@@ -121,8 +121,15 @@ $bcg: lighten($theme-base, 40%)
 	ul
 		padding: 0
 		margin: 3px 0
-		list-style-type: circle
+		// list-style-type: circle
+		width: 70%
 		padding-left: 2.5em
+		li
+			background-color: lighten($theme-base, 50%)
+			border-radius: 5px
+			margin-bottom: 2px
+			text-align: center
+			color: darken($theme-base, 15%)
 .pricing
 	@include span-columns(1 of 2)
 	font-size: 125%

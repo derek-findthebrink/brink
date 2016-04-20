@@ -9,15 +9,19 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 // ----------------------------------
 %list
 	// @include fill-parent
-	overflow: auto
-	padding: 0
-	a
-		display: block
-		position: relative
-		div
-			margin: 0 auto
+	// overflow: auto
+	// padding: 0
+	// li
+	// 	height: 100%
+	// a
+	// 	display: block
+	// 	position: relative
+	// 	height: 100%
+	// 	div
+	// 		margin: 0 auto
 
 .listMain
+	@include outer-container(100%)
 	@extend %list
 	// @include fill-parent()
 	padding: 0
@@ -26,47 +30,54 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 		& > div
 			vertical-align: middle
 			@include span-columns(1 of 2)
-
 	@include reset-display()
 
-.listSecondary
-	@extend %list
-	width: 80%
-	margin: 2em auto
-	li
-		@include span-columns(1 of 5)
-		@include omega(5n)
-		@include thin-border
-		margin-bottom: 1em
-		&:hover .overlay
-			width: 100%
-		a
-			padding: 5px 0
+	.mainDescription
+		padding-left: 1em
+		padding-right: 1em
 
-.trade
-	position: relative
-	display: block
-	a
-		display: block
+
+.listSecondary
+	@include outer-container(80%)
+	@extend %list
+	margin: 2em auto
+	@include media($bp-smartphone)
+		li
+			@include span-columns(1 of 3)
+			@include omega(3n)
+	@include media($bp-tablet)
+		li
+			@include span-columns(1 of 5)
+			@include omega(5n)
+	@include media($bp-desktop)
+		li
+			@include span-columns(1 of 7)
+			@include omega(7n)
+
 
 
 // Trade Image Layouts and Behaviour
 // -------------------------------------------------
-%img
+%tradeBase
 	@include fill-parent
-	background-position: center center
-	background-size: 100%
-	background-repeat: no-repeat
+	// background-position: center center
+	// background-size: 100%
+	// background-repeat: no-repeat
+	a
+		display: block
+		height: 100%
+	iron-image
+		display: block
+		height: 100%
+		width: 100%
 
 .mainTradeImg
-	@extend %img
-	height: 5em
-	width: 80%
-	background-size: cover
+	@extend %tradeBase
+	// @include square(7em)
 
 .secondaryTradeImg
-	@extend %img
-	@include square(5em)
+	@extend %tradeBase
+	height: 5em
 
 .stackHeader
 	margin: 0
