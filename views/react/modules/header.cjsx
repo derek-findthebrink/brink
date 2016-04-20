@@ -10,6 +10,7 @@ Header = React.createClass({
 	render: ->
 		<header className={styles.app}>
 			<Link to="/">
+				<img src="/brink-logo-small.svg" />
 				<h1>brink technology co.</h1>
 			</Link>
 			<Nav />
