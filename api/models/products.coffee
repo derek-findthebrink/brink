@@ -1,11 +1,31 @@
 mongoose = require("mongoose")
 Schema = mongoose.Schema
 
+img = {
+	img: String
+	alt: String
+	description: String
+}
+
 model = new Schema({
 	category: String
-	active: Boolean
-	available: Boolean
-	unitsAvailable: Number
+	product: String
+	title: String
+	description: String
+	includes: [String]
+	learnData: {
+		inputs: [img]
+		process: [img]
+		result: String
+		outputs: [img]
+		callout: [img]
+	}
+	available:
+		type: Boolean
+		default: false
+	unitsAvailable:
+		type: Number
+		default: 0
 	})
 
 mongoose.model("Product", model)

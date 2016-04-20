@@ -1,6 +1,17 @@
 React = require("react")
 ReactServer = require("react-dom/server")
+{
+	RouterContext
+	match
+	createRoutes
+	createMemoryHistory
+	} = require("react-router")
+Q = require("q")
+_ = require("underscore")
+nodepath = require("path")
 
+# Logger
+# ----------------------------------
 try
 	log = appLogger.child({
 		type: "controller"
@@ -10,60 +21,52 @@ catch e
 	log = console
 	log.info = console.log
 
-BASE_DIR = "../../ui/js/"
-_content = require(BASE_DIR + "content/index")
+# Content
+# -------------------------------------
+CONTENT_DIR = "../../content/"
+content = require(CONTENT_DIR + "index")
 
-HomeView = require(BASE_DIR + "views/home")
-StackView = require(BASE_DIR + "views/stack")
-ProductsView = require(BASE_DIR + "views/product")
-ContactView = require(BASE_DIR + "views/contact")
-PortfolioView = require(BASE_DIR + "views/portfolio")
+# Router
+# -----------------------------------------
+AppRouter = require("../../router/app-router")
+log.info {dir: process.cwd(), cd: __dirname}, "current working dir"
 
-# Template Cache
-# ----------------------------------------------
-StackEl = React.createElement(StackView, _content["Stack"].props)
-_Stack = ReactServer.renderToString(StackEl)
 
-HomeEl = React.createElement(HomeView, _content["Home"].props)
-_Home = ReactServer.renderToString(HomeEl)
+baseRender = (req, res)->
+	log.info "base render"
+	views = require("../../views/react/index.cjsx")
+	log.info views:views, dir: process.cwd(), cd: __dirname, "base render on express router home"
 
-PortfolioEl = React.createElement(PortfolioView, _content["Portfolio"].props)
-_Portfolio = ReactServer.renderToString(PortfolioEl)
+	log.info AppRouter:AppRouter, url:req.url, "app router"
+	_h = createMemoryHistory()
+	routes = AppRouter(_h, views)
+	location = _h.createLocation(req.url)
 
-ProductsEl = React.createElement(ProductsView, _content["Products"].props)
-_Products = ReactServer.renderToString(ProductsEl)
+	match({routes, location}, (err, redirectLocation, renderProps)->
+		if err
+			log.error err, "error"
+			res.status(500).end()
+		else if redirectLocation
+			log.info redirectLocation, "redirect"
+		else if renderProps
+			log.info renderProps, "renderProps"
+			res.status(200).send(ReactServer.renderToString(<RouterContext {...renderProps} />))
+		)
 
-ContactEl = React.createElement(ContactView, _content["Contact"].props)
-_Contact = ReactServer.renderToString(ContactEl)
+# each must expose locals "content", "user"
+
 
 
 module.exports = {
-	home: (req, res)->
-		res.render("pages/home", {
-			content: _Home
-			})
-	portfolio: (req,res)->
-		res.render("pages/portfolio", {
-			content: _Portfolio
-			})
-	stack: (req, res)->
-		res.render("pages/stack", {
-			content: _Stack
-			})
-	contact: (req, res)->
-		res.render("pages/contact", {
-			content: _Contact
-			})
-	productsAndServices: (req, res)->
-		res.render("pages/products-and-services", {
-			content: _Products
-			})
-	productsAndServicesSub: (req, res)->
-		sub = req.params.sub
-		log.info sub:sub, "productsAndServicesSub"
-		res.render("pages/products-and-services")
-	productLearn: (req, res)->
-		category = req.params.category
-		product = req.params.product
-		res.render("pages/products-and-services")
+	home: baseRender
+	portfolio: baseRender
+	stack: baseRender
+	contact: baseRender
+	productsAndServices: baseRender
+	productsAndServicesSub: baseRender
+	productLearn: baseRender
+	contactProduct: baseRender
+
+	# inputData: inputData
+	# renderThanks: renderThanks
 }

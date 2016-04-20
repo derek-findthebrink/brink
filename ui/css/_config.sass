@@ -1,4 +1,8 @@
-$brignt-orange: #FFBA00
+@import "./bourbon/_bourbon.scss"
+@import "./neat/_neat.scss"
+
+
+$bright-orange: #FFBA00
 $header-color: darken(grey, 10%)
 $theme-base: #40526B
 
@@ -10,6 +14,22 @@ $fonts-header: "ff-enzo-web", "Raleway", sans-serif
 $fonts-content: "expo-sans-pro", "Droid Serif", serif
 
 
+// Modules
+$thin-border-color-inactive: rgba($theme-base, 0.2)
+$thin-border-color-active: rgba($theme-base, 0.7)
+
+
 $bp-desktop: new-breakpoint(min-width 795px)
 $bp-tablet: new-breakpoint(min-width 500px max-width 794px)
 $bp-smartphone: new-breakpoint(max-width 499px)
+
+
+
+%animated
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-fill-mode: both
+  animation-fill-mode: both
+
+
+@import "mixins.sass"

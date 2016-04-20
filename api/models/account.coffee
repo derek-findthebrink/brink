@@ -1,17 +1,36 @@
 mongoose = require "mongoose"
-Schema = mongoose.Schema
 passportLocalMongoose = require "passport-local-mongoose"
+Schema = mongoose.Schema
+
+acctOpts = {
+	saltlen: 512
+	# iterations: Math.pow(10, 6)
+	keylen: 1024
+	usernameField: "email"
+	saltField: "salt"
+	hashField: "hash"
+	attemptsField: "attempts"
+	lastLoginField: "last"
+	usernameLowerCase: true
+	limitAttempts: true
+	maxAttempts: 5
+	usernameQueryFields: ["email"]
+}
+
 
 Account = new Schema({
 	username: String
 	email: String
+	name: String
 	password: String
+	phone: Number
 	accessAdmin:
 		type: Boolean
 		default: false
 	adminType: String
 	})
 
-Account.plugin(passportLocalMongoose)
+acctOpts = acctOpts || {}
+Account.plugin(passportLocalMongoose, acctOpts)
 
-module.exports = mongoose.model("Account", Account)
+mongoose.model("Account", Account)

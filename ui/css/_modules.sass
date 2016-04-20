@@ -24,7 +24,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		// margin-bottom: 0.5em
 	li
 		@include span-columns(1 of 5)
-		@include thin-border
+		@include thin-border(false)
 		@include transition-duration(0.25s)
 		@include transition-property(border)
 		border-right: none
@@ -36,7 +36,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		&:hover
 			background-color: lighten($bcg-color, 12%)
 			color: darken($color, 80%)
-			border-right: 1px solid $thin-border-color-active
+			// border-right: 1px solid $thin-border-color-active
 			border-bottom: 1px solid $thin-border-color-active
 		&.active
 			color: black
@@ -59,31 +59,7 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 // Header Section
 // ---------------------------------------------
 
-.header-section
-	$hs-color: $header-color
-	text-align: center
-	padding-bottom: 3em
-	@include thin-border(false)
-	border-right: none
-	border-left: none
-	margin-top: 1em
-	.header-inner
-		@include outer-container
-		@include clearfix
-		margin: auto
-		padding: 3em 3.5em 4.5em 3.5em
-		text-align: center
-		.header-logo
-			height: 5em
-	.header-copy
-		.page-header
-			font-size: 200%
-			margin-bottom: 0.2em
-			margin-top: 0
-			color: $hs-color
-		.page-header-description
-			margin: 0
-			color: lighten($hs-color, 15%)
+
 
 
 
@@ -94,3 +70,23 @@ $thin-border-color-active: rgba($theme-base, 0.7)
 		margin: 0 0
 
 
+.button-field
+	margin-top: 1em
+	padding-top: 0.5em
+	button, input
+		@include transition(0.25s)
+		cursor: pointer
+	input[type="submit"], input[type="reset"], button
+		float: right
+		margin: 0
+		border: none
+		border-radius: 0
+
+	input[type="submit"]
+		background-color: $go-green
+		&:hover
+			background-color: lighten($go-green, 15%)
+	button[type="back"]
+		background-color: $rowdy-red
+		&:hover
+			background-color: lighten($rowdy-red, 15%)

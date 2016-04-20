@@ -1,5 +1,5 @@
 {
-	"ext": "*.coffee, *.js, *.jade",
+	"ext": "*.coffee, *.js, *.jade, *.cjsx",
 	"verbose": true,
-	"watch": ["api", "ui", "app.coffee", "config", ".env"]
+	"watch": ["api", "ui", "views", "ui/js/content", "app.coffee", "config", ".env", "router", "content"]
 }

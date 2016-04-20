@@ -1,2 +1,16 @@
-.page.home
-	// background-color: black
+@import "../_config.sass"
+
+.container
+	margin: 0 auto
+	width: 80%
+	h2
+		color: darken($theme-base, 10%)
+
+.check
+	@include fill-parent
+	overflow: auto
+	width: 80%
+	margin: 0 auto
+	& > div
+		text-align: center
+		@include span-columns(1 of 2)

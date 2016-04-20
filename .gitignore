@@ -5,3 +5,4 @@ assets/stack/
 .env
 ecosystem.json
 tasks
+npm-debug.log

@@ -1,39 +1,47 @@
+@import "../_config.sass"
 
-.contact
-	form.contact-form
-		@include background(radial-gradient(lighten($theme-base, 60%), lighten($theme-base, 40%)))
-		border-top-right-radius: 10px
-		border-top-left-radius: 10px
-		// border-bottom-left-radius: 10px
-		border: 4px solid $theme-base
-		color: darken($theme-base, 25%)
-		box-shadow: 0 10px 25px -6px $header-color
-		.form-field
+.location
+	width: 80%
+	margin: 2em auto
 
-		.field
+.location-row
+	@include row(table)
+	padding: 0.25em 0
+	span
+		@include span-columns(1 of 2)
+		text-align: center
+		font-family: $fonts-header
 
-		input, select, textarea, button
-			padding: 0.5em
-			border-radius: 5px
-			border: 2px solid lighten($theme-base, 20%)
-		.button-field
-			margin-top: 1em
-			// background-color: lighten($theme-base, 20%)
-			// background-color: white
-			padding-top: 0.5em
-			button, input
-				@include transition(0.25s)
-				cursor: pointer
-			input[type="submit"], input[type="reset"], button
-				float: right
-				margin: 0
-				border: none
-				border-radius: 0
-			input[type="submit"]
-				background-color: $go-green
-				&:hover
-					background-color: lighten($go-green, 15%)
-			button[type="back"]
-				background-color: $rowdy-red
-				&:hover
-					background-color: lighten($rowdy-red, 15%)
+.location-header
+
+.location-info
+	text-transform: uppercase
+
+.contact-form
+	@include thin-border(false)
+	width: 70%
+	margin: 0 auto 2em auto
+	color: darken($theme-base, 25%)
+	border-top: none
+	border-bottom: none
+
+	input, select, textarea, button
+		@include thin-border
+		padding: 0.5em
+
+.g-recaptcha
+	margin: 1em auto
+	width: 10em
+	display: flex
+	content-align: center
+	display: block
+	text-align: center
+
+.form-header
+	text-align: center
+
+.form-field
+	label
+		font-family: $fonts-header
+		padding-right: 2em
+		text-align: right

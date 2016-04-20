@@ -1,44 +1,64 @@
-.footer {
-  $base-spacing: 1.5em !default;
-  $action-color: #477DCA !default;
-  $medium-screen: em(640) !default;
-  $large-screen: em(860) !default;
-  $footer-background: desaturate(darken($action-color, 20%), 30%);
-  $footer-color: white;
-  $footer-link-color: transparentize($footer-color, 0.6);
-  $footer-disclaimer-color: transparentize($footer-color, 0.6);
+// @import "../bourbon/_bourbon.scss";
+// @import "../neat/_neat.scss";
+@import "../_config.sass";
 
+// $gutter: modular-scale(1, 1em, $golden);
+$base-spacing: 1.5em !default;
+$action-color: #477DCA !default;
+$medium-screen: em(640) !default;
+$large-screen: em(860) !default;
+$footer-background: desaturate(darken($action-color, 20%), 30%);
+$footer-color: white;
+$footer-link-color: transparentize($footer-color, 0.6);
+$footer-disclaimer-color: transparentize($footer-color, 0.6);
+
+.container {
   background: $footer-background;
   padding: ($base-spacing * 2) $gutter;
   width: 100%;
+  font-family: $fonts-header;
+  hr {
+    border: 1px solid transparentize($footer-disclaimer-color, 0.3);
+    margin: 0 auto $base-spacing;
+    width: 12em;
+  }
 
-  .footer-logo {
-    margin-bottom: 2em;
+  p {
+    color: $footer-disclaimer-color;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin: auto;
+    max-width: 35em;
     text-align: center;
-
-    img {
-      height: 3em;
-    }
-  } 
-
-  .footer-links {
-    @include display(flex);
-    @include justify-content(center);
-    @include flex-wrap(wrap);
-    margin-bottom: $base-spacing;
   }
+}
 
-  ul {
-    @include flex-basis(13em);
-    @include flex-shrink(0);
-    margin-bottom: $base-spacing * 2;
-    padding: 0;
+.logo {
+  margin-bottom: 2em;
+  text-align: center;
+
+  img {
+    height: 3em;
   }
+}
 
+.linksContainer {
+  @include display(flex);
+  @include justify-content(center);
+  @include flex-wrap(wrap);
+  margin-bottom: $base-spacing;
+}
+
+.linkList {
+  @include flex-basis(13em);
+  @include flex-shrink(0);
+  margin-bottom: $base-spacing * 2;
+  padding: 0;
   li {
     line-height: 1.5em;
     list-style: none;
     text-align: center;
+    font-family: $fonts-content;
   }
 
   li a {
@@ -53,22 +73,8 @@
 
   li h3 {
     color: $footer-color;
+    font-family: $fonts-header;
     font-size: 1em;
     margin-bottom: 0.4em;
-  }  
-
-  hr {
-    border: 1px solid transparentize($footer-disclaimer-color, 0.3);
-    margin: 0 auto $base-spacing;
-    width: 12em;
-  }
-
-  p {
-    color: $footer-disclaimer-color;
-    font-size: 0.9em;
-    line-height: 1.5em;
-    margin: auto;
-    max-width: 35em;
-    text-align: center;
   }
 }
