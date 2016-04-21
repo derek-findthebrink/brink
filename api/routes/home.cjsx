@@ -27,18 +27,6 @@ ROOT_DIR = process.env.APP_ROOT
 
 routerLocation = nodepath.resolve ROOT_DIR, "router/app-router.cjsx"
 routesGenerator = require routerLocation
-# _getView = (name)->
-# 	return nodepath.join(viewsLocation, name + views_post)
-# views = {
-# 	home: require _getView("home")
-# 	portfolio: require _getView("portfolio")
-# 	stack: require _getView("stack")
-# 	product: require _getView("product")
-# 	contact: require _getView("contact")
-# 	app: require _getView("app")
-# 	about: require _getView("about")
-# }
-# views = require(nodepath.join(viewsLocation, "main" + views_post))
 
 
 base = (req, res)->
@@ -76,7 +64,7 @@ base = (req, res)->
 			appCss = assets.styles.app || null
 			appJsSrc = assets.javascript.app
 
-			log.info assets:assets, "sent to client"
+			# log.info assets:assets, "sent to client"
 			final = <RouterContext {...props} />
 			html = ReactServer.renderToString final
 			res.render("layout", {
