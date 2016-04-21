@@ -23,10 +23,10 @@ catch e
 # Models = ["account", "applications", "products"]
 # loadModels(Models)
 
-require("../api/models/account")
-require("../api/models/applications")
-require("../api/models/products")
-require("../api/models/contact")
+require("../models/account")
+require("../models/applications")
+require("../models/products")
+require("../models/contact")
 
 url = process.env.MONGOOSE_DB
 mongoose.connect(url, (err)->

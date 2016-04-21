@@ -6,10 +6,10 @@ express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
 cookieParser = require("cookie-parser")
-passport = require("passport")
-LocalStrategy = require("passport-local").Strategy
-session = require("express-session")
-MongoStore = require("connect-mongo")(session)
+# passport = require("passport")
+# LocalStrategy = require("passport-local").Strategy
+# session = require("express-session")
+# MongoStore = require("connect-mongo")(session)
 compression = require("compression")
 # favicon = require("serve-favicon")
 
@@ -23,11 +23,11 @@ STATIC_DIR = nodepath.resolve(ROOT, process.env.STATIC_DIR)
 
 # Logger
 # ---------------------------------------
-logBase = require("./config/logger")
+logBase = require("../api/config/logger")
 
 # Global
 global.appLogger = bunyan.createLogger({
-	name: "brink-server"
+	name: "brink-main-server"
 	src: process.env.NODE_ENV == "development"
 	})
 
@@ -41,8 +41,8 @@ log = appLogger.child({
 
 # Database
 # -----------------------------------------
-mongoose = require("./config/mongoose").mongoose
-Account = mongoose.model("Account")
+# mongoose = require("./config/mongoose").mongoose
+# Account = mongoose.model("Account")
 
 
 
@@ -57,9 +57,10 @@ app = express()
 # if process.env.HMR == "true"
 # 	log.info "loading webpack middleware..."
 # 	require("./loaders/webpack-middleware.coffee")(app)
+viewsDir = nodepath.resolve __dirname, "views"
 
 app.application_name = "brink-server"
-app.set("views", "views")
+app.set("views", viewsDir)
 app.set("view engine", "jade")
 app.use(compression())
 
@@ -83,20 +84,20 @@ app.use(express.static(STATIC_DIR))
 
 # Passport
 # ------------------------------------
-mongoStoreOptions = {
-	mongooseConnection: mongoose.connection
-	ttl: 14 * 24 * 60 * 60
-}
+# mongoStoreOptions = {
+# 	mongooseConnection: mongoose.connection
+# 	ttl: 14 * 24 * 60 * 60
+# }
 
-app.use session({
-	secret: process.env.SESSION_KEY
-	store: new MongoStore(mongoStoreOptions)
-	resave: false
-	saveUninitialized: true
-})
+# app.use session({
+# 	secret: process.env.SESSION_KEY
+# 	store: new MongoStore(mongoStoreOptions)
+# 	resave: false
+# 	saveUninitialized: true
+# })
 
-auth = require("./config/auth")
-auth(app, passport, Account)
+# auth = require("./config/auth")
+# auth(app, passport, Account)
 
 
 
@@ -120,7 +121,7 @@ if process.env.LOG_REQUESTS == "true"
 
 # Routes
 # --------------------------------------------
-homeRoutes = require "./api/routes/home"
+homeRoutes = require "./home.cjsx"
 app.use("/", homeRoutes)
 
 # disabled admin for massive ui changes

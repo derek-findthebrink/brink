@@ -50,7 +50,7 @@ _browserPlugins = [
 # --------------------------------------------
 _entryApp = [
 	hotMiddlewareScript
-	nodepath.resolve(ROOT, "ui/js/app/index.coffee")
+	nodepath.resolve(ROOT, "src/client/app/index.coffee")
 ]
 # _entryVendor = [
 # 	"react"
@@ -115,7 +115,7 @@ browser = {
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		# root: [nodepath.resolve(".")]
 		# extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["node_modules", "assets/public/lib", "views/react"]
+		modulesDirectories: ["node_modules", "assets/public/lib", "src/views/react"]
 	devtool: "inline-source-map"
 	progress: true
 

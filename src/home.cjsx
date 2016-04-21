@@ -23,9 +23,9 @@ catch
 
 # Dependency Resolution
 # ------------------------------
-ROOT_DIR = process.env.APP_ROOT
+# ROOT_DIR = process.env.APP_ROOT
 
-routerLocation = nodepath.resolve ROOT_DIR, "router/app-router.cjsx"
+routerLocation = nodepath.resolve __dirname, "router/app-router.cjsx"
 routesGenerator = require routerLocation
 
 

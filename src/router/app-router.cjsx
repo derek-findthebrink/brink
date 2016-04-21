@@ -14,7 +14,7 @@ React = require("react")
 	IndexRoute
 } = require("react-router")
 
-content = require("../content/index")
+content = require("../../content/index")
 
 views_dir = "../views/react/"
 

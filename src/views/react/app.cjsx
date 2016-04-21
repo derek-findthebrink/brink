@@ -4,7 +4,7 @@ React = require("react")
 Footer = require("./modules/footer.cjsx")
 Header = require("./modules/header.cjsx")
 
-content = require("../../content/index.coffee")
+content = require("../../../content/index.coffee")
 # console.log content
 
 App = React.createClass({

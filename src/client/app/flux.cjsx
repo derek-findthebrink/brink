@@ -3,8 +3,8 @@ React = require("react")
 $ = require("jquery")
 
 {browserHistory, match, Router} = require("react-router")
-views = require("../../../views/react/index.cjsx")
-router = require("../../../router/app-router.cjsx")
+views = require("../../views/react/index.cjsx")
+router = require("../../router/app-router.cjsx")
 
 # Helpers
 # ------------------------------------

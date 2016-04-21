@@ -11,7 +11,7 @@ webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-
 
 # Plugins
 # -----------------------------------
-_serverPlugins = [
+plugins = [
 	new ExtractTextPlugin("[name]-[chunkhash].css", {
 		allChunks: true
 		})
@@ -19,24 +19,9 @@ _serverPlugins = [
 	webpackIsomorphicToolsPlugin
 ]
 
-
-
-
 # Entry Points
 # --------------------------------------------
-# _entryViews = "./views/react/index.cjsx"
-# view_dir = nodepath.resolve(".", "views/react")
-app_entry = nodepath.resolve(ROOT, "ui/js/app/index.coffee")
-
-# _entries = {
-# 	home: nodepath.join(view_dir, "home.cjsx")
-# 	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
-# 	stack: nodepath.join(view_dir, "stack.cjsx")
-# 	product: nodepath.join(view_dir, "product.cjsx")
-# 	contact: nodepath.join(view_dir, "contact.cjsx")
-# 	app: nodepath.join(view_dir, "app.cjsx")
-# 	about: nodepath.join(view_dir, "about.cjsx")
-# }
+app_entry = nodepath.resolve(ROOT, "src/client/app/index.coffee")
 
 # Loaders
 # ------------------------------
@@ -102,16 +87,16 @@ serverViews = {
 		app: app_entry
 	# target: "node"
 	context: ROOT
-	plugins: _serverPlugins
+	plugins: plugins
 	devtool: "source-map"
 	resolveLoader:
-		modulesDirectories: ["node_modules", "loaders"]
-		extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"],
-		root: [nodepath.resolve("."), nodepath.resolve("./loaders")]
+		modulesDirectories: ["node_modules"]
+		# extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"],
+		# root: [nodepath.resolve("."), nodepath.resolve("./loaders")]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
-		modulesDirectories: ["node_modules", "assets/public/lib", "views/react"]
+		modulesDirectories: ["node_modules", "assets/public/lib", "src/views/react"]
 	output:
 		path: nodepath.resolve(ROOT, "assets/public")
 		filename: "[name].generated.js"

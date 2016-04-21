@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 nodepath = require("path")
-require("dotenv").config()
+# require("dotenv").config()
 
 log = require("bunyan").createLogger({
 	name: "webpack-isomorphic-init"
@@ -28,5 +28,5 @@ WebpackIsomorphicTools = require("webpack-isomorphic-tools")
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require("../webpack/iso-config"))
 .development(__DEVELOPMENT__)
 .server(rootDir, ->
-	require("../app.coffee")
+	require("../src/app.coffee")
 	)
