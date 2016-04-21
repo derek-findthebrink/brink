@@ -3,14 +3,14 @@ React = require("react")
 $ = require("jquery")
 
 {browserHistory, match, Router} = require("react-router")
-views = require("views/react/index")
-router = require("router/app-router")
+views = require("../../../views/react/index.cjsx")
+router = require("../../../router/app-router.cjsx")
 
 # Helpers
 # ------------------------------------
-renderContent = require("./actions/renderContent")
-renderLearn = require("./actions/renderLearn")
-{getContent} = require('./actions/content-provider')
+renderContent = require("./actions/renderContent.cjsx")
+# renderLearn = require("./actions/renderLearn.cjsx")
+{getContent} = require('./actions/content-provider.coffee')
 
 
 

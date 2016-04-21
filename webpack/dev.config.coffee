@@ -1,6 +1,8 @@
 nodepath = require("path")
 webpack = require("webpack")
 
+ROOT = nodepath.resolve(__dirname, "..")
+
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 _webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
@@ -14,15 +16,16 @@ hotMiddlewareScript = "webpack-hot-middleware/client?path=http://" + _host + ":"
 # Plugins
 # -----------------------------------
 _browserPlugins = [
-	new webpack.ProvidePlugin({
-		$: "jquery"
-		jQuery: "jquery"
-		"window.jQuery": "jquery"
-		React: "react"
-		})
-	new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
-	new webpack.optimize.OccurrenceOrderPlugin()
-	new webpack.NoErrorsPlugin()
+	new webpack.HotModuleReplacementPlugin()
+	# new webpack.ProvidePlugin({
+	# 	$: "jquery"
+	# 	jQuery: "jquery"
+	# 	"window.jQuery": "jquery"
+	# 	React: "react"
+	# 	})
+	# new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
+	# new webpack.optimize.OccurrenceOrderPlugin()
+	# new webpack.NoErrorsPlugin()
 	new webpack.IgnorePlugin(/webpack-stats\.json$/)
 	new webpack.DefinePlugin({
 		__CLIENT__: true
@@ -45,7 +48,10 @@ _browserPlugins = [
 
 # Entry Points
 # --------------------------------------------
-_entryApp = ["./ui/js/app/index.coffee"]
+_entryApp = [
+	hotMiddlewareScript
+	nodepath.resolve(ROOT, "ui/js/app/index.coffee")
+]
 # _entryVendor = [
 # 	"react"
 # 	"react-dom"
@@ -58,8 +64,7 @@ _entryApp = ["./ui/js/app/index.coffee"]
 
 # Development Additions
 # ------------------------------------
-_browserPlugins.push new webpack.HotModuleReplacementPlugin()
-_entryApp.unshift(hotMiddlewareScript)
+# _entryApp.unshift(hotMiddlewareScript)
 # _entryVendor.unshift(hotMiddlewareScript)
 
 
@@ -70,7 +75,7 @@ _loaders = [
 	}
 ]
 
-__css_browser_pipe = "css?sourceMap&modules&importLoaders=2&localIdentName=[name]___[local]__[hash:base64:5]"
+__css_browser_pipe = "css?modules&importLoaders=2&sourceMap&localIdentName=[name]___[local]__[hash:base64:5]"
 __sass_browser_pipe = "sass?outputStyle=expanded&sourceMap"
 
 
@@ -110,8 +115,9 @@ browser = {
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		# root: [nodepath.resolve(".")]
 		# extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["ui/js", "node_modules", "views/react", "assets/public/lib", "ui/css", "router", "content"]
-	devtool: "source-map"
+		modulesDirectories: ["node_modules", "assets/public/lib", "views/react"]
+	devtool: "inline-source-map"
+	progress: true
 
 	plugins: _browserPlugins
 
@@ -121,10 +127,10 @@ browser = {
 		# views: _entryViews
 	}
 	output:
-		path: nodepath.resolve(__dirname, "..", "assets/public/")
+		path: nodepath.resolve(ROOT, "assets/public/")
 		filename: "[name]-[hash].js"
 		chunkFilename: "[name]-[chunkhash].js"
-		publicPath: "http://" + _host + ":" + _port
+		publicPath: "http://" + _host + ":" + _port + "/"
 	module:
 		loaders: _loaders.concat([_cssLoaderBrowser, _scssLoaderBrowser, _sassLoaderBrowser, _cjsxLoaderBrowser])
 }

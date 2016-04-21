@@ -6,9 +6,8 @@ ROOT = nodepath.resolve(__dirname, "..")
 
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
-WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
-
-WebpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+_webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
+webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
 
 # Plugins
 # -----------------------------------
@@ -17,7 +16,7 @@ _serverPlugins = [
 		allChunks: true
 		})
 	# new webpack.NoErrorsPlugin()
-	WebpackIsomorphicToolsPlugin
+	webpackIsomorphicToolsPlugin
 ]
 
 
@@ -99,7 +98,8 @@ _jsonLoaderServer = {
 # Server
 serverViews = {
 	name: "production-build"
-	entry: app_entry
+	entry: 
+		app: app_entry
 	# target: "node"
 	context: ROOT
 	plugins: _serverPlugins
@@ -111,7 +111,7 @@ serverViews = {
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
-		modulesDirectories: ["node_modules", "ui/css", "assets/lib", "views/react"]
+		modulesDirectories: ["node_modules", "assets/public/lib", "views/react"]
 	output:
 		path: nodepath.resolve(ROOT, "assets/public")
 		filename: "[name].generated.js"

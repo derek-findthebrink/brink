@@ -6,7 +6,7 @@ _ = require("lodash")
 ui = $(".content")[0]
 
 
-_c = require("content/index.coffee")
+_c = require("../../../../content/index.coffee")
 
 Home = require "home.cjsx"
 Portfolio = require "portfolio.cjsx"

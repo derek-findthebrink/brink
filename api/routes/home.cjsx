@@ -40,10 +40,10 @@ routesGenerator = require routerLocation
 # }
 # views = require(nodepath.join(viewsLocation, "main" + views_post))
 
-assets = webpackIsomorphicTools.assets()
-log.info assets:assets, "assets per isomorphic"
 
 base = (req, res)->
+	if __DEVELOPMENT__
+		webpackIsomorphicTools.refresh()
 	_h = createMemoryHistory()
 	# injects history and views logic into app-router for rendering
 	routes = routesGenerator(_h)
@@ -71,13 +71,19 @@ base = (req, res)->
 		else if props
 			# insert required props for rendering
 			# console.log "rendering props..", props
+			assets = webpackIsomorphicTools.assets()
+
+			appCss = assets.styles.app || null
+			appJsSrc = assets.javascript.app
+
+			log.info assets:assets, "sent to client"
 			final = <RouterContext {...props} />
 			html = ReactServer.renderToString final
 			res.render("layout", {
 				content: html
 				# css: css
-				appCss: assets.styles.main
-				appJsSrc: assets.javascript.main
+				appCss: appCss
+				appJsSrc: appJsSrc
 				})
 			res.end()
 		)
