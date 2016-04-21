@@ -41,22 +41,21 @@ module.exports =
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $, PageContainer, Portfolio, React, _, styles;
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(16);
+	_ = __webpack_require__(15);
 
-	$ = __webpack_require__(17);
+	$ = __webpack_require__(16);
 
 	PageContainer = __webpack_require__(2);
 
-	styles = __webpack_require__(26);
+	styles = __webpack_require__(25);
 
 	Portfolio = React.createClass({
 	  contextTypes: {
@@ -81,15 +80,13 @@ module.exports =
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, PageContainer, React;
@@ -112,8 +109,7 @@ module.exports =
 
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ContentHeader, React, styles;
@@ -155,35 +151,48 @@ module.exports =
 
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"content-header___container__30eb9","inner":"content-header___inner__3R29O","logo":"content-header___logo__3kjkH","copy":"content-header___copy__3s-Qp"};
 
 /***/ },
-
-/***/ 16:
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-
-/***/ 17:
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-
-/***/ 26:
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"portfolio___container__cLtjZ"};
 
 /***/ }
-
-/******/ });
+/******/ ]);

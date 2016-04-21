@@ -45,7 +45,7 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var App, Footer, Header, Link, React, content, styles;
+	var App, Footer, Header, Link, React, content;
 
 	React = __webpack_require__(1);
 
@@ -55,9 +55,7 @@ module.exports =
 
 	Header = __webpack_require__(9);
 
-	styles = __webpack_require__(14);
-
-	content = __webpack_require__(15);
+	content = __webpack_require__(14);
 
 	App = React.createClass({
 	  childContextTypes: {
@@ -70,6 +68,9 @@ module.exports =
 	  },
 	  componentDidMount: function() {},
 	  render: function() {
+	    console.log({
+	      props: this.props
+	    });
 	    return React.createElement("div", null, React.createElement(Header, null), React.createElement("main", null, this.props.children), React.createElement(Footer, null));
 	  }
 	});
@@ -239,12 +240,6 @@ module.exports =
 
 /***/ },
 /* 14 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 15 */
 /***/ function(module, exports) {
 
 	var About, Contact, Home, ImgCreator, Portfolio, Products, Stack;
@@ -545,7 +540,7 @@ module.exports =
 	      description: "everything you need to get your company online.",
 	      category: "packages",
 	      product: "startup-package",
-	      price: "$1000",
+	      price: "1000",
 	      priceType: "base price",
 	      includes: ["business cards", "email addresses", "website"],
 	      learnData: {
@@ -560,7 +555,7 @@ module.exports =
 	      description: "want a website? We'll design it, test it and get it running on the web within 5 days.",
 	      category: "websites",
 	      product: "basic",
-	      price: "$600",
+	      price: "600",
 	      priceType: "base price",
 	      includes: ["a website", "mobile optimization", "up-to-date html standards"],
 	      learnData: {
@@ -575,7 +570,8 @@ module.exports =
 	      description: "purchase and manage your domain names",
 	      category: "websites",
 	      product: "domain",
-	      price: "varies",
+	      price: "10",
+	      priceType: "starting at",
 	      active: false,
 	      includes: ["managed domain", "automatic renewals", "domain hunting"],
 	      learnData: {
@@ -590,7 +586,7 @@ module.exports =
 	      description: "email solutions for your small business. Grow your business with a professional email for your contacts.",
 	      category: "email",
 	      product: "small-business",
-	      price: "$50",
+	      price: "50",
 	      priceType: "per month",
 	      includes: ["two emails", "unlimited aliases", "premium support"],
 	      learnData: {
@@ -605,7 +601,7 @@ module.exports =
 	      description: "personal email solutions. Can't get the email you want on Gmail? We've got you covered.",
 	      category: "email",
 	      product: "personal",
-	      price: "$20",
+	      price: "20",
 	      active: false,
 	      priceType: "per month",
 	      includes: ["one email", "high-quality interface"],
@@ -621,7 +617,7 @@ module.exports =
 	      description: "custom iconography for your print and web projects",
 	      category: "graphics",
 	      product: "iconography",
-	      price: "$30",
+	      price: "30",
 	      active: false,
 	      priceType: "per hour",
 	      includes: ["custom iconography set", "brand syncing"],
@@ -636,7 +632,7 @@ module.exports =
 	      title: "site layouts",
 	      description: "speed up your website development. We'll create custom wireframes based on your business needs and the latest web-standards.",
 	      category: "graphics",
-	      price: "$30",
+	      price: "30",
 	      active: false,
 	      priceType: "per hour",
 	      product: "site-layouts",
@@ -652,7 +648,7 @@ module.exports =
 	      title: "basic app",
 	      description: "need more than just a website? Data-driven web applications are the future of the internet. We'll get you started.",
 	      category: "apps",
-	      price: "$40",
+	      price: "40",
 	      priceType: "per hour",
 	      includes: ["our custom-built library with monthly updates", "everything customizeable", "api integration with external services", "premium support"],
 	      product: "basic",
@@ -668,7 +664,7 @@ module.exports =
 	      description: "already have an app but need new features? We've got you covered.",
 	      category: "apps",
 	      product: "custom-component",
-	      price: "$40",
+	      price: "40",
 	      priceType: "per hour",
 	      includes: ["complete integration with your stack"],
 	      learnData: {

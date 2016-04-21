@@ -17,11 +17,6 @@ catch
 	log.info = console.log
 
 
-
-
-
-
-
 Home = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object

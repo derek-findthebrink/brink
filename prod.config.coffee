@@ -6,20 +6,8 @@ ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 # Plugins
 # -----------------------------------
-_browserPlugins = [
-	new webpack.ProvidePlugin({
-		$: "jquery"
-		jQuery: "jquery"
-		"window.jQuery": "jquery"
-		React: "react"
-		})
-	new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
-	new webpack.optimize.OccurrenceOrderPlugin()
-	new webpack.NoErrorsPlugin()
-]
-
 _serverPlugins = [
-	new ExtractTextPlugin("public/global.css", {
+	new ExtractTextPlugin("public/css/[name].css", {
 		allChunks: true
 		})
 	new webpack.NoErrorsPlugin()
@@ -30,19 +18,11 @@ _serverPlugins = [
 
 # Entry Points
 # --------------------------------------------
-# _entryApp = ["./ui/js/app/index.coffee"]
-_entryVendor = [
-	"react"
-	"react-dom"
-	"lodash"
-	"webcomponentsjs/webcomponents.min.js"
-	"jquery"
-	"slicknav/dist/jquery.slicknav.js"
-	"waypoints/lib/jquery.waypoints.min.js"
-]
 # _entryViews = "./views/react/index.cjsx"
 view_dir = nodepath.resolve(".", "views/react")
-_entryViews = {
+app_entry = nodepath.resolve(".", "ui/js/app/index.coffee")
+
+_entries = {
 	home: nodepath.join(view_dir, "home.cjsx")
 	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
 	stack: nodepath.join(view_dir, "stack.cjsx")
@@ -51,47 +31,15 @@ _entryViews = {
 	app: nodepath.join(view_dir, "app.cjsx")
 	about: nodepath.join(view_dir, "about.cjsx")
 }
-# _entryViews = nodepath.join(view_dir, "index.cjsx")
 
-# Development Additions
-# ------------------------------------
-if process.env.HMR == "true"
-	_browserPlugins.push new webpack.HotModuleReplacementPlugin()
-	_entryApp.push(hotMiddlewareScript)
-	_entryVendor.push(hotMiddlewareScript)
-
-
+# Loaders
+# ------------------------------
 _loaders = [
 	{
 		test: /\.coffee$/
 		loaders: ["coffee"]
 	}
 ]
-
-__css_browser_pipe = "css?modules&importLoaders=1&localIdentName=[name]___[local]__[hash:base64:5]"
-
-
-# BROWSER
-# ---------------------------------------------
-_cssLoaderBrowser = {
-	test: /\.css$/
-	# loader: ExtractTextPlugin.extract("css")
-	loaders: ["style", __css_browser_pipe]
-}
-_scssLoaderBrowser = {
-	test: /\.scss$/
-	loaders: ["style", __css_browser_pipe, "sass"]
-}
-_sassLoaderBrowser = {
-	test: /\.sass$/
-	loaders: ["style", __css_browser_pipe, "sass"]
-}
-_cjsxLoaderBrowser = {
-	test: /\.cjsx$/
-	# loaders: ["react-hot", "coffee", "cjsx"]
-	loaders: ["coffee", "cjsx"]
-}
-
 
 
 # SERVER
@@ -100,7 +48,7 @@ _cjsxLoaderBrowser = {
 # _myCoolServerCssLoader = nodepath.join(__dirname, "loaders", "style-collector")
 __css_server_pipe = "css?sourceMap&modules&importLoaders=1&localIdentName=[name]___[local]__[hash:base64:5]"
 __w_sass = __css_server_pipe + "!sass"
-__style_server_pipe = "style?-singleton"
+__style_server_pipe = "style"
 
 _sassLoaderServer = {
 	test: /\.sass$/
@@ -140,7 +88,7 @@ _cjsxLoaderServer = {
 # Server
 serverViews = {
 	name: "server-side-views-package"
-	entry: _entryViews
+	entry: _entries
 	target: "node"
 	context: __dirname
 	plugins: _serverPlugins

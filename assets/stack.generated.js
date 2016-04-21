@@ -50,13 +50,13 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(16);
+	_ = __webpack_require__(15);
 
 	CSSModules = __webpack_require__(10);
 
 	PageContainer = __webpack_require__(2);
 
-	styles = __webpack_require__(31);
+	styles = __webpack_require__(30);
 
 	TradeImage = React.createClass({
 	  render: function() {
@@ -237,14 +237,14 @@ module.exports =
 
 /***/ },
 
-/***/ 16:
+/***/ 15:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
 
-/***/ 31:
+/***/ 30:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

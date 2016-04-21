@@ -10,6 +10,8 @@ ReactServer = require("react-dom/server")
 Q = require("q")
 nodepath = require("path")
 
+# Logger
+# ----------------------------
 try
 	log = appLogger.child({
 		type: "route"
@@ -19,31 +21,49 @@ catch
 	log = console
 	log.info = console.log
 
+# Dependency Resolution
+# ------------------------------
 ROOT_DIR = process.env.APP_ROOT
 
 routerLocation = nodepath.resolve ROOT_DIR, "router/app-router.cjsx"
+
 viewsLocation = nodepath.resolve ROOT_DIR, "assets"
 views_post = ".generated.js"
 
 routesGenerator = require routerLocation
+_getView = (name)->
+	return nodepath.join(viewsLocation, name + views_post)
 views = {
-	home: require(nodepath.join(viewsLocation, "home" + views_post))
-	portfolio: require(nodepath.join(viewsLocation, "portfolio" + views_post))
-	stack: require(nodepath.join(viewsLocation, "stack" + views_post))
-	product: require(nodepath.join(viewsLocation, "product" + views_post))
-	contact: require(nodepath.join(viewsLocation, "contact" + views_post))
-	app: require(nodepath.join(viewsLocation, "app" + views_post))
+	home: require _getView("home")
+	portfolio: require _getView("portfolio")
+	stack: require _getView("stack")
+	product: require _getView("product")
+	contact: require _getView("contact")
+	app: require _getView("app")
+	about: require _getView("about")
 }
 # views = require(nodepath.join(viewsLocation, "main" + views_post))
-console.log views
 
 base = (req, res)->
 	_h = createMemoryHistory()
+	# injects history and views logic into app-router for rendering
 	routes = routesGenerator(_h, views)
+	# creates location match for use in following match function
 	location = _h.createLocation(req.url)
+	css = null
+	switch req.url
+		when "/" then css = "/css/home.css"
+		when "/portfolio" then css = "/css/portfolio.css"
+		when "/about" then css = "/css/about.css"
+		when "/stack" then css = "/css/stack.css"
+		when "/products-and-services" then css = "/css/product.css"
+		when "/contact" then css = "/css/contact.css"
+		else
+			# need to create entire global styelsheet for fallback
+			css = "/undefined"
 
 	match({routes, location}, (err, redirect, props)->
-		log.info "match occurred"
+		log.info {url: req.url, location: location, routes:routes}, "match occurred"
 		if err
 			log.error err, "error"
 
@@ -56,6 +76,8 @@ base = (req, res)->
 			html = ReactServer.renderToString final
 			res.render("layout", {
 				content: html
+				css: css
+				appCss: "/css/app.css"
 				})
 			res.end()
 		)

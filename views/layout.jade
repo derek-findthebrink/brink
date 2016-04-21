@@ -27,11 +27,12 @@ html
 		<meta name="msapplication-TileColor" content="#40526B">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#40526B">
+		link(rel="stylesheet" href=css)
+		link(rel="stylesheet" href=appCss)
+	body
+		#app-container!=content
 		//- typekit
 		<script src="https://use.typekit.net/rsz1its.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-	body
-		#app-container!=content
 		script(src="/vendor.bundle.js")
 		script(src="/app.js")

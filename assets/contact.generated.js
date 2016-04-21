@@ -49,17 +49,17 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(16);
+	_ = __webpack_require__(15);
 
-	$ = __webpack_require__(17);
+	$ = __webpack_require__(16);
 
 	PageContainer = __webpack_require__(2);
 
-	ref = __webpack_require__(18), Field = ref.Field, ButtonField = ref.ButtonField;
+	ref = __webpack_require__(17), Field = ref.Field, ButtonField = ref.ButtonField;
 
 	CSSModules = __webpack_require__(10);
 
-	styles = __webpack_require__(20);
+	styles = __webpack_require__(19);
 
 	Captcha = React.createClass({
 	  render: function() {
@@ -295,27 +295,26 @@ module.exports =
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */,
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ButtonField, Field, InputSwitch, React, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(19);
+	styles = __webpack_require__(18);
 
 	InputSwitch = React.createClass({
 	  render: function() {
@@ -384,14 +383,14 @@ module.exports =
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"form-field":"form___form-field__5Bdtc","field":"form___field__3U_gR","button-field":"form___button-field__2_kpe"};
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

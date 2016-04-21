@@ -42,6 +42,7 @@ _entryVendor = [
 	"jquery"
 	"waypoints/lib/jquery.waypoints.min.js"
 ]
+# _entryGlobal = "global.sass"
 
 # Development Additions
 # ------------------------------------

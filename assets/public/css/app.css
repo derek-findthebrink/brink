@@ -88,10 +88,54 @@ html {
 .main-nav___main__1HWc- {
   background-color: #40526B; }
   .main-nav___main__1HWc- ul {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    box-direction: normal;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-box-pack: distribute;
+    -moz-box-pack: distribute;
+    box-pack: distribute;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+    justify-content: space-around;
+    -ms-flex-pack: distribute;
     padding-left: 0;
-    margin: 0; }
+    margin: 0;
+    border-top: 1px solid #6b84a6; }
   .main-nav___main__1HWc- li {
-    list-style-type: none; }
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    transition: 0.25s;
+    list-style-type: none;
+    text-align: center;
+    padding: 0.25em; }
+    .main-nav___main__1HWc- li:hover {
+      background-color: #6b84a6;
+      border-radius: 5px; }
 html {
   box-sizing: border-box; }
 
@@ -100,13 +144,21 @@ html {
 
 .header___app__3p2me {
   font-family: "ff-enzo-web", "Raleway", sans-serif;
-  background-color: #40526B; }
-  .header___app__3p2me h1 {
-    margin: 0;
-    padding: 5px; }
+  background-color: #40526B;
+  text-align: center; }
+  .header___app__3p2me h2 {
+    display: inline; }
+  .header___app__3p2me img {
+    width: 2em;
+    display: inline; }
   .header___app__3p2me a {
     text-decoration: none;
     color: white; }
-
-.header___header__2ZUVm {
-  font-weight: lighter; }
+  .header___app__3p2me h1 {
+    font-size: 250%;
+    margin: 0;
+    padding: 0.25em;
+    font-weight: lighter; }
+  .header___app__3p2me nav, .header___app__3p2me div {
+    width: 60%;
+    margin: 0 auto; }

@@ -51,13 +51,13 @@ module.exports =
 
 	PageContainer = __webpack_require__(2);
 
-	BlogWidget = __webpack_require__(21);
+	BlogWidget = __webpack_require__(20);
 
-	FeaturedProducts = __webpack_require__(22);
+	FeaturedProducts = __webpack_require__(21);
 
-	Story = __webpack_require__(23);
+	Story = __webpack_require__(22);
 
-	styles = __webpack_require__(25);
+	styles = __webpack_require__(24);
 
 	try {
 	  log = appLogger.child({
@@ -179,8 +179,7 @@ module.exports =
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */,
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BlogWidget, React;
@@ -199,7 +198,7 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var FeaturedProducts, React;
@@ -218,14 +217,14 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Benefits, How, Now, React, Story, StoryItem, Why, items, styles;
 
 	React = __webpack_require__(1);
 
-	styles = __webpack_require__(24);
+	styles = __webpack_require__(23);
 
 	items = [
 	  {
@@ -318,14 +317,14 @@ module.exports =
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"container":"story___container__2NNsF","storyItem":"story___storyItem__34eUm","inner":"story___inner__2Y7YD","threeCol":"story___threeCol__1x1Al","twoCol":"story___twoCol__2gzEi","callout":"story___callout__3i0xM","colorContainer":"story___colorContainer__PV6ST"};
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

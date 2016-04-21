@@ -6,9 +6,9 @@
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
     "start": "NODE_ENV=production coffee app.coffee",
-    "prestartdev": "webpack --progress --display-error-details",
+    "prestartdev": "npm run ui:css && webpack --progress --display-error-details",
     "startdev": "coffee app.coffee | bunyan",
-    "ui:css": "node-sass -w ./ui/css/global.sass ./assets/public/global.css",
+    "ui:css": "node-sass ./ui/css/global.sass ./assets/public/global.css",
     "watch": "npm run ui:css & npm run ui:js",
     "deploy:staging": "git commit -am 'prep for pm2 deploy' && git push origin develop && pm2 deploy ecosystem.json staging",
     "ssh:staging": "sh tasks/ssh-server.sh"

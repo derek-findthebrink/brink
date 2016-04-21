@@ -3,7 +3,6 @@ React = require("react")
 
 Footer = require("./modules/footer")
 Header = require("./modules/header")
-styles = require("global.sass")
 
 content = require("../../content/index")
 # console.log content
@@ -23,6 +22,7 @@ App = React.createClass({
 		# 		$("nav.app-nav-main, header.header-main").hide()
 		# 	})
 	render: ->
+		console.log props:@props
 		<div>
 			<Header />
 			<main>

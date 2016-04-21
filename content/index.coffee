@@ -295,7 +295,7 @@ Products = {
 			description: "everything you need to get your company online."
 			category: "packages"
 			product: "startup-package"
-			price: "$1000"
+			price: "1000"
 			priceType: "base price"
 			includes: ["business cards", "email addresses", "website"]
 			learnData:
@@ -342,7 +342,7 @@ Products = {
 			get it running on the web within 5 days."
 			category: "websites"
 			product: "basic"
-			price: "$600"
+			price: "600"
 			priceType: "base price"
 			includes: ["a website", "mobile optimization", "up-to-date html standards"]
 			learnData:
@@ -377,7 +377,8 @@ Products = {
 			description: "purchase and manage your domain names"
 			category: "websites"
 			product: "domain"
-			price: "varies"
+			price: "10"
+			priceType: "starting at"
 			active: false
 			includes: ["managed domain", "automatic renewals", "domain hunting"]
 			learnData:
@@ -413,7 +414,7 @@ Products = {
 			business with a professional email for your contacts."
 			category: "email"
 			product: "small-business"
-			price: "$50"
+			price: "50"
 			priceType: "per month"
 			includes: ["two emails", "unlimited aliases", "premium support"]
 			learnData:
@@ -449,7 +450,7 @@ Products = {
 			on Gmail? We've got you covered."
 			category: "email"
 			product: "personal"
-			price: "$20"
+			price: "20"
 			active: false
 			priceType: "per month"
 			includes: ["one email", "high-quality interface"]
@@ -485,7 +486,7 @@ Products = {
 			description: "custom iconography for your print and web projects"
 			category: "graphics"
 			product: "iconography"
-			price: "$30"
+			price: "30"
 			active: false
 			priceType: "per hour"
 			includes: ["custom iconography set", "brand syncing"]
@@ -521,7 +522,7 @@ Products = {
 			description: "speed up your website development. We'll create custom
 			wireframes based on your business needs and the latest web-standards."
 			category: "graphics"
-			price: "$30"
+			price: "30"
 			active: false
 			priceType: "per hour"
 			product: "site-layouts"
@@ -562,7 +563,7 @@ Products = {
 			description: "need more than just a website? Data-driven web applications
 			are the future of the internet. We'll get you started."
 			category: "apps"
-			price: "$40"
+			price: "40"
 			priceType: "per hour"
 			includes: [
 				"our custom-built library with monthly updates"
@@ -604,7 +605,7 @@ Products = {
 			We've got you covered."
 			category: "apps"
 			product: "custom-component"
-			price: "$40"
+			price: "40"
 			priceType: "per hour"
 			includes: [
 				"complete integration with your stack"

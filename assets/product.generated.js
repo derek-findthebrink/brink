@@ -49,19 +49,19 @@ module.exports =
 
 	React = __webpack_require__(1);
 
-	_ = __webpack_require__(16);
+	_ = __webpack_require__(15);
 
-	$ = __webpack_require__(17);
+	$ = __webpack_require__(16);
 
 	Link = __webpack_require__(6).Link;
 
-	ReactCSSTransitionGroup = __webpack_require__(27);
+	ReactCSSTransitionGroup = __webpack_require__(26);
 
-	styles = __webpack_require__(28);
+	styles = __webpack_require__(27);
 
 	PageContainer = __webpack_require__(2);
 
-	HorizontalMenu = __webpack_require__(29).HorizontalMenu;
+	HorizontalMenu = __webpack_require__(28).HorizontalMenu;
 
 	ProductItem = React.createClass({
 	  render: function() {
@@ -264,19 +264,19 @@ module.exports =
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */,
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = require("jquery");
 
 /***/ },
+/* 17 */,
 /* 18 */,
 /* 19 */,
 /* 20 */,
@@ -285,21 +285,20 @@ module.exports =
 /* 23 */,
 /* 24 */,
 /* 25 */,
-/* 26 */,
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-css-transition-group");
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"product-trans-enter":"product___product-trans-enter__1vKIT","product-trans-leave":"product___product-trans-leave__2OT7P","fadeIn":"product___fadeIn__3Jefo","fadeOut":"product___fadeOut__3x4MY","products-list":"product___products-list__1X-N4","product-item":"product___product-item__3gLpk","description":"product___description__2jNPB","img":"product___img__3lwZp","header":"product___header__1Tfep","details":"product___details__1bNtR","includes":"product___includes__NLVvy","pricing":"product___pricing__3Qxc7","action-callout":"product___action-callout__2m09Y","learn":"product___learn__20KlH","quote":"product___quote__DZjQo","currency":"product___currency__3VoSO"};
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var CSSModules, HorizontalMenu, Link, MenuItem, React, styles;
@@ -310,7 +309,7 @@ module.exports =
 
 	Link = __webpack_require__(6).Link;
 
-	styles = __webpack_require__(30);
+	styles = __webpack_require__(29);
 
 	MenuItem = React.createClass({
 	  render: function() {
@@ -357,7 +356,7 @@ module.exports =
 
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
