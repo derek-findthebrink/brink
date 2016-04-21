@@ -1,5 +1,4 @@
 require("coffee-react/register")
-require("dotenv").config()
 
 nodepath = require("path")
 

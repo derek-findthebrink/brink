@@ -53,9 +53,9 @@ _loaders = [
 # ---------------------------------------------------------
 # my cool loader
 # _myCoolServerCssLoader = nodepath.join(__dirname, "loaders", "style-collector")
-__css_server_pipe = "css?sourceMap&modules&importLoaders=1&localIdentName=[name]___[local]__[hash:base64:5]"
-__w_sass = __css_server_pipe + "!sass"
 __style_server_pipe = "style"
+__css_server_pipe = "css?modules&importLoaders=2&sourceMap"
+__w_sass = __css_server_pipe + "!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true"
 
 _sassLoaderServer = {
 	test: /\.sass$/
@@ -100,7 +100,7 @@ _jsonLoaderServer = {
 serverViews = {
 	name: "production-build"
 	entry: app_entry
-	target: "node"
+	# target: "node"
 	context: ROOT
 	plugins: _serverPlugins
 	devtool: "source-map"
@@ -117,8 +117,8 @@ serverViews = {
 		filename: "[name].generated.js"
 		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "/"
-		libraryTarget: "commonjs2"
-	externals: /^[a-z\-0-9]+$/
+		# libraryTarget: "commonjs2"
+	# externals: /^[a-z\-0-9]+$/
 	module:
 		loaders: _loaders.concat([
 			_cssLoaderServer

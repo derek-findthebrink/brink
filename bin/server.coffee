@@ -21,6 +21,7 @@ log.info {
 		development: __DEVELOPMENT__
 	env:
 		node: process.env.NODE_ENV
+	root: rootDir
 }, "initializing webpack with vars"
 
 WebpackIsomorphicTools = require("webpack-isomorphic-tools")

@@ -7,6 +7,7 @@ PageContainer = require("./modules/container-page.cjsx")
 
 Captcha = React.createClass({
 	render: ->
+		styles = require("./contact.sass")
 		<div className={styles["g-recaptcha"]} data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
 	})
 

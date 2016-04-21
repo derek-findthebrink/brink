@@ -40,6 +40,9 @@ routesGenerator = require routerLocation
 # }
 # views = require(nodepath.join(viewsLocation, "main" + views_post))
 
+assets = webpackIsomorphicTools.assets()
+log.info assets:assets, "assets per isomorphic"
+
 base = (req, res)->
 	_h = createMemoryHistory()
 	# injects history and views logic into app-router for rendering
@@ -72,8 +75,9 @@ base = (req, res)->
 			html = ReactServer.renderToString final
 			res.render("layout", {
 				content: html
-				css: css
-				appCss: "/css/app.css"
+				# css: css
+				appCss: assets.styles.main
+				appJsSrc: assets.javascript.main
 				})
 			res.end()
 		)
