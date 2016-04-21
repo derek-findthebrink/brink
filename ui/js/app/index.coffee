@@ -2,15 +2,13 @@
 
 # Requires
 # -----------------------------
-Flux = require("./flux")
+Flux = require("./flux.cjsx")
 
 # App
 # ---------------------------
 app = window.app = {}
 
 # google analytics
-require("./modules/ga")
-# slicknav
-# require("./modules/slicknav")
+require("./modules/ga.js")
+
 app.flux = new Flux().initialize()
-# app.router = new Router()

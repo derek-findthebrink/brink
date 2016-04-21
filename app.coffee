@@ -1,5 +1,4 @@
 require("coffee-react/register")
-require("dotenv").config()
 
 nodepath = require("path")
 
@@ -55,9 +54,9 @@ Account = mongoose.model("Account")
 # ------------------------------------------
 app = express()
 
-if process.env.HMR == "true"
-	log.info "loading webpack middleware..."
-	require("./loaders/webpack-middleware.coffee")(app)
+# if process.env.HMR == "true"
+# 	log.info "loading webpack middleware..."
+# 	require("./loaders/webpack-middleware.coffee")(app)
 
 app.application_name = "brink-server"
 app.set("views", "views")

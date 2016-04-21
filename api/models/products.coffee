@@ -13,6 +13,13 @@ model = new Schema({
 	title: String
 	description: String
 	includes: [String]
+	price: {
+		value: Number
+		currency: String
+		priceType:
+			type: String
+			default: "undefined"
+	}
 	learnData: {
 		inputs: [img]
 		process: [img]
@@ -20,7 +27,7 @@ model = new Schema({
 		outputs: [img]
 		callout: [img]
 	}
-	available:
+	active:
 		type: Boolean
 		default: false
 	unitsAvailable:

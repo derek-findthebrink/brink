@@ -1,10 +1,10 @@
 React = require("react")
 {Link} = require("react-router")
 
-styles = require("modules/main-nav.sass")
 
 Nav = React.createClass({
 	render: ->
+		styles = require("./main-nav.sass")
 		<nav className={styles.main}>
 			<ul>
 				<li><Link to="/products-and-services">products</Link></li>

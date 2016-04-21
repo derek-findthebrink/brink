@@ -4,14 +4,41 @@
   "description": "",
   "main": "app.coffee",
   "scripts": {
+    "start": "better-npm-run start-prod",
+    "start-dev": "better-npm-run start-dev",
+    "prestartdev": "npm run ui:css && webpack --progress --display-error-details",
+    "watch-client": "better-npm-run watch-client",
+    "build": "better-npm-run build",
+    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
-    "start": "NODE_ENV=production coffee app.coffee",
-    "prestartdev": "webpack --progress --display-error-details",
-    "startdev": "coffee app.coffee | bunyan",
-    "ui:css": "node-sass -w ./ui/css/global.sass ./assets/public/global.css",
-    "watch": "npm run ui:css & npm run ui:js",
+    "ui:css": "node-sass ./views/global.sass ./assets/public/global.css",
     "deploy:staging": "git commit -am 'prep for pm2 deploy' && git push origin develop && pm2 deploy ecosystem.json staging",
     "ssh:staging": "sh tasks/ssh-server.sh"
+  },
+  "betterScripts": {
+    "start-prod": {
+      "command": "coffee ./bin/server.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "start-dev": {
+      "command": "coffee ./bin/server.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "development",
+        "LOG_REQUESTS": "false"
+      }
+    },
+    "watch-client": {
+      "command": "coffee ./webpack/webpack-dev-server.coffee | bunyan",
+      "env": {}
+    },
+    "build": {
+      "command": "npm run ui:css && webpack --display-error-details --config ./webpack.config.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -26,10 +53,12 @@
   "dependencies": {
     "async": "^1.5.0",
     "backbone": "^1.2.3",
+    "better-npm-run": "0.0.8",
     "body-parser": "^1.14.1",
     "bunyan": "^1.8.0",
     "coffee-react": "^4.1.0",
     "compression": "^1.6.1",
+    "concurrently": "^2.0.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.1.0",
     "cookie-parser": "^1.4.0",
@@ -38,6 +67,7 @@
     "express-session": "^1.13.0",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
+    "json-loader": "^0.5.4",
     "lodash": "^4.6.1",
     "moment": "^2.10.6",
     "mongoose": "^4.3.0",
@@ -51,6 +81,7 @@
     "react-css-modules": "^3.7.6",
     "react-dom": "^0.14.3",
     "react-router": "^2.1.1",
+    "redux": "^3.5.1",
     "request": "^2.70.0",
     "resolve-url-loader": "^1.4.3",
     "serve-favicon": "^2.3.0",
@@ -58,6 +89,7 @@
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "waypoints": "^4.0.0",
+    "webpack-isomorphic-tools": "^2.2.47",
     "webpack-require": "0.0.16"
   },
   "devDependencies": {
@@ -81,7 +113,6 @@
     "webpack": "^1.13.0",
     "webpack-closure-compiler": "^2.0.2",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0",
-    "webpack-isomorphic-tools": "^2.2.47"
+    "webpack-hot-middleware": "^2.10.0"
   }
 }

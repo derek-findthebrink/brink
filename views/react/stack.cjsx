@@ -1,33 +1,34 @@
 React = require("react")
 _ = require("lodash")
-CSSModules = require("react-css-modules")
-PageContainer = require("./modules/container-page")
+PageContainer = require("./modules/container-page.cjsx")
 
-styles = require("pages/stack.sass")
 
 # Trade Image
 # --------------------------------------------------------
 TradeImage = React.createClass({
 	render: ->
-		imgSrc = @props.src || "/brink-logo-small.svg"
-		if imgSrc == ""
-			imgSrc = "/brink-logo-small.svg"
-		style = {
-			backgroundImage: ["url(", imgSrc, ")"].join("")
-		}
-		overlay = null
-		if @props.overlay
-
+		styles = require("./stack.sass")
+		# manage secondary trade image types
+		if @props.secondary
+			theClassName = styles.secondaryTradeImg
 			overlay = (
 				<div className={styles.overlay}>
 					<h4 className={styles["overlay-text"]}>{@props.title}</h4>
 				</div>
 				)
+		else
+			theClassName = styles.mainTradeImg
+			overlay = null
 
+		# manage unset image src properties
+		if (@props.src == "" || !@props.src)
+			imgsrc = "/brink-logo-small.svg"
+		else
+			imgsrc = @props.src
 
-		<div styleName="trade">
+		<div className={theClassName}>
 			<a href={@props.href} target="_blank">
-				<div className={@props.addClass} style={style} />
+				<iron-image src={imgsrc} sizing="contain"></iron-image>
 				{overlay}
 			</a>
 		</div>
@@ -39,9 +40,10 @@ TradeImage = React.createClass({
 # Single Views
 StackItemMain = React.createClass({
 	render: ->
+		styles = require("./stack.sass")
 		<li>
-			<TradeImage addClass={styles.mainTradeImg} {...@props.img} title={@props.title} />
-			<div>
+			<TradeImage {...@props.img} title={@props.title} />
+			<div className={styles.mainDescription}>
 				<h3 className={styles.stackHeader}>{@props.title}</h3>
 				<span className={styles.stackDescription}>{@props.description}</span>
 			</div>
@@ -51,7 +53,7 @@ StackItemMain = React.createClass({
 StackItemSecondary = React.createClass({
 	render: ->
 		<li>
-			<TradeImage {...@props.img} addClass={styles.secondaryTradeImg} title={@props.title} overlay={true} />
+			<TradeImage {...@props.img} title={@props.title} secondary={true} />
 		</li>
 	})
 
@@ -63,6 +65,7 @@ Stack = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		styles = require("./stack.sass")
 		content = @context.content["Stack"]
 		_primary = _.filter content.list, (x)->
 			x.secondary == false
@@ -76,13 +79,13 @@ Stack = React.createClass({
 
 
 		<PageContainer {...content}>
-			<ul styleName="listMain">
+			<ul className={styles.listMain}>
 				{primary}
 			</ul>
-			<ul styleName="listSecondary">
+			<ul className={styles.listSecondary}>
 				{secondary}
 			</ul>
 		</PageContainer>
 	})
 
-module.exports = CSSModules(Stack, styles)
+module.exports = Stack

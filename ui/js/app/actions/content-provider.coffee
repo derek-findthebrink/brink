@@ -1,7 +1,7 @@
 Q = require("q")
 
 getContent = ->
-	content = require('content/index')
+	content = require('../../../../content/index')
 	app.content = content
 	console.log app
 

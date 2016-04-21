@@ -1,6 +1,5 @@
 React = require("react")
 
-styles = require("modules/form.sass")
 
 InputSwitch = React.createClass({
 	render: ->
@@ -15,6 +14,7 @@ InputSwitch = React.createClass({
 
 Field = React.createClass({
 	render: ->
+		styles = require("./form.sass")
 		label = @props.label || @props.name
 		type = @props.type
 		change = @props.change
@@ -48,6 +48,7 @@ Field = React.createClass({
 
 ButtonField = React.createClass({
 	render: ->
+		styles = require("./form.sass")
 		<div className={styles["button-field"]}>
 			{@props.children}
 		</div>

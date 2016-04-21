@@ -1,11 +1,10 @@
 React = require("react")
 {Link} = require("react-router")
 
-Footer = require("./modules/footer")
-Header = require("./modules/header")
-styles = require("global.sass")
+Footer = require("./modules/footer.cjsx")
+Header = require("./modules/header.cjsx")
 
-content = require("../../content/index")
+content = require("../../content/index.coffee")
 # console.log content
 
 App = React.createClass({

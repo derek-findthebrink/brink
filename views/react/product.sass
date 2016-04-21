@@ -1,0 +1,186 @@
+@import "../_config.sass"
+
+$header: $header-color
+$border: 1px solid grey
+$callout-do-it: lighten(saturate($go-green, 5%), 15%)
+$callout-learn: lighten(saturate($theme-base, 35%), 45%)
+$pricing-color: darken($theme-base, 10%)
+
+
+
+// Animations
+// --------------------------------------
+
+@-webkit-keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+%fadeIn
+  -webkit-animation-name: fadeIn
+  animation-name: fadeIn
+
+@-webkit-keyframes fadeOut
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+@keyframes fadeOut
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+%fadeOut
+  -webkit-animation-name: fadeOut
+  animation-name: fadeOut
+
+
+.product-trans-enter
+	@extend %animated
+	@extend %fadeIn
+	
+.product-trans-leave
+	@extend %animated
+	@extend %fadeOut
+
+
+// Actual
+// --------------------------------------
+.products-list
+	margin: 0 auto
+	width: 80%
+	& > div
+		@include row(table)
+
+
+.product-item
+	// shell display options
+	// --------------------------------
+	@include transition(0.25s)
+	@include thin-border
+	margin-bottom: 0.5em
+	// adds visual cue to engage deeper
+	&:hover
+		border-color: lighten($theme-base, 15%)
+
+	// content options
+	// --------------------------------
+	// left-side image options
+
+$bcg: lighten($theme-base, 40%)
+
+
+.description
+	@include span-columns(7 of 10)
+	height: 100%
+	padding-top: 1em
+	padding-left: 0.5em
+	padding-bottom: 1em
+	vertical-align: top
+	padding-right: 2em
+	// & > div
+	// 	@include row(table)
+.img
+	@include span-columns(3 of 10)
+	vertical-align: middle
+	img
+		width: 100%
+	// text options for right-side
+.header
+	font-size: 120%
+	margin-bottom: 1.5em
+	h2
+		color: $header-color
+		margin: 0 0 2px 0
+		padding-bottom: 2px
+		border-bottom: 1px solid rgba($header-color, 0.5)
+	p
+		font-style: italic
+		margin: 0.5em 0
+		font-size: 80%
+
+.details
+	@include align-items(stretch)
+	@include display(flex)
+	@include flex-direction(row)
+	@include justify-content(flex-start)
+.includes
+	@include span-columns(1 of 2)
+	p
+		margin: 0
+		color: $header
+	ul
+		padding: 0
+		margin: 3px 0
+		// list-style-type: circle
+		width: 70%
+		padding-left: 2.5em
+		li
+			background-color: lighten($theme-base, 50%)
+			border-radius: 5px
+			margin-bottom: 2px
+			text-align: center
+			color: darken($theme-base, 15%)
+.pricing
+	@include span-columns(1 of 2)
+	font-size: 125%
+	text-align: center
+	color: $pricing-color
+	h2
+		display: inline-block
+		width: 60%
+		text-align: left
+		// margin-top: 1.5em
+		margin-bottom: 0
+		margin-right: auto
+		margin-left: auto
+		border-bottom: 1px solid darken($pricing-color, 7%)
+		&::after
+			content: ""
+			display: table
+			clear: both
+	p
+		display: inline-block
+		width: 55%
+		text-align: right
+		font-size: 80%
+		margin: 0
+
+.action-callout
+	@include row(table)
+	margin: 2em 0 0 0
+	a
+		@include span-columns(1 of 2)
+		border: 1px solid white
+		border-radius: 3px
+		text-align: center
+		text-decoration: none
+.learn
+	@include transition(0.25s)
+	color: mix($callout-do-it, black, 10%)
+	background-color: $callout-learn
+	&:hover
+		background-color: darken($bcg, 20%)
+		color: white
+.quote
+	@include transition(0.15s)
+	background-color: $callout-do-it
+	color: black
+	&:hover
+		border: 1px solid $callout-do-it
+		background-color: white
+		color: $go-green
+
+.currency
+	color: black
+
+// @include reset-display()

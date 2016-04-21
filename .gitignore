@@ -6,3 +6,5 @@ assets/stack/
 ecosystem.json
 tasks
 npm-debug.log
+webpack-stats.json
+webpack-assets.json

@@ -1,6 +1,6 @@
 React = require("react")
 
-ContentHeader = require("./content-header")
+ContentHeader = require("./content-header.cjsx")
 
 PageContainer = React.createClass({
 	propTypes: {
