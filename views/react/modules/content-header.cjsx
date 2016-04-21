@@ -1,6 +1,5 @@
 React = require("react")
 
-styles = require("modules/content-header.sass")
 
 ContentHeader = React.createClass({
 	propTypes: {
@@ -8,6 +7,7 @@ ContentHeader = React.createClass({
 		description: React.PropTypes.string
 	}
 	render: ->
+		styles = require("./content-header.sass")
 		if @props.background
 			style = {
 				backgroundImage: "url(" + @props.background + ")"

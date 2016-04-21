@@ -1,13 +1,13 @@
 React = require("react")
 
-PageContainer = require("modules/container-page.cjsx")
+PageContainer = require("./modules/container-page.cjsx")
 
-styles = require("pages/about.sass")
 
 About = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		styles = require("./about.sass")
 		about = @context.content["About"]
 		<PageContainer {...about}>
 			<div className={styles.container}>

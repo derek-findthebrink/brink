@@ -1,6 +1,5 @@
 React = require("react")
 
-styles = require("modules/story.sass")
 
 
 items = [
@@ -33,6 +32,7 @@ Why = React.createClass({
 
 How = React.createClass({
 	render: ->
+		styles = require("./story.sass")
 		<div>
 			<h2>{items[1].title}</h2>
 			<div className={styles.twoCol}>
@@ -64,6 +64,7 @@ How = React.createClass({
 
 Benefits = React.createClass({
 	render: ->
+		styles = require("./story.sass")
 		<div>
 			<h2>{items[2].title}</h2>
 			<div className={styles.threeCol}>
@@ -110,6 +111,7 @@ Now = React.createClass({
 
 StoryItem = React.createClass({
 	render: ->
+		styles = require("./story.sass")
 		<div className={styles.storyItem}>
 			<div className={styles.inner}>
 				{@props.children}
@@ -119,6 +121,7 @@ StoryItem = React.createClass({
 
 Story = React.createClass({
 	render: ->
+		styles = require("./story.sass")
 		style = {
 			backgroundImage: "url(/backgrounds/square_bg.png)"
 		}

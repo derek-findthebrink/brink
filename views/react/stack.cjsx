@@ -1,14 +1,13 @@
 React = require("react")
 _ = require("lodash")
-CSSModules = require("react-css-modules")
-PageContainer = require("./modules/container-page")
+PageContainer = require("./modules/container-page.cjsx")
 
-styles = require("pages/stack.sass")
 
 # Trade Image
 # --------------------------------------------------------
 TradeImage = React.createClass({
 	render: ->
+		styles = require("./stack.sass")
 		# manage secondary trade image types
 		if @props.secondary
 			theClassName = styles.secondaryTradeImg
@@ -41,6 +40,7 @@ TradeImage = React.createClass({
 # Single Views
 StackItemMain = React.createClass({
 	render: ->
+		styles = require("./stack.sass")
 		<li>
 			<TradeImage {...@props.img} title={@props.title} />
 			<div className={styles.mainDescription}>
@@ -65,6 +65,7 @@ Stack = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		styles = require("./stack.sass")
 		content = @context.content["Stack"]
 		_primary = _.filter content.list, (x)->
 			x.secondary == false
@@ -78,13 +79,13 @@ Stack = React.createClass({
 
 
 		<PageContainer {...content}>
-			<ul styleName="listMain">
+			<ul className={styles.listMain}>
 				{primary}
 			</ul>
-			<ul styleName="listSecondary">
+			<ul className={styles.listSecondary}>
 				{secondary}
 			</ul>
 		</PageContainer>
 	})
 
-module.exports = CSSModules(Stack, styles)
+module.exports = Stack

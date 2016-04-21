@@ -1,13 +1,12 @@
 React = require("react")
 {Link} = require("react-router")
-CSSModules = require("react-css-modules")
 
-Nav = require("./main-nav")
+Nav = require("./main-nav.cjsx")
 
-styles = require("modules/header.sass")
 
 Header = React.createClass({
 	render: ->
+		styles = require("./header.sass")
 		<header className={styles.app}>
 			<Link to="/">
 				<img src="/brink-logo-small.svg" />
@@ -17,4 +16,4 @@ Header = React.createClass({
 		</header>
 	})
 
-module.exports = CSSModules(Header, styles)
+module.exports = Header

@@ -5,15 +5,15 @@ $ = require("jquery")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
-styles = require("pages/product.sass")
 
-PageContainer = require("modules/container-page.cjsx")
-HorizontalMenu = require("modules/menu.cjsx").HorizontalMenu
+PageContainer = require("./modules/container-page.cjsx")
+HorizontalMenu = require("./modules/menu.cjsx").HorizontalMenu
 
 
 # Single View
 ProductItem = React.createClass({
 	render: ->
+		styles = require("./product.sass")
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
 		_hrefContact = ["/contact", @props.category, @props.product].join("/")
 		includes = null
@@ -63,6 +63,7 @@ Products = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		styles = require("./product.sass")
 		speed = 750
 		content = @context.content["Products"]
 		# console.log products:content

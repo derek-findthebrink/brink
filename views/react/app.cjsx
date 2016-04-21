@@ -1,10 +1,10 @@
 React = require("react")
 {Link} = require("react-router")
 
-Footer = require("./modules/footer")
-Header = require("./modules/header")
+Footer = require("./modules/footer.cjsx")
+Header = require("./modules/header.cjsx")
 
-content = require("../../content/index")
+content = require("../../content/index.coffee")
 # console.log content
 
 App = React.createClass({
@@ -22,7 +22,6 @@ App = React.createClass({
 		# 		$("nav.app-nav-main, header.header-main").hide()
 		# 	})
 	render: ->
-		console.log props:@props
 		<div>
 			<Header />
 			<main>

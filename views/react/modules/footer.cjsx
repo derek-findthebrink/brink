@@ -2,10 +2,10 @@ React = require("react")
 
 {Link} = require("react-router")
 
-styles = require("vendor/refills_footer.scss")
 
 Footer = React.createClass({
 	render: ->
+		styles = require("./refills_footer.scss")
 		<footer className={styles.container} role="contentinfo">
 			<div className={styles.logo}>
 				<img src="/brink-logo-small.svg" alt="Logo image" />

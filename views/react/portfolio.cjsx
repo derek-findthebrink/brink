@@ -2,14 +2,14 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-PageContainer = require("./modules/container-page")
+PageContainer = require("./modules/container-page.cjsx")
 
-styles = require("pages/portfolio.sass")
 
 Portfolio = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
+		styles = require("./portfolio.sass")
 		content = @context.content["Portfolio"]
 		<PageContainer {...content}>
 			<div className={styles.container}>

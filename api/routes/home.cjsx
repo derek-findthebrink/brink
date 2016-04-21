@@ -26,28 +26,24 @@ catch
 ROOT_DIR = process.env.APP_ROOT
 
 routerLocation = nodepath.resolve ROOT_DIR, "router/app-router.cjsx"
-
-viewsLocation = nodepath.resolve ROOT_DIR, "assets"
-views_post = ".generated.js"
-
 routesGenerator = require routerLocation
-_getView = (name)->
-	return nodepath.join(viewsLocation, name + views_post)
-views = {
-	home: require _getView("home")
-	portfolio: require _getView("portfolio")
-	stack: require _getView("stack")
-	product: require _getView("product")
-	contact: require _getView("contact")
-	app: require _getView("app")
-	about: require _getView("about")
-}
+# _getView = (name)->
+# 	return nodepath.join(viewsLocation, name + views_post)
+# views = {
+# 	home: require _getView("home")
+# 	portfolio: require _getView("portfolio")
+# 	stack: require _getView("stack")
+# 	product: require _getView("product")
+# 	contact: require _getView("contact")
+# 	app: require _getView("app")
+# 	about: require _getView("about")
+# }
 # views = require(nodepath.join(viewsLocation, "main" + views_post))
 
 base = (req, res)->
 	_h = createMemoryHistory()
 	# injects history and views logic into app-router for rendering
-	routes = routesGenerator(_h, views)
+	routes = routesGenerator(_h)
 	# creates location match for use in following match function
 	location = _h.createLocation(req.url)
 	css = null
@@ -63,7 +59,7 @@ base = (req, res)->
 			css = "/undefined"
 
 	match({routes, location}, (err, redirect, props)->
-		log.info {url: req.url, location: location, routes:routes}, "match occurred"
+		# log.info {url: req.url, location: location, routes:routes}, "match occurred"
 		if err
 			log.error err, "error"
 

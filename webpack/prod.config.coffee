@@ -1,16 +1,23 @@
+# require("dotenv").config()
 nodepath = require("path")
 webpack = require("webpack")
 
+ROOT = nodepath.resolve(__dirname, "..")
+
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
+WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
+
+WebpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
 
 # Plugins
 # -----------------------------------
 _serverPlugins = [
-	new ExtractTextPlugin("public/css/[name].css", {
+	new ExtractTextPlugin("[name]-[chunkhash].css", {
 		allChunks: true
 		})
-	new webpack.NoErrorsPlugin()
+	# new webpack.NoErrorsPlugin()
+	WebpackIsomorphicToolsPlugin
 ]
 
 
@@ -19,18 +26,18 @@ _serverPlugins = [
 # Entry Points
 # --------------------------------------------
 # _entryViews = "./views/react/index.cjsx"
-view_dir = nodepath.resolve(".", "views/react")
-app_entry = nodepath.resolve(".", "ui/js/app/index.coffee")
+# view_dir = nodepath.resolve(".", "views/react")
+app_entry = nodepath.resolve(ROOT, "ui/js/app/index.coffee")
 
-_entries = {
-	home: nodepath.join(view_dir, "home.cjsx")
-	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
-	stack: nodepath.join(view_dir, "stack.cjsx")
-	product: nodepath.join(view_dir, "product.cjsx")
-	contact: nodepath.join(view_dir, "contact.cjsx")
-	app: nodepath.join(view_dir, "app.cjsx")
-	about: nodepath.join(view_dir, "about.cjsx")
-}
+# _entries = {
+# 	home: nodepath.join(view_dir, "home.cjsx")
+# 	portfolio: nodepath.join(view_dir, "portfolio.cjsx")
+# 	stack: nodepath.join(view_dir, "stack.cjsx")
+# 	product: nodepath.join(view_dir, "product.cjsx")
+# 	contact: nodepath.join(view_dir, "contact.cjsx")
+# 	app: nodepath.join(view_dir, "app.cjsx")
+# 	about: nodepath.join(view_dir, "about.cjsx")
+# }
 
 # Loaders
 # ------------------------------
@@ -80,6 +87,10 @@ _cjsxLoaderServer = {
 	test: /\.cjsx$/
 	loaders: ["coffee", "cjsx"]
 }
+_jsonLoaderServer = {
+	test: /\.json$/
+	loader: "json-loader"
+}
 
 
 
@@ -87,27 +98,35 @@ _cjsxLoaderServer = {
 # --------------------------------------
 # Server
 serverViews = {
-	name: "server-side-views-package"
-	entry: _entries
+	name: "production-build"
+	entry: app_entry
 	target: "node"
-	context: __dirname
+	context: ROOT
 	plugins: _serverPlugins
+	devtool: "source-map"
 	resolveLoader:
 		modulesDirectories: ["node_modules", "loaders"]
 		extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"],
 		root: [nodepath.resolve("."), nodepath.resolve("./loaders")]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
-		root: [nodepath.resolve(".")]
+		root: ROOT
 		modulesDirectories: ["node_modules", "ui/css", "assets/lib", "views/react"]
 	output:
-		path: nodepath.resolve(process.cwd(), "assets")
+		path: nodepath.resolve(ROOT, "assets/public")
 		filename: "[name].generated.js"
+		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "/"
 		libraryTarget: "commonjs2"
 	externals: /^[a-z\-0-9]+$/
 	module:
-		loaders: _loaders.concat([_cssLoaderServer, _sassLoaderServer, _scssLoaderServer, _cjsxLoaderServer])
+		loaders: _loaders.concat([
+			_cssLoaderServer
+			_sassLoaderServer
+			_scssLoaderServer
+			_cjsxLoaderServer
+			_jsonLoaderServer
+			])
 }
 
 module.exports = serverViews

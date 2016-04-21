@@ -1,8 +1,6 @@
 React = require("react")
-CSSModules = require("react-css-modules")
 {Link} = require("react-router")
 
-styles = require("modules/menu.sass")
 
 MenuItem = React.createClass({
 	render: ->
@@ -19,6 +17,7 @@ MenuItem = React.createClass({
 HorizontalMenu = React.createClass({
 	componentDidMount: ->
 	render: ->
+		styles = require("./menu.sass")
 		# path = location.pathname
 		location = @props.location
 		items = @props.menu.map (x, i)->

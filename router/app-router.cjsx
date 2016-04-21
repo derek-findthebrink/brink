@@ -16,18 +16,28 @@ React = require("react")
 
 content = require("../content/index")
 
-AppRouter = (history, views)->
+views_dir = "../views/react/"
+
+App = require(views_dir + "app" + ".cjsx")
+Home = require(views_dir + "home" + ".cjsx")
+Product = require(views_dir + "product" + ".cjsx")
+Portfolio = require(views_dir + "portfolio" + ".cjsx")
+About = require(views_dir + "about" + ".cjsx")
+Stack = require(views_dir + "stack" + ".cjsx")
+Contact = require(views_dir + "contact" + ".cjsx")
+
+AppRouter = (history)->
 	# log.info views:views, "views"
 	# console.log views, "views (console.log api)"
 
 	<Router history={history}>
-		<Route path="/" component={views["app"]}>
-			<IndexRoute component={views["home"]} />
-			<Route path="portfolio" component={views["portfolio"]} />
-			<Route path="about" component={views["about"]} />
-			<Route path="stack" component={views["stack"]} />
-			<Route path="contact" component={views["contact"]} />
-			<Route path="products-and-services(/:section)" component={views["product"]} />
+		<Route path="/" component={App}>
+			<IndexRoute component={Home} />
+			<Route path="products-and-services(/:section)" component={Product} />
+			<Route path="portfolio" component={Portfolio} />
+			<Route path="about" component={About} />
+			<Route path="stack" component={Stack} />
+			<Route path="contact" component={Contact} />
 		</Route>
 	</Router>
 

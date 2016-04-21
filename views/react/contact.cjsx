@@ -2,12 +2,8 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 
-PageContainer = require("./modules/container-page")
-{Field, ButtonField} = require("./modules/form")
-
-CSSModules = require("react-css-modules")
-styles = require("pages/contact.sass")
-
+PageContainer = require("./modules/container-page.cjsx")
+{Field, ButtonField} = require("./modules/form.cjsx")
 
 Captcha = React.createClass({
 	render: ->
@@ -63,6 +59,7 @@ ContactForm = React.createClass({
 				})
 	render: ->
 		# console.log props:@props
+		styles = require("./contact.sass")
 		<form className={styles["contact-form"]} method="post" action="/contact">
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
@@ -81,6 +78,7 @@ ContactForm = React.createClass({
 
 LocationRow = React.createClass({
 	render: ->
+		styles = require("./contact.sass")
 		info = @props.value
 		header = @props.header
 		if header == "phone"
@@ -95,6 +93,7 @@ LocationRow = React.createClass({
 
 LocationInfo = React.createClass({
 	render: ->
+		styles = require("./contact.sass")
 		items = _.map @props.location, (x, i)->
 			<LocationRow header={i} value={x} key={i} />
 
@@ -112,6 +111,7 @@ Contact = React.createClass({
 		content: React.PropTypes.object
 	render: ->
 		# console.log props:@props
+		styles = require("./contact.sass")
 		content = @context.content["Contact"]
 		<PageContainer {...content}>
 			<LocationInfo {...content} />
@@ -121,4 +121,4 @@ Contact = React.createClass({
 		</PageContainer>
 	})
 
-module.exports = CSSModules(Contact, styles)
+module.exports = Contact

@@ -38,6 +38,7 @@
     "express-session": "^1.13.0",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
+    "json-loader": "^0.5.4",
     "lodash": "^4.6.1",
     "moment": "^2.10.6",
     "mongoose": "^4.3.0",
@@ -58,6 +59,7 @@
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "waypoints": "^4.0.0",
+    "webpack-isomorphic-tools": "^2.2.47",
     "webpack-require": "0.0.16"
   },
   "devDependencies": {
@@ -81,7 +83,6 @@
     "webpack": "^1.13.0",
     "webpack-closure-compiler": "^2.0.2",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0",
-    "webpack-isomorphic-tools": "^2.2.47"
+    "webpack-hot-middleware": "^2.10.0"
   }
 }
