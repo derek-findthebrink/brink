@@ -1,6 +1,6 @@
 # Requires
 # -----------------------------
-Flux = require("./flux.cjsx")
+Flux = require("./flux")
 
 
 
@@ -9,8 +9,9 @@ Flux = require("./flux.cjsx")
 app = window.app = {}
 
 # google analytics
-require("./modules/ga.js")
+require("./modules/ga")
 
 app.flux = new Flux()
 app.socket = require("./modules/socket")()
 require("./modules/router")
+app.store = require("../../redux/create")
