@@ -25,7 +25,6 @@ Why = React.createClass({
 	render: ->
 		<div>
 			<h2>{items[0].title}</h2>
-			<p>Thanks to the internet, the speed of commerce has never been faster. And it keeps speeding up.</p>
 			<p>We specialize in getting you online, fast, with a code-base that will grow as fast as your company does.</p>
 		</div>
 	})

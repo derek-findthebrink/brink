@@ -44,10 +44,6 @@ log = appLogger.child({
 
 
 
-
-
-
-
 # Server Initialization
 # ------------------------------------------
 app = express()
@@ -97,12 +93,12 @@ server.on("upgrade", (req, socket, head)->
 	)
 
 # proxy error listener
-proxy.on("error", (error, req, res)->
-	if error.code != "ECONNRESET"
+proxy.on("error", (err, req, res)->
+	if err.code != "ECONNRESET"
 		log.error err:err, "proxy error"
 	if (!res.headersSent)
 		res.writeHead(500, {"content-type": "application/json"})
-	json = {error: "proxy_error", reason: error.message}
+	json = {error: "proxy_error", reason: err.message}
 	res.end(JSON.stringify(json))
 	)
 

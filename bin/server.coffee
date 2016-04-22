@@ -13,6 +13,17 @@ global.__SERVER__ = true
 global.__DISABLE_SSR__ = false
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
 
+
+if __DEVELOPMENT__
+	opts = {
+		hook: true
+		ignore: /(\/\.|~$|\.json$)/i
+		language: "coffee-script/register"
+	}
+	if !require("piping")(opts)
+		return
+
+
 log.info {
 	"env-vars":
 		client: __CLIENT__

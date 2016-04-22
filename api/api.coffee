@@ -53,6 +53,7 @@ mongoStoreOptions = {
 
 app.use session({
 	secret: process.env.SESSION_KEY
+	name: "bt-ap1"
 	store: new MongoStore(mongoStoreOptions)
 	resave: false
 	saveUninitialized: true
@@ -81,7 +82,6 @@ server.listen(process.env.API_PORT, ->
 		)
 
 	io.listen(server)
-	log.info socket:io, "socket"
 
 
 	host = server.address().address
