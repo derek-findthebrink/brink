@@ -5,7 +5,12 @@ LocalStrategy = require("passport-local").Strategy
 session = require("express-session")
 cookieParser = require("cookie-parser")
 MongoStore = require("connect-mongo")(session)
+SocketIo = require "socket.io"
+http = require("http")
 
+
+# Logger
+# ------------------------------------------
 bunyan = require("bunyan")
 
 logBase = require("./config/logger")
@@ -20,10 +25,20 @@ log = appLogger.child({
 	file: "api"
 	})
 
+# Database
+# -----------------------------------
 mongoose = require("./config/mongoose").mongoose
 Account = mongoose.model("Account")
 
+
+# Initialization
+# ---------------------------------
 app = express()
+
+# websocket
+server = new http.Server(app)
+io = new SocketIo(server)
+io.path("/ws")
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({
@@ -46,9 +61,29 @@ app.use session({
 auth = require("./config/auth")
 auth(app, passport, Account)
 
+# test route
+app.post("/test", (req, res)->
+	res.end("hello world! test worked!")
+	)
 
 
-server = app.listen(process.env.API_PORT, ->
+# Server Start
+# ------------------------------------------------
+server.listen(process.env.API_PORT, ->
+
+	io.on("connection", (socket)->
+		socket.emit("news", {msg: "hello world! Love, the websocket api server"})
+
+		socket.on("msg", (data)->
+			log.info {type: "socket", message: data}, "socket received message"
+			socket.emit("msg", data)
+			)
+		)
+
+	io.listen(server)
+	log.info socket:io, "socket"
+
+
 	host = server.address().address
 	port = server.address().port
 	if host == "::"

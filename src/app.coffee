@@ -6,11 +6,9 @@ express = require "express"
 bodyParser = require "body-parser"
 bunyan = require("bunyan")
 cookieParser = require("cookie-parser")
-# passport = require("passport")
-# LocalStrategy = require("passport-local").Strategy
-# session = require("express-session")
-# MongoStore = require("connect-mongo")(session)
 compression = require("compression")
+http = require("http")
+httpProxy = require("http-proxy")
 # favicon = require("serve-favicon")
 
 
@@ -53,6 +51,7 @@ log = appLogger.child({
 # Server Initialization
 # ------------------------------------------
 app = express()
+server = new http.Server(app)
 
 # if process.env.HMR == "true"
 # 	log.info "loading webpack middleware..."
@@ -74,7 +73,38 @@ app.use cookieParser()
 app.use(express.static(STATIC_DIR))
 # app.use(favicon(favicon_location))
 
+# API Server Proxy
+# ----------------------------------
+apiHost = process.env.API_HOST
+apiPort = process.env.API_PORT
+targetUrl = "http://" + apiHost + ":" + apiPort
 
+proxy = httpProxy.createProxyServer({
+	target: targetUrl
+	ws: true
+	})
+
+app.use("/api", (req, res)->
+	proxy.web(req, res, {target: targetUrl})
+	)
+
+app.use("/ws", (req, res)->
+	proxy.web(req, res, {target: targetUrl + "/ws"})
+	)
+
+server.on("upgrade", (req, socket, head)->
+	proxy.ws(req, socket, head)
+	)
+
+# proxy error listener
+proxy.on("error", (error, req, res)->
+	if error.code != "ECONNRESET"
+		log.error err:err, "proxy error"
+	if (!res.headersSent)
+		res.writeHead(500, {"content-type": "application/json"})
+	json = {error: "proxy_error", reason: error.message}
+	res.end(JSON.stringify(json))
+	)
 
 
 
@@ -136,7 +166,9 @@ app.use("/", homeRoutes)
 
 # Server Start
 # ------------------------------
-server = app.listen(process.env.PORT, ->
+server.listen(process.env.PORT, (err)->
+	if err
+		log.error err:err, "server start error"
 	host = server.address().address
 	port = server.address().port
 	if host == "::"

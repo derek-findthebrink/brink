@@ -1,4 +1,10 @@
-# require("../../css/index.sass")
+io = require("socket.io-client")
+
+socket = io("", {path: "/ws"})
+socket.on("news", (data)->
+	console.log "socket news:", data
+	)
+
 
 # Requires
 # -----------------------------
