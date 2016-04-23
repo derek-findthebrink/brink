@@ -1,14 +1,25 @@
-{createStore, applyMiddleware} = require("redux")
-{Provider} = require("react-redux")
-
+{compose, createStore, applyMiddleware} = require("redux")
+{logMiddleware} = require("./middleware")
 App = require("./reducers/index")
 
-{logMiddleware} = require("./middleware")
-_makeStore = applyMiddleware(logMiddleware)(createStore)
+if __DEVTOOLS__
+	DevTools = require("../views/react/devtools")
+	enhancer = compose(
+		applyMiddleware(logMiddleware)
+		DevTools.instrument()
+		)
+else
+	enhancer = applyMiddleware(logMiddleware)
 
-appStore = _makeStore(App)
+configureStore = (initialState)->
+	store = createStore(App, initialState, enhancer)
 
-appStore.subscribe ->
-	console.log "app-store: updated->", appStore.getState()
+	if __DEVELOPMENT__
+		if module.hot
+			module.hot.accept("./reducers", ->
+				store.replaceReducer(require('./reducers'))
+				)
 
-module.exports = appStore
+	return store
+
+module.exports = configureStore

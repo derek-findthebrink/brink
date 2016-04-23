@@ -37,7 +37,7 @@ base = (req, res)->
 	routes = routesGenerator(_h)
 	# creates location match for use in following match function
 	location = _h.createLocation(req.url)
-	store = require("./redux")
+	store = require("./redux")({products: []})
 	css = null
 	switch req.url
 		when "/" then css = "/css/home.css"
