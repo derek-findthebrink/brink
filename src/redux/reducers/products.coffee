@@ -1,7 +1,15 @@
-products = (state = [], action)->
+_ = require("lodash")
+
+defState = {
+	isFetching: true
+	didInvalidate: false
+	items: []
+}
+products = (state = defState, action)->
 	_addProduct = (prod)->
-		state.push(prod)
-		return state
+		s = _.clone(state)
+		s.items.push(prod)
+		return s
 	switch action.type
 		when "ADD_PRODUCT" then return _addProduct(action.value)
 		else

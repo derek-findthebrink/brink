@@ -4,7 +4,7 @@ React = require("react")
 {render} = require("react-dom")
 router = require("../../../router/app-router.cjsx")
 {Provider} = require("react-redux")
-store = require("../../../redux")({products: []})
+store = require("../../../redux")(null)
 
 container = $("#app-container")[0]
 history = browserHistory

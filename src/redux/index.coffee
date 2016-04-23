@@ -12,7 +12,10 @@ else
 	enhancer = applyMiddleware(logMiddleware)
 
 configureStore = (initialState)->
-	store = createStore(App, initialState, enhancer)
+	if initialState == null
+		store = createStore(App, enhancer)
+	else
+		store = createStore(App, initialState, enhancer)
 
 	if __DEVELOPMENT__
 		if module.hot

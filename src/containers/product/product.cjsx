@@ -74,7 +74,6 @@ Products = React.createClass({
 		# animation speed
 		speed = 750
 		content = @context.content["Products"]
-		console.log props:@props
 		section = @props.params.section
 
 		# if section, then filter out items to match category
@@ -118,7 +117,6 @@ Products = React.createClass({
 # ----------------------------------------
 
 mapStateToProps = (state)->
-	console.log state
 	return {
 		products: state.products
 	}

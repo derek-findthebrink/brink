@@ -37,18 +37,18 @@ base = (req, res)->
 	routes = routesGenerator(_h)
 	# creates location match for use in following match function
 	location = _h.createLocation(req.url)
-	store = require("./redux")({products: []})
-	css = null
-	switch req.url
-		when "/" then css = "/css/home.css"
-		when "/portfolio" then css = "/css/portfolio.css"
-		when "/about" then css = "/css/about.css"
-		when "/stack" then css = "/css/stack.css"
-		when "/products-and-services" then css = "/css/product.css"
-		when "/contact" then css = "/css/contact.css"
-		else
-			# need to create entire global styelsheet for fallback
-			css = "/undefined"
+	store = require("./redux")(null)
+	# css = null
+	# switch req.url
+	# 	when "/" then css = "/css/home.css"
+	# 	when "/portfolio" then css = "/css/portfolio.css"
+	# 	when "/about" then css = "/css/about.css"
+	# 	when "/stack" then css = "/css/stack.css"
+	# 	when "/products-and-services" then css = "/css/product.css"
+	# 	when "/contact" then css = "/css/contact.css"
+	# 	else
+	# 		# need to create entire global styelsheet for fallback
+	# 		css = "/undefined"
 
 	match({routes, location}, (err, redirect, props)->
 		# log.info {url: req.url, location: location, routes:routes}, "match occurred"

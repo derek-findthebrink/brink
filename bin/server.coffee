@@ -14,6 +14,9 @@ global.__DISABLE_SSR__ = false
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
 global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
 
+global.apiHost = process.env.API_HOST
+global.apiPort = process.env.API_PORT
+
 
 if __DEVELOPMENT__
 	opts = {
