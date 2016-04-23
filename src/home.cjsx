@@ -9,7 +9,7 @@ ReactServer = require("react-dom/server")
 } = require("react-router")
 Q = require("q")
 nodepath = require("path")
-
+{Provider} = require("react-redux")
 # Logger
 # ----------------------------
 try
@@ -37,6 +37,7 @@ base = (req, res)->
 	routes = routesGenerator(_h)
 	# creates location match for use in following match function
 	location = _h.createLocation(req.url)
+	store = require("./redux")
 	css = null
 	switch req.url
 		when "/" then css = "/css/home.css"
@@ -65,7 +66,11 @@ base = (req, res)->
 			appJsSrc = assets.javascript.app
 
 			# log.info assets:assets, "sent to client"
-			final = <RouterContext {...props} />
+			final = (
+				<Provider store={store}>
+					<RouterContext {...props} />
+				</Provider>
+				)
 			html = ReactServer.renderToString final
 			res.render("layout", {
 				content: html

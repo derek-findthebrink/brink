@@ -7,15 +7,19 @@ catch
 	log = console
 	log.info = console.log
 
-React = require("react")
-{
-	Router
-	Route
-	IndexRoute
-} = require("react-router")
 
+React = require("react")
+{Router, Route, IndexRoute} = require("react-router")
+
+
+
+
+# Content/Redux
+# --------------------------------------
 content = require("../../content/index")
 
+# Views
+# --------------------------------
 views_dir = "../views/react/"
 
 App = require("../views/react/app.cjsx")
@@ -29,7 +33,6 @@ Contact = require("../views/react/contact.cjsx")
 AppRouter = (history)->
 	# log.info views:views, "views"
 	# console.log views, "views (console.log api)"
-
 	<Router history={history}>
 		<Route path="/" component={App}>
 			<IndexRoute component={Home} />

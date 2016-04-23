@@ -2,6 +2,7 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 {Link} = require("react-router")
+{connect} = require("react-redux")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
@@ -10,6 +11,9 @@ PageContainer = require("./modules/container-page.cjsx")
 HorizontalMenu = require("./modules/menu.cjsx").HorizontalMenu
 
 
+
+# Views
+# -----------------------------------------
 # Single View
 ProductItem = React.createClass({
 	render: ->
@@ -57,6 +61,9 @@ ProductItem = React.createClass({
 	})
 
 
+
+
+
 # Products
 k = 0
 Products = React.createClass({
@@ -66,8 +73,7 @@ Products = React.createClass({
 		styles = require("./product.sass")
 		speed = 750
 		content = @context.content["Products"]
-		# console.log products:content
-		# console.log props:@props
+		console.log props:@props
 		section = @props.params.section
 
 		# if section, then filter out items to match category
@@ -107,4 +113,18 @@ Products = React.createClass({
 		</PageContainer>		
 	})
 
-module.exports = Products
+# Redux
+# ----------------------------------------
+
+mapStateToProps = (state)->
+	console.log state
+	return {
+		products: state.products
+	}
+
+ProductsFinal = connect(
+	mapStateToProps
+	)(Products)
+
+module.exports = ProductsFinal
+# module.exports = Products

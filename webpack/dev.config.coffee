@@ -116,6 +116,9 @@ browser = {
 		# root: [nodepath.resolve(".")]
 		# extensions: ["", ".js", ".coffee", ".cjsx"]
 		modulesDirectories: ["node_modules", "assets/public/lib", "src/views/react"]
+		alias:
+			React: "react"
+			react: "react"
 	devtool: "inline-source-map"
 	progress: true
 
