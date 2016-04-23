@@ -118,7 +118,7 @@ Products = React.createClass({
 
 mapStateToProps = (state)->
 	return {
-		products: state.products
+		products: state.products.items
 	}
 
 ProductsFinal = connect(

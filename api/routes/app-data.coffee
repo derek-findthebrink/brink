@@ -18,7 +18,6 @@ go = (mongoose)->
 		Products.find({}).exec()
 		.then(
 			(docs)->
-				log.info {products:docs}, "got products"
 				res.send(docs).end()
 			(err)->
 				log.error err:err, "error retrieving products"

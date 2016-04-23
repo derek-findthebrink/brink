@@ -1,4 +1,9 @@
+# Requires
+# ----------------------------------
+nodepath = require("path")
+# server
 express = require "express"
+# rendering
 React = require("react")
 ReactServer = require("react-dom/server")
 {
@@ -7,9 +12,15 @@ ReactServer = require("react-dom/server")
 	createRoutes
 	createMemoryHistory
 } = require("react-router")
+# data, redux, async rendering
+_ = require("lodash")
 Q = require("q")
-nodepath = require("path")
+{ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
+{get} = require("./helpers/apiClient")
+
+
+
 # Logger
 # ----------------------------
 try
@@ -25,8 +36,7 @@ catch
 # ------------------------------
 # ROOT_DIR = process.env.APP_ROOT
 
-routerLocation = nodepath.resolve __dirname, "router/app-router.cjsx"
-routesGenerator = require routerLocation
+routesGenerator = require "./router/app-router"
 
 
 base = (req, res)->
@@ -36,51 +46,60 @@ base = (req, res)->
 	# injects history and views logic into app-router for rendering
 	routes = routesGenerator(_h)
 	# creates location match for use in following match function
-	location = _h.createLocation(req.url)
+	location = _h.createLocation(req.originalUrl)
 	store = require("./redux")(null)
-	# css = null
-	# switch req.url
-	# 	when "/" then css = "/css/home.css"
-	# 	when "/portfolio" then css = "/css/portfolio.css"
-	# 	when "/about" then css = "/css/about.css"
-	# 	when "/stack" then css = "/css/stack.css"
-	# 	when "/products-and-services" then css = "/css/product.css"
-	# 	when "/contact" then css = "/css/contact.css"
-	# 	else
-	# 		# need to create entire global styelsheet for fallback
-	# 		css = "/undefined"
 
-	match({routes, location}, (err, redirect, props)->
-		# log.info {url: req.url, location: location, routes:routes}, "match occurred"
-		if err
-			log.error err, "error"
 
-		else if redirect
-			log.info redirect: redirect, "redirect requested"
-		else if props
-			# insert required props for rendering
-			# console.log "rendering props..", props
-			assets = webpackIsomorphicTools.assets()
+	assets = webpackIsomorphicTools.assets()
+	css = assets.styles.app || null
+	app = assets.javascript.app
 
-			appCss = assets.styles.app || null
-			appJsSrc = assets.javascript.app
+	_getData = ()->
+		return get("products")
 
-			# log.info assets:assets, "sent to client"
-			final = (
-				<Provider store={store}>
-					<RouterContext {...props} />
-				</Provider>
-				)
-			html = ReactServer.renderToString final
-			res.render("layout", {
-				content: html
-				# css: css
-				appCss: appCss
-				appJsSrc: appJsSrc
-				})
-			res.end()
-		)
+	_getHtml = (routes, location, store)->
+		def = Q.defer()
+		match({routes, location}, (err, redirect, props)->
+			# log.info {url: req.url, location: location, routes:routes}, "match occurred"
+			if err
+				log.error err, "error"
+				return def.reject(err)
 
+			else if redirect
+				# add redirect logic here
+				log.info redirect: redirect, "redirect requested"
+
+			else if props
+				nonAsyncRedux = false
+				if nonAsyncRedux
+					final = (
+						<Provider store={store}>
+							<RouterContext {...props} />
+						</Provider>
+						)
+					html = ReactServer.renderToString final
+					return def.resolve(html)
+				else
+					log.info "attempting load on server"
+					loadOnServer(props, store, {get}).then ->
+						final = (
+							<Provider store={store}>
+								<ReduxAsyncConnect {...props} />
+							</Provider>
+							)
+						html = ReactServer.renderToString final
+						return def.resolve(html)
+			)
+		return def.promise
+
+	Q.all([_getHtml(routes, location, store), _getData()])
+	.spread (html, data)->
+		# return data to client
+		res.render("layout", {
+			content: html
+			appCss: css
+			appJsSrc: app
+			})
 
 home = express.Router()
 home.get "/", base

@@ -1,5 +1,6 @@
 {compose, createStore, applyMiddleware} = require("redux")
 {logMiddleware} = require("./middleware")
+
 App = require("./reducers/index")
 
 if __DEVTOOLS__
@@ -12,10 +13,10 @@ else
 	enhancer = applyMiddleware(logMiddleware)
 
 configureStore = (initialState)->
-	if initialState == null
-		store = createStore(App, enhancer)
-	else
+	if initialState
 		store = createStore(App, initialState, enhancer)
+	else
+		store = createStore(App, enhancer)
 
 	if __DEVELOPMENT__
 		if module.hot

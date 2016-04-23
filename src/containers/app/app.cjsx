@@ -1,6 +1,5 @@
 React = require("react")
 {Link} = require("react-router")
-# {connect} = require("react-redux")
 
 DevTools = require("../../components/devtools.cjsx")
 Footer = require("../../components/footer/footer.cjsx")
@@ -39,11 +38,5 @@ App = React.createClass({
 		</div>
 	})
 
-mapStateToProps = (state)->
-	return {
-		appState: state
-	}
-
-# _App = connect(mapStateToProps)(App)
 
 module.exports = App
