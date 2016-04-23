@@ -2,7 +2,7 @@ React = require("react")
 {Link} = require("react-router")
 # {connect} = require("react-redux")
 
-
+DevTools = require("./devtools")
 Footer = require("./modules/footer.cjsx")
 Header = require("./modules/header.cjsx")
 
@@ -24,11 +24,16 @@ App = React.createClass({
 		# 		$("nav.app-nav-main, header.header-main").hide()
 		# 	})
 	render: ->
+		if __DEVTOOLS__
+			dev = <DevTools />
+		else
+			dev = null
 		<div>
 			<Header />
 			<main>
 				{@props.children}
 			</main>
+			{dev}
 			<Footer />
 		</div>
 	})
