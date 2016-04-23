@@ -67,6 +67,10 @@ app.post("/test", (req, res)->
 	res.end("hello world! test worked!")
 	)
 
+# app data
+data = require("./routes/app-data")
+app.use("/data", data(mongoose))
+
 
 # Server Start
 # ------------------------------------------------
