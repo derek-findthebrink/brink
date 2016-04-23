@@ -1,0 +1,43 @@
+@import "../../style/_config.sass"
+
+.horizontal
+	$bcg-color: lighten(#40526B, 40%)
+	$color: darken(#676767, 25%)
+	@include fill-parent
+	ul
+		@include fill-parent
+		@include row(table)
+		list-style-type: none
+		padding: 0
+		margin-top: 0.5em
+	li
+		@include span-columns(1 of 5)
+		@include thin-border(false)
+		@include transition-duration(0.25s)
+		@include transition-property(border)
+		border-right: none
+		text-align: center
+		display: inline-block
+		border-collapse: separate
+		&:last-child
+			border-right: 1px solid $thin-border-color-inactive
+		&:hover
+			background-color: lighten($bcg-color, 12%)
+			color: darken($color, 80%)
+			// border-right: 1px solid $thin-border-color-active
+			border-bottom: 1px solid $thin-border-color-active
+		&.active
+			color: black
+			background-color: lighten($bcg-color, 12%)
+			border-bottom: 1px solid $thin-border-color-active
+			& > a
+				cursor: default
+	a
+		// @include transition(0.2s)
+		display: block
+		padding: 5px
+		color: $color
+		font-family: $fonts-header
+		font-size: 110%
+		text-decoration: none
+	@include reset-display

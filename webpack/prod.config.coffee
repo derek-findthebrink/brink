@@ -102,7 +102,7 @@ serverViews = {
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
-		modulesDirectories: ["node_modules", "assets/public/lib", "src/views/react"]
+		modulesDirectories: ["node_modules", "assets/public/lib", "src"]
 	output:
 		path: nodepath.resolve(ROOT, "assets/public")
 		filename: "[name].generated.js"

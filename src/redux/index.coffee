@@ -3,7 +3,7 @@
 App = require("./reducers/index")
 
 if __DEVTOOLS__
-	DevTools = require("../views/react/devtools")
+	DevTools = require("../components/devtools.cjsx")
 	enhancer = compose(
 		applyMiddleware(logMiddleware)
 		DevTools.instrument()

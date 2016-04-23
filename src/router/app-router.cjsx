@@ -20,15 +20,7 @@ content = require("../../content/index")
 
 # Views
 # --------------------------------
-views_dir = "../views/react/"
-
-App = require("../views/react/app.cjsx")
-Home = require("../views/react/home.cjsx")
-Product = require("../views/react/product.cjsx")
-Portfolio = require("../views/react/portfolio.cjsx")
-About = require("../views/react/about.cjsx")
-Stack = require("../views/react/stack.cjsx")
-Contact = require("../views/react/contact.cjsx")
+{App, Home, Product, Portfolio, About, Stack, Contact} = require("../containers")
 
 AppRouter = (history)->
 	# log.info views:views, "views"

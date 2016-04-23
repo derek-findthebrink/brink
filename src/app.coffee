@@ -52,7 +52,7 @@ server = new http.Server(app)
 # if process.env.HMR == "true"
 # 	log.info "loading webpack middleware..."
 # 	require("./loaders/webpack-middleware.coffee")(app)
-viewsDir = nodepath.resolve __dirname, "views"
+viewsDir = nodepath.resolve __dirname, "containers"
 
 app.application_name = "brink-server"
 app.set("views", viewsDir)

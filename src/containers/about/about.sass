@@ -1,0 +1,19 @@
+@import "../../style/_config.sass"
+
+.container
+	padding-top: 1em
+	padding-bottom: 1em
+	@include outer-container(80%)
+
+.row
+	@include row(table)
+	@include thin-border
+	& > div
+		vertical-align: middle
+		@include span-columns(1 of 2)
+
+.img
+	text-align: center
+	img
+		width: 50%
+		display: inline-block

@@ -81,7 +81,7 @@ browser = {
 		modulesDirectories: ["node_modules"]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
-		modulesDirectories: ["node_modules", "assets/public/lib", "src/views/react"]
+		modulesDirectories: ["node_modules", "assets/public/lib", "src"]
 		alias:
 			React: "react"
 			react: "react"
