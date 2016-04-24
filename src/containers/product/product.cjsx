@@ -1,8 +1,7 @@
 React = require("react")
 _ = require("lodash")
-$ = require("jquery")
 {Link} = require("react-router")
-{connect} = require("react-redux")
+# {connect} = require("react-redux")
 {asyncConnect} = require("redux-async-connect")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
@@ -22,16 +21,17 @@ Products = React.createClass({
 		# animation speed
 		speed = 750
 		content = @context.content["Products"]
+		products = @props.products.data
 		section = @props.params.section
 
 		# if section, then filter out items to match category
 		if section
-			base = _.filter(content.list, (x)->
+			base = _.filter(products, (x)->
 				x.category == section
 				)
 			# console.log base:base
 		else
-			base = content.list
+			base = products
 		# else show all items
 		try
 			items = base.map (x, i)->

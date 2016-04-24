@@ -7,6 +7,7 @@ ProductItem = React.createClass({
 		styles = require("./product.sass")
 		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
 		_hrefContact = ["/contact", @props.category, @props.product].join("/")
+		# console.log {@props}
 		includes = null
 		if @props.includes
 			includes = @props.includes.map (x, i)->
@@ -33,8 +34,11 @@ ProductItem = React.createClass({
 						</ul>
 					</div>
 					<div className={styles.pricing}>
-						<h2>{@props.price} <span className={styles.currency}>CAD</span></h2>
-						<p>{@props.priceType}</p>
+						<h2>
+							{@props.price.value}
+							<span className={styles.currency}> {@props.price.currency}</span>
+						</h2>
+						<p>{@props.price.priceType}</p>
 					</div>
 				</div>
 				
