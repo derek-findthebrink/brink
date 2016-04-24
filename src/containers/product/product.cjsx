@@ -1,12 +1,10 @@
 React = require("react")
 _ = require("lodash")
 {Link} = require("react-router")
-# {connect} = require("react-redux")
+{connect} = require("react-redux")
 {asyncConnect} = require("redux-async-connect")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
-
-
 PageContainer = require("../../components/page/container-page.cjsx")
 HorizontalMenu = require("../../components/menu/menu.cjsx").HorizontalMenu
 ProductItem = require("./product-item.cjsx")
@@ -19,6 +17,7 @@ Products = React.createClass({
 	render: ->
 		styles = require("./product.sass")
 		# animation speed
+		console.log props:@props
 		speed = 750
 		content = @context.content["Products"]
 		products = @props.products.data
@@ -74,8 +73,14 @@ Products = React.createClass({
 # 	)(Products)
 
 ProductsAsyncFinal = asyncConnect({
-	products: (params, helpers)->
-		return helpers.get("products")
+	products: (params, {store, get})->		
+		{dispatch, getState} = store
+		isLoaded = (s)->
+			state = s.reduxAsyncConnect
+			console.log state, state.loaded
+			return state.loaded
+		if (!isLoaded(getState()))
+			return get("products")
 	})(Products)
 
 # module.exports = ProductsFinal
