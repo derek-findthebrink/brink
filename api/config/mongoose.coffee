@@ -24,9 +24,11 @@ catch e
 # loadModels(Models)
 
 require("../models/account")
-require("../models/applications")
+require("../models/stack")
 require("../models/products")
 require("../models/contact")
+require("../models/about")
+require("../models/portfolio")
 
 url = process.env.MONGOOSE_DB
 mongoose.connect(url, (err)->

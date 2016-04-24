@@ -18,4 +18,4 @@ model = new Schema({
 			default: "english"
 	})
 
-mongoose.model("Application", model)
+mongoose.model("Stack", model)

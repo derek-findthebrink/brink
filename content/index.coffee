@@ -55,12 +55,30 @@ About = {
 	header:
 		title: "about"
 		description: "what makes us tick"
+	list: [
+		{
+			name: "Derek"
+			description: "a cool guy who likes code!"
+			image: "/brink-logo-small.svg"
+		}
+	]
 }
 
 Portfolio = {
 	header:
 		title: "portfolio"
 		description: "some of our best work"
+	list: [
+		{
+			title: "pyrrha"
+		}
+		{
+			title: "one ocean"
+		}
+		{
+			title: "cleanify"
+		}
+	]
 }
 
 Stack = {
@@ -216,7 +234,7 @@ Stack = {
 		{
 			title: "adobe illustrator"
 			img:
-				src: "/brink-logo-small.svg"
+				src: "http://www.brandeps.com/library/A/Adobe-Illustrator-CC-01.png"
 				alt: ""
 				href: "http://backbonejs.org/"
 			description: ""
@@ -225,7 +243,7 @@ Stack = {
 		{
 			title: "webpack"
 			img:
-				src: "/brink-logo-small.svg"
+				src: "http://reapp.io/images/webpack.svg"
 				alt: ""
 				href: "http://backbonejs.org/"
 			description: ""
@@ -234,7 +252,7 @@ Stack = {
 		{
 			title: "express.js"
 			img:
-				src: "/brink-logo-small.svg"
+				src: "https://i.cloudup.com/zfY6lL7eFa-3000x3000.png"
 				alt: ""
 				href: "http://backbonejs.org/"
 			description: ""
@@ -243,7 +261,7 @@ Stack = {
 		{
 			title: "CoffeeScript"
 			img:
-				src: ""
+				src: "http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/03/1427207179CoffeeScriptLogo.png"
 				alt: ""
 				href: "http://backbonejs.org/"
 			description: ""
@@ -252,7 +270,7 @@ Stack = {
 		{
 			title: "Linux Ubuntu"
 			img:
-				src: "/brink-logo-small.svg"
+				src: "http://vignette2.wikia.nocookie.net/logopedia/images/2/2d/Ubuntu-old.png/revision/latest?cb=20150920032542"
 				alt: ""
 				href: "http://backbonejs.org/"
 			description: ""
