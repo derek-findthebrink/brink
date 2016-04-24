@@ -3,68 +3,16 @@ _ = require("lodash")
 $ = require("jquery")
 {Link} = require("react-router")
 {connect} = require("react-redux")
+{asyncConnect} = require("redux-async-connect")
 
 ReactCSSTransitionGroup = require("react-addons-css-transition-group")
 
 
 PageContainer = require("../../components/page/container-page.cjsx")
 HorizontalMenu = require("../../components/menu/menu.cjsx").HorizontalMenu
+ProductItem = require("./product-item.cjsx")
 
 
-
-# Views
-# -----------------------------------------
-# Single View
-ProductItem = React.createClass({
-	render: ->
-		styles = require("./product.sass")
-		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
-		_hrefContact = ["/contact", @props.category, @props.product].join("/")
-		includes = null
-		if @props.includes
-			includes = @props.includes.map (x, i)->
-				<li key={i}>{x}</li>
-		else
-			includes = <li>no includes provided</li>
-
-		<li className={styles["product-item"]}>
-			<div className={styles.img}>
-				<img src="/brink-logo-small.svg" alt="brink logo" />
-			</div>
-			
-			<div className={styles.description}>
-				<div className={styles.header}>
-					<h2>{@props.title}</h2>
-					<p>{@props.description}</p>
-				</div>
-				
-				<div className={styles.details}>
-					<div className={styles.includes}>
-						<p>includes:</p>
-						<ul>
-							{includes}
-						</ul>
-					</div>
-					<div className={styles.pricing}>
-						<h2>{@props.price} <span className={styles.currency}>CAD</span></h2>
-						<p>{@props.priceType}</p>
-					</div>
-				</div>
-				
-				<div className={styles["action-callout"]}>
-					<Link to={_hrefLearn} className={styles.learn}>learn more</Link>
-					<Link to={_hrefContact} className={styles.quote}>quote</Link>
-				</div>
-			</div>
-
-		</li>
-	})
-
-
-
-
-
-# Products
 k = 0
 Products = React.createClass({
 	contextTypes:
@@ -116,14 +64,20 @@ Products = React.createClass({
 # Redux
 # ----------------------------------------
 
-mapStateToProps = (state)->
-	return {
-		products: state.products.items
-	}
+# mapStateToProps = (state)->
+# 	return {
+# 		products: state.products.items
+# 	}
 
-ProductsFinal = connect(
-	mapStateToProps
-	)(Products)
+# ProductsFinal = connect(
+# 	mapStateToProps
+# 	)(Products)
 
-module.exports = ProductsFinal
+ProductsAsyncFinal = asyncConnect({
+	products: (params, helpers)->
+		return helpers.get("products")
+	})(Products)
+
+# module.exports = ProductsFinal
+module.exports = ProductsAsyncFinal
 # module.exports = Products

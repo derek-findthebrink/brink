@@ -2,6 +2,15 @@
 request = require("superagent")
 Q = require("q")
 
+try
+	log = appLogger.child({
+		type: "helpers"
+		file: "apiClient"
+	})
+catch
+	log = console
+	log.info = console.log
+
 # data functions
 segmentUrl = (segment)->
 	if __SERVER__
@@ -17,7 +26,8 @@ get = (segment)->
 	.get(url)
 	.end (err, res)->
 		if err then return def.reject(err)
-		return def.resolve(res.text)
+		log.info "get promise fulfilled"
+		return def.resolve(JSON.parse res.text)
 	return def.promise
 
 module.exports = {

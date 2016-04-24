@@ -70,36 +70,38 @@ base = (req, res)->
 				log.info redirect: redirect, "redirect requested"
 
 			else if props
-				nonAsyncRedux = false
-				if nonAsyncRedux
+				log.info "attempting load on server"
+				loadOnServer(props, store, {get}).then ->
 					final = (
 						<Provider store={store}>
-							<RouterContext {...props} />
+							<ReduxAsyncConnect {...props} />
 						</Provider>
 						)
 					html = ReactServer.renderToString final
 					return def.resolve(html)
-				else
-					log.info "attempting load on server"
-					loadOnServer(props, store, {get}).then ->
-						final = (
-							<Provider store={store}>
-								<ReduxAsyncConnect {...props} />
-							</Provider>
-							)
-						html = ReactServer.renderToString final
-						return def.resolve(html)
 			)
 		return def.promise
 
-	Q.all([_getHtml(routes, location, store), _getData()])
-	.spread (html, data)->
-		# return data to client
-		res.render("layout", {
-			content: html
-			appCss: css
-			appJsSrc: app
-			})
+	_getHtml(routes, location, store)
+	.then(
+		(html)->
+			# return data to client
+			res.render("layout", {
+				content: html
+				appCss: css
+				appJsSrc: app
+				})
+			return
+		(err)->
+			log.error err:err, "rendering failed"
+			res.status(500).end()
+		)
+	.then(
+		->
+			log.info "data rendering complete"
+		(err)->
+			log.error err:err, "error after spread promise"
+	)
 
 home = express.Router()
 home.get "/", base

@@ -4,15 +4,21 @@ React = require("react")
 {render} = require("react-dom")
 router = require("../../../router/app-router.cjsx")
 {Provider} = require("react-redux")
+{ReduxAsyncConnect} = require("redux-async-connect")
 store = require("../../../redux")(null)
+client = require("../../../helpers/apiClient")
 
 container = $("#app-container")[0]
 history = browserHistory
 routes = router(history)
+
+_asyncRender = (props)->
+	<ReduxAsyncConnect {...props} helpers={client} />
+
 match({history, routes}, (err, redirect, props)->
 	main = (
-		<Provider store={store}>
-			<Router {...props} />
+		<Provider store={store} key="provider">
+			<Router {...props} render={_asyncRender} history={browserHistory} />
 		</Provider>
 		)
 	render(main, container)
