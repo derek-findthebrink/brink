@@ -5,11 +5,13 @@ React = require("react")
 router = require("../../../router/app-router.cjsx")
 {Provider} = require("react-redux")
 {ReduxAsyncConnect} = require("redux-async-connect")
+
+{syncHistoryWithStore} = require("react-router-redux")
+
 store = require("../../../redux")(null)
 client = require("../../../helpers/apiClient")
-
 container = $("#app-container")[0]
-history = browserHistory
+history = syncHistoryWithStore(browserHistory, store)
 routes = router(history)
 
 _asyncRender = (props)->

@@ -54,6 +54,13 @@ base = (req, res)->
 	css = assets.styles.app || null
 	app = assets.javascript.app
 
+	if __DISABLE_SSR__
+		return res.render("layout", {
+			content: "<div>disabled ssr</div>"
+			appCss: css
+			appJsSrc: app
+			})
+
 	_getData = ()->
 		return get("products")
 
