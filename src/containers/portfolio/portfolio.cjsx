@@ -1,4 +1,5 @@
 React = require("react")
+{asyncConnect} = require("redux-async-connect")
 
 PageContainer = require("../../components/page/container-page.cjsx")
 PortfolioItem = require("./portfolio-item")
@@ -9,8 +10,9 @@ Portfolio = React.createClass({
 	render: ->
 		styles = require("./portfolio.sass")
 		content = @context.content["Portfolio"]
+		pitems = @props.portfolio.data
 
-		items = content.list.map (x, i)->
+		items = pitems.map (x, i)->
 			<PortfolioItem {...x} key={i} />
 
 		<PageContainer {...content}>
@@ -20,4 +22,14 @@ Portfolio = React.createClass({
 		</PageContainer>
 	})
 
-module.exports = Portfolio
+PortfolioAsyncFinal = asyncConnect({
+	portfolio: (params, {store, get})->
+		{dispatch, getState} = store
+		isLoaded = (s)->
+			state = s.reduxAsyncConnect
+			return state.portfolio && state.portfolio.loaded
+		if (!isLoaded(getState()))
+			return get("portfolio")
+	})(Portfolio)
+
+module.exports = PortfolioAsyncFinal

@@ -1,6 +1,7 @@
 React = require("react")
 _ = require("lodash")
 PageContainer = require("../../components/page/container-page.cjsx")
+{asyncConnect} = require("redux-async-connect")
 
 
 # Trade Image
@@ -67,9 +68,10 @@ Stack = React.createClass({
 	render: ->
 		styles = require("./stack.sass")
 		content = @context.content["Stack"]
-		_primary = _.filter content.list, (x)->
+		stack = @props.stack.data
+		_primary = _.filter stack, (x)->
 			x.secondary == false
-		_secondary = _.filter content.list, (x)->
+		_secondary = _.filter stack, (x)->
 			x.secondary == true
 		primary = _primary.map (x, i)->
 			<StackItemMain key={i} {...x} />
@@ -88,4 +90,14 @@ Stack = React.createClass({
 		</PageContainer>
 	})
 
-module.exports = Stack
+StackAsyncFinal = asyncConnect({
+	stack: (params, {store, get})->
+		{dispatch, getState} = store
+		isLoaded = (s)->
+			state = s.reduxAsyncConnect
+			return state.stack && state.stack.loaded
+		if (!isLoaded(getState()))
+			return get("stack")
+	})(Stack)
+
+module.exports = StackAsyncFinal

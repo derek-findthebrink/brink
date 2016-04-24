@@ -1,6 +1,7 @@
 React = require("react")
 
 PageContainer = require("../../components/page/container-page.cjsx")
+{asyncConnect} = require("redux-async-connect")
 
 
 About = React.createClass({
@@ -8,12 +9,14 @@ About = React.createClass({
 		content: React.PropTypes.object
 	render: ->
 		styles = require("./about.sass")
-		about = @context.content["About"]
+		header = @context.content["About"]
 
-		items = about.list.map (x, i)->
+		about = @props.about.data
+
+		items = about.map (x, i)->
 			<PersonItem {...x} key={i} />
 
-		<PageContainer {...about}>
+		<PageContainer {...header}>
 			<div className={styles.container}>
 				{items}
 			</div>
@@ -38,4 +41,14 @@ PersonItem = React.createClass({
 		</div>
 	})
 
-module.exports = About
+AboutAsyncFinal = asyncConnect({
+	about: (params, {store, get})->
+		{dispatch, getState} = store
+		isLoaded = (s)->
+			state = s.reduxAsyncConnect
+			return state.about && state.about.loaded
+		if (!isLoaded(getState()))
+			return get("about")
+	})(About)
+
+module.exports = AboutAsyncFinal

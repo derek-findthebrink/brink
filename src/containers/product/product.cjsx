@@ -78,7 +78,7 @@ ProductsAsyncFinal = asyncConnect({
 		isLoaded = (s)->
 			state = s.reduxAsyncConnect
 			console.log state, state.loaded
-			return state.loaded
+			return state.products && state.products.loaded
 		if (!isLoaded(getState()))
 			return get("products")
 	})(Products)

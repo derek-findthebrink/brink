@@ -24,9 +24,10 @@ get = (segment)->
 	url = segmentUrl(segment)
 	request
 	.get(url)
+	.set("Accept", "application/json")
 	.end (err, res)->
 		if err then return def.reject(err)
-		log.info "get promise fulfilled"
+		log.info {segment, url}, "get promise fulfilled"
 		return def.resolve(JSON.parse res.text)
 	return def.promise
 
