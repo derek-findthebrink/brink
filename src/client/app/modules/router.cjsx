@@ -9,6 +9,11 @@ router = require("../../../router/app-router.cjsx")
 {syncHistoryWithStore} = require("react-router-redux")
 
 store = require("../../../redux")(null)
+
+if __DEVELOPMENT__
+	app.store = store
+
+
 client = require("../../../helpers/apiClient")
 container = $("#app-container")[0]
 history = syncHistoryWithStore(browserHistory, store)

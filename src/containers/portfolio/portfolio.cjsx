@@ -1,9 +1,7 @@
 React = require("react")
-_ = require("lodash")
-$ = require("jquery")
 
 PageContainer = require("../../components/page/container-page.cjsx")
-
+PortfolioItem = require("./portfolio-item")
 
 Portfolio = React.createClass({
 	contextTypes:
@@ -11,17 +9,13 @@ Portfolio = React.createClass({
 	render: ->
 		styles = require("./portfolio.sass")
 		content = @context.content["Portfolio"]
+
+		items = content.list.map (x, i)->
+			<PortfolioItem {...x} key={i} />
+
 		<PageContainer {...content}>
 			<div className={styles.container}>
-				<div className={styles.row}>
-					<h2>Cleanify</h2>
-				</div>
-				<div className={styles.row}>
-					<h2>Pyrrha</h2>
-				</div>
-				<div className={styles.row}>
-					<h2>One Ocean</h2>
-				</div>
+				{items}
 			</div>
 		</PageContainer>
 	})
