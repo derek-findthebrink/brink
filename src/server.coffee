@@ -69,6 +69,7 @@ app.use cookieParser()
 
 # static dir
 app.use(express.static(STATIC_DIR))
+app.use(express.static(STATIC_DIR + "/favicon/"))
 # app.use(favicon(favicon_location))
 
 
