@@ -32,7 +32,7 @@ _browserPlugins = [
 # --------------------------------------------
 _entryApp = [
 	hotMiddlewareScript
-	nodepath.resolve(ROOT, "src/client/app/index.coffee")
+	nodepath.resolve(ROOT, "src/client-app.cjsx")
 ]
 
 

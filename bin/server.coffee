@@ -43,5 +43,5 @@ WebpackIsomorphicTools = require("webpack-isomorphic-tools")
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require("../webpack/iso-config"))
 .development(__DEVELOPMENT__)
 .server(rootDir, ->
-	require("../src/app.coffee")
+	require("../src/server.coffee")
 	)

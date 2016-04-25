@@ -27,7 +27,7 @@ plugins = [
 
 # Entry Points
 # --------------------------------------------
-app_entry = nodepath.resolve(ROOT, "src/client/app/index.coffee")
+app_entry = nodepath.resolve(ROOT, "src/client-app.cjsx")
 
 # Loaders
 # ------------------------------
@@ -39,45 +39,43 @@ _loaders = [
 ]
 
 
-# SERVER
+# App
 # ---------------------------------------------------------
-# my cool loader
-# _myCoolServerCssLoader = nodepath.join(__dirname, "loaders", "style-collector")
-__style_server_pipe = "style"
-__css_server_pipe = "css?modules&importLoaders=2&sourceMap"
-__w_sass = __css_server_pipe + "!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true"
+__style_pipe = "style"
+__css_pipe = "css?modules&importLoaders=2&sourceMap"
+__w_sass = __css_pipe + "!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true"
 
-_sassLoaderServer = {
+_sass = {
 	test: /\.sass$/
-	loader: ExtractTextPlugin.extract(__style_server_pipe, __w_sass)
+	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
 	# loaders: [
-	# 	__style_server_pipe
-	# 	__css_server_pipe
+	# 	__style_pipe
+	# 	__css_pipe
 	# 	"sass"
 	# ]
 }
-_scssLoaderServer = {
+_scss = {
 	test: /\.scss$/
-	loader: ExtractTextPlugin.extract(__style_server_pipe, __w_sass)
+	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
 	# loaders: [
-	# 	__style_server_pipe
-	# 	__css_server_pipe
+	# 	__style_pipe
+	# 	__css_pipe
 	# 	"sass"
 	# ]
 }
-_cssLoaderServer = {
+_css = {
 	test: /\.css$/
-	loader: ExtractTextPlugin.extract(__style_server_pipe, __css_server_pipe)
+	loader: ExtractTextPlugin.extract(__style_pipe, __css_pipe)
 	# loaders: [
-	# 	__style_server_pipe
+	# 	__style_pipe
 	# 	"css?sourceMap"
 	# ]
 }
-_cjsxLoaderServer = {
+_cjsx = {
 	test: /\.cjsx$/
 	loaders: ["coffee", "cjsx"]
 }
-_jsonLoaderServer = {
+_json = {
 	test: /\.json$/
 	loader: "json-loader"
 }
@@ -86,8 +84,7 @@ _jsonLoaderServer = {
 
 # Final
 # --------------------------------------
-# Server
-serverViews = {
+module.exports = {
 	name: "production-build"
 	entry: 
 		app: app_entry
@@ -112,12 +109,10 @@ serverViews = {
 	# externals: /^[a-z\-0-9]+$/
 	module:
 		loaders: _loaders.concat([
-			_cssLoaderServer
-			_sassLoaderServer
-			_scssLoaderServer
-			_cjsxLoaderServer
-			_jsonLoaderServer
+			_css
+			_sass
+			_scss
+			_cjsx
+			_json
 			])
 }
-
-module.exports = serverViews

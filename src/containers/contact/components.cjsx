@@ -45,8 +45,6 @@ ContactForm = React.createClass({
 		# 	action: "submit_contact"
 		# 	payload: @state
 		# 	})
-	back: ->
-		console.log "back clicked"
 	change: (key)->
 		# console.log key:key
 		return (e)=>
