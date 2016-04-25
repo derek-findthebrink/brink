@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 nodepath = require("path")
-require("dotenv").config()
+# require("dotenv").config()
 
 log = require("bunyan").createLogger({
 	name: "webpack-isomorphic-init"
@@ -12,6 +12,21 @@ global.__CLIENT__ = false
 global.__SERVER__ = true
 global.__DISABLE_SSR__ = false
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
+global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
+
+global.apiHost = process.env.API_HOST
+global.apiPort = process.env.API_PORT
+
+
+if __DEVELOPMENT__
+	opts = {
+		hook: true
+		ignore: /(\/\.|~$|\.json$)/i
+		language: "coffee-script/register"
+	}
+	if !require("piping")(opts)
+		return
+
 
 log.info {
 	"env-vars":
@@ -28,5 +43,5 @@ WebpackIsomorphicTools = require("webpack-isomorphic-tools")
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require("../webpack/iso-config"))
 .development(__DEVELOPMENT__)
 .server(rootDir, ->
-	require("../app.coffee")
+	require("../src/app.coffee")
 	)

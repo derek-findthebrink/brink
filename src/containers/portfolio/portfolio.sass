@@ -1,0 +1,8 @@
+@import "../../style/_config.sass"
+
+.container
+	@include outer-container(80%)
+	padding: 1em 0
+	& > div
+		@include row(table)
+		@include thin-border

@@ -1,0 +1,47 @@
+@import "../../style/_config.sass"
+
+.location
+	width: 80%
+	margin: 2em auto
+
+.location-row
+	@include row(table)
+	padding: 0.25em 0
+	span
+		@include span-columns(1 of 2)
+		text-align: center
+		font-family: $fonts-header
+
+.location-header
+
+.location-info
+	text-transform: uppercase
+
+.contact-form
+	@include thin-border(false)
+	width: 70%
+	margin: 0 auto 2em auto
+	color: darken($theme-base, 25%)
+	border-top: none
+	border-bottom: none
+
+	input, select, textarea, button
+		@include thin-border
+		padding: 0.5em
+
+.g-recaptcha
+	margin: 1em auto
+	width: 10em
+	display: flex
+	content-align: center
+	display: block
+	text-align: center
+
+.form-header
+	text-align: center
+
+.form-field
+	label
+		font-family: $fonts-header
+		padding-right: 2em
+		text-align: right

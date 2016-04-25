@@ -4,14 +4,17 @@
   "description": "",
   "main": "app.coffee",
   "scripts": {
-    "start": "better-npm-run start-prod",
+    "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
+    "start-prod": "better-npm-run start-prod",
+    "start-prod-api": "better-npm-run start-prod-api",
     "start-dev": "better-npm-run start-dev",
+    "start-dev-api": "better-npm-run start-dev-api",
     "prestartdev": "npm run ui:css && webpack --progress --display-error-details",
     "watch-client": "better-npm-run watch-client",
     "build": "better-npm-run build",
-    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
+    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
-    "ui:css": "node-sass ./views/global.sass ./assets/public/global.css",
+    "ui:css": "node-sass ./src/style/global.sass ./assets/public/global.css",
     "deploy:staging": "git commit -am 'prep for pm2 deploy' && git push origin develop && pm2 deploy ecosystem.json staging",
     "ssh:staging": "sh tasks/ssh-server.sh"
   },
@@ -38,6 +41,18 @@
       "env": {
         "NODE_ENV": "production"
       }
+    },
+    "start-prod-api": {
+      "command": "coffee ./bin/api.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "start-dev-api": {
+      "command": "coffee ./bin/api.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
   },
   "repository": {
@@ -57,14 +72,18 @@
     "body-parser": "^1.14.1",
     "bunyan": "^1.8.0",
     "coffee-react": "^4.1.0",
+    "coffee-script": "^1.10.0",
     "compression": "^1.6.1",
     "concurrently": "^2.0.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.1.0",
     "cookie-parser": "^1.4.0",
     "dotenv": "^2.0.0",
+    "es6-promise": "^3.1.2",
     "express": "^4.13.3",
     "express-session": "^1.13.0",
+    "http-proxy": "^1.13.2",
+    "isomorphic-fetch": "^2.2.1",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
     "json-loader": "^0.5.4",
@@ -80,12 +99,20 @@
     "react-addons-transition-group": "^0.14.8",
     "react-css-modules": "^3.7.6",
     "react-dom": "^0.14.3",
+    "react-redux": "^4.4.5",
     "react-router": "^2.1.1",
+    "react-router-redux": "^4.0.2",
     "redux": "^3.5.1",
+    "redux-async-connect": "^0.1.13",
+    "redux-devtools": "^3.2.0",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
     "request": "^2.70.0",
     "resolve-url-loader": "^1.4.3",
     "serve-favicon": "^2.3.0",
     "slicknav": "^1.0.6",
+    "socket.io": "^1.4.5",
+    "superagent": "^1.8.3",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "waypoints": "^4.0.0",
@@ -105,6 +132,7 @@
     "html-loader": "^0.4.3",
     "inquirer": "^1.0.0",
     "node-sass": "^3.4.2",
+    "piping": "^0.3.0",
     "postcss-loader": "^0.8.2",
     "react-hot-loader": "^1.3.0",
     "resolve-url-loader": "^1.4.3",

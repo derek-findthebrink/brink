@@ -17,15 +17,6 @@ hotMiddlewareScript = "webpack-hot-middleware/client?path=http://" + _host + ":"
 # -----------------------------------
 _browserPlugins = [
 	new webpack.HotModuleReplacementPlugin()
-	# new webpack.ProvidePlugin({
-	# 	$: "jquery"
-	# 	jQuery: "jquery"
-	# 	"window.jQuery": "jquery"
-	# 	React: "react"
-	# 	})
-	# new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", Infinity)
-	# new webpack.optimize.OccurrenceOrderPlugin()
-	# new webpack.NoErrorsPlugin()
 	new webpack.IgnorePlugin(/webpack-stats\.json$/)
 	new webpack.DefinePlugin({
 		__CLIENT__: true
@@ -36,36 +27,13 @@ _browserPlugins = [
 	webpackIsomorphicToolsPlugin.development()
 ]
 
-# _serverPlugins = [
-# 	new ExtractTextPlugin("style.css", {
-# 		allChunks: true
-# 		})
-# 	new webpack.NoErrorsPlugin()
-# ]
-
-
-
 
 # Entry Points
 # --------------------------------------------
 _entryApp = [
 	hotMiddlewareScript
-	nodepath.resolve(ROOT, "ui/js/app/index.coffee")
+	nodepath.resolve(ROOT, "src/client/app/index.coffee")
 ]
-# _entryVendor = [
-# 	"react"
-# 	"react-dom"
-# 	"lodash"
-# 	"webcomponentsjs/webcomponents.min.js"
-# 	"jquery"
-# 	"waypoints/lib/jquery.waypoints.min.js"
-# ]
-# _entryGlobal = "global.sass"
-
-# Development Additions
-# ------------------------------------
-# _entryApp.unshift(hotMiddlewareScript)
-# _entryVendor.unshift(hotMiddlewareScript)
 
 
 _loaders = [
@@ -113,18 +81,17 @@ browser = {
 		modulesDirectories: ["node_modules"]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
-		# root: [nodepath.resolve(".")]
-		# extensions: ["", ".js", ".coffee", ".cjsx"]
-		modulesDirectories: ["node_modules", "assets/public/lib", "views/react"]
-	devtool: "inline-source-map"
+		modulesDirectories: ["node_modules", "assets/public/lib", "src"]
+		alias:
+			React: "react"
+			react: "react"
+	devtool: "source-map"
 	progress: true
 
 	plugins: _browserPlugins
 
 	entry: {
 		app: _entryApp
-		# vendor: _entryVendor
-		# views: _entryViews
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")
