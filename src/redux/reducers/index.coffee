@@ -2,13 +2,20 @@
 {routerReducer} = require("react-router-redux")
 {reducer} = require("redux-async-connect")
 products = require("./products")
-# app = require("./app")
+app = require("./app")
+contact = require("./contact")
 
-App = combineReducers({
+_reducers = {
 	routing: routerReducer
 	reduxAsyncConnect: reducer
 	products: products
-	# app: app
-	})
+	}
+
+if __CLIENT__
+	_reducers.app = app
+	_reducers.contact = contact
+
+
+App = combineReducers(_reducers)
 
 module.exports = App
