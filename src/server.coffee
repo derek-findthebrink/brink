@@ -3,7 +3,7 @@ require("coffee-react/register")
 nodepath = require("path")
 
 express = require "express"
-bodyParser = require "body-parser"
+# bodyParser = require "body-parser"
 bunyan = require("bunyan")
 cookieParser = require("cookie-parser")
 compression = require("compression")
@@ -61,10 +61,10 @@ app.set("views", viewsDir)
 app.set("view engine", "jade")
 app.use(compression())
 
-app.use bodyParser.json()
-app.use bodyParser.urlencoded({
-	extended: true
-	})
+# app.use bodyParser.json()
+# app.use bodyParser.urlencoded({
+# 	extended: true
+# 	})
 app.use cookieParser()
 
 # static dir
