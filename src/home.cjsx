@@ -25,7 +25,7 @@ Q = require("q")
 # ----------------------------
 try
 	log = appLogger.child({
-		type: "route"
+		type: "main-render"
 		file: "home"
 		})
 catch
