@@ -1,9 +1,11 @@
 React = require("react")
 {Link} = require("react-router")
+{connect} = require("react-redux")
 
 DevTools = require("../../components/devtools.cjsx")
 Footer = require("../../components/footer/footer.cjsx")
 Header = require("../../components/header/header.cjsx")
+Loading = require("../../components/loading/loading.cjsx")
 
 content = require("../../../content/index.coffee")
 # console.log content
@@ -27,6 +29,13 @@ App = React.createClass({
 			dev = <DevTools />
 		else
 			dev = null
+
+		# apply loading module
+		# if __CLIENT__
+		# 	loading = <Loading />
+		# else
+		# 	loading = null
+		loading = null
 		
 		<div>
 			<Header />
@@ -35,6 +44,7 @@ App = React.createClass({
 			</main>
 			{dev}
 			<Footer />
+			{loading}
 		</div>
 	})
 

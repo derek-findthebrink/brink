@@ -1,7 +1,7 @@
 @import "../../style/_config.sass"
 
 .container
-	position: absolute
+	position: fixed
 	display: flex
 	justify-content: center
 	align-items: center
@@ -9,10 +9,30 @@
 	height: 100%
 	top: 0
 	left: 0
-	background-color: $theme-base
+	background-color: rgba($theme-base, 0.95)
 	div
 		display: flex-item
 	h1
 		color: mix(white, $theme-base, 80%)
 	// img
 	// 	width: 10%
+
+@-webkit-keyframes fadeOut
+	from
+		opacity: 1
+	to
+		opacity: 0
+@keyframes fadeOut
+	from
+		opacity: 1
+	to
+		opacity: 0
+
+%fadeOut
+	-webkit-animation-name: fadeOut
+	animation-name: fadeOut
+
+
+.leaveTransition
+	@extend %animated
+	@extend %fadeIn
