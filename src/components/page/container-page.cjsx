@@ -1,6 +1,7 @@
 React = require("react")
 
 ContentHeader = require("../content-header/content-header.cjsx")
+Loading = require("../loading/loading.cjsx")
 
 PageContainer = React.createClass({
 	propTypes: {
@@ -8,7 +9,7 @@ PageContainer = React.createClass({
 		children: React.PropTypes.any.isRequired
 	}
 	render: ->
-		<div>
+		<div style={{position: "relative"}}>
 			<ContentHeader {...@props.header} />
 			{@props.children}
 		</div>
