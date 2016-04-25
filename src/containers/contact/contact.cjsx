@@ -65,7 +65,10 @@ ContactForm = React.createClass({
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
 			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
-			<Field name="product" value={@state.product} change={@change("product")} />
+			<Field name="product" type="select" value={@state.product} change={@change("product")}>
+				<option>herp</option>
+				<option>derp</option>
+			</Field>
 			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />
 			<ButtonField>

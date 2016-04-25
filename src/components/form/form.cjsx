@@ -30,7 +30,7 @@ Field = React.createClass({
 		if type == "textarea"
 			_i = React.createElement("textarea", x)
 		else if type == "select"
-			_i = React.createElement("select", x)
+			_i = React.createElement("select", x, @props.children)
 		else if type == "checkbox"
 			# switch type
 			_i = React.createElement(InputSwitch, x)
