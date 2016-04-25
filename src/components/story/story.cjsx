@@ -37,7 +37,7 @@ How = React.createClass({
 			<div className={styles.twoCol}>
 				<div>
 					<div className={styles.colorContainer}>
-						<img src="/icons/brink-icons_business\ cards.svg" />
+						<img src="/brink-logo-small.svg" />
 						<h3>Universal Code</h3>
 						<p>
 							Gone are the days of using a different language for each target device. Our custom servers, web sites and 
@@ -48,7 +48,7 @@ How = React.createClass({
 				</div>
 				<div>
 					<div className={styles.colorContainer}>
-						<img src="/icons/brink-icons_domain.svg" />
+						<img src="/img/rabbit.png" />
 						<h3>Sprint Development</h3>
 						<p>
 							We like to get things done quickly too. Our tools help us move quickly, freeing up more time for working
@@ -68,7 +68,7 @@ Benefits = React.createClass({
 			<h2>{items[2].title}</h2>
 			<div className={styles.threeCol}>
 				<div>
-					<img src="/icons/brink-icons_uptime.svg" />
+					<img src="/brink-logo-small.svg" />
 					<h3>speed</h3>
 					<p>
 						Want it done fast? No problem. Our tools (which we love) and our philosophy
@@ -76,7 +76,7 @@ Benefits = React.createClass({
 					</p>
 				</div>
 				<div>
-					<img src="/icons/brink-icons_oil.svg" />
+					<img src="/img/wallet.png" />
 					<h3>money in your pocket</h3>
 					<p>
 						We're cheap! It's true, check out our competition. Being a startup teaches
@@ -85,7 +85,7 @@ Benefits = React.createClass({
 					</p>
 				</div>
 				<div>
-					<img src="/icons/brink-icons_trends.svg" />
+					<img src="/brink-logo-small.svg" />
 					<h3>quality, reusable code</h3>
 					<p>
 						The internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us

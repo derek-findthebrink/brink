@@ -18,7 +18,8 @@
 		p
 			color: mix(white, black, 30%)
 	img
-		max-width: 6em
+		// max-width: 15em
+		width: 100%
 
 .storyItem
 	@include row()
@@ -36,13 +37,16 @@
 	margin: 0 auto
 
 .threeCol
-	@include fill-parent()
+	// @include fill-parent()
+	@include row(table)
 	& > div
 		@include span-columns(1 of 3)
 		@include thin-border(false)
 		padding: 1em
 		border-top: none
 		border-bottom: none
+		border: none
+		@include reset-display
 
 .twoCol
 	@include fill-parent()
