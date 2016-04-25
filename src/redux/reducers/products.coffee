@@ -1,12 +1,25 @@
 _ = require("lodash")
+{actions, selectProduct} = require("../actions/products")
 
-products = (state = {}, action)->
-	console.log {state, action}, "products reducer"
+{SELECT_PRODUCT, LOAD} = actions
+
+
+initialState = {
+	selected: null
+	items: []
+}
+
+products = (state = initialState, action)->
 	switch action.type
-		when "reduxAsyncConnect/LOAD_SUCCESS"
-			s = action.data
+		when LOAD
+			s = _.clone(state)
+			s.items = action.data
 			return s
-
-	return state
+		when SELECT_PRODUCT
+			s = _.clone(state)
+			s.selected = action.value
+			return s
+		else
+			return state
 
 module.exports = products
