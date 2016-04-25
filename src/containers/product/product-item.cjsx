@@ -5,7 +5,7 @@ React = require("react")
 ProductItem = React.createClass({
 	render: ->
 		styles = require("./product.sass")
-		_hrefLearn = ["/products-and-services", @props.category, @props.product].join("/")
+		_hrefLearn = ["/learn", @props._id].join("/")
 		_hrefContact = ["/contact", @props.category, @props.product].join("/")
 		# console.log {@props}
 		includes = null
