@@ -37,6 +37,8 @@ Field = React.createClass({
 		else if type == "checkbox"
 			# switch type
 			_i = React.createElement(InputSwitch, x)
+		else if type == "custom"
+			_i = @props.children
 		else
 			_i = React.createElement("input", x)
 

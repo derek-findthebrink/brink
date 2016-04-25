@@ -1,6 +1,5 @@
 React = require("react")
 _ = require("lodash")
-$ = require("jquery")
 
 PageContainer = require("../../components/page/container-page.cjsx")
 {LocationInfo, ContactForm} = require("./components.cjsx")
@@ -17,11 +16,14 @@ Contact = React.createClass({
 		styles = require("./contact.sass")
 		content = @context.content["Contact"]
 		_q = @props.location.query
+		console.log _q		
 		if _q.product
-			product = _q.product
+			product = _.find @props.products.data, (x)->
+				return x._id == _q.product
 		else
 			product = null
 
+		console.log product:product
 		<PageContainer {...content}>
 			<LocationInfo {...content} />
 			<ContactForm products={@props.products.data} selected={product}>

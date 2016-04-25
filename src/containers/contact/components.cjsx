@@ -10,13 +10,30 @@ Captcha = React.createClass({
 	})
 
 
+SelectedProduct = React.createClass({
+	render: ->
+		styles = require("./contact.sass")
+		if !@props.product || @props.product == "none"
+			return null
+		else
+			productId = @props.product
+			actual = _.find @props.list, (x)->
+				return productId == x._id
+
+			<div className={styles.selectedProduct}>
+				<h3>{actual.category} - {actual.title}</h3>
+				<p>{actual.description}</p>
+				<p>${actual.price.value} {actual.price.currency} / {actual.price.priceType}</p>
+			</div>
+	})
 
 ContactForm = React.createClass({
 	getInitialState: ->
+		if @props.selected then product = @props.selected._id
 		return {
 			name: ""
 			email: ""
-			product: @props.selected || ""
+			product: product || ""
 			description: ""
 		}
 	submit: (e)->
@@ -42,13 +59,6 @@ ContactForm = React.createClass({
 				)
 	componentWillMount: ->
 		# console.log props: @props, state: @state
-		if @props.product
-			if (@props.product.product && @props.product.category)
-				product = @props.product.product
-				category = @props.product.category
-				@setState({
-					product: category + "/" + product
-					})
 		if @props.user
 			name = @props.user.name || ""
 			email = @props.user.email || ""
@@ -61,28 +71,25 @@ ContactForm = React.createClass({
 			if !x.active
 				return
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
-
+		# add general question field
 		items.unshift(
-			<option key={items.length} value={null}>general question</option>
+			<option key={items.length} value={"none"}>general question</option>
 			)
-
-		# if @props.selected
-			# @setState({
-			# 	product: @props.selected
-			# 	})
 
 		styles = require("./contact.sass")
 		<form className={styles["contact-form"]} method="post" action="/contact">
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
 			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
+			<Field type="custom">
+				<SelectedProduct product={@state.product} list={@props.products} />
+			</Field>
 			<Field name="product" multiple={false} type="select" value={@state.product} change={@change("product")}>
 				{items}
 			</Field>
 			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />
 			<ButtonField>
-				<button type="back" onClick={@back}>back</button>
 				<input type="submit" value="submit" onClick={@submit} />
 			</ButtonField>
 		</form>
