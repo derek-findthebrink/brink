@@ -51,10 +51,11 @@ _asyncRender = (props)->
 	<ReduxAsyncConnect {...props} helpers={client} />
 
 match({history, routes}, (err, redirect, props)->
-	main = (
-		<Provider store={store} key="provider">
-			<Router {...props} render={_asyncRender} history={browserHistory} />
-		</Provider>
-		)
-	render(main, container)
+	main = React.createClass({
+		render: ->
+			<Provider store={store} key="provider">
+				<Router {...props} render={_asyncRender} history={browserHistory} />
+			</Provider>
+		}) 
+	render(React.createElement(main), container)
 	)
