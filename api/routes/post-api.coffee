@@ -29,15 +29,13 @@ go = (mongoose)->
 
 	app.post("/contact", (req, res)->
 		body = req.body
-		log.info body:body, "post"
-		x = new Contact(body)
-		x.save()
+		log.info body:body, "contact body"
+		Contact.add(req)
 		.then(
 			(val)->
-				log.info val:val, "saved new contact"
+				log.info val:val, "pre post-contact complete"
 				res.redirect("/contact")
 			(err)->
-				log.error err:err, "error creating contact"
 				res.redirect("/contact")
 			)
 		)
