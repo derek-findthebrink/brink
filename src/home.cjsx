@@ -78,14 +78,20 @@ base = (req, res)->
 
 			else if props
 				log.info "attempting load on server"
-				loadOnServer(props, store, {get}).then ->
-					final = (
-						<Provider store={store}>
-							<ReduxAsyncConnect {...props} />
-						</Provider>
-						)
-					html = ReactServer.renderToString final
-					return def.resolve(html)
+				loadOnServer(props, store, {get})
+				.then(
+					->
+						final = (
+							<Provider store={store}>
+								<ReduxAsyncConnect {...props} />
+							</Provider>
+							)
+						html = ReactServer.renderToString final
+						return def.resolve(html)
+					(err)->
+						log.error err:err, "load on server error"
+						return def.reject(err)
+					)
 			)
 		return def.promise
 
