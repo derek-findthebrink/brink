@@ -61,9 +61,6 @@ base = (req, res)->
 			appJsSrc: app
 			})
 
-	_getData = ()->
-		return get("products")
-
 	_getHtml = (routes, location, store)->
 		def = Q.defer()
 		match({routes, location}, (err, redirect, props)->

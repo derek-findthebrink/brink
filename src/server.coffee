@@ -134,7 +134,7 @@ _trackMiddleware = (req, res, next)->
 		originalUrl: req.originalUrl
 	}
 	superagent
-	.post(targetUrl + "/data/addView")
+	.post(targetUrl + "/post/addView")
 	.send(obj)
 	.end (err)->
 		if err then log.error err:err, "add view error"

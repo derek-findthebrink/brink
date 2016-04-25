@@ -73,8 +73,11 @@ auth = require("./config/auth")
 auth(app, passport, Account)
 
 # app data
-data = require("./routes/app-data")
-app.use("/data", data(mongoose))
+getData = require("./routes/get-app")
+app.use("/get", getData(mongoose))
+
+postData = require("./routes/post-api")
+app.use("/post", postData(mongoose))
 
 
 # Server Start

@@ -17,6 +17,7 @@ go = (mongoose)->
 	About = mongoose.model("About")
 	Stack = mongoose.model("Stack")
 	User = mongoose.model("User")
+	Contact = mongoose.model("Contact")
 	
 
 	models = [
@@ -39,23 +40,10 @@ go = (mongoose)->
 
 	]
 
-	# tracking
-	app.post("/addView", (req, res)->
-		User.addInteraction(req)
-		.then(
-			()->
-				# log.info "interaction saved successfully"
-				res.status(200).end()
-			(err)->
-				log.error err:err, "error saving interaction"
-				res.status(500).end()
-			)
-	)
-
 	# get api
-	_createGetApi = ({schema, name}, _app)->
+	_createApi = ({schema, name}, type, _app)->
 		url = "/" + name
-		_app.get(url, (req, res)->
+		_app[type](url, (req, res)->
 			schema.find({}).exec()
 			.then(
 				(docs)->
@@ -65,19 +53,9 @@ go = (mongoose)->
 					res.status(500).end()
 				)
 			)
+	# create get api
 	models.map (x)->
-		return _createGetApi(x, app)
-
-	# app.get("/products", (req, res)->
-	# 	Products.find({}).exec()
-	# 	.then(
-	# 		(docs)->
-	# 			res.send(docs).end()
-	# 		(err)->
-	# 			log.error err:err, "error retrieving products"
-	# 			res.status(500).end()
-	# 		)
-	# 	)
+		return _createApi(x, "get", app)
 
 	return app
 
