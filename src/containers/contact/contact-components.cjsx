@@ -37,6 +37,7 @@ ContactForm = React.createClass({
 			description: ""
 		}
 	submit: (e)->
+		console.log "submit clicked"
 		# e.preventDefault()
 		# console.log state:@state, props:@props
 		# # add recaptcha here
@@ -45,6 +46,9 @@ ContactForm = React.createClass({
 		# 	action: "submit_contact"
 		# 	payload: @state
 		# 	})
+		console.log state:@state
+		# e.preventDefault()
+		return
 	change: (key)->
 		# console.log key:key
 		return (e)=>
@@ -75,7 +79,7 @@ ContactForm = React.createClass({
 			)
 
 		styles = require("./contact.sass")
-		<form className={styles["contact-form"]} method="post" action="/contact">
+		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
 			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
@@ -88,7 +92,7 @@ ContactForm = React.createClass({
 			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />
 			<ButtonField>
-				<input type="submit" value="submit" onClick={@submit} />
+				<input type="submit" value="submit" />
 			</ButtonField>
 		</form>
 	})

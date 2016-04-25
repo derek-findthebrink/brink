@@ -1,9 +1,9 @@
 React = require("react")
 _ = require("lodash")
+{asyncConnect} = require("redux-async-connect")
 
 PageContainer = require("../../components/page/container-page.cjsx")
-{LocationInfo, ContactForm} = require("./components.cjsx")
-{asyncConnect} = require("redux-async-connect")
+{LocationInfo, ContactForm} = require("./contact-components.cjsx")
 
 
 
@@ -12,18 +12,16 @@ Contact = React.createClass({
 	contextTypes:
 		content: React.PropTypes.object
 	render: ->
-		console.log props:@props
+		# console.log props:@props
 		styles = require("./contact.sass")
 		content = @context.content["Contact"]
 		_q = @props.location.query
-		console.log _q		
 		if _q.product
 			product = _.find @props.products.data, (x)->
 				return x._id == _q.product
 		else
 			product = null
 
-		console.log product:product
 		<PageContainer {...content}>
 			<LocationInfo {...content} />
 			<ContactForm products={@props.products.data} selected={product}>
