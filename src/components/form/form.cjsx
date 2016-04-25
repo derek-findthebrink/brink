@@ -26,6 +26,9 @@ Field = React.createClass({
 			onChange: change
 			value: value
 		}
+		if @props.multiple
+			x.multiple = true
+
 		_i = null
 		if type == "textarea"
 			_i = React.createElement("textarea", x)
