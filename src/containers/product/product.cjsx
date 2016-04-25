@@ -17,7 +17,7 @@ Products = React.createClass({
 	render: ->
 		styles = require("./product.sass")
 		# animation speed
-		console.log props:@props
+		# console.log props:@props
 		speed = 750
 		content = @context.content["Products"]
 		products = @props.products.data

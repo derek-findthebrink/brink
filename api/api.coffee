@@ -46,6 +46,12 @@ app.use bodyParser.urlencoded({
 	})
 app.use cookieParser()
 
+
+
+
+# Auth
+# ------------------------
+
 mongoStoreOptions = {
 	mongooseConnection: mongoose.connection
 	ttl: 14 * 24 * 60 * 60
@@ -59,13 +65,12 @@ app.use session({
 	saveUninitialized: true
 })
 
+
+# Routes
+# -------------------------------------
+
 auth = require("./config/auth")
 auth(app, passport, Account)
-
-# test route
-app.post("/test", (req, res)->
-	res.end("hello world! test worked!")
-	)
 
 # app data
 data = require("./routes/app-data")

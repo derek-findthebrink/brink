@@ -16,6 +16,8 @@ go = (mongoose)->
 	Portfolio = mongoose.model("Portfolio")
 	About = mongoose.model("About")
 	Stack = mongoose.model("Stack")
+	User = mongoose.model("User")
+	
 
 	models = [
 		{
@@ -37,6 +39,20 @@ go = (mongoose)->
 
 	]
 
+	# tracking
+	app.post("/addView", (req, res)->
+		User.addInteraction(req)
+		.then(
+			()->
+				# log.info "interaction saved successfully"
+				res.status(200).end()
+			(err)->
+				log.error err:err, "error saving interaction"
+				res.status(500).end()
+			)
+	)
+
+	# get api
 	_createGetApi = ({schema, name}, _app)->
 		url = "/" + name
 		_app.get(url, (req, res)->

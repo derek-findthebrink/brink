@@ -23,6 +23,7 @@ catch e
 # Models = ["account", "applications", "products"]
 # loadModels(Models)
 
+require("../models/users")
 require("../models/account")
 require("../models/stack")
 require("../models/products")

@@ -9,6 +9,8 @@ cookieParser = require("cookie-parser")
 compression = require("compression")
 http = require("http")
 httpProxy = require("http-proxy")
+superagent = require("superagent")
+client = require("./helpers/apiClient")
 # favicon = require("serve-favicon")
 
 
@@ -69,6 +71,11 @@ app.use cookieParser()
 app.use(express.static(STATIC_DIR))
 # app.use(favicon(favicon_location))
 
+
+
+
+
+
 # API Server Proxy
 # ----------------------------------
 apiHost = process.env.API_HOST
@@ -107,31 +114,6 @@ proxy.on("error", (err, req, res)->
 
 
 
-
-# Passport
-# ------------------------------------
-# mongoStoreOptions = {
-# 	mongooseConnection: mongoose.connection
-# 	ttl: 14 * 24 * 60 * 60
-# }
-
-# app.use session({
-# 	secret: process.env.SESSION_KEY
-# 	store: new MongoStore(mongoStoreOptions)
-# 	resave: false
-# 	saveUninitialized: true
-# })
-
-# auth = require("./config/auth")
-# auth(app, passport, Account)
-
-
-
-
-
-
-
-
 # Request Logger
 # -----------------------------
 if process.env.LOG_REQUESTS == "true"
@@ -143,7 +125,21 @@ if process.env.LOG_REQUESTS == "true"
 
 
 
+# Tracking
+# -------------------------------------------
+_trackMiddleware = (req, res, next)->
+	next()
+	obj = {
+		ip: req.ip
+		originalUrl: req.originalUrl
+	}
+	superagent
+	.post(targetUrl + "/data/addView")
+	.send(obj)
+	.end (err)->
+		if err then log.error err:err, "add view error"
 
+app.use(_trackMiddleware)
 
 # Routes
 # --------------------------------------------
@@ -153,9 +149,6 @@ app.use("/", homeRoutes)
 # disabled admin for massive ui changes
 # adminRoutes = require("./api/routes/admin")
 # app.use("/admin", adminRoutes)
-
-
-
 
 
 
