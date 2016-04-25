@@ -54,12 +54,15 @@ base = (req, res)->
 	css = assets.styles.app || null
 	app = assets.javascript.app
 
-	if __DISABLE_SSR__
-		return res.render("layout", {
-			content: "<div>disabled ssr</div>"
+	_generatePage = (html)->
+		res.render("layout", {
+			content: html
 			appCss: css
 			appJsSrc: app
 			})
+
+	if __DISABLE_SSR__
+		return _generatePage("<div>disabled ssr</div>")
 
 	_getHtml = (routes, location, store)->
 		def = Q.defer()
@@ -96,12 +99,8 @@ base = (req, res)->
 	.then(
 		(html)->
 			# return data to client
-			res.render("layout", {
-				content: html
-				appCss: css
-				appJsSrc: app
-				})
-			return
+			_generatePage(html)
+			log.info "data rendering complete"
 		(err)->
 			log.error err:err, "rendering failed"
 			res.status(500).end()
@@ -111,6 +110,7 @@ base = (req, res)->
 			log.info "data rendering complete"
 		(err)->
 			log.error err:err, "error after spread promise"
+			console.error err
 	)
 
 home = express.Router()
