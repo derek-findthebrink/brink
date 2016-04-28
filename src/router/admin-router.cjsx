@@ -10,11 +10,12 @@ catch
 React = require("react")
 {Router, Route, IndexRoute} = require("react-router")
 
-{Admin} = require("../containers/adminIndex")
+{App, Dashboard} = require("../containers/adminIndex")
 
 AdminRouter = (history)->
 	<Router history={history}>
-		<Route path="/" component={Admin}>
+		<Route path="/admin" component={App}>
+			<IndexRoute component={Dashboard} />
 		</Route>
 	</Router>
 
