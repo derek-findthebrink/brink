@@ -1,7 +1,7 @@
 try
 	log = appLogger.child({
-		type: "app-router"
-		file: "router"
+		type: "router"
+		file: "app"
 	})
 catch
 	log = console
