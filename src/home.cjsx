@@ -4,21 +4,7 @@ nodepath = require("path")
 # server
 express = require "express"
 # rendering
-React = require("react")
-ReactServer = require("react-dom/server")
-{
-	RouterContext
-	match
-	createRoutes
-	createMemoryHistory
-} = require("react-router")
-# data, redux, async rendering
-_ = require("lodash")
-Q = require("q")
-{ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
-{Provider} = require("react-redux")
-{get} = require("./helpers/apiClient")
-
+render = require("./helpers/server-rendering")
 
 
 # Logger
@@ -36,91 +22,34 @@ catch
 # ------------------------------
 # ROOT_DIR = process.env.APP_ROOT
 
-routesGenerator = require "./router/app-router"
+# routesGenerator = require "./router/app-router"
+
+renderApp = render({
+	storeLocation: nodepath.resolve(__dirname, "redux")
+	routesLocation: nodepath.resolve(__dirname, "router/app-router")
+	app: "app"
+	})
+
+renderAdmin = render({
+	storeLocation: nodepath.resolve(__dirname, "redux")
+	routesLocation: nodepath.resolve(__dirname, "router/admin-router")
+	baseName: "/admin"
+	app: "admin"
+	})
 
 
-base = (req, res)->
-	if __DEVELOPMENT__
-		webpackIsomorphicTools.refresh()
-	_h = createMemoryHistory()
-	# injects history and views logic into app-router for rendering
-	routes = routesGenerator(_h)
-	# creates location match for use in following match function
-	location = _h.createLocation(req.originalUrl)
-	store = require("./redux")(null)
 
-
-	assets = webpackIsomorphicTools.assets()
-	css = assets.styles.app || null
-	app = assets.javascript.app
-
-	_generatePage = (html)->
-		res.render("layout", {
-			content: html
-			appCss: css
-			appJsSrc: app
-			})
-
-	if __DISABLE_SSR__
-		return _generatePage("<div>disabled ssr</div>")
-
-	_getHtml = (routes, location, store)->
-		def = Q.defer()
-		match({routes, location}, (err, redirect, props)->
-			# log.info {url: req.url, location: location, routes:routes}, "match occurred"
-			if err
-				log.error err, "error"
-				return def.reject(err)
-
-			else if redirect
-				# add redirect logic here
-				log.info redirect: redirect, "redirect requested"
-
-			else if props
-				log.info "attempting load on server"
-				loadOnServer(props, store, {get})
-				.then(
-					->
-						final = (
-							<Provider store={store}>
-								<ReduxAsyncConnect {...props} />
-							</Provider>
-							)
-						html = ReactServer.renderToString final
-						return def.resolve(html)
-					(err)->
-						log.error err:err, "load on server error"
-						return def.reject(err)
-					)
-			)
-		return def.promise
-
-	_getHtml(routes, location, store)
-	.then(
-		(html)->
-			# return data to client
-			_generatePage(html)
-			log.info "data rendering complete"
-		(err)->
-			log.error err:err, "rendering failed"
-			res.status(500).end()
-		)
-	.then(
-		->
-			log.info "data rendering complete"
-		(err)->
-			log.error err:err, "error after spread promise"
-			console.error err
-	)
 
 home = express.Router()
-home.get "/", base
-home.get "/portfolio", base
-home.get "/stack", base
-home.get "/products-and-services", base
-home.get "/products-and-services/:sub", base
-home.get "/contact", base
-home.get "/about", base
+home.get "/", renderApp
+home.get "/portfolio", renderApp
+home.get "/stack", renderApp
+home.get "/products-and-services", renderApp
+home.get "/products-and-services/:sub", renderApp
+home.get "/contact", renderApp
+home.get "/about", renderApp
+
+home.get "/admin", renderAdmin
 
 
 # Receive Customer Data
