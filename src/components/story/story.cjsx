@@ -37,7 +37,7 @@ How = React.createClass({
 			<div className={styles.twoCol}>
 				<div>
 					<div className={styles.colorContainer}>
-						<img src="/brink-logo-small.svg" />
+						<img src="/img/universe.png" />
 						<h3>Universal Code</h3>
 						<p>
 							Gone are the days of using a different language for each target device. Our custom servers, web sites and 
@@ -85,7 +85,7 @@ Benefits = React.createClass({
 					</p>
 				</div>
 				<div>
-					<img src="/brink-logo-small.svg" />
+					<img src="/img/future-code.png" />
 					<h3>quality, reusable code</h3>
 					<p>
 						The internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us
