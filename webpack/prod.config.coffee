@@ -28,6 +28,7 @@ plugins = [
 # Entry Points
 # --------------------------------------------
 app_entry = nodepath.resolve(ROOT, "src/client-app.cjsx")
+admin_entry = nodepath.resolve(ROOT, "src/admin-app.cjsx")
 
 # Loaders
 # ------------------------------
@@ -88,6 +89,7 @@ module.exports = {
 	name: "production-build"
 	entry: 
 		app: app_entry
+		admin: admin_entry
 	# target: "node"
 	context: ROOT
 	plugins: plugins

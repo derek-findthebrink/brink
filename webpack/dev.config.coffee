@@ -34,6 +34,10 @@ _entryApp = [
 	hotMiddlewareScript
 	nodepath.resolve(ROOT, "src/client-app.cjsx")
 ]
+_entryAdmin = [
+	hotMiddlewareScript
+	nodepath.resolve(ROOT, "src/admin-app.cjsx")
+]
 
 
 _loaders = [
@@ -92,6 +96,7 @@ browser = {
 
 	entry: {
 		app: _entryApp
+		admin: _entryAdmin
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")
