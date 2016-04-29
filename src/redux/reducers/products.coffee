@@ -12,6 +12,8 @@ initialState = {
 products = (state = initialState, action)->
 	switch action.type
 		when LOAD
+			if action.key != "products"
+				return state
 			s = _.clone(state)
 			s.items = action.data
 			return s
