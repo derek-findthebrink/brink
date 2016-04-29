@@ -14,7 +14,7 @@ _ = require("lodash")
 Q = require("q")
 {ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
-{get} = require("./apiClient")
+_Client = require("./apiClient")
 
 try
 	log = appLogger.child({
@@ -33,6 +33,7 @@ render = (segment)->
 	_app = segment.app
 	return (req, res)->
 		log.info "request begins"
+		client = new _Client(req)
 		_getHtml = (routes, location, store)->
 			log.info "get html"
 			def = Q.defer()
@@ -44,12 +45,12 @@ render = (segment)->
 					log.warn redirect:redirect, "redirect requested"
 					return
 				else if props
-					loadOnServer(props, store, {get})
+					loadOnServer(props, store, client)
 					.then(
 						()->
 							final = (
 								<Provider store={store}>
-									<ReduxAsyncConnect {...props} />
+									<ReduxAsyncConnect {...props} helpers={client} />
 								</Provider>
 							)
 							html = ReactServer.renderToString final
@@ -78,6 +79,7 @@ render = (segment)->
 		css = assets.styles[_app] || null
 		app = assets.javascript[_app] || null
 
+		# __DISABLE_SSR__ = true
 		if __DISABLE_SSR__
 			return _generatePage("<div>disabled ssr</div>", css, app)
 
@@ -90,9 +92,9 @@ render = (segment)->
 		_h = createMemoryHistory()
 
 		log.info "generating else"
-		routes = require(_routeGenerator)(_h)
-		location = _h.createLocation(req.originalUrl)
 		store = require(_storeGenerator)(null)
+		routes = require(_routeGenerator)(_h, store)
+		location = _h.createLocation(req.originalUrl)
 
 
 		_getHtml(routes, location, store)

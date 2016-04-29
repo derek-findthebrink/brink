@@ -9,13 +9,14 @@ React = require("react")
 
 router = require("./router/app-router.cjsx")
 store = require("./redux")(null)
-client = require("./helpers/apiClient")
+Client = require("./helpers/apiClient")
 
 
 app = {}
 
 if __DEVELOPMENT__
 	window.app = app
+	app.client = client
 
 # google analytics
 `
@@ -45,10 +46,10 @@ if __DEVELOPMENT__
 	app.store = store
 container = $("#app-container")[0]
 history = syncHistoryWithStore(browserHistory, store)
-routes = router(history)
+routes = router(history, store)
 
 _asyncRender = (props)->
-	<ReduxAsyncConnect {...props} helpers={client} />
+	<ReduxAsyncConnect {...props} helpers={new Client()} />
 
 match({history, routes}, (err, redirect, props)->
 	main = React.createClass({
