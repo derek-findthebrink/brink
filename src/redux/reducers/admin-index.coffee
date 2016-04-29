@@ -10,26 +10,13 @@ console.log actions:actions
 {LOAD, LOADED} = actions.LoadActions
 
 # Products
-UPDATE_PRODUCT = "UPDATE_PRODUCTS"
-
+# ----------------------------------------
 productsInitial = {
 	items: []
-	isEdited: false
 }
 
 productReducer = (state = [], action)->
-	switch action.type
-		when UPDATE_PRODUCT
-			s = _.clone(state)
-			s = s.map (x, i)->
-				if x._id == action._id
-					y = _.clone(x)
-					return y
-				else
-					return x
-			return s
-		else
-			return state
+	return state
 
 
 productsReducer = (state = productsInitial, action)->
@@ -41,35 +28,16 @@ productsReducer = (state = productsInitial, action)->
 				return s
 			else
 				return state
-		when UPDATE_PRODUCT
-			s = _.clone(state)
-			s.isEdited = true
-			s.items = productReducer(s.items, action)
-			return s
 		else
 			return state
 # Stack
-UPDATE_STACK = "UPDATE_STACK"
-
+# ----------------------------------------
 stackInitial = {
 	items: []
-	isEdited: false
 }
 
 stackItemReducer = (state = [], action)->
-	switch action.type
-		when UPDATE_STACK
-			s = _.clone(state)
-			s = s.map (x, i)->
-				if x._id == action.model._id
-					y = action.model
-					y.modified = true
-					return y
-				else
-					return x
-			return s
-		else
-			return state
+	return state
 
 
 stackReducer = (state = stackInitial, action)->
@@ -81,11 +49,25 @@ stackReducer = (state = stackInitial, action)->
 				return s
 			else
 				return state
-		when UPDATE_STACK
+		else
+			return state
+
+# Edit
+# ----------------------------------------------
+CREATE_EDITOR = "CREATE_EDITOR"
+UPDATE_EDITOR = "UPDATE_EDITOR"
+GET_EDITOR_STATE = "GET_EDITOR_STATE"
+
+editReducer = (state = {}, action)->
+	switch action.type
+		when CREATE_EDITOR
+			return action.model
+		when UPDATE_EDITOR
 			s = _.clone(state)
-			s.isEdited = true
-			s.items = stackItemReducer(s.items, action)
-			return s
+			y = _.extend s, action.value
+			return y
+		when GET_EDITOR_STATE
+			return state
 		else
 			return state
 
@@ -94,6 +76,7 @@ _reducers = {
 	reduxAsyncConnect: reducer
 	products: productsReducer
 	stack: stackReducer
+	edit: editReducer
 	}
 
 App = combineReducers(_reducers)

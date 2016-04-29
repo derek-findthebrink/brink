@@ -25,6 +25,16 @@ catch
 	log = console
 	log.info = console.log
 
+
+# VARS
+# -----------------------------------
+
+__DISABLE_SSR__ = true
+
+
+
+
+
 render = (segment)->
 	# define segment-specific components here
 	_storeGenerator = segment.storeLocation
@@ -79,7 +89,6 @@ render = (segment)->
 		css = assets.styles[_app] || null
 		app = assets.javascript[_app] || null
 
-		# __DISABLE_SSR__ = true
 		if __DISABLE_SSR__
 			return _generatePage("<div>disabled ssr</div>", css, app)
 

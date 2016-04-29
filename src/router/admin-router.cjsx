@@ -11,7 +11,7 @@ React = require("react")
 {Router, Route, IndexRoute} = require("react-router")
 {asyncConnect} = require("redux-async-connect")
 
-{App, Dashboard, Login, Edit} = require("../containers/adminIndex")
+{App, Dashboard, Login, Edit, EditItem} = require("../containers/adminIndex")
 
 
 AdminRouter = (history, store)->
@@ -28,6 +28,7 @@ AdminRouter = (history, store)->
 		<Route path="/admin" onEnter={requireLogin} component={App}>
 			<IndexRoute component={Dashboard} />
 			<Route path="edit/:section" component={Edit} />
+			<Route path="edit/:section/:id" component={EditItem} />
 		</Route>
 
 	</Router>

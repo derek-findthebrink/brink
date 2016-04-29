@@ -92,6 +92,7 @@ home.get "/about", renderApp
 home.get "/admin", isLoggedIn, renderAdmin
 home.get "/login", renderAdmin
 home.get "/admin/edit/:section", renderAdmin
+home.get "/admin/edit/:section/:id", renderAdmin
 
 
 # Receive Customer Data
