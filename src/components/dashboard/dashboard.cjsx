@@ -16,18 +16,8 @@ StatsItem = React.createClass({
 
 Dashboard = React.createClass({
 	render: ->
-		items = ["products", "stack"]
-
-		stats = items.map (x, i)->
-			<StatsItem title={x} key={i} />
-
 		<div>
-			<h2>Admin Dashboard</h2>
-			<p>you are logged in as: {@props.username}</p>
-			<a href="/admin/logout">logout</a>
-			<ul className="stats-container">
-				{stats}
-			</ul>
+			<h2>Dashboard</h2>
 		</div>
 	})
 

@@ -3,11 +3,13 @@ React = require("react")
 
 InputSwitch = React.createClass({
 	render: ->
-		console.log props:@props, "input switch"
-		<div className="form-field">
-			<label className="checkbox-fancy">
-				<input type="checkbox" checked={@props.value} />
-				<div className="checkbox" />
+		# console.log props:@props, "input switch"
+		styles = require("./form.sass")
+		fancyCheckbox = require("./refills_switch.scss")
+		<div className={styles["form-field"]}>
+			<label className={fancyCheckbox["checkbox-fancy"]}>
+				<input {...@props} />
+				<div className={fancyCheckbox.checkbox} />
 			</label>
 		</div>
 	})
@@ -18,7 +20,7 @@ Field = React.createClass({
 		label = @props.label || @props.name
 		type = @props.type
 		change = @props.change
-		value = @props.value || null
+		value = @props.value
 		x = {
 			name: @props.name
 			label: label
@@ -36,6 +38,12 @@ Field = React.createClass({
 			_i = React.createElement("select", x, @props.children)
 		else if type == "checkbox"
 			# switch type
+			if value
+				x.checked = "checked"
+			else if value == "false"
+				delete x.checked
+			else
+				delete x.checked
 			_i = React.createElement(InputSwitch, x)
 		else if type == "custom"
 			_i = @props.children
@@ -58,6 +66,8 @@ ButtonField = React.createClass({
 			{@props.children}
 		</div>
 	})
+
+
 
 
 module.exports = {
