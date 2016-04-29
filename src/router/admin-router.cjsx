@@ -9,14 +9,27 @@ catch
 
 React = require("react")
 {Router, Route, IndexRoute} = require("react-router")
+{asyncConnect} = require("redux-async-connect")
 
-{App, Dashboard} = require("../containers/adminIndex")
+{App, Dashboard, Login, Edit} = require("../containers/adminIndex")
 
-AdminRouter = (history)->
+
+AdminRouter = (history, store)->
+	requireLogin = (nextState, replace, cb)->
+		log.info nextState:nextState
+		log.info store:store.getState()
+		return cb()
+	
 	<Router history={history}>
-		<Route path="/admin" component={App}>
-			<IndexRoute component={Dashboard} />
+		<Route path="/login" component={App}>
+			<IndexRoute component={Login} />
 		</Route>
+
+		<Route path="/admin" onEnter={requireLogin} component={App}>
+			<IndexRoute component={Dashboard} />
+			<Route path="edit/:section" component={Edit} />
+		</Route>
+
 	</Router>
 
 module.exports = AdminRouter

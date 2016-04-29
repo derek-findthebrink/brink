@@ -79,6 +79,9 @@ app.use("/get", getData(mongoose))
 postData = require("./routes/post-api")
 app.use("/post", postData(mongoose))
 
+adminAuth = require("./routes/admin-auth")(passport)
+app.use("/admin-auth", adminAuth)
+
 
 # Server Start
 # ------------------------------------------------

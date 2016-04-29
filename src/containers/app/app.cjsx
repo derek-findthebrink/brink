@@ -1,6 +1,7 @@
 React = require("react")
 {Link} = require("react-router")
 {connect} = require("react-redux")
+{asyncConnect} = require("redux-async-connect")
 
 DevTools = require("../../components/devtools.cjsx")
 Footer = require("../../components/footer/footer.cjsx")
