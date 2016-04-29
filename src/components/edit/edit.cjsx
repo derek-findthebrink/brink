@@ -21,13 +21,17 @@ ImgEditor = React.createClass({
 	})
 
 FormBase = React.createClass({
+	submit: (e)->
+		e.preventDefault()
+		# e.stopPropogation()
+		console.log props:@props, state:@state
 	render: ->
 		styles = require("./edit.sass")
 		<li className={styles.editItem}>
-			<form>
+			<form method="post" action={@props.action} onSubmit={@submit}>
 				{@props.children}
 				<ButtonField>
-					<input type="submit" value="submit" />
+					<input type="submit" value="save" />
 				</ButtonField>
 			</form>
 		</li>
@@ -38,7 +42,7 @@ ProductsItem = React.createClass({
 	render: ->
 		# console.log props:@props
 		styles = require("./edit.sass")
-		<FormBase>
+		<FormBase action={@props.action}>
 			<Field name="category" type="text" value={@props.category} change={@props.change("category")} />
 			<Field name="product" type="text" value={@props.product} change={@props.change("product")} />
 			<Field name="title" type="text" value={@props.title} change={@props.change("title")} />
@@ -51,7 +55,7 @@ ProductsItem = React.createClass({
 StackItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
-		<FormBase>
+		<FormBase action={@props.action}>
 			<Field name="title" type="text" value={@props.title} change={@props.change("title")} />
 			<Field name="description" type="textarea" change={@props.change("description")} value={@props.description} />
 			<Field name="secondary" label="is secondary" type="checkbox" change={@props.change("secondary")} value={@props.secondary} />
@@ -81,7 +85,7 @@ Edit = React.createClass({
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
 		items = @props[section].map (x, i)=>
-			<ItemClass {...x} change={@change(x)} key={i} />
+			<ItemClass {...x} action={"/api/post/edit/" + section + "/" + x._id} change={@change(x)} key={i} />
 
 		styles = require("./edit.sass")
 		<div className={styles.container}>
@@ -89,6 +93,10 @@ Edit = React.createClass({
 			<ul>
 				{items}
 			</ul>
+			<div className={styles.footerButtons}>
+				<button>refresh all</button>
+				<button>commit</button>
+			</div>
 		</div>
 	})
 

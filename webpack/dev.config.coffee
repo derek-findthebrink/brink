@@ -89,7 +89,7 @@ browser = {
 		alias:
 			React: "react"
 			react: "react"
-	devtool: "source-map"
+	devtool: "eval-source-map"
 	progress: true
 
 	plugins: _browserPlugins

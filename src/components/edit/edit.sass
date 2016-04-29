@@ -1,4 +1,5 @@
 @import "../../style/_config.sass"
+@import "../form/form.sass"
 
 .editItem
 	@include thin-border
@@ -7,5 +8,15 @@
 
 .container
 	@include outer-container(80%)
+	position: relative
+	margin-bottom: 5em
 	h2
 		text-align: center
+.footerButtons
+	@extend .button-field
+	background-color: rgba(white, 0.7)
+	padding: 2em
+	position: fixed
+	bottom: 0
+	right: 0
+	width: 100%
