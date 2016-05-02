@@ -2,7 +2,7 @@
 nodepath = require("path")
 
 if process.env.PM2
-	require("dotenv").config({path: "../.env"})
+	require("dotenv").config()
 
 log = require("bunyan").createLogger({
 	name: "webpack-isomorphic-init"
