@@ -12,6 +12,7 @@ model = new Schema({
 	product: String
 	title: String
 	description: String
+	img: String
 	includes: [String]
 	price: {
 		value: Number

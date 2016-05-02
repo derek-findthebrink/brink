@@ -2,3 +2,7 @@
 /app-*.css.map
 /app.generated.js
 /app.generated.js.map
+/admin-*.css
+/admin-*.css.map
+/admin.generated.js
+/admin.generated.js.map

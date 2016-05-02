@@ -665,7 +665,7 @@ Contact = {
 	header:
 		title: "contact"
 		description: "how to get in touch with us"
-		background: "/brink-contact-lg.png"
+		background: "/img/brink-contact-lg.png"
 	location:
 		city: "vancouver, bc"
 		country: "canada"

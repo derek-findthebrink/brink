@@ -46,6 +46,12 @@ app.use bodyParser.urlencoded({
 	})
 app.use cookieParser()
 
+
+
+
+# Auth
+# ------------------------
+
 mongoStoreOptions = {
 	mongooseConnection: mongoose.connection
 	ttl: 14 * 24 * 60 * 60
@@ -59,33 +65,38 @@ app.use session({
 	saveUninitialized: true
 })
 
+
+# Routes
+# -------------------------------------
+
 auth = require("./config/auth")
 auth(app, passport, Account)
 
-# test route
-app.post("/test", (req, res)->
-	res.end("hello world! test worked!")
-	)
-
 # app data
-data = require("./routes/app-data")
-app.use("/data", data(mongoose))
+getData = require("./routes/get-app")
+app.use("/get", getData(mongoose))
+
+postData = require("./routes/post-api")
+app.use("/post", postData(mongoose))
+
+adminAuth = require("./routes/admin-auth")(passport)
+app.use("/admin-auth", adminAuth)
 
 
 # Server Start
 # ------------------------------------------------
 server.listen(process.env.API_PORT, ->
 
-	io.on("connection", (socket)->
-		socket.emit("news", {msg: "hello world! Love, the websocket api server"})
+	# io.on("connection", (socket)->
+	# 	socket.emit("news", {msg: "hello world! Love, the websocket api server"})
 
-		socket.on("msg", (data)->
-			log.info {type: "socket", message: data}, "socket received message"
-			socket.emit("msg", data)
-			)
-		)
+	# 	socket.on("msg", (data)->
+	# 		log.info {type: "socket", message: data}, "socket received message"
+	# 		socket.emit("msg", data)
+	# 		)
+	# 	)
 
-	io.listen(server)
+	# io.listen(server)
 
 
 	host = server.address().address

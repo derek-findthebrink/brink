@@ -3,12 +3,52 @@ React = require("react")
 
 InputSwitch = React.createClass({
 	render: ->
-		console.log props:@props, "input switch"
-		<div className="form-field">
-			<label className="checkbox-fancy">
-				<input type="checkbox" checked={@props.value} />
-				<div className="checkbox" />
+		styles = require("./form.sass")
+		fancyCheckbox = require("./refills_switch.scss")
+
+		if @props.value
+			_i = <input {...@props} checked />
+		else
+			_i = <input {...@props} />
+
+		<div className={styles["form-field"]}>
+			<label className={fancyCheckbox["checkbox-fancy"]}>
+				{_i}
+				<div className={fancyCheckbox.checkbox} />
 			</label>
+		</div>
+	})
+
+Currency = React.createClass({
+	render: ->
+		styles = require("./form.sass")
+		val = @props.value.value
+
+		<div className={styles.currency}>
+			<NumberInput value={val} onChange={@props.onChange(["price", "value"])} />
+			<select value={@props.value.currency} onChange={@props.onChange(["price", "currency"])}>
+				<option>CAD</option>
+				<option>USD</option>
+				<option>MXN</option>
+				<option>EUR</option>
+			</select>
+			<select value={@props.value.priceType} onChange={@props.onChange(["price", "priceType"])}>
+				<option>base price</option>
+				<option>per hour</option>
+				<option>per month</option>
+			</select>
+		</div>
+	})
+
+NumberInput = React.createClass({
+	render: ->
+		styles = require("./form.sass")
+		<div className={styles.number}>
+			<input {...@props} />
+			<div>
+				<iron-icon icon="icons:add" />
+				<iron-icon icon="icons:remove" />
+			</div>
 		</div>
 	})
 
@@ -18,7 +58,7 @@ Field = React.createClass({
 		label = @props.label || @props.name
 		type = @props.type
 		change = @props.change
-		value = @props.value || null
+		value = @props.value
 		x = {
 			name: @props.name
 			label: label
@@ -26,14 +66,22 @@ Field = React.createClass({
 			onChange: change
 			value: value
 		}
+		if @props.multiple
+			x.multiple = true
+
 		_i = null
 		if type == "textarea"
 			_i = React.createElement("textarea", x)
+		else if type == "currency"
+			_i = React.createElement(Currency, x)
 		else if type == "select"
 			_i = React.createElement("select", x, @props.children)
+		else if type == "number"
+			_i = React.createElement(NumberInput, x)
 		else if type == "checkbox"
-			# switch type
 			_i = React.createElement(InputSwitch, x)
+		else if type == "custom"
+			_i = @props.children
 		else
 			_i = React.createElement("input", x)
 
@@ -53,6 +101,8 @@ ButtonField = React.createClass({
 			{@props.children}
 		</div>
 	})
+
+
 
 
 module.exports = {

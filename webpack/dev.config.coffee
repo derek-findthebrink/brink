@@ -32,7 +32,11 @@ _browserPlugins = [
 # --------------------------------------------
 _entryApp = [
 	hotMiddlewareScript
-	nodepath.resolve(ROOT, "src/client/app/index.coffee")
+	nodepath.resolve(ROOT, "src/client-app.cjsx")
+]
+_entryAdmin = [
+	hotMiddlewareScript
+	nodepath.resolve(ROOT, "src/admin-app.cjsx")
 ]
 
 
@@ -85,13 +89,14 @@ browser = {
 		alias:
 			React: "react"
 			react: "react"
-	devtool: "source-map"
+	devtool: "eval-source-map"
 	progress: true
 
 	plugins: _browserPlugins
 
 	entry: {
 		app: _entryApp
+		admin: _entryAdmin
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")

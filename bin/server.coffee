@@ -10,7 +10,7 @@ rootDir = process.env.APP_ROOT || nodepath.resolve(".", "..")
 
 global.__CLIENT__ = false
 global.__SERVER__ = true
-global.__DISABLE_SSR__ = false
+global.__DISABLE_SSR__ = process.env.DISABLE_SSR == "true" || false
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
 global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
 
@@ -43,5 +43,5 @@ WebpackIsomorphicTools = require("webpack-isomorphic-tools")
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require("../webpack/iso-config"))
 .development(__DEVELOPMENT__)
 .server(rootDir, ->
-	require("../src/app.coffee")
+	require("../src/server.coffee")
 	)

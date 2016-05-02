@@ -19,11 +19,33 @@
 .field
 	@include span-columns(7.5 of 10)
 	input, select, textarea
+		margin-bottom: 2px
 		width: 100%
 		padding: 3px
 .button-field
 	@include row(table)
 	text-align: right
+	padding: 1em 1em 5px 1em
 	button, input[type="submit"], input[type="reset"]
 		@include span-columns(1 of 5)
 		// display: block
+
+.number
+	$bc: grey
+	input
+		width: 7em
+		display: inline-block
+	div
+		display: inline-block
+		border: 1px solid $bc
+		background-color: lighten($bc, 40%)
+		margin-left: 10px
+		border-radius: 3px
+		iron-icon
+			cursor: pointer
+			&:first-child
+				border-right: 1px solid $bc
+			&:hover
+				background-color: lighten($bc, 30%)
+			&:active
+				background-color: lighten($bc, 20%)

@@ -6,26 +6,16 @@ express = require "express"
 # rendering
 React = require("react")
 ReactServer = require("react-dom/server")
-{
-	RouterContext
-	match
-	createRoutes
-	createMemoryHistory
-} = require("react-router")
-# data, redux, async rendering
-_ = require("lodash")
+render = require("./helpers/server-rendering")
 Q = require("q")
-{ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
-{Provider} = require("react-redux")
-{get} = require("./helpers/apiClient")
-
+Client = require("./helpers/apiClient")
 
 
 # Logger
 # ----------------------------
 try
 	log = appLogger.child({
-		type: "route"
+		type: "main-render"
 		file: "home"
 		})
 catch
@@ -34,90 +24,74 @@ catch
 
 # Dependency Resolution
 # ------------------------------
-# ROOT_DIR = process.env.APP_ROOT
 
-routesGenerator = require "./router/app-router"
+renderApp = render({
+	storeLocation: nodepath.resolve(__dirname, "redux.coffee")
+	routesLocation: nodepath.resolve(__dirname, "router/app-router.cjsx")
+	app: "app"
+	})
+
+renderAdmin = render({
+	storeLocation: nodepath.resolve(__dirname, "redux/admin-index.coffee")
+	routesLocation: nodepath.resolve(__dirname, "router/admin-router.cjsx")
+	baseName: "/admin"
+	app: "admin"
+	})
 
 
-base = (req, res)->
-	if __DEVELOPMENT__
-		webpackIsomorphicTools.refresh()
-	_h = createMemoryHistory()
-	# injects history and views logic into app-router for rendering
-	routes = routesGenerator(_h)
-	# creates location match for use in following match function
-	location = _h.createLocation(req.originalUrl)
-	store = require("./redux")(null)
-
-
-	assets = webpackIsomorphicTools.assets()
-	css = assets.styles.app || null
-	app = assets.javascript.app
-
-	if __DISABLE_SSR__
-		return res.render("layout", {
-			content: "<div>disabled ssr</div>"
-			appCss: css
-			appJsSrc: app
-			})
-
-	_getData = ()->
-		return get("products")
-
-	_getHtml = (routes, location, store)->
-		def = Q.defer()
-		match({routes, location}, (err, redirect, props)->
-			# log.info {url: req.url, location: location, routes:routes}, "match occurred"
-			if err
-				log.error err, "error"
-				return def.reject(err)
-
-			else if redirect
-				# add redirect logic here
-				log.info redirect: redirect, "redirect requested"
-
-			else if props
-				log.info "attempting load on server"
-				loadOnServer(props, store, {get}).then ->
-					final = (
-						<Provider store={store}>
-							<ReduxAsyncConnect {...props} />
-						</Provider>
-						)
-					html = ReactServer.renderToString final
-					return def.resolve(html)
-			)
-		return def.promise
-
-	_getHtml(routes, location, store)
+isLoggedIn = (req, res, next)->
+	log.info user:req.user, cookies:req.cookies, "user auth"
+	_c = new Client(req)
+	_c.auth()
 	.then(
-		(html)->
-			# return data to client
-			res.render("layout", {
-				content: html
-				appCss: css
-				appJsSrc: app
-				})
-			return
+		(val)->
+			log.info val:val, "isLogged in val"
+			if !val
+				res.redirect("/login")
+			else
+				next()
 		(err)->
-			log.error err:err, "rendering failed"
+			log.error err:err, "isLoggedIn error"
 			res.status(500).end()
 		)
-	.then(
-		->
-			log.info "data rendering complete"
-		(err)->
-			log.error err:err, "error after spread promise"
-	)
+
+
+
+Login = require("./components/login/login.cjsx")
+_Login = React.createClass({
+	render: ->
+		<div>
+			<Login />
+		</div>
+	})
+
+renderLogin = (req, res)->
+	_el = React.createElement(_Login)
+	html = ReactServer.renderToString(_el)
+	assets = webpackIsomorphicTools.assets()
+	res.render("layout", {
+		content: html
+		appCss: assets.styles.admin
+		appJsSrc: null
+		})
+
 
 home = express.Router()
-home.get "/", base
-home.get "/portfolio", base
-home.get "/stack", base
-home.get "/products-and-services", base
-home.get "/products-and-services/:sub", base
-home.get "/contact", base
-home.get "/about", base
+home.get "/", renderApp
+home.get "/portfolio", renderApp
+home.get "/stack", renderApp
+home.get "/products-and-services", renderApp
+home.get "/products-and-services/:sub", renderApp
+home.get "/contact", renderApp
+home.get "/about", renderApp
+
+home.get "/login", renderLogin
+
+home.get "/admin", isLoggedIn, renderAdmin
+home.get "/admin/edit", isLoggedIn, renderAdmin
+home.get "/admin/settings", isLoggedIn, renderAdmin
+home.get "/admin/edit/:section", isLoggedIn, renderAdmin
+home.get "/admin/edit/:section/:id", isLoggedIn, renderAdmin
 
 
 # Receive Customer Data
