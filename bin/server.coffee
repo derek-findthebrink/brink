@@ -1,6 +1,8 @@
 #!/usr/bin/env coffee
 nodepath = require("path")
-# require("dotenv").config()
+
+if process.env.PM2
+	require("dotenv").config({path: "../.env"})
 
 log = require("bunyan").createLogger({
 	name: "webpack-isomorphic-init"

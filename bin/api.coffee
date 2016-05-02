@@ -1,4 +1,6 @@
 #!/usr/bin/env coffee
+if process.env.PM2
+	require("dotenv").config({path: "../.env"})
 
 if process.env.NODE_ENV != "production"
 	opts = {
