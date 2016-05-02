@@ -80,9 +80,10 @@ Edit = React.createClass({
 
 mapStateToProps = (state)->
 	# console.log "map state to props ran"
+	console.log state:state
 	return {
-		products: state.products.items
-		stack: state.stack.items
+		products: state.products.get("items")
+		stack: state.stack.get("items")
 	}
 
 Final = connect(

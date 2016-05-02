@@ -3,7 +3,6 @@ React = require("react")
 
 InputSwitch = React.createClass({
 	render: ->
-		console.log props:@props, "input switch"
 		styles = require("./form.sass")
 		fancyCheckbox = require("./refills_switch.scss")
 
@@ -23,18 +22,17 @@ InputSwitch = React.createClass({
 Currency = React.createClass({
 	render: ->
 		styles = require("./form.sass")
-		console.log props:@props
 		val = @props.value.value
 
 		<div className={styles.currency}>
-			<NumberInput value={val} />
-			<select value={@props.value.currency}>
+			<NumberInput value={val} onChange={@props.onChange(["price", "value"])} />
+			<select value={@props.value.currency} onChange={@props.onChange(["price", "currency"])}>
 				<option>CAD</option>
 				<option>USD</option>
 				<option>MXN</option>
 				<option>EUR</option>
 			</select>
-			<select value={@props.value.priceType}>
+			<select value={@props.value.priceType} onChange={@props.onChange(["price", "priceType"])}>
 				<option>base price</option>
 				<option>per hour</option>
 				<option>per month</option>

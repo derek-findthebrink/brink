@@ -20,8 +20,8 @@ FormBase = React.createClass({
 ProductsItem = React.createClass({
 	render: ->
 		model = @props.model
-		includes = model.includes.map (x, i)->
-			<input type="text" value={x} key={i} />
+		includes = model.includes.map (x, i)=>
+			<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} key={i} />
 
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
@@ -33,7 +33,7 @@ ProductsItem = React.createClass({
 			<Field type="custom" label="includes">
 				{includes}
 			</Field>
-			<Field type="currency" value={model.price} label="price" />
+			<Field type="currency" value={model.price} label="price" change={@props.change} />
 			<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
 		</FormBase>
 	})
@@ -48,9 +48,9 @@ StackItem = React.createClass({
 			<Field type="custom">
 				<img src={model.img.src} className={styles.editImage} />
 			</Field>
-			<Field name="img-src" label="img src" type="text" value={model.img.src} change={@props.changeSub("img", "src")} />
-			<Field type="text" label="img alt" value={model.img.alt} change={@props.changeSub("img", "alt")} />
-			<Field type="text" label="img href" value={model.img.href} change={@props.changeSub("img", "href")} />
+			<Field name="img-src" label="img src" type="text" value={model.img.src} change={@props.change("img.src")} />
+			<Field type="text" label="img alt" value={model.img.alt} change={@props.change("img.alt")} />
+			<Field type="text" label="img href" value={model.img.href} change={@props.change("img.href")} />
 			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
 			<Field name="description" type="textarea" change={@props.change("description")} value={model.description} />
 			<Field name="secondary" label="is secondary" type="checkbox" change={@props.change("secondary")} value={model.secondary} />
@@ -72,24 +72,12 @@ ConnectProduct = connect(
 
 
 EditItem = React.createClass({
-	change: (key)->
+	change: (keys)->
 		return (e)=>
-			x = {}
-			x[key] = e.target.value
 			@props.dispatch({
 				type: "UPDATE_EDITOR"
-				value: x 
-				})
-	changeSub: (orig, key)->
-		state = @model
-		return (e)=>
-			console.log orig:orig, key:key, state:state
-			y = {}
-			y[orig] = _.clone(state[orig])
-			y[orig][key] = e.target.value
-			@props.dispatch({
-				type: "UPDATE_EDITOR"
-				value: y
+				keys: keys
+				value: e.target.value
 				})
 	save: (e)->
 		e.preventDefault()
@@ -123,8 +111,8 @@ EditItem = React.createClass({
 
 mapStateToProps = (state)->
 	return {
-		stack: state.stack.items
-		products: state.products.items
+		stack: state.stack.get("items")
+		products: state.products.get("items")
 	}
 
 Final = connect(

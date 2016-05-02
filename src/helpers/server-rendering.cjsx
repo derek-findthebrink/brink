@@ -29,7 +29,7 @@ catch
 # VARS
 # -----------------------------------
 
-__DISABLE_SSR__ = true
+__DISABLE_SSR__ = false
 
 
 
