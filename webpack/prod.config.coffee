@@ -2,7 +2,7 @@
 nodepath = require("path")
 webpack = require("webpack")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")

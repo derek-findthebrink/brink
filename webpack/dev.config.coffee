@@ -1,7 +1,7 @@
 nodepath = require("path")
 webpack = require("webpack")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 _webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
