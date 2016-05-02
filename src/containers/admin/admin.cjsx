@@ -22,12 +22,12 @@ Admin = React.createClass({
 				title: "dashboard"
 			}
 			{
-				to: "/admin/edit/products"
-				title: "products"
+				to: "/admin/edit"
+				title: "edit"
 			}
 			{
-				to: "/admin/edit/stack"
-				title: "stack"
+				to: "/admin/settings"
+				title: "settings"
 			}
 
 		]
@@ -36,8 +36,6 @@ Admin = React.createClass({
 			dev = <DevTools />
 		else
 			dev = null
-
-		console.log props: @props
 
 		<div>
 			<Header links={adminLinks} title="brink admininstration" titleLink="/admin" />

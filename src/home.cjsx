@@ -88,6 +88,8 @@ home.get "/about", renderApp
 home.get "/login", renderLogin
 
 home.get "/admin", isLoggedIn, renderAdmin
+home.get "/admin/edit", isLoggedIn, renderAdmin
+home.get "/admin/settings", isLoggedIn, renderAdmin
 home.get "/admin/edit/:section", isLoggedIn, renderAdmin
 home.get "/admin/edit/:section/:id", isLoggedIn, renderAdmin
 
