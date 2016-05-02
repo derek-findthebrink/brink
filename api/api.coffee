@@ -87,16 +87,16 @@ app.use("/admin-auth", adminAuth)
 # ------------------------------------------------
 server.listen(process.env.API_PORT, ->
 
-	io.on("connection", (socket)->
-		socket.emit("news", {msg: "hello world! Love, the websocket api server"})
+	# io.on("connection", (socket)->
+	# 	socket.emit("news", {msg: "hello world! Love, the websocket api server"})
 
-		socket.on("msg", (data)->
-			log.info {type: "socket", message: data}, "socket received message"
-			socket.emit("msg", data)
-			)
-		)
+	# 	socket.on("msg", (data)->
+	# 		log.info {type: "socket", message: data}, "socket received message"
+	# 		socket.emit("msg", data)
+	# 		)
+	# 	)
 
-	io.listen(server)
+	# io.listen(server)
 
 
 	host = server.address().address

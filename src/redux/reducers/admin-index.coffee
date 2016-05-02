@@ -2,6 +2,7 @@
 {routerReducer} = require("react-router-redux")
 {reducer} = require("redux-async-connect")
 _ = require("lodash")
+Client = require("../../helpers/apiClient")
 
 {actions} = require("../actions")
 
@@ -56,7 +57,6 @@ stackReducer = (state = stackInitial, action)->
 # ----------------------------------------------
 CREATE_EDITOR = "CREATE_EDITOR"
 UPDATE_EDITOR = "UPDATE_EDITOR"
-GET_EDITOR_STATE = "GET_EDITOR_STATE"
 
 editReducer = (state = {}, action)->
 	switch action.type
@@ -66,8 +66,27 @@ editReducer = (state = {}, action)->
 			s = _.clone(state)
 			y = _.extend s, action.value
 			return y
-		when GET_EDITOR_STATE
+		else
 			return state
+
+
+userInitial = {
+	isLoggedIn: false
+	data: {}
+}
+
+userReducer = (state = userInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "user"
+				console.log action
+				s = _.clone(state)
+				s.isLoggedIn = action.data ? true : false
+				if s.isLoggedIn
+					s.data = action.data
+				return s
+			else
+				return state
 		else
 			return state
 
@@ -77,6 +96,7 @@ _reducers = {
 	products: productsReducer
 	stack: stackReducer
 	edit: editReducer
+	user: userReducer
 	}
 
 App = combineReducers(_reducers)

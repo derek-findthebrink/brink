@@ -9,24 +9,25 @@ React = require("react")
 
 router = require("./router/admin-router.cjsx")
 store = require("./redux/admin-index.coffee")(null)
-Client = require("./helpers/apiClient")
-
+Client = require("./helpers/apiClient.coffee")
+Flux = require("./flux")
 
 app = {}
 
 if __DEVELOPMENT__
 	window.app = app
 	app.client = new Client()
+	app.flux = new Flux(store)
 
 
-socketInit = ->
-	socket = io("", {path: "/ws"})
-	socket.on("news", (data)->
-		console.log "socket news:", data
-		)
-	return socket
+# socketInit = ->
+# 	socket = io("", {path: "/ws"})
+# 	socket.on("news", (data)->
+# 		console.log "socket news:", data
+# 		)
+# 	return socket
 
-app.socket = socketInit()
+# app.socket = socketInit()
 
 
 # router init

@@ -24,9 +24,6 @@ catch
 
 # Dependency Resolution
 # ------------------------------
-# ROOT_DIR = process.env.APP_ROOT
-
-# routesGenerator = require "./router/app-router"
 
 renderApp = render({
 	storeLocation: nodepath.resolve(__dirname, "redux.coffee")
@@ -60,24 +57,23 @@ isLoggedIn = (req, res, next)->
 
 
 
-# App = require("./containers/admin/admin.cjsx")
-# Login = require("./components/login/login.cjsx")
-# _Login = React.createClass({
-# 	render: ->
-# 		<App>
-# 			<Login />
-# 		</App>
-# 	})
+Login = require("./components/login/login.cjsx")
+_Login = React.createClass({
+	render: ->
+		<div>
+			<Login />
+		</div>
+	})
 
-# renderLogin = (req, res)->
-# 	_el = React.createElement(_Login)
-# 	html = ReactServer.renderToString(_el)
-# 	assets = webpackIsomorphicTools.assets()
-# 	res.render("layout", {
-# 		content: html
-# 		appCss: assets.styles.admin
-# 		appJsSrc: null
-# 		})
+renderLogin = (req, res)->
+	_el = React.createElement(_Login)
+	html = ReactServer.renderToString(_el)
+	assets = webpackIsomorphicTools.assets()
+	res.render("layout", {
+		content: html
+		appCss: assets.styles.admin
+		appJsSrc: null
+		})
 
 
 home = express.Router()
@@ -89,10 +85,11 @@ home.get "/products-and-services/:sub", renderApp
 home.get "/contact", renderApp
 home.get "/about", renderApp
 
+home.get "/login", renderLogin
+
 home.get "/admin", isLoggedIn, renderAdmin
-home.get "/login", renderAdmin
-home.get "/admin/edit/:section", renderAdmin
-home.get "/admin/edit/:section/:id", renderAdmin
+home.get "/admin/edit/:section", isLoggedIn, renderAdmin
+home.get "/admin/edit/:section/:id", isLoggedIn, renderAdmin
 
 
 # Receive Customer Data

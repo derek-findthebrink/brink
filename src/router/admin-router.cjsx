@@ -17,15 +17,14 @@ React = require("react")
 AdminRouter = (history, store)->
 	requireLogin = (nextState, replace, cb)->
 		log.info nextState:nextState
-		log.info store:store.getState()
+		data = store.getState()
+		if !data.user.isLoggedIn
+			console.log "replace ran"
+			replace("/login")
 		return cb()
 	
 	<Router history={history}>
-		<Route path="/login" component={App}>
-			<IndexRoute component={Login} />
-		</Route>
-
-		<Route path="/admin" onEnter={requireLogin} component={App}>
+		<Route path="/admin" component={App}>
 			<IndexRoute component={Dashboard} />
 			<Route path="edit/:section" component={Edit} />
 			<Route path="edit/:section/:id" component={EditItem} />

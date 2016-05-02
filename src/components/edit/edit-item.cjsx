@@ -5,14 +5,10 @@ _ = require("lodash")
 {Field, ButtonField} = require("../form/form.cjsx")
 
 FormBase = React.createClass({
-	submit: (e)->
-		e.preventDefault()
-		# e.stopPropogation()
-		console.log props:@props, state:@state
 	render: ->
 		styles = require("./edit.sass")
 		<li className={styles.editItem}>
-			<form method="post" action={@props.action} onSubmit={@submit}>
+			<form method="post" action={@props.action} onSubmit={@props.submit}>
 				{@props.children}
 				<ButtonField>
 					<input type="submit" value="save" />
@@ -23,24 +19,24 @@ FormBase = React.createClass({
 
 ProductsItem = React.createClass({
 	render: ->
-		# console.log props:@props
+		console.log props:@props
+		model = @props.model
 		styles = require("./edit.sass")
-		<FormBase action={@props.action}>
-			<Field name="category" type="text" value={@props.category} change={@props.change("category")} />
-			<Field name="product" type="text" value={@props.product} change={@props.change("product")} />
-			<Field name="title" type="text" value={@props.title} change={@props.change("title")} />
-			<Field name="description" type="textarea" value={@props.description} change={@props.change("description")} />
+		<FormBase action={@props.action} submit={@props.submit}>
+			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
+			<Field name="product" type="text" value={model.product} change={@props.change("product")} />
+			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
+			<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
 			<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={@props.unitsAvailable} />
-			<Field name="active" label="is active" type="checkbox" value={@props.active} change={@props.change("active")} />
+			<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
 		</FormBase>
 	})
-
 StackItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
 		model = @props.model
 
-		<FormBase action={@props.action}>
+		<FormBase action={@props.action} submit={@props.submit}>
 			<Field type="custom">
 				<img src={model.img.src} className={styles.editImage} />
 			</Field>
@@ -53,14 +49,18 @@ StackItem = React.createClass({
 		</FormBase>
 	})
 
-stackMapState = (state)->
+baseMapState = (state)->
 	return {
 		model: state.edit
 	}
 
 ConnectStack = connect(
-	stackMapState
+	baseMapState
 	)(StackItem)
+
+ConnectProduct = connect(
+	baseMapState
+	)(ProductsItem)
 
 
 EditItem = React.createClass({
@@ -83,30 +83,35 @@ EditItem = React.createClass({
 				type: "UPDATE_EDITOR"
 				value: y
 				})
+	save: (e)->
+		e.preventDefault()
+		app.flux.dispatch({
+			type: "SAVE_MODEL"
+			modelType: @section
+			})
 	render: ->
 		console.log props:@props
-		section = @props.params.section
+		@section = @props.params.section
 		id = @props.params.id
 
 		dispatch = @props.dispatch
 
-		action = ()->
-			console.log "submit clicked!"
+		action = {"/herp/derp/glerp"}
 
-		switch section
+		switch @section
 			when "stack" then ItemClass = ConnectStack
-			when "products" then ItemClass = ProductsItem
+			when "products" then ItemClass = ConnectProduct
 			else
 				return log.error new Error "could not parse edit item"
 
-		@model = _.find @props[section], (x, i)->
+		@model = _.find @props[@section], (x, i)->
 			return id == x._id
 		dispatch({
 			type: "CREATE_EDITOR"
 			model: @model
 			})
 
-		Item = <ItemClass change={@change} changeSub={@changeSub} action={action} />
+		Item = <ItemClass change={@change} changeSub={@changeSub} submit={@save} action={action} />
 
 		styles = require("./edit.sass")
 		<div className={styles.container}>

@@ -36,7 +36,7 @@ class Client
 		@post = (segment, data)->
 			def = Q.defer()
 			url = segmentUrl("post", segment)
-			request = superagent.get(url)
+			request = superagent.post(url)
 			.send(data)
 			.set("Accept", "application/json")
 			if __SERVER__ && req.get("cookie")

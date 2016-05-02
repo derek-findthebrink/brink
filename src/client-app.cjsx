@@ -16,7 +16,7 @@ app = {}
 
 if __DEVELOPMENT__
 	window.app = app
-	app.client = client
+	app.client = new Client()
 
 # google analytics
 `
@@ -31,14 +31,14 @@ ga('send', 'pageview');
 # socket
 
 
-socketInit = ->
-	socket = io("", {path: "/ws"})
-	socket.on("news", (data)->
-		console.log "socket news:", data
-		)
-	return socket
+# socketInit = ->
+# 	socket = io("", {path: "/ws"})
+# 	socket.on("news", (data)->
+# 		console.log "socket news:", data
+# 		)
+# 	return socket
 
-app.socket = socketInit()
+# app.socket = socketInit()
 
 
 # router init

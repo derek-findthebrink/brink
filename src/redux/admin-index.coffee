@@ -1,5 +1,7 @@
 {compose, createStore, applyMiddleware} = require("redux")
 {logMiddleware} = require("./middleware")
+thunk = require("redux-thunk").default
+
 
 App = require("./reducers/admin-index")
 
