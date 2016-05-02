@@ -33,13 +33,12 @@ ProductsItem = React.createClass({
 			<Field type="custom" label="includes">
 				{includes}
 			</Field>
-			<Field type="custom" label="price">
-				<input type="text" value={model.price.value} />
-				<input type="text" value={model.price.priceType} />
-			</Field>
+			<Field type="currency" value={model.price} label="price" />
 			<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
 		</FormBase>
 	})
+
+
 StackItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")

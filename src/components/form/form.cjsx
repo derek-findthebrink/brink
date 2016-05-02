@@ -6,7 +6,6 @@ InputSwitch = React.createClass({
 		console.log props:@props, "input switch"
 		styles = require("./form.sass")
 		fancyCheckbox = require("./refills_switch.scss")
-		checked = @props.value ? "checked" : null
 
 		if @props.value
 			_i = <input {...@props} checked />
@@ -18,6 +17,28 @@ InputSwitch = React.createClass({
 				{_i}
 				<div className={fancyCheckbox.checkbox} />
 			</label>
+		</div>
+	})
+
+Currency = React.createClass({
+	render: ->
+		styles = require("./form.sass")
+		console.log props:@props
+		val = @props.value.value
+
+		<div className={styles.currency}>
+			<NumberInput value={val} />
+			<select value={@props.value.currency}>
+				<option>CAD</option>
+				<option>USD</option>
+				<option>MXN</option>
+				<option>EUR</option>
+			</select>
+			<select value={@props.value.priceType}>
+				<option>base price</option>
+				<option>per hour</option>
+				<option>per month</option>
+			</select>
 		</div>
 	})
 
@@ -53,6 +74,8 @@ Field = React.createClass({
 		_i = null
 		if type == "textarea"
 			_i = React.createElement("textarea", x)
+		else if type == "currency"
+			_i = React.createElement(Currency, x)
 		else if type == "select"
 			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
