@@ -26,7 +26,7 @@ catch
 # ------------------------------
 
 renderApp = render({
-	storeLocation: nodepath.resolve(__dirname, "redux.coffee")
+	storeLocation: nodepath.resolve(__dirname, "redux/index.coffee")
 	routesLocation: nodepath.resolve(__dirname, "router/app-router.cjsx")
 	app: "app"
 	})
