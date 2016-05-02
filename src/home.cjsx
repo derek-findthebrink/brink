@@ -25,15 +25,17 @@ catch
 # Dependency Resolution
 # ------------------------------
 
+APP_ROOT = process.env.APP_ROOT
+
 renderApp = render({
-	storeLocation: nodepath.resolve(__dirname, "redux/index.coffee")
-	routesLocation: nodepath.resolve(__dirname, "router/app-router.cjsx")
+	storeLocation: nodepath.resolve(APP_ROOT, "src/redux/index.coffee")
+	routesLocation: nodepath.resolve(APP_ROOT, "src/router/app-router.cjsx")
 	app: "app"
 	})
 
 renderAdmin = render({
-	storeLocation: nodepath.resolve(__dirname, "redux/admin-index.coffee")
-	routesLocation: nodepath.resolve(__dirname, "router/admin-router.cjsx")
+	storeLocation: nodepath.resolve(APP_ROOT, "src/redux/admin-index.coffee")
+	routesLocation: nodepath.resolve(APP_ROOT, "src/router/admin-router.cjsx")
 	baseName: "/admin"
 	app: "admin"
 	})
