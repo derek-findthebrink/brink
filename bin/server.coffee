@@ -5,7 +5,7 @@ if process.env.PM2
 	require("dotenv").config()
 
 log = require("bunyan").createLogger({
-	name: "webpack-isomorphic-init"
+	name: "server-init"
 	})
 
 rootDir = process.env.APP_ROOT || nodepath.resolve(".", "..")

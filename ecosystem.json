@@ -23,7 +23,7 @@
       "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json",
       "env": {
         "PM2": true,
-        "NODE_ENV": "development"
+        "NODE_ENV": "production"
       }
     },
     "production": {
