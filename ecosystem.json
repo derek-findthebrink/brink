@@ -2,7 +2,7 @@
   "apps" : [
     {
       "name"      : "brink-server",
-      "script"    : "app.coffee",
+      "script"    : "bin/server.coffee",
       // "env": {
       //   "COMMON_VARIABLE": "true"
       // },
