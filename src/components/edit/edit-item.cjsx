@@ -25,6 +25,10 @@ ProductsItem = React.createClass({
 
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
+			<Field type="custom">
+				<img src={model.img} className={styles.editImage} />
+			</Field>
+			<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
 			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
 			<Field name="product" type="text" value={model.product} change={@props.change("product")} />
 			<Field name="title" type="text" value={model.title} change={@props.change("title")} />

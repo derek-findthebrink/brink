@@ -17,7 +17,7 @@ ProductItem = React.createClass({
 
 		<li className={styles["product-item"]}>
 			<div className={styles.img}>
-				<img src="/brink-logo-small.svg" alt="brink logo" />
+				<img src={@props.img} alt={@props.title} />
 			</div>
 			
 			<div className={styles.description}>
