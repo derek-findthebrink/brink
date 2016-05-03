@@ -1,3 +1,4 @@
+@import "../../style/_config.sass"
 
 %learn-row
 	font-family: "ff-enzo-web"
@@ -11,11 +12,11 @@
 	text-align: center
 	& > div
 		@include row(table)
-		height: 60vw
+		height: 20em
 		div, h2, p, h3, span, button, a
 			display: table-cell
 			vertical-align: middle
-	.learn-nav
+	.learnNav
 		position: fixed
 		top: 4em
 		left: 0
@@ -31,7 +32,7 @@
 			background-color: $color
 			border: none
 			color: $color
-	.learn-input-image
+	.learnInputImage
 		font-family: "ff-enzo-web"
 		img
 			// width: 50%
@@ -39,13 +40,14 @@
 		p
 			text-align: center
 			display: block
-	.learn-header
+	.learnHeader
 	.inputs
 		@extend %learn-row
+		text-align: center
 	.process
 	.outputs
 		@extend %learn-row
-	.callout.learn-callout
+	.callout
 		height: 2em
 		margin-bottom: 1em
 		a
@@ -60,18 +62,18 @@
 
 .learn
 	$c: $header-color
-	& > div
-		opacity: 0
-		&.active
-			@extend %learn-fade-in
-			opacity: 1
-	.learn-header
+	// & > div
+	// 	opacity: 0
+	// 	&.active
+	// 		@extend %learn-fade-in
+	// 		opacity: 1
+	.learnHeader
 		font-size: 110%
-		.learn-header-text
+		h2
 			padding-right: 1em
 			color: darken($c, 15%)
 			text-align: right
-		.learn-header-description
+		p
 			color: $c
 			text-align: left
 
