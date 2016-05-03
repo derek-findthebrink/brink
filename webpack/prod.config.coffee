@@ -1,6 +1,7 @@
 # require("dotenv").config()
 nodepath = require("path")
 webpack = require("webpack")
+os = require("os")
 
 ROOT = nodepath.resolve(process.env.APP_ROOT)
 
@@ -8,6 +9,7 @@ autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 _webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+ClosureCompilerPlugin = require("webpack-closure-compiler")
 
 # Plugins
 # -----------------------------------
@@ -22,6 +24,11 @@ plugins = [
 		__SERVER__: false
 		__DEVELOPMENT__: false
 		__DEVTOOLS__: false
+		})
+	new ClosureCompilerPlugin({
+		compiler:
+			compilation_level: "SIMPLE_OPTIMIZATIONS"
+		concurrency: os.cpus.length
 		})
 ]
 
@@ -49,28 +56,14 @@ __w_sass = __css_pipe + "!sass?outputStyle=expanded&sourceMap=true&sourceMapCont
 _sass = {
 	test: /\.sass$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
-	# loaders: [
-	# 	__style_pipe
-	# 	__css_pipe
-	# 	"sass"
-	# ]
 }
 _scss = {
 	test: /\.scss$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
-	# loaders: [
-	# 	__style_pipe
-	# 	__css_pipe
-	# 	"sass"
-	# ]
 }
 _css = {
 	test: /\.css$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __css_pipe)
-	# loaders: [
-	# 	__style_pipe
-	# 	"css?sourceMap"
-	# ]
 }
 _cjsx = {
 	test: /\.cjsx$/
@@ -90,14 +83,11 @@ module.exports = {
 	entry: 
 		app: app_entry
 		admin: admin_entry
-	# target: "node"
 	context: ROOT
 	plugins: plugins
 	devtool: "source-map"
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
-		# extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"],
-		# root: [nodepath.resolve("."), nodepath.resolve("./loaders")]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
@@ -107,8 +97,6 @@ module.exports = {
 		filename: "[name].generated.js"
 		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "/"
-		# libraryTarget: "commonjs2"
-	# externals: /^[a-z\-0-9]+$/
 	module:
 		loaders: _loaders.concat([
 			_css
