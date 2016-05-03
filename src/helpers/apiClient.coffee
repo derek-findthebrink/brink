@@ -31,7 +31,9 @@ class Client
 				request.set("cookie", req.get("cookie"))
 			request.end (err, body)->
 				if err then return def.reject(err)
-				return def.resolve JSON.parse(body.text)
+				if body.type == "application/json"
+					return def.resolve JSON.parse(body.text)
+				return def.resolve(body.text)
 			return def.promise
 		@post = (segment, data)->
 			def = Q.defer()
@@ -43,7 +45,9 @@ class Client
 				request.set("cookie", req.get("cookie"))
 			request.end (err, body)->
 				if err then return def.reject(err)
-				return def.resolve JSON.parse(body.text)
+				if body.type == "application/json"
+					return def.resolve JSON.parse(body.text)
+				return def.resolve(body.text)
 			return def.promise
 		@auth = ()->
 			def = Q.defer()

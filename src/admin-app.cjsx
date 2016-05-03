@@ -1,3 +1,6 @@
+global.__ADMIN__ = true
+
+
 io = require("socket.io-client")
 $ = require("jquery")
 React = require("react")

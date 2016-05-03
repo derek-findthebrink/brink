@@ -3,6 +3,8 @@ _ = require("lodash")
 $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
 
+{SUBMIT_CONTACT} = require("../../flux/actions/contact").actions
+
 Captcha = React.createClass({
 	render: ->
 		styles = require("./contact.sass")
@@ -37,9 +39,11 @@ ContactForm = React.createClass({
 			description: ""
 		}
 	submit: (e)->
-		console.log "submit clicked"
-		console.log state:@state
 		e.preventDefault()
+		app.flux.dispatch({
+			type: SUBMIT_CONTACT
+			model: @state
+			})
 	change: (key)->
 		return (e)=>
 			val = e.target.value

@@ -18,13 +18,16 @@ model = new Schema({
 		type: Schema.Types.ObjectId
 		ref: "Product"
 	description: String
+	received:
+		type: Date
+		default: new Date()
 	})
 
 
 model.statics.add = (req)->
 	self = this
 	body = req.body
-	if body.product == "none"
+	if body.product == "none" || body.product == ""
 		delete body.product
 	x = new self(body).save()
 	.then(
