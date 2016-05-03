@@ -38,36 +38,16 @@ ContactForm = React.createClass({
 		}
 	submit: (e)->
 		console.log "submit clicked"
-		# e.preventDefault()
-		# console.log state:@state, props:@props
-		# # add recaptcha here
-		# # make sure to capture any other needed data (user? csrf? etc.)
-		# app.flux.dispatch({
-		# 	action: "submit_contact"
-		# 	payload: @state
-		# 	})
 		console.log state:@state
-		# e.preventDefault()
-		return
+		e.preventDefault()
 	change: (key)->
-		# console.log key:key
 		return (e)=>
 			val = e.target.value
-			# console.log val:val, "change ran"
 			@setState(->
 				x = {}
 				x[key] = val
 				return x
 				)
-	componentWillMount: ->
-		# console.log props: @props, state: @state
-		if @props.user
-			name = @props.user.name || ""
-			email = @props.user.email || ""
-			@setState({
-				name: name
-				email: email
-				})
 	render: ->
 		items = @props.products.map (x, i)->
 			if !x.active
@@ -82,7 +62,7 @@ ContactForm = React.createClass({
 		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
 			{@props.children}
 			<Field name="name" value={@state.name} change={@change("name")} />
-			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
+			<Field name="email" label="email address" value={@state.email} change={@change("email")} />
 			<Field type="custom">
 				<SelectedProduct product={@state.product} list={@props.products} />
 			</Field>
