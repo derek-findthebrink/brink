@@ -140,7 +140,8 @@ _trackMiddleware = (req, res, next)->
 	.end (err)->
 		if err then log.error err:err, "add view error"
 
-app.use(_trackMiddleware)
+# if process.env.TRACKING == "true"
+# 	app.use(_trackMiddleware)
 
 # Routes
 # --------------------------------------------
