@@ -1,3 +1,5 @@
+# Requires
+# ------------------------------------
 nodepath = require("path")
 # rendering
 React = require("react")
@@ -29,11 +31,12 @@ catch
 # VARS
 # -----------------------------------
 
-__DISABLE_SSR__ = true
+# __DISABLE_SSR__ = true
 
 
 
-
+# Rendering
+# ---------------------------------------------
 
 render = (segment)->
 	# define segment-specific components here
@@ -42,10 +45,8 @@ render = (segment)->
 	_baseName = segment.baseName || null
 	_app = segment.app
 	return (req, res)->
-		log.info "request begins"
 		client = new _Client(req)
 		_getHtml = (routes, location, store)->
-			log.info "get html"
 			def = Q.defer()
 			match({routes, location}, (err, redirect, props)->
 				if err
@@ -100,7 +101,6 @@ render = (segment)->
 		# else
 		_h = createMemoryHistory()
 
-		log.info "generating else"
 		store = require(_storeGenerator)(null)
 		routes = require(_routeGenerator)(_h, store)
 		location = _h.createLocation(req.originalUrl)
@@ -110,10 +110,10 @@ render = (segment)->
 		.then(
 			(html)->
 				_generatePage(html, css, app)
-				log.info "data rendering complete"
 			(reason)->
 				log.error err:reason, "error rendering data"
 				res.status(500).end()
 			)
+		.done()
 
 module.exports = render

@@ -3,7 +3,7 @@ _ = require("lodash")
 $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
 
-{SUBMIT_CONTACT} = require("../../flux/actions/contact").actions
+{SUBMIT_CONTACT} = require("../../actions/contact").actions
 
 initial = {
 	name: ""

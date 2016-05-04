@@ -1,4 +1,4 @@
-Client = require("../../helpers/api-client")
+Client = require("../helpers/api-client")
 
 SAVE_EDIT = "SAVE_MODEL"
 

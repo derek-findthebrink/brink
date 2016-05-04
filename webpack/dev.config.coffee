@@ -19,8 +19,6 @@ _browserPlugins = [
 	new webpack.HotModuleReplacementPlugin()
 	new webpack.IgnorePlugin(/webpack-stats\.json$/)
 	new webpack.DefinePlugin({
-		__CLIENT__: true
-		__SERVER__: false
 		__DEVELOPMENT__: true
 		__DEVTOOLS__: true
 		})
@@ -89,7 +87,8 @@ browser = {
 		alias:
 			React: "react"
 			react: "react"
-	devtool: "eval-source-map"
+	devtool: "eval-cheap-module-source-map"
+	debug: true
 	progress: true
 
 	plugins: _browserPlugins
