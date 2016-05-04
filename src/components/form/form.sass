@@ -1,5 +1,9 @@
 @import "../../style/_config.sass"
 
+$error-field: #FDBCBC
+$error-text: red
+
+
 .form-field
 	@include row(table)
 	margin-top: 0.5em
@@ -16,6 +20,23 @@
 	// 	text-align: center
 	// 	// margin: 5px 0
 	// @include reset-display
+.error
+	@include fill-parent
+	text-align: center
+.fieldError
+	@extend .form-field
+	background-color: $error-field
+	input, select, textarea
+		margin: 5px
+		border: 1px solid $error-text
+		&:hover
+			border: 1px solid $error-text
+	span
+		font-size: 90%
+		margin-bottom: 7px
+		color: $error-text
+
+
 .field
 	@include span-columns(7.5 of 10)
 	input, select, textarea

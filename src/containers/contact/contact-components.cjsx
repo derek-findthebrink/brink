@@ -5,6 +5,18 @@ $ = require("jquery")
 
 {SUBMIT_CONTACT} = require("../../flux/actions/contact").actions
 
+initial = {
+	name: ""
+	email: ""
+	product: ""
+	description: ""
+	error:
+		name: false
+		email: false
+		product: false
+		description: false
+	}
+
 Captcha = React.createClass({
 	render: ->
 		styles = require("./contact.sass")
@@ -15,7 +27,7 @@ Captcha = React.createClass({
 SelectedProduct = React.createClass({
 	render: ->
 		styles = require("./contact.sass")
-		if !@props.product || @props.product == "none"
+		if !@props.product || @props.product == ""
 			return null
 		else
 			productId = @props.product
@@ -31,19 +43,31 @@ SelectedProduct = React.createClass({
 
 ContactForm = React.createClass({
 	getInitialState: ->
-		if @props.selected then product = @props.selected._id
-		return {
-			name: ""
-			email: ""
-			product: product || ""
-			description: ""
-		}
+		return initial
+	initial: ->
+		return initial
 	submit: (e)->
+		self = this
 		e.preventDefault()
 		app.flux.dispatch({
 			type: SUBMIT_CONTACT
 			model: @state
 			})
+		.done(
+			()->
+				console.log "form submitted successfully!"
+				self.setState(self.initial())
+			(err)->
+				self.setState({
+					error: err
+					})
+			)
+	componentWillMount: ->
+		if @props.selected
+			selected = @props.selected
+			@setState({
+				product: selected
+				})
 	change: (key)->
 		return (e)=>
 			val = e.target.value
@@ -54,26 +78,26 @@ ContactForm = React.createClass({
 				)
 	render: ->
 		items = @props.products.map (x, i)->
-			if !x.active
-				return
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
 		# add general question field
 		items.unshift(
-			<option key={items.length} value={"none"}>general question</option>
+			<option key={items.length} value={""}>general question</option>
 			)
 
 		styles = require("./contact.sass")
 		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
-			{@props.children}
-			<Field name="name" value={@state.name} change={@change("name")} />
-			<Field name="email" label="email address" value={@state.email} change={@change("email")} />
+			<h2 className={styles["form-header"]}>send us a message</h2>
+			<Field error={@state.error.name} name="name" value={@state.name} change={@change("name")} />
+			<Field error={@state.error.email} name="email" label="email address" value={@state.email} change={@change("email")} />
 			<Field type="custom">
 				<SelectedProduct product={@state.product} list={@props.products} />
 			</Field>
-			<Field name="product" multiple={false} type="select" value={@state.product} change={@change("product")}>
-				{items}
+			<Field error={@state.error.product} type="custom" label="product">
+				<select name="product" value={@state.product} onChange={@change("product")}>
+					{items}
+				</select>
 			</Field>
-			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
+			<Field error={@state.error.description} name="description" type="textarea" change={@change("description")} value={@state.description} />
 			<Captcha />
 			<ButtonField>
 				<input type="submit" value="submit" />

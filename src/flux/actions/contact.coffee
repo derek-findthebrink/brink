@@ -1,24 +1,42 @@
 Q = require("q")
+if __DEVELOPMENT__ then Q.longStackSupport = true
 Client = require("../../helpers/apiClient")
 
+{validate, sanitize} = require("../../helpers/validation").contact
+
 SUBMIT_CONTACT = "contact/SUBMIT"
-
-submitContact = (action, store)->
-	console.log action:action
-	client = new Client()
-	.post("contact", action.model)
-	.then(
-		(val)->
-			console.log val:val, "post contact succeeded"
-		(err)->
-			console.error err
-			console.log "post to contact failed"
-		)
-
 
 exports.actions = {
 	SUBMIT_CONTACT
 }
+
+submitContact = (action, store)->
+	def = Q.defer()
+	promise = validate(action)
+	.then(
+		(a)->
+			return sanitize(a)
+		(err)->
+			def.reject(err)
+			throw {err: "invalid"}
+		)
+	.then(
+		(final)->
+			client = new Client()
+			.post("contact", final.model)
+			.then(
+				(val)->
+					return def.resolve(val)
+				(err)->
+					return def.reject(err)
+				)
+		)
+	.catch (err)->
+		if err.err == "invalid"
+			return
+		console.error err
+	return def.promise
+
 
 exports.operations = {
 	submitContact
