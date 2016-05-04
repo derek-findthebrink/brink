@@ -86,6 +86,7 @@ home.get "/products-and-services", renderApp
 home.get "/products-and-services/:sub", renderApp
 home.get "/contact", renderApp
 home.get "/about", renderApp
+home.get "/learn/:id", renderApp
 
 home.get "/login", renderLogin
 

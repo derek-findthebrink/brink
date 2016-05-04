@@ -1,6 +1,7 @@
 React = require("react")
 _ = require("lodash")
 {connect} = require("react-redux")
+{SAVE_EDIT} = require("../../flux/actions/model").actions
 
 {Field, ButtonField} = require("../form/form.cjsx")
 
@@ -86,7 +87,7 @@ EditItem = React.createClass({
 	save: (e)->
 		e.preventDefault()
 		app.flux.dispatch({
-			type: "SAVE_MODEL"
+			type: SAVE_EDIT
 			modelType: @section
 			})
 	componentWillMount: ->

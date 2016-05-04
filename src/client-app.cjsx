@@ -10,9 +10,12 @@ React = require("react")
 router = require("./router/app-router.cjsx")
 store = require("./redux")(null)
 Client = require("./helpers/apiClient")
+Flux = require("./flux")
 
 
 app = {}
+
+app.flux = new Flux(store)
 
 if __DEVELOPMENT__
 	window.app = app

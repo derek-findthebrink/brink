@@ -1,5 +1,8 @@
 express = require("express")
 
+mailgun = require("../services/mailgun")
+{SEND_WELCOME} = mailgun.actions
+
 try
 	log = appLogger.child({
 		type: "routes"
@@ -36,6 +39,10 @@ go = (mongoose)->
 		.then(
 			(val)->
 				log.info val:val, "pre post-contact complete"
+				flux.dispatch({
+					type: SEND_WELCOME
+					model: val
+					})
 				res.redirect("/contact")
 			(err)->
 				res.redirect("/contact")
