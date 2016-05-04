@@ -66,6 +66,11 @@ app.use session({
 })
 
 
+# Flux
+# --------------------------------------
+Flux = require("./services/flux")
+global.flux = new Flux()
+
 # Routes
 # -------------------------------------
 
@@ -81,6 +86,11 @@ app.use("/post", postData(mongoose))
 
 adminAuth = require("./routes/admin-auth")(passport)
 app.use("/admin-auth", adminAuth)
+
+
+# Services
+# ----------------------------------------------
+# mailgun
 
 
 # Server Start
