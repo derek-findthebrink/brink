@@ -79,7 +79,7 @@ auth(app, passport, Account)
 
 # app data
 getAppData = require("./routes/get-app")
-app.use("/app", getAppData)
+app.get("/app", getAppData)
 
 postData = require("./routes/post-api")
 app.use("/post", postData(mongoose))

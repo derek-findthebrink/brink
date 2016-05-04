@@ -2,21 +2,18 @@ express = require("express")
 Q = require("q")
 mongoose = require("mongoose")
 
-{GET_PAGE} = require("../services/actions").get
+actions = require("../services/actions")
+
+{GET_PAGE} = actions.get
+{GET_AUTH} = actions.auth
 
 # Only UNSECURE models allowed here
-
-Products = mongoose.model("Product")
-Portfolio = mongoose.model("Portfolio")
-About = mongoose.model("About")
-Stack = mongoose.model("Stack")
-Contact = mongoose.model("Contact")
-
 models = {
-	"products": Products
-	"portfolio": Portfolio
-	"about": About
-	"stack": Stack
+	products: mongoose.model("Product")
+	portfolio: mongoose.model("Portfolio")
+	about: mongoose.model("About")
+	stack: mongoose.model("Stack")
+	contact: mongoose.model("Contact")
 }
 
 try
@@ -39,12 +36,18 @@ getPageData = (action, res)->
 			return res.status(500).end()
 		)
 
+getAuth = (req, res)->
+	user = req.user
+	if user
+		return res.json(req.user).end()
+	else
+		return res.json(false).end()
+
 go = (req, res)->
-	log.info body:req.body, query:req.query, "omg good stuff"
 	action = req.query
-	log.info bodyAction:action, query:req.query, "action requested"
 	switch action.type
 		when GET_PAGE then return getPageData(action, res)
+		when GET_AUTH then return getAuth(req, res)
 		else
 			err = new Error("could not parse action")
 			log.error err:err, "get-app action parsing error"

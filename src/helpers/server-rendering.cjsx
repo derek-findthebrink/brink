@@ -16,7 +16,7 @@ _ = require("lodash")
 Q = require("q")
 {ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
-_Client = require("./api-client")
+Client = require("./api-client")
 
 try
 	log = appLogger.child({
@@ -45,7 +45,7 @@ render = (segment)->
 	_baseName = segment.baseName || null
 	_app = segment.app
 	return (req, res)->
-		client = new _Client(req)
+		client = new Client(req)
 		_getHtml = (routes, location, store)->
 			def = Q.defer()
 			match({routes, location}, (err, redirect, props)->

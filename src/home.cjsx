@@ -43,8 +43,8 @@ renderAdmin = render({
 
 isLoggedIn = (req, res, next)->
 	log.info user:req.user, cookies:req.cookies, "user auth"
-	_c = new Client(req)
-	_c.auth()
+	client = new Client(req)
+	client.auth()
 	.then(
 		(val)->
 			log.info val:val, "isLogged in val"

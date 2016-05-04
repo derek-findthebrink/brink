@@ -24,7 +24,6 @@ class Client
 	constructor: (req)->
 		@get = (action)->
 			def = Q.defer()
-			console.log action:action
 			if typeof action == "string"
 				action = {
 					type: "api/PAGE_DATA"
@@ -58,14 +57,21 @@ class Client
 			return def.promise
 		@auth = ()->
 			def = Q.defer()
-			url = segmentUrl("admin-auth", "auth")
-			request = superagent.get(url)
+			action = {
+				type: "api/GET_AUTH"
+			}
+			url = segmentUrl "app"
+			request = superagent
+			.get(url)
+			.query(action)
 			.set("Accept", "application/json")
 			if __SERVER__ && req.get("cookie")
 				request.set("cookie", req.get("cookie"))
 			request.end (err, body)->
 				if err then return def.reject(err)
-				return def.resolve JSON.parse(body.text)
+				if body.type == "application/json"
+					return def.resolve JSON.parse(body.text)
+				return def.resolve(body.text)
 			return def.promise
 
 module.exports = Client

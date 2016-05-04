@@ -25,15 +25,6 @@ go = (passport)->
 		res.redirect("/login")
 		)
 
-	app.get("/auth", (req, res)->
-		log.info "auth route checked"
-		user = req.user
-		if user
-			return res.json(req.user).end()
-		else
-			return res.json(false).end()
-		)
-
 
 	return app
 
