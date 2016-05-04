@@ -12,21 +12,28 @@ catch
 	log.info = console.log
 
 # data functions
-segmentUrl = (type, segment)->
+segmentUrl = (type)->
 	if __SERVER__
-		url = "http://" + apiHost + ":" + apiPort + "/" + type + "/" + segment
+		url = "http://" + apiHost + ":" + apiPort + "/" + type
 	if __CLIENT__
-		url = "/api/" + type + "/" + segment
+		url = "/api/" + type
 	return url
 
 
 class Client
 	constructor: (req)->
-		@get = (segment)->
+		@get = (action)->
 			def = Q.defer()
-			url = segmentUrl("get", segment)
+			console.log action:action
+			if typeof action == "string"
+				action = {
+					type: "api/PAGE_DATA"
+					page: action
+				}
+			url = segmentUrl "app"
 			request = superagent.get(url)
 			.set("Accept", "application/json")
+			.query(action)
 			if __SERVER__ && req.get("cookie")
 				request.set("cookie", req.get("cookie"))
 			request.end (err, body)->

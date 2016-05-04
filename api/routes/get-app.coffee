@@ -1,62 +1,55 @@
 express = require("express")
 Q = require("q")
+mongoose = require("mongoose")
+
+{GET_PAGE} = require("../services/actions").get
+
+# Only UNSECURE models allowed here
+
+Products = mongoose.model("Product")
+Portfolio = mongoose.model("Portfolio")
+About = mongoose.model("About")
+Stack = mongoose.model("Stack")
+Contact = mongoose.model("Contact")
+
+models = {
+	"products": Products
+	"portfolio": Portfolio
+	"about": About
+	"stack": Stack
+}
 
 try
 	log = appLogger.child({
 		type: "routes"
-		file: "app-data"
+		file: "get-app"
 	})
 catch
 	log = console
 	log.info = console.log
 
-go = (mongoose)->
-	app = express.Router()
-	Products = mongoose.model("Product")
-	Portfolio = mongoose.model("Portfolio")
-	About = mongoose.model("About")
-	Stack = mongoose.model("Stack")
-	User = mongoose.model("User")
-	Contact = mongoose.model("Contact")
-	
+getPageData = (action, res)->
+	model = models[action.page]
+	model.find().exec()
+	.then(
+		(docs)->
+			return res.json(docs).end()
+		(err)->
+			log.error err:err, action:action, "error retrieving model"
+			return res.status(500).end()
+		)
 
-	models = [
-		{
-			name: "products"
-			schema: Products
-		}
-		{
-			name: "portfolio"
-			schema: Portfolio
-		}
-		{
-			name: "about"
-			schema: About
-		}
-		{
-			name: "stack"
-			schema: Stack
-		}
+go = (req, res)->
+	log.info body:req.body, query:req.query, "omg good stuff"
+	action = req.query
+	log.info bodyAction:action, query:req.query, "action requested"
+	switch action.type
+		when GET_PAGE then return getPageData(action, res)
+		else
+			err = new Error("could not parse action")
+			log.error err:err, "get-app action parsing error"
+			# send 404 error?
+			return res.status(500).end()
 
-	]
-
-	# get api
-	_createApi = ({schema, name}, type, _app)->
-		url = "/" + name
-		_app[type](url, (req, res)->
-			schema.find({}).exec()
-			.then(
-				(docs)->
-					res.json(docs)
-				(err)->
-					log.error err:err, "api error"
-					res.status(500).end()
-				)
-			)
-	# create get api
-	models.map (x)->
-		return _createApi(x, "get", app)
-
-	return app
 
 module.exports = go

@@ -91,6 +91,7 @@ render = (segment)->
 		app = assets.javascript[_app] || null
 
 		if __DISABLE_SSR__
+			log.info "SSR is disabled"
 			return _generatePage("<div>disabled ssr</div>", css, app)
 
 		# if _baseName
@@ -114,6 +115,6 @@ render = (segment)->
 				log.error err:reason, "error rendering data"
 				res.status(500).end()
 			)
-		.done()
+		.catch(log.error)
 
 module.exports = render

@@ -24,7 +24,6 @@ contactValidate = (action)->
 		return Q(action)
 
 contactSanitize = (action)->
-	console.log action:action, "sanitize"
 	model = action.model
 	# escape characters
 	x = _.mapValues model, (x)->
