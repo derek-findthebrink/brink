@@ -5,7 +5,7 @@ Q = require("q")
 try
 	log = appLogger.child({
 		type: "helpers"
-		file: "apiClient"
+		file: "api-client"
 	})
 catch
 	log = console

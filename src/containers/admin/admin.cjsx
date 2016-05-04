@@ -3,7 +3,7 @@ React = require("react")
 
 Header = require("../../components/header/header.cjsx")
 DevTools = require("../../components/devtools.cjsx")
-Client = require("../../helpers/apiClient")
+Client = require("../../helpers/api-client")
 Flux = require("../../flux")
 
 Admin = React.createClass({

@@ -9,7 +9,7 @@ React = require("react")
 
 router = require("./router/app-router.cjsx")
 store = require("./redux")(null)
-Client = require("./helpers/apiClient")
+Client = require("./helpers/api-client")
 Flux = require("./flux")
 
 

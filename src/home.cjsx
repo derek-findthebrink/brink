@@ -8,7 +8,7 @@ React = require("react")
 ReactServer = require("react-dom/server")
 render = require("./helpers/server-rendering")
 Q = require("q")
-Client = require("./helpers/apiClient")
+Client = require("./helpers/api-client")
 
 
 # Logger

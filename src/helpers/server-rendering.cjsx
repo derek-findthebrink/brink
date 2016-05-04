@@ -14,7 +14,7 @@ _ = require("lodash")
 Q = require("q")
 {ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
-_Client = require("./apiClient")
+_Client = require("./api-client")
 
 try
 	log = appLogger.child({

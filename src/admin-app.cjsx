@@ -11,8 +11,8 @@ React = require("react")
 {syncHistoryWithStore} = require("react-router-redux")
 
 router = require("./router/admin-router.cjsx")
-store = require("./redux/admin-index.coffee")(null)
-Client = require("./helpers/apiClient.coffee")
+store = require("./redux/admin-index")(null)
+Client = require("./helpers/api-client")
 Flux = require("./flux")
 
 app = {}

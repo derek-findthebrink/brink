@@ -10,7 +10,7 @@ compression = require("compression")
 http = require("http")
 httpProxy = require("http-proxy")
 superagent = require("superagent")
-client = require("./helpers/apiClient")
+client = require("./helpers/api-client")
 # favicon = require("serve-favicon")
 
 

@@ -1,6 +1,6 @@
 Q = require("q")
 
-Client = require("../helpers/apiClient.coffee")
+Client = require("../helpers/api-client.coffee")
 
 if __CLIENT__
 	dispatch = require("./actions/client.coffee")

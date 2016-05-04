@@ -1,6 +1,6 @@
 Q = require("q")
 if __DEVELOPMENT__ then Q.longStackSupport = true
-Client = require("../../helpers/apiClient")
+Client = require("../../helpers/api-client")
 
 {validate, sanitize} = require("../../helpers/validation").contact
 
