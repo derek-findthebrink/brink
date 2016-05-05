@@ -16,7 +16,12 @@ submitContact = (action, store)->
 		(a)->
 			return sanitize(a)
 		(err)->
-			def.reject(err)
+			x = {
+				type: "validation"
+				err: err
+			}
+			def.reject(x)
+			# ensures that post in next then is not called
 			throw {err: "invalid"}
 		)
 	.then(

@@ -7,4 +7,5 @@ module.exports = {
 	Stack: require("./stack/stack.cjsx")
 	Contact: require("./contact/contact.cjsx")
 	Learn: require("../components/learn/learn.cjsx")
+	NotFound: require("../components/404/404.cjsx")
 }

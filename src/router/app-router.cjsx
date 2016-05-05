@@ -29,6 +29,7 @@ content = require("../../content/index")
 	Stack
 	Contact
 	Learn
+	NotFound
 } = require("../containers")
 
 AppRouter = (history)->
@@ -44,6 +45,7 @@ AppRouter = (history)->
 			<Route path="contact" component={Contact} />
 			<Route path="learn/:product" component={Learn} />
 		</Route>
+		<Route path="*" component={NotFound} />
 	</Router>
 
 module.exports = AppRouter

@@ -95,6 +95,9 @@ home.get "/admin/edit", isLoggedIn, renderAdmin
 home.get "/admin/settings", isLoggedIn, renderAdmin
 home.get "/admin/edit/:section", isLoggedIn, renderAdmin
 home.get "/admin/edit/:section/:id", isLoggedIn, renderAdmin
+home.get "/admin/*", isLoggedIn, renderAdmin
+
+home.get "*", renderApp
 
 
 # Receive Customer Data

@@ -53,8 +53,7 @@ render = (segment)->
 					log.error err:err, "rendering error"
 					return def.reject(err)
 				else if redirect
-					log.warn redirect:redirect, "redirect requested"
-					return
+					res.redirect(redirect.pathname + redirect.search)
 				else if props
 					loadOnServer(props, store, client)
 					.then(
@@ -113,7 +112,8 @@ render = (segment)->
 				_generatePage(html, css, app)
 			(reason)->
 				log.error err:reason, "error rendering data"
-				res.status(500).end()
+				res.status(500)
+				_generatePage("<div>error loading page, hydrating...</div>")
 			)
 		.catch(log.error)
 

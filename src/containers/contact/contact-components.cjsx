@@ -56,11 +56,22 @@ ContactForm = React.createClass({
 		.done(
 			()->
 				console.log "form submitted successfully!"
-				self.setState(self.initial())
+				self.setState(self.initial(), ->
+					console.log state:self.state
+					)
 			(err)->
-				self.setState({
-					error: err
-					})
+				if err.type == "validation"
+					self.setState({
+						error: err.err
+						}, ->
+							console.log state:self.state
+							)
+				else
+					# message user that submission failed
+					console.error err
+					self.setState({
+						error: initial.error
+						})
 			)
 	componentWillMount: ->
 		if @props.selected

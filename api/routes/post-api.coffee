@@ -1,4 +1,5 @@
 express = require("express")
+mongoose = require("mongoose")
 
 mailgun = require("../services/mailgun")
 {SEND_WELCOME} = mailgun.actions
