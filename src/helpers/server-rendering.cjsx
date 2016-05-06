@@ -57,7 +57,7 @@ render = (segment)->
 				else if props
 					loadOnServer(props, store, client)
 					.then(
-						()->
+						()-> 
 							final = (
 								<Provider store={store}>
 									<ReduxAsyncConnect {...props} helpers={client} />
