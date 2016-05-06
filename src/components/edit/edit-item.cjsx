@@ -25,22 +25,55 @@ ProductsItem = React.createClass({
 		includes = model.includes.map (x, i)=>
 			<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} key={i} />
 
+		makeList = (segment)=>
+			styles = require("./edit.sass")
+			model.learnData[segment].map (x,i)=>
+				<div className={styles.learnImage}>
+					<img src={x.img} />
+					<input type="text" value={x.img} />
+					<input type="text" value={x.alt} />
+					<input type="text" value={x.description} />
+				</div>
+
+		inputs = makeList("inputs")
+		process = makeList("process")
+		outputs = makeList("outputs")
+
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
-			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
-			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
-			<Field name="product" label="slug" type="text" value={model.product} change={@props.change("product")} />
-			<Field type="custom">
-				<img src={model.img} className={styles.editImage} />
-			</Field>
-			<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
-			<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
-			<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
-			<Field type="custom" label="includes">
-				{includes}
-			</Field>
-			<Field type="currency" value={model.price} label="price" change={@props.change} />
-			<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
+			<h3>General</h3>
+				<Field name="category" type="text" value={model.category} change={@props.change("category")} />
+				<Field name="title" type="text" value={model.title} change={@props.change("title")} />
+				<Field name="product" label="slug" type="text" value={model.product} change={@props.change("product")} />
+				<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
+				<Field type="custom" label="includes">
+					{includes}
+				</Field>
+			<h3>Image</h3>
+				<Field type="custom">
+					<img src={model.img} className={styles.editImage} />
+				</Field>
+				<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
+			<h3>Price and Units</h3>
+				<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
+				<Field type="currency" value={model.price} label="price" change={@props.change} />
+				<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
+			<h3>Learn</h3>
+				<Field type="textarea" name="description" />
+				<Field type="custom" label="inputs">
+					{inputs}
+				</Field>
+				<hr />
+				<Field type="custom" label="process">
+					{process}
+				</Field>
+				<hr />
+				<Field type="custom" label="outputs">
+					{outputs}
+				</Field>
+				<hr />
+				<Field name="result" type="text" value={model.learnData.result} change={@props.change("learnData.result")} />
+
 		</FormBase>
 	})
 
