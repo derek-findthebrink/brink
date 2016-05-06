@@ -4,7 +4,7 @@
 _ = require("lodash")
 {List, Map} = require("immutable")
 
-Client = require("../../helpers/apiClient")
+Client = require("../../helpers/api-client")
 
 {actions} = require("../actions")
 

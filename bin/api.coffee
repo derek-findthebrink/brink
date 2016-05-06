@@ -7,6 +7,11 @@ if process.env.PM2
 
 rootDir = process.env.APP_ROOT || nodepath.resolve(".", "..")
 
+global.__CLIENT__ = false
+global.__SERVER__ = true
+global.__DEVELOPMENT__ = process.env.NODE_ENV == "development"
+global.__DEVTOOLS__ = process.env.DEVTOOLS == "true"
+
 if process.env.NODE_ENV != "production"
 	opts = {
 		hook: true

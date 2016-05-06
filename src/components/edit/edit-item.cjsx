@@ -1,7 +1,7 @@
 React = require("react")
 _ = require("lodash")
 {connect} = require("react-redux")
-{SAVE_EDIT} = require("../../flux/actions/model").actions
+{SAVE_EDIT} = require("../../actions/model").actions
 
 {Field, ButtonField} = require("../form/form.cjsx")
 

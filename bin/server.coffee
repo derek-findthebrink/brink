@@ -4,6 +4,11 @@ nodepath = require("path")
 if process.env.PM2
 	require("dotenv").config()
 
+global.__CLIENT__ = false
+global.__SERVER__ = true
+global.__DEVELOPMENT__ = process.env.NODE_ENV == "development"
+global.__DEVTOOLS__ = process.env.DEVTOOLS == "true"
+
 log = require("bunyan").createLogger({
 	name: "server-init"
 	})
@@ -12,9 +17,12 @@ rootDir = process.env.APP_ROOT || nodepath.resolve(".", "..")
 
 global.__CLIENT__ = false
 global.__SERVER__ = true
-global.__DISABLE_SSR__ = process.env.DISABLE_SSR == "true" || false
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
 global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
+
+global.__DISABLE_SSR__ = process.env.DISABLE_SSR == "true" || false
+# global.__DISABLE_SSR__ = true
+
 
 global.apiHost = process.env.API_HOST
 global.apiPort = process.env.API_PORT

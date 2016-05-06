@@ -59,15 +59,13 @@ Field = React.createClass({
 		type = @props.type
 		change = @props.change
 		value = @props.value
+		error = @props.error
 		x = {
 			name: @props.name
 			label: label
-			type: type
 			onChange: change
 			value: value
 		}
-		if @props.multiple
-			x.multiple = true
 
 		_i = null
 		if type == "textarea"
@@ -75,6 +73,7 @@ Field = React.createClass({
 		else if type == "currency"
 			_i = React.createElement(Currency, x)
 		else if type == "select"
+			console.log "creating select with items", @props.children
 			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)
@@ -85,10 +84,20 @@ Field = React.createClass({
 		else
 			_i = React.createElement("input", x)
 
-		<div className={styles["form-field"]}>
+		if error
+			fieldClass = styles["fieldError"]
+			errorMsg = error
+		else
+			fieldClass = styles["form-field"]
+			errorMsg = null
+
+		<div className={fieldClass}>
 			<label htmlFor={@props.name}>{label}</label>
 			<div className={styles.field}>
 				{_i}
+				<div className={styles.error}>
+					<span>{errorMsg}</span>
+				</div>
 			</div>
 		</div>
 	})

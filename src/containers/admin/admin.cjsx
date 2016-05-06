@@ -3,16 +3,11 @@ React = require("react")
 
 Header = require("../../components/header/header.cjsx")
 DevTools = require("../../components/devtools.cjsx")
-Client = require("../../helpers/apiClient")
-Flux = require("../../flux")
+Client = require("../../helpers/api-client")
 
 Admin = React.createClass({
 	childContextTypes: {
 			flux: React.PropTypes.object
-		}
-	getChildContext: ->
-		return {
-			flux: new Flux()
 		}
 	render: ->
 

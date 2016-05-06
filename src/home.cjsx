@@ -8,7 +8,7 @@ React = require("react")
 ReactServer = require("react-dom/server")
 render = require("./helpers/server-rendering")
 Q = require("q")
-Client = require("./helpers/apiClient")
+Client = require("./helpers/api-client")
 
 
 # Logger
@@ -43,8 +43,8 @@ renderAdmin = render({
 
 isLoggedIn = (req, res, next)->
 	log.info user:req.user, cookies:req.cookies, "user auth"
-	_c = new Client(req)
-	_c.auth()
+	client = new Client(req)
+	client.auth()
 	.then(
 		(val)->
 			log.info val:val, "isLogged in val"
@@ -79,28 +79,9 @@ renderLogin = (req, res)->
 
 
 home = express.Router()
-home.get "/", renderApp
-home.get "/portfolio", renderApp
-home.get "/stack", renderApp
-home.get "/products-and-services", renderApp
-home.get "/products-and-services/:sub", renderApp
-home.get "/contact", renderApp
-home.get "/about", renderApp
-home.get "/learn/:id", renderApp
-
 home.get "/login", renderLogin
-
 home.get "/admin", isLoggedIn, renderAdmin
-home.get "/admin/edit", isLoggedIn, renderAdmin
-home.get "/admin/settings", isLoggedIn, renderAdmin
-home.get "/admin/edit/:section", isLoggedIn, renderAdmin
-home.get "/admin/edit/:section/:id", isLoggedIn, renderAdmin
-
-
-# Receive Customer Data
-# captcha disabled while in development
-
-# home.post("/contact", inputData, renderThanks)
-# home.post("/contact", checkCaptcha, inputData, renderThanks)
+home.get "/admin/*", isLoggedIn, renderAdmin
+home.get "*", renderApp
 
 module.exports = home

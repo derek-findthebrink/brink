@@ -16,17 +16,11 @@ Contact = React.createClass({
 		styles = require("./contact.sass")
 		content = @context.content["Contact"]
 		_q = @props.location.query
-		if _q.product
-			product = _.find @props.products.data, (x)->
-				return x._id == _q.product
-		else
-			product = null
+		product = _q.product || ""
 
 		<PageContainer {...content}>
 			<LocationInfo {...content} />
-			<ContactForm products={@props.products.data} selected={product}>
-				<h2 className={styles["form-header"]}>send us a message</h2>
-			</ContactForm>
+			<ContactForm products={@props.products.data} selected={product} />
 		</PageContainer>
 	})
 

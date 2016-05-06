@@ -10,7 +10,7 @@ compression = require("compression")
 http = require("http")
 httpProxy = require("http-proxy")
 superagent = require("superagent")
-client = require("./helpers/apiClient")
+client = require("./helpers/api-client")
 # favicon = require("serve-favicon")
 
 
@@ -140,7 +140,8 @@ _trackMiddleware = (req, res, next)->
 	.end (err)->
 		if err then log.error err:err, "add view error"
 
-app.use(_trackMiddleware)
+# if process.env.TRACKING == "true"
+# 	app.use(_trackMiddleware)
 
 # Routes
 # --------------------------------------------

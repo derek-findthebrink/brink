@@ -1,11 +1,13 @@
 Q = require("q")
 
-Client = require("../helpers/apiClient.coffee")
+Client = require("../helpers/api-client.coffee")
 
-if __CLIENT__
-	dispatch = require("./actions/client.coffee")
-else if __ADMIN__
-	dispatch = require("./actions/admin.coffee")
+if __ADMIN__
+	# console.log "admin mode initiated"
+	dispatch = require("../actions/admin.coffee")
+else
+	# console.log "client mode initiated"
+	dispatch = require("../actions/client.coffee")
 
 
 class Flux

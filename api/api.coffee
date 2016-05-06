@@ -78,11 +78,11 @@ auth = require("./config/auth")
 auth(app, passport, Account)
 
 # app data
-getData = require("./routes/get-app")
-app.use("/get", getData(mongoose))
+getAppData = require("./routes/get-app")
+app.get("/app", getAppData)
 
 postData = require("./routes/post-api")
-app.use("/post", postData(mongoose))
+app.use("/post", postData)
 
 adminAuth = require("./routes/admin-auth")(passport)
 app.use("/admin-auth", adminAuth)

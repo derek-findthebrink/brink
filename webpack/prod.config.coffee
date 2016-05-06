@@ -1,4 +1,4 @@
-# require("dotenv").config()
+require("dotenv").config()
 nodepath = require("path")
 webpack = require("webpack")
 os = require("os")
@@ -20,8 +20,6 @@ plugins = [
 	# new webpack.NoErrorsPlugin()
 	webpackIsomorphicToolsPlugin
 	new webpack.DefinePlugin({
-		__CLIENT__: true
-		__SERVER__: false
 		__DEVELOPMENT__: false
 		__DEVTOOLS__: false
 		})
@@ -30,6 +28,7 @@ plugins = [
 			compilation_level: "SIMPLE_OPTIMIZATIONS"
 		concurrency: os.cpus.length
 		})
+	new webpack.optimize.OccurrenceOrderPlugin(true)
 ]
 
 # Entry Points
@@ -85,7 +84,7 @@ module.exports = {
 		admin: admin_entry
 	context: ROOT
 	plugins: plugins
-	devtool: "source-map"
+	# devtool: "source-map"
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
 	resolve:
