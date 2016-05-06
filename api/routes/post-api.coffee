@@ -28,11 +28,10 @@ submitContact = (req, res)->
 		(contact)->
 			log.info contact:contact, "new contact created"
 			# send email msg
-			x = {
+			flux.dispatch({
 				type: SEND_WELCOME
 				model: contact
-			}
-			flux.dispatch(x)
+				})
 			return res.status(200).end()
 		(reason)->
 			log.error err:reason, "new contact creation failed"
