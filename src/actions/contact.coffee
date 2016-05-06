@@ -27,12 +27,13 @@ submitContact = (action, store)->
 	.then(
 		(final)->
 			client = new Client()
-			.post("contact", final.model)
+			.post("contact", final)
 			.then(
 				(val)->
 					return def.resolve(val)
 				(err)->
-					return def.reject(err)
+					def.reject(err)
+					throw err
 				)
 		)
 	.catch (err)->

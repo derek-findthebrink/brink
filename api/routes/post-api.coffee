@@ -3,6 +3,7 @@ mongoose = require("mongoose")
 
 mailgun = require("../services/mailgun")
 {SEND_WELCOME} = mailgun.actions
+{SUBMIT_CONTACT} = require("../../src/actions/contact").actions
 
 try
 	log = appLogger.child({
@@ -13,66 +14,40 @@ catch
 	log = console
 	log.info = console.log
 
-go = (mongoose)->
-	app = express.Router()
-	User = mongoose.model("User")
-	Contact = mongoose.model("Contact")
-	Stack = mongoose.model("Stack")
-	Product = mongoose.model("Product")
+models = {
+	contact: mongoose.model("Contact")
+}
 
-	# tracking
-	app.post("/addView", (req, res)->
-		User.addInteraction(req)
-		.then(
-			()->
-				# log.info "interaction saved successfully"
-				res.status(200).end()
-			(err)->
-				log.error err:err, "error saving interaction"
-				res.status(500).end()
-			)
+submitContact = (req, res)->
+	action = req.body
+	log.info action:action, "submit contact action"
+	if req.user
+		action.model.user = req.user._id
+	models.contact.add(action.model)
+	.then(
+		(contact)->
+			log.info contact:contact, "new contact created"
+			# send email msg
+			x = {
+				type: SEND_WELCOME
+				model: contact
+			}
+			flux.dispatch(x)
+			return res.status(200).end()
+		(reason)->
+			log.error err:reason, "new contact creation failed"
+			return res.status(500).end()
 		)
 
-	app.post("/contact", (req, res)->
-		body = req.body
-		log.info body:body, "contact body"
-		Contact.add(req)
-		.then(
-			(val)->
-				log.info val:val, "pre post-contact complete"
-				flux.dispatch({
-					type: SEND_WELCOME
-					model: val
-					})
-				res.redirect("/contact")
-			(err)->
-				res.redirect("/contact")
-			)
-		)
+go = (req, res)->
+	# add logic to parse post w/o js here
+	action = req.body
+	switch action.type
+		when SUBMIT_CONTACT then return submitContact(req, res)
+		else
+			err = new Error("could not parse action")
+			log.error err:err, action:action, "app-post parse error"
+			return res.status(500).end()
 
-	# secure this shit!!
-	app.post("/edit/:section/:id", (req, res)->
-		body = req.body
-		log.info body:body
-		switch body.modelType
-			when "stack" then _m = Stack
-			when "products" then _m = Product 
-			else
-				log.error new Error "could not parse type", "error parsing type"
-		model = body.model
-		id = model._id
-		delete model._id
-		_m.findOneAndUpdate(_id: id, model).exec()
-		.then(
-			(doc)->
-				log.info doc:doc, "update successful"
-				res.json(doc).end()
-			(err)->
-				log.error err:err, "update failed"
-				res.status(500).send(err).end()
-		)
-		)
-
-	return app
 
 module.exports = go

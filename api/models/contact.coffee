@@ -11,7 +11,9 @@ catch
 	log.info = console.log
 
 model = new Schema({
-	user: String
+	user:
+		type: Schema.Types.ObjectId
+		ref: "User"
 	name: String
 	email: String
 	product:
@@ -24,21 +26,16 @@ model = new Schema({
 	})
 
 
-model.statics.add = (req)->
+model.statics.add = (model)->
 	self = this
-	body = req.body
-	if body.product == "none" || body.product == ""
-		delete body.product
-	if req.user
-		body.user = req.user._id
-	x = new self(body).save()
+	if model.product == "none" || model.product == ""
+		delete model.product
+	x = new self(model).save()
 	.then(
 		(val)->
-			log.info val:val, "saved new contact"
 			return val
 		(err)->
-			log.error err:err, "error saving new contact"
-			return false
+			throw err
 		)
 	return x
 

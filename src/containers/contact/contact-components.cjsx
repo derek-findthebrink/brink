@@ -4,6 +4,7 @@ $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
 
 {SUBMIT_CONTACT} = require("../../actions/contact").actions
+{NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/notifications").actions
 
 initial = {
 	name: ""
@@ -59,6 +60,10 @@ ContactForm = React.createClass({
 				self.setState(self.initial(), ->
 					console.log state:self.state
 					)
+				app.flux.dispatch({
+					type: NOTIFY_SUCCESS
+					msg: "Your message has successfully been sent!"
+					})
 			(err)->
 				if err.type == "validation"
 					self.setState({
