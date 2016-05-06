@@ -12,6 +12,7 @@ FormBase = React.createClass({
 			<form method="post" action={@props.action} onSubmit={@props.submit}>
 				{@props.children}
 				<ButtonField>
+					<button>cancel</button>
 					<input type="submit" value="save" />
 				</ButtonField>
 			</form>
@@ -26,13 +27,13 @@ ProductsItem = React.createClass({
 
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
+			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
+			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
+			<Field name="product" label="slug" type="text" value={model.product} change={@props.change("product")} />
 			<Field type="custom">
 				<img src={model.img} className={styles.editImage} />
 			</Field>
 			<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
-			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
-			<Field name="product" type="text" value={model.product} change={@props.change("product")} />
-			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
 			<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
 			<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
 			<Field type="custom" label="includes">

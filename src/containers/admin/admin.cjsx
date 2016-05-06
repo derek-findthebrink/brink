@@ -4,6 +4,7 @@ React = require("react")
 Header = require("../../components/header/header.cjsx")
 DevTools = require("../../components/devtools.cjsx")
 Client = require("../../helpers/api-client")
+Sidebar = require("../../components/sidebar/sidebar.cjsx")
 
 Admin = React.createClass({
 	childContextTypes: {
@@ -32,9 +33,11 @@ Admin = React.createClass({
 		else
 			dev = null
 
+		styles = require("./admin.sass")
+
 		<div>
-			<Header links={adminLinks} title="brink admininstration" titleLink="/admin" />
-			<main>
+			<Header links={adminLinks} admin={true} title="brink admininstration" titleLink="/admin" />
+			<main className={styles.main}>
 				{@props.children}
 			</main>
 			{dev}

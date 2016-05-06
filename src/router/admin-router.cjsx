@@ -34,9 +34,10 @@ AdminRouter = (history, store)->
 	<Router history={history}>
 		<Route path="/admin" component={App}>
 			<IndexRoute component={Dashboard} />
-			<Route path="edit" component={EditBase} />
-			<Route path="edit/:section" component={Edit} />
-			<Route path="edit/:section/:id" component={EditItem} />
+			<Route path="edit" component={EditBase}>
+				<Route path=":section" component={Edit} />
+				<Route path=":section/:id" component={EditItem} />
+			</Route>
 			<Route path="settings" component={Settings} />
 		</Route>
 

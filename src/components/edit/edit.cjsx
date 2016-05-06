@@ -69,7 +69,6 @@ Edit = React.createClass({
 
 		styles = require("./edit.sass")
 		<div className={styles.container}>
-			<h2>{section}</h2>
 			<ul>
 				{items}
 			</ul>
