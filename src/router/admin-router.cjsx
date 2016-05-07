@@ -19,6 +19,7 @@ React = require("react")
 	EditItem
 	EditBase
 	Settings
+	Library
 } = require("../containers/admin-index")
 
 
@@ -38,6 +39,7 @@ AdminRouter = (history, store)->
 				<Route path=":section" component={Edit} />
 				<Route path=":section/:id" component={EditItem} />
 			</Route>
+			<Route path="library" component={Library} />
 			<Route path="settings" component={Settings} />
 		</Route>
 

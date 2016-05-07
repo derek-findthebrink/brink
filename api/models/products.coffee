@@ -22,6 +22,7 @@ model = new Schema({
 			default: "undefined"
 	}
 	learnData: {
+		description: String
 		inputs: [img]
 		process: [img]
 		result: String

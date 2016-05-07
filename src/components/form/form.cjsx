@@ -65,6 +65,7 @@ Field = React.createClass({
 			label: label
 			onChange: change
 			value: value
+			type: type
 		}
 
 		_i = null

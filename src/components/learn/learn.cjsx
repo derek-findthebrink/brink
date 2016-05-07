@@ -25,19 +25,6 @@ ContactCallout = React.createClass({
 	})
 
 Base = React.createClass({
-	# componentDidMount: ->
-	# 	# $(".content").addClass("fill")
-	# 	@_wps = $(ReactDOM.findDOMNode(this)).children("div")
-	# 		.waypoint({
-	# 			handler: ->
-	# 				el = this.element
-	# 				$(el).addClass("active")
-	# 			offset: "70%"
-	# 			})
-	# componentWillUnmount: ->
-	# 	@_wps.map (x)->
-	# 		x.destroy()
-		# $(".content").removeClass("fill")
 	render: ->
 		product = @props.product
 		inputs = product.learnData.inputs.map (x, i)->
@@ -55,7 +42,7 @@ Base = React.createClass({
 				<p>{product.description}</p>
 			</div>
 			<div className={styles.learnDescription}>
-				<p>I'm a description</p>
+				<p>{product.learnData.description}</p>
 			</div>
 			<div className={styles.inputs}>
 				{inputs}

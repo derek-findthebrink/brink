@@ -22,6 +22,10 @@ Admin = React.createClass({
 				title: "edit"
 			}
 			{
+				to: "/admin/library"
+				title: "library"
+			}
+			{
 				to: "/admin/settings"
 				title: "settings"
 			}

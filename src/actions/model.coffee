@@ -1,6 +1,6 @@
 Client = require("../helpers/api-client")
 
-SAVE_EDIT = "SAVE_MODEL"
+SAVE_EDIT = "edit/SAVE_MODEL"
 
 exports.actions = {
 	SAVE_EDIT

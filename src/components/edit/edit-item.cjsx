@@ -28,11 +28,13 @@ ProductsItem = React.createClass({
 		makeList = (segment)=>
 			styles = require("./edit.sass")
 			model.learnData[segment].map (x,i)=>
-				<div className={styles.learnImage}>
+				root = "learnData." + segment + "[" + i + "]"
+
+				<div className={styles.learnImage} key={i}>
 					<img src={x.img} />
-					<input type="text" value={x.img} />
-					<input type="text" value={x.alt} />
-					<input type="text" value={x.description} />
+					<input type="text" name="img" value={x.img} onChange={@props.change(root + ".img")} />
+					<input type="text" name="alt" value={x.alt} onChange={@props.change(root + ".alt")} />
+					<input type="text" name="description" value={x.description} onChange={@props.change(root + ".description")} />
 				</div>
 
 		inputs = makeList("inputs")
@@ -59,7 +61,7 @@ ProductsItem = React.createClass({
 				<Field type="currency" value={model.price} label="price" change={@props.change} />
 				<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
 			<h3>Learn</h3>
-				<Field type="textarea" name="description" />
+				<Field type="textarea" name="description" value={model.learnData.description} change={@props.change("learnData.description")} />
 				<Field type="custom" label="inputs">
 					{inputs}
 				</Field>

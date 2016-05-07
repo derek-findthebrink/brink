@@ -6,4 +6,5 @@ module.exports = {
 	EditItem: require("../components/edit/edit-item.cjsx")
 	EditBase: require("../components/edit/edit-base.cjsx")
 	Settings: require("../components/settings/settings.cjsx")
+	Library: require("../components/library/library.cjsx")
 }

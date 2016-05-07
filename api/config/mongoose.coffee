@@ -14,22 +14,9 @@ catch e
 		})
 
 
-# loadModels = (arr)->
-# 	modelDir = "../api/models"
-# 	_.map arr, (x)->
-# 		loc = modelDir + "/" + x
-# 		require(loc)
-
-# Models = ["account", "applications", "products"]
-# loadModels(Models)
-
-require("../models/users")
-require("../models/account")
-require("../models/stack")
-require("../models/products")
-require("../models/contact")
-require("../models/about")
-require("../models/portfolio")
+index = require("../models")
+_.map (x, i)->
+	require(x)
 
 url = process.env.MONGOOSE_DB
 mongoose.connect(url, (err)->

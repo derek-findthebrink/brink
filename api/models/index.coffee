@@ -6,4 +6,5 @@ module.exports = {
 	Products: require("./products")
 	Stack: require("./stack")
 	Users: require("./users")
+	Library: require("./library")
 }
