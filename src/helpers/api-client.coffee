@@ -41,11 +41,15 @@ class Client
 					return def.resolve JSON.parse(body.text)
 				return def.resolve(body.text)
 			return def.promise
-		@post = (segment, data)->
+
+		@post = (action)->
 			def = Q.defer()
-			url = segmentUrl("post", segment)
+			if __ADMIN__
+				url = segmentUrl("admin/post")
+			else
+				url = segmentUrl("post", segment)
 			request = superagent.post(url)
-			.send(data)
+			.send(action)
 			.set("Accept", "application/json")
 			if __SERVER__ && req.get("cookie")
 				request.set("cookie", req.get("cookie"))
@@ -55,6 +59,7 @@ class Client
 					return def.resolve JSON.parse(body.text)
 				return def.resolve(body.text)
 			return def.promise
+
 		@auth = ()->
 			def = Q.defer()
 			action = {

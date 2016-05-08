@@ -113,6 +113,22 @@ userReducer = (state = userInitial, action)->
 
 
 
+# Library
+# ------------------------------------------------
+libraryInitial = Map {
+	items: List []
+}
+
+libraryReducer = (state = libraryInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "library"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
 
 # Exports
 # ---------------------------------------------
@@ -124,6 +140,7 @@ _reducers = {
 	stack: stackReducer
 	edit: editReducer
 	user: userReducer
+	library: libraryReducer
 	}
 
 App = combineReducers(_reducers)

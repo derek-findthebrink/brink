@@ -25,21 +25,35 @@ ProductsItem = React.createClass({
 		includes = model.includes.map (x, i)=>
 			<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} key={i} />
 
-		makeList = (segment)=>
+		libraryOptions = @props.library.map (x, i)->
+			<option key={i} value={x.url}>{x.title}</option>
+
+		makeImageList = (segment)=>
 			styles = require("./edit.sass")
 			model.learnData[segment].map (x,i)=>
 				root = "learnData." + segment + "[" + i + "]"
 
 				<div className={styles.learnImage} key={i}>
 					<img src={x.img} />
-					<input type="text" name="img" value={x.img} onChange={@props.change(root + ".img")} />
-					<input type="text" name="alt" value={x.alt} onChange={@props.change(root + ".alt")} />
-					<input type="text" name="description" value={x.description} onChange={@props.change(root + ".description")} />
+					<div>
+						<label>img</label>
+						<select name="img" value={x.img} onChange={@props.change(root + ".img")}>
+							{libraryOptions}
+						</select>
+					</div>
+					<div>
+						<label>alt</label>
+						<input type="text" name="alt" value={x.alt} onChange={@props.change(root + ".alt")} />
+					</div>
+					<div>
+						<label>description</label>
+						<input type="text" name="description" value={x.description} onChange={@props.change(root + ".description")} />
+					</div>
 				</div>
 
-		inputs = makeList("inputs")
-		process = makeList("process")
-		outputs = makeList("outputs")
+		inputs = makeImageList("inputs")
+		process = makeImageList("process")
+		outputs = makeImageList("outputs")
 
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
@@ -138,12 +152,13 @@ EditItem = React.createClass({
 			})
 	render: ->
 		action = {"/herp/derp/glerp"}
+		console.log props:@props
 		switch @section
 			when "stack" then ItemClass = ConnectStack
 			when "products" then ItemClass = ConnectProduct
 			else
 				return log.error new Error "could not parse edit item"
-		Item = <ItemClass change={@change} changeSub={@changeSub} submit={@save} action={action} />
+		Item = <ItemClass change={@change} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
 			{Item}
@@ -154,6 +169,7 @@ mapStateToProps = (state)->
 	return {
 		stack: state.stack.get("items")
 		products: state.products.get("items")
+		library: state.library.get("items")
 	}
 
 Final = connect(

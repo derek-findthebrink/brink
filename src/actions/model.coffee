@@ -9,8 +9,7 @@ exports.actions = {
 saveEdit = (action, {getState, dispatch})->
 	client = new Client()
 	action.model = getState().edit	
-	segment = ["edit", action.modelType, action.model._id].join("/")
-	client.post(segment, action)
+	client.post(action)
 	.then(
 		(val)->
 			console.log val:val, "returned"

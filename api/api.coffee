@@ -71,6 +71,11 @@ app.use session({
 Flux = require("./services/flux")
 global.flux = new Flux()
 
+isLoggedIn = (req, res, next)->
+	if req.user
+		return next()
+	return res.status(403).end()
+
 # Routes
 # -------------------------------------
 
@@ -81,11 +86,14 @@ auth(app, passport, Account)
 getAppData = require("./routes/get-app")
 app.get("/app", getAppData)
 
-postData = require("./routes/post-api")
+postData = require("./routes/post-app")
 app.use("/post", postData)
 
 adminAuth = require("./routes/admin-auth")(passport)
 app.use("/admin-auth", adminAuth)
+
+postAdmin = require("./routes/post-admin")
+app.use("/admin/post", isLoggedIn, postAdmin)
 
 
 # Services
