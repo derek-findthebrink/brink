@@ -31,5 +31,5 @@ app.listen(port, (err)->
 	if err
 		log.error err:err, "webpack dev server error"
 	else
-		log.info "\n\n==> Webpack dev server listening on port:" + port + "\n\n"
+		log.info "\n\n------ Webpack dev server listening on port:" + port + "-------\n\n"
 	)

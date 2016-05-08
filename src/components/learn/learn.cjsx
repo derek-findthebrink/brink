@@ -26,6 +26,7 @@ ContactCallout = React.createClass({
 
 Base = React.createClass({
 	render: ->
+		console.log props:@props
 		product = @props.product
 		inputs = product.learnData.inputs.map (x, i)->
 			<InputImg {...x} key={i} />
@@ -36,26 +37,36 @@ Base = React.createClass({
 
 		styles = require("./learn.sass")
 
-		<div className={styles.learn}>
-			<div className={styles.learnHeader}>
+		<div className={styles.container}>
+			<div className={styles.header}>
 				<h2>{product.title}</h2>
 				<p>{product.description}</p>
 			</div>
-			<div className={styles.learnDescription}>
+
+			<div className={styles.description}>
+				<span className={styles.descriptor}>description</span>
 				<p>{product.learnData.description}</p>
 			</div>
+
 			<div className={styles.inputs}>
+				<span className={styles.descriptor}>inputs</span>
 				{inputs}
 			</div>
+
 			<div className={styles.process}>
+				<span className={styles.descriptor}>process</span>
 				{process}
 			</div>
+
 			<div className={styles.results}>
+				<span className={styles.descriptor}>you get</span>
 				<h3>{product.learnData.result}</h3>
+				<div className={styles.outputs}>
+					{outputs}
+				</div>
 			</div>
-			<div className={styles.outputs}>
-				{outputs}
-			</div>
+
+
 			<ContactCallout />
 		</div>
 	})
