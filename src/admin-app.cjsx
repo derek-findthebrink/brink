@@ -17,11 +17,11 @@ Client = require("./helpers/api-client")
 Flux = require("./flux")
 
 app = {}
+window.app = app
+app.flux = new Flux(store)
 
 if __DEVELOPMENT__
-	window.app = app
 	app.client = new Client()
-	app.flux = new Flux(store)
 
 
 # socketInit = ->

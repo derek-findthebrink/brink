@@ -4,6 +4,7 @@ React = require("react")
 Header = require("../../components/header/header.cjsx")
 DevTools = require("../../components/devtools.cjsx")
 Client = require("../../helpers/api-client")
+Sidebar = require("../../components/sidebar/sidebar.cjsx")
 
 Admin = React.createClass({
 	childContextTypes: {
@@ -21,6 +22,10 @@ Admin = React.createClass({
 				title: "edit"
 			}
 			{
+				to: "/admin/library"
+				title: "library"
+			}
+			{
 				to: "/admin/settings"
 				title: "settings"
 			}
@@ -32,9 +37,11 @@ Admin = React.createClass({
 		else
 			dev = null
 
+		styles = require("./admin.sass")
+
 		<div>
-			<Header links={adminLinks} title="brink admininstration" titleLink="/admin" />
-			<main>
+			<Header links={adminLinks} admin={true} title="brink admininstration" titleLink="/admin" />
+			<main className={styles.main}>
 				{@props.children}
 			</main>
 			{dev}
@@ -58,6 +65,10 @@ AsyncAdmin = asyncConnect({
 		{dispatch, getState} = store
 		if (!isLoaded("stack", getState()))
 			return get("stack")
+	library: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("stack", getState()))
+			return get("library")
 	})(Admin)
 
 module.exports = AsyncAdmin

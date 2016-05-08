@@ -4,17 +4,25 @@
 @include reset-display()
 
 .editItem
-	@include thin-border
 	margin-bottom: 1em
 	padding: 1em
 	list-style-type: none
+	margin-right: 2em
+	form h3
+		margin: 1em 0
+		padding-bottom: 5px
+		border-bottom: 1px solid $theme-base
 
 .container
-	@include outer-container(80%)
+	// padding-left: 3em
+	display: table-cell
 	position: relative
 	margin-bottom: 5em
+	ul
+		margin: 0
 	& > h2
 		text-align: center
+
 .footerButtons
 	@extend .button-field
 	background-color: rgba(white, 0.7)
@@ -25,14 +33,31 @@
 	width: 100%
 
 .listBase
-	@include fill-parent
+	// @include fill-parent
+	padding: 1em
+	// border-radius: 10px
+	&:nth-child(even)
+		background-color: lighten($theme-base, 40%)
 	a
 		display: block
 		color: inherit
 		text-decoration: none
 		& > div
-			@include span-columns(1 of 2)
+			// @include span-columns(1 of 2)
 
 .editImage
 	display: inline-block
 	max-width: 100%
+	height: 5em
+
+.learnImage
+	padding: 10px
+	border: 2px solid $theme-base
+	border-radius: 5px
+	margin: 5px
+	& > div
+		@include row(table)
+	img
+		margin: 0 auto
+		display: inline-block
+	@include reset-display()

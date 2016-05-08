@@ -50,6 +50,16 @@ $error-text: red
 	button, input[type="submit"], input[type="reset"]
 		@include span-columns(1 of 5)
 		// display: block
+	input, button
+		@include transition(0.5s)
+		padding: 0.5em
+		border: none
+		cursor: pointer
+	input[type="submit"]
+		background-color: $go-green
+		color: white
+		&:hover
+			background-color: lighten($go-green, 15%)
 
 .number
 	$bc: grey

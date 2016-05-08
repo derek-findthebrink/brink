@@ -65,6 +65,7 @@ Field = React.createClass({
 			label: label
 			onChange: change
 			value: value
+			type: type
 		}
 
 		_i = null
@@ -73,7 +74,6 @@ Field = React.createClass({
 		else if type == "currency"
 			_i = React.createElement(Currency, x)
 		else if type == "select"
-			console.log "creating select with items", @props.children
 			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)

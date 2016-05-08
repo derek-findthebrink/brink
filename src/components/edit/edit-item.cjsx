@@ -12,6 +12,7 @@ FormBase = React.createClass({
 			<form method="post" action={@props.action} onSubmit={@props.submit}>
 				{@props.children}
 				<ButtonField>
+					<button>cancel</button>
 					<input type="submit" value="save" />
 				</ButtonField>
 			</form>
@@ -24,22 +25,71 @@ ProductsItem = React.createClass({
 		includes = model.includes.map (x, i)=>
 			<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} key={i} />
 
+		libraryOptions = @props.library.map (x, i)->
+			<option key={i} value={x.url}>{x.title}</option>
+
+		makeImageList = (segment)=>
+			styles = require("./edit.sass")
+			model.learnData[segment].map (x,i)=>
+				root = "learnData." + segment + "[" + i + "]"
+
+				<div className={styles.learnImage} key={i}>
+					<img src={x.img} />
+					<div>
+						<label>img</label>
+						<select name="img" value={x.img} onChange={@props.change(root + ".img")}>
+							{libraryOptions}
+						</select>
+					</div>
+					<div>
+						<label>alt</label>
+						<input type="text" name="alt" value={x.alt} onChange={@props.change(root + ".alt")} />
+					</div>
+					<div>
+						<label>description</label>
+						<input type="text" name="description" value={x.description} onChange={@props.change(root + ".description")} />
+					</div>
+				</div>
+
+		inputs = makeImageList("inputs")
+		process = makeImageList("process")
+		outputs = makeImageList("outputs")
+
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
-			<Field type="custom">
-				<img src={model.img} className={styles.editImage} />
-			</Field>
-			<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
-			<Field name="category" type="text" value={model.category} change={@props.change("category")} />
-			<Field name="product" type="text" value={model.product} change={@props.change("product")} />
-			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
-			<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
-			<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
-			<Field type="custom" label="includes">
-				{includes}
-			</Field>
-			<Field type="currency" value={model.price} label="price" change={@props.change} />
-			<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
+			<h3>General</h3>
+				<Field name="category" type="text" value={model.category} change={@props.change("category")} />
+				<Field name="title" type="text" value={model.title} change={@props.change("title")} />
+				<Field name="product" label="slug" type="text" value={model.product} change={@props.change("product")} />
+				<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
+				<Field type="custom" label="includes">
+					{includes}
+				</Field>
+			<h3>Image</h3>
+				<Field type="custom">
+					<img src={model.img} className={styles.editImage} />
+				</Field>
+				<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
+			<h3>Price and Units</h3>
+				<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
+				<Field type="currency" value={model.price} label="price" change={@props.change} />
+				<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
+			<h3>Learn</h3>
+				<Field type="textarea" name="description" value={model.learnData.description} change={@props.change("learnData.description")} />
+				<Field type="custom" label="inputs">
+					{inputs}
+				</Field>
+				<hr />
+				<Field type="custom" label="process">
+					{process}
+				</Field>
+				<hr />
+				<Field type="custom" label="outputs">
+					{outputs}
+				</Field>
+				<hr />
+				<Field name="result" type="text" value={model.learnData.result} change={@props.change("learnData.result")} />
+
 		</FormBase>
 	})
 
@@ -102,12 +152,13 @@ EditItem = React.createClass({
 			})
 	render: ->
 		action = {"/herp/derp/glerp"}
+		console.log props:@props
 		switch @section
 			when "stack" then ItemClass = ConnectStack
 			when "products" then ItemClass = ConnectProduct
 			else
 				return log.error new Error "could not parse edit item"
-		Item = <ItemClass change={@change} changeSub={@changeSub} submit={@save} action={action} />
+		Item = <ItemClass change={@change} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
 			{Item}
@@ -118,6 +169,7 @@ mapStateToProps = (state)->
 	return {
 		stack: state.stack.get("items")
 		products: state.products.get("items")
+		library: state.library.get("items")
 	}
 
 Final = connect(
