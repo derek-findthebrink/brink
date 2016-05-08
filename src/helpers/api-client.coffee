@@ -47,7 +47,7 @@ class Client
 			if __ADMIN__
 				url = segmentUrl("admin/post")
 			else
-				url = segmentUrl("post", segment)
+				url = segmentUrl("post")
 			request = superagent.post(url)
 			.send(action)
 			.set("Accept", "application/json")
