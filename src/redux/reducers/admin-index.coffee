@@ -6,11 +6,7 @@ _ = require("lodash")
 
 Client = require("../../helpers/api-client")
 
-{actions} = require("../actions")
-
-# console.log actions:actions
-
-{LOAD, LOADED} = actions.LoadActions
+{LOAD, LOADED} = require("../../actions/types/async-load").actions
 
 # Products
 # ----------------------------------------
@@ -63,8 +59,7 @@ stackReducer = (state = stackInitial, action)->
 
 # Edit
 # ----------------------------------------------
-CREATE_EDITOR = "CREATE_EDITOR"
-UPDATE_EDITOR = "UPDATE_EDITOR"
+{CREATE_EDITOR, UPDATE_EDITOR} = require("../../actions/types/model").actions
 
 editInitial = {}
 

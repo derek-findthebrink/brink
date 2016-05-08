@@ -1,7 +1,7 @@
 Q = require("q")
-Client = require("../helpers/api-client")
+Client = require("../../helpers/api-client")
 
-{validate, sanitize} = require("../helpers/validation").contact
+{validate, sanitize} = require("../../helpers/validation").contact
 
 SUBMIT_CONTACT = "contact/SUBMIT"
 

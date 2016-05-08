@@ -1,9 +1,15 @@
 React = require("react")
 _ = require("lodash")
 {connect} = require("react-redux")
-{SAVE_EDIT} = require("../../actions/model").actions
+{SAVE_EDIT, UPDATE_EDITOR, CREATE_EDITOR} = require("../../actions/types/model").actions
 
 {Field, ButtonField} = require("../form/form.cjsx")
+
+
+
+# Segments
+# -----------------------------------------------------------
+
 
 FormBase = React.createClass({
 	render: ->
@@ -18,6 +24,10 @@ FormBase = React.createClass({
 			</form>
 		</li>
 	})
+
+
+
+# Products
 
 ProductsItem = React.createClass({
 	render: ->
@@ -93,6 +103,9 @@ ProductsItem = React.createClass({
 		</FormBase>
 	})
 
+
+# About
+
 AboutItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
@@ -103,6 +116,9 @@ AboutItem = React.createClass({
 			<Field name="name" value={model.name} change={change("name")} />
 		</FormBase>
 	})
+
+
+# About
 
 PortfolioItem = React.createClass({
 	render: ->
@@ -115,6 +131,8 @@ PortfolioItem = React.createClass({
 		</FormBase>
 	})
 
+
+# Stack
 
 StackItem = React.createClass({
 	render: ->
@@ -156,11 +174,16 @@ ConnectPortfolio = connect(
 	)(PortfolioItem)
 
 
+
+# Editor Class
+# ---------------------------------------------------------
+
+
 EditItem = React.createClass({
 	change: (keys)->
 		return (e)=>
 			@props.dispatch({
-				type: "UPDATE_EDITOR"
+				type: UPDATE_EDITOR
 				keys: keys
 				value: e.target.value
 				})
@@ -177,7 +200,7 @@ EditItem = React.createClass({
 			return id == x._id
 		dispatch = @props.dispatch
 		dispatch({
-			type: "CREATE_EDITOR"
+			type: CREATE_EDITOR
 			model: @model
 			})
 	render: ->

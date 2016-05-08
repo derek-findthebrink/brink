@@ -4,7 +4,7 @@ exports.actions = {
 	DELETE_ASSET: "library/DELETE_ASSET"
 }
 
-Client = require("../helpers/api-client")
+Client = require("../../helpers/api-client")
 
 addAsset = (action)->
 	new Client().post(action)

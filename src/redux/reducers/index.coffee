@@ -11,9 +11,9 @@ _reducers = {
 	products: products
 	}
 
-if __CLIENT__
-	_reducers.app = app
-	_reducers.contact = contact
+# if __CLIENT__
+	# _reducers.app = app
+	# _reducers.contact = contact
 
 
 App = combineReducers(_reducers)

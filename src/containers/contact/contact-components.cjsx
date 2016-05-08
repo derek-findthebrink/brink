@@ -3,8 +3,8 @@ _ = require("lodash")
 $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
 
-{SUBMIT_CONTACT} = require("../../actions/contact").actions
-{NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/notifications").actions
+{SUBMIT_CONTACT} = require("../../actions/types/contact").actions
+{NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/types/notifications").actions
 
 initial = {
 	name: ""
@@ -41,6 +41,32 @@ SelectedProduct = React.createClass({
 				<p>${actual.price.value} {actual.price.currency} / {actual.price.priceType}</p>
 			</div>
 	})
+
+LocationRow = React.createClass({
+	render: ->
+		styles = require("./contact.sass")
+		info = @props.value
+		header = @props.header
+		if header == "phone"
+			info = "604.762.6133"
+		<div className={styles["location-row"]}>
+			<span className="location-header">{header}</span>
+			<span className={styles["location-info"]}>{info}</span>
+		</div>
+	})
+
+
+LocationInfo = React.createClass({
+	render: ->
+		styles = require("./contact.sass")
+		items = _.map @props.location, (x, i)->
+			<LocationRow header={i} value={x} key={i} />
+
+		<div className={styles.location}>
+			{items}
+		</div>
+	})
+
 
 ContactForm = React.createClass({
 	getInitialState: ->
@@ -122,33 +148,6 @@ ContactForm = React.createClass({
 		</form>
 	})
 
-
-
-LocationRow = React.createClass({
-	render: ->
-		styles = require("./contact.sass")
-		info = @props.value
-		header = @props.header
-		if header == "phone"
-			info = "604.762.6133"
-		<div className={styles["location-row"]}>
-			<span className="location-header">{header}</span>
-			<span className={styles["location-info"]}>{info}</span>
-		</div>
-	})
-
-
-
-LocationInfo = React.createClass({
-	render: ->
-		styles = require("./contact.sass")
-		items = _.map @props.location, (x, i)->
-			<LocationRow header={i} value={x} key={i} />
-
-		<div className={styles.location}>
-			{items}
-		</div>
-	})
 
 module.exports = {
 	LocationInfo

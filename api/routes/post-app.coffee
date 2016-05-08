@@ -3,7 +3,7 @@ mongoose = require("mongoose")
 
 mailgun = require("../services/mailgun")
 {SEND_WELCOME} = mailgun.actions
-{SUBMIT_CONTACT} = require("../../src/actions/contact").actions
+{SUBMIT_CONTACT} = require("../../src/actions/types/contact").actions
 
 try
 	log = appLogger.child({

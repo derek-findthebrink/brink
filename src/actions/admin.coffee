@@ -1,8 +1,8 @@
-model = require("./model")
+model = require("./types/model")
 {SAVE_EDIT} = model.actions
 {saveEdit} = model.operations
 
-library = require("./library")
+library = require("./types/library")
 {ADD_ASSET, EDIT_ASSET, DELETE_ASSET} = library.actions
 {addAsset, editAsset, deleteAsset} = library.operations
 

@@ -2,6 +2,8 @@ Client = require("../../helpers/api-client")
 
 exports.actions = {
 	SAVE_EDIT: "edit/SAVE_MODEL"
+	UPDATE_EDITOR: "edit/UPDATE_EDITOR"
+	CREATE_EDITOR: "edit/CREATE_EDITOR"
 }
 
 saveEdit = (action, {getState, dispatch})->
