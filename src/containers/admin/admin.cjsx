@@ -69,6 +69,14 @@ AsyncAdmin = asyncConnect({
 		{dispatch, getState} = store
 		if (!isLoaded("stack", getState()))
 			return get("library")
+	about: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("about", getState()))
+			return get("about")
+	portfolio: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("portfolio", getState()))
+			return get("portfolio")
 	})(Admin)
 
 module.exports = AsyncAdmin

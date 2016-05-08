@@ -79,10 +79,11 @@ ListItem = React.createClass({
 	render: ->
 		change = @change
 		model = @state
-		<li>
+		styles = require("./library.sass")
+		<li className={styles.item}>
 			<form>
 				<Field type="custom">
-					<img src={model.url} />
+					<img src={model.url} className={styles.img} />
 				</Field>
 				<Field name="alt" value={model.alt} change={change("alt")} />
 				<Field name="url" value={model.url} change={change("url")} />
@@ -116,7 +117,8 @@ List = React.createClass({
 
 Library = React.createClass({
 	render: ->
-		<div>
+		styles = require("./library.sass")
+		<div className={styles.container}>
 			<h2>Library</h2>
 			<Add />
 			<List items={@props.library} />

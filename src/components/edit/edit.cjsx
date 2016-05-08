@@ -54,13 +54,35 @@ StackListItem = React.createClass({
 		</ListBase>
 	})
 
+AboutListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.name}</h2>
+			</div>
+		</ListBase>
+	})
+
+PortfolioListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.title}</h2>
+			</div>
+		</ListBase>
+	})
+
+
+
 Edit = React.createClass({
 	render: ->
 		section = @props.params.section
-		# console.log props:@props
+		console.log props:@props
 		switch section
 			when "products" then ItemClass = ProductsListItem
 			when "stack" then ItemClass = StackListItem
+			when "about" then ItemClass = AboutListItem
+			when "portfolio" then ItemClass = PortfolioListItem
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
 		items = @props[section].map (x, i)=>
@@ -79,10 +101,11 @@ Edit = React.createClass({
 
 mapStateToProps = (state)->
 	# console.log "map state to props ran"
-	console.log state:state
 	return {
 		products: state.products.get("items")
 		stack: state.stack.get("items")
+		about: state.about.get("items")
+		portfolio: state.portfolio.get("items")
 	}
 
 Final = connect(

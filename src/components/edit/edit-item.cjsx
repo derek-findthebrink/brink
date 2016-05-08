@@ -93,6 +93,28 @@ ProductsItem = React.createClass({
 		</FormBase>
 	})
 
+AboutItem = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		model = @props.model
+		change = @props.change
+
+		<FormBase submit={@props.submit}>
+			<Field name="name" value={model.name} change={change("name")} />
+		</FormBase>
+	})
+
+PortfolioItem = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		model = @props.model
+		change = @props.change
+
+		<FormBase submit={@props.submit}>
+			<Field name="title" value={model.title} change={change("title")} />
+		</FormBase>
+	})
+
 
 StackItem = React.createClass({
 	render: ->
@@ -125,6 +147,14 @@ ConnectProduct = connect(
 	baseMapState
 	)(ProductsItem)
 
+ConnectAbout = connect(
+	baseMapState
+	)(AboutItem)
+
+ConnectPortfolio = connect(
+	baseMapState
+	)(PortfolioItem)
+
 
 EditItem = React.createClass({
 	change: (keys)->
@@ -156,8 +186,10 @@ EditItem = React.createClass({
 		switch @section
 			when "stack" then ItemClass = ConnectStack
 			when "products" then ItemClass = ConnectProduct
+			when "about" then ItemClass = ConnectAbout
+			when "portfolio" then ItemClass = ConnectPortfolio
 			else
-				return log.error new Error "could not parse edit item"
+				return console.error new Error "could not parse edit item"
 		Item = <ItemClass change={@change} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
@@ -170,6 +202,8 @@ mapStateToProps = (state)->
 		stack: state.stack.get("items")
 		products: state.products.get("items")
 		library: state.library.get("items")
+		about: state.about.get("items")
+		portfolio: state.portfolio.get("items")
 	}
 
 Final = connect(
