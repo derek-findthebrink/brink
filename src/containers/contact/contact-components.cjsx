@@ -50,6 +50,7 @@ ContactForm = React.createClass({
 	submit: (e)->
 		self = this
 		e.preventDefault()
+		console.log state:@state
 		app.flux.dispatch({
 			type: SUBMIT_CONTACT
 			model: @state

@@ -13,7 +13,7 @@
     "launch": "npm run build && npm start",
     "watch-client": "better-npm-run watch-client",
     "build": "better-npm-run build",
-    "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
+    "dev": "concurrently --raw --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
     "ui:css": "node-sass ./src/style/global.sass ./assets/public/global.css",
     "deploy:staging": "pm2 deploy ecosystem.json staging",

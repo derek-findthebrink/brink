@@ -26,8 +26,9 @@ submitContact = (action, store)->
 		)
 	.then(
 		(final)->
+			console.log final:final
 			client = new Client()
-			.post("contact", final)
+			.post(final)
 			.then(
 				(val)->
 					return def.resolve(val)
