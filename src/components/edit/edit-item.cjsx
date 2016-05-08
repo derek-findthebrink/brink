@@ -182,7 +182,6 @@ EditItem = React.createClass({
 			})
 	render: ->
 		action = {"/herp/derp/glerp"}
-		console.log props:@props
 		switch @section
 			when "stack" then ItemClass = ConnectStack
 			when "products" then ItemClass = ConnectProduct

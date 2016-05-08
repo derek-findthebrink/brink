@@ -27,8 +27,6 @@ ListBase = React.createClass({
 	})
 
 
-
-
 ProductsListItem = React.createClass({
 	render: ->
 		<ListBase to={@props.to}>
@@ -77,7 +75,6 @@ PortfolioListItem = React.createClass({
 Edit = React.createClass({
 	render: ->
 		section = @props.params.section
-		console.log props:@props
 		switch section
 			when "products" then ItemClass = ProductsListItem
 			when "stack" then ItemClass = StackListItem
@@ -85,6 +82,7 @@ Edit = React.createClass({
 			when "portfolio" then ItemClass = PortfolioListItem
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
+				
 		items = @props[section].map (x, i)=>
 			to = ["/admin/edit", section, x._id].join("/")
 			<ItemClass {...x} to={to} key={i} />

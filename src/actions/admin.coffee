@@ -1,5 +1,4 @@
 model = require("./model")
-
 {SAVE_EDIT} = model.actions
 {saveEdit} = model.operations
 
