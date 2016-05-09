@@ -122,7 +122,6 @@ ProductsItem = React.createClass({
 				</Field>
 				<hr />
 				<Field name="result" type="text" value={model.learnData.result} change={@props.change("learnData.result")} />
-
 		</FormBase>
 	})
 
