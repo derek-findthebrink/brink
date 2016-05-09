@@ -20,7 +20,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/staging/brink",
-      "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json",
+      "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json --env staging",
       "env": {
         "PM2": true,
         "NODE_ENV": "production"
@@ -34,7 +34,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
       "path": "~/production/brink",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
       "env": {
         "PM2": true,
         "NODE_ENV": "production"
