@@ -25,17 +25,18 @@ Currency = React.createClass({
 		val = @props.value.value
 
 		<div className={styles.currency}>
-			<NumberInput value={val} onChange={@props.onChange(["price", "value"])} />
-			<select value={@props.value.currency} onChange={@props.onChange(["price", "currency"])}>
-				<option>CAD</option>
-				<option>USD</option>
-				<option>MXN</option>
-				<option>EUR</option>
+			<NumberInput value={val} onChange={@props.onChange("price.value")} />
+			<select value={@props.value.currency} onChange={@props.onChange("price.currency")}>
+				<option value="CAD">CAD</option>
+				<option value="USD">USD</option>
+				<option value="MXN">MXN</option>
+				<option value="EUR">EUR</option>
 			</select>
-			<select value={@props.value.priceType} onChange={@props.onChange(["price", "priceType"])}>
-				<option>base price</option>
-				<option>per hour</option>
-				<option>per month</option>
+			<select value={@props.value.priceType} onChange={@props.onChange("price.priceType")}>
+				<option value="base price">base price</option>
+				<option value="per hour">per hour</option>
+				<option value="per month">per month</option>
+				<option value="starting price">starting price</option>
 			</select>
 		</div>
 	})

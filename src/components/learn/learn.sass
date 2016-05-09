@@ -1,87 +1,91 @@
 @import "../../style/_config.sass"
 
+$row-height: 20em
+$bottom-border: 1px solid rgba($theme-base, 0.4)
+
 %learn-row
-	font-family: "ff-enzo-web"
+	@include align-items(center)
+	@include display(flex)
+	@include flex-direction(row)
+	@include justify-content(space-around)
+	width: 100%
+	height: $row-height
+	font-family: $fonts-header
 	font-size: 110%
-	div
-		@include span-columns(1 of 3, table)
+	position: relative
+	border-bottom: $bottom-border
 
+.descriptor
+	display: block
+	font-family: $fonts-header
+	position: absolute
+	top: 0
+	// bottom: 0
+	left: -0.5em
+	font-size: 900%
+	z-index: -1000
+	font-weight: bold
+	color: rgba($theme-base, 0.08)
 
-.learn
-	@include outer-container(100%)
+.container
+	@include outer-container(80%)
 	text-align: center
-	& > div
-		@include row(table)
-		height: 20em
-		div, h2, p, h3, span, button, a
-			display: table-cell
-			vertical-align: middle
-	.learnNav
-		position: fixed
-		top: 4em
-		left: 0
-	.math
-		$color: rgba($header-color, 0.6)
-		font-size: 6em
-		font-family: "ff-enzo-web"
-		font-weight: light
-		height: 30vw
-		color: $color
-		hr
-			height: 2px
-			background-color: $color
-			border: none
-			color: $color
-	.learnInputImage
-		font-family: "ff-enzo-web"
-		img
-			// width: 50%
-			display: inline-block
-		p
-			text-align: center
-			display: block
-	.learnHeader
-	.inputs
-		@extend %learn-row
+
+.learnInputImage
+	font-family: "ff-enzo-web"
+	img
+		width: 5em
+		display: inline-block
+	p
 		text-align: center
-	.process
-	.outputs
-		@extend %learn-row
-	.callout
-		height: 2em
-		margin-bottom: 1em
-		a
-			background-color: $theme-base
-			color: white
-			border: 2px solid white
-			border-radius: 10px
-			text-decoration: none
+		display: block
 
-	@include reset-display()
-
-
-.learn
+.header
 	$c: $header-color
-	// & > div
-	// 	opacity: 0
-	// 	&.active
-	// 		@extend %learn-fade-in
-	// 		opacity: 1
-	.learnHeader
-		font-size: 110%
-		h2
-			padding-right: 1em
-			color: darken($c, 15%)
-			text-align: right
-		p
-			color: $c
-			text-align: left
+	@include row(table)
+	height: $row-height
+	font-size: 110%
+	border-bottom: $bottom-border
+	h2
+		@include span-columns(1 of 2)
+		padding-right: 1em
+		color: darken($c, 15%)
+		text-align: right
+		vertical-align: middle
+	p
+		@include span-columns(1 of 2)
+		vertical-align: middle
+		font-family: $fonts-content
+		color: $c
+		text-align: left
+.description
+	@extend %learn-row
+	font-family: $fonts-content
+	p
 
-	// & > div:nth-child(even)
-	// 	// @include linear-gradient(white 2%, $theme-base 20%, $theme-base 80%, white 98%)
-	// 	background-color: $theme-base
-	// 	color: white
-	// 	.learn-header-text
-	// 		color: white
-	// 	.learn-header-description
-	// 		color: mix(white, $theme-base)
+.inputs
+	@extend %learn-row
+.process
+	@extend %learn-row
+.outputs
+	@extend %learn-row
+	.descriptor
+		top: 0
+.results
+	@extend %learn-row
+	border-bottom: none
+	h3
+		width: 100%
+.callout
+	@include row(table)
+	height: 2em
+	margin-bottom: 1em
+	font-family: $fonts-content
+	a
+		@include span-columns(1 of 2)
+		vertical-align: middle
+		background-color: $theme-base
+		color: white
+		border: 2px solid white
+		border-radius: 10px
+		text-decoration: none

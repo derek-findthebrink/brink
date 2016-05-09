@@ -9,8 +9,8 @@ catch
 	log = console
 	log.info = console.log
 
-{ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../src/actions/library").actions
-{SAVE_EDIT} = require("../../src/actions/model").actions
+{ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../src/actions/types/library").actions
+{SAVE_EDIT} = require("../../src/actions/types/model").actions
 
 models = {
 	library: mongoose.model("Library")

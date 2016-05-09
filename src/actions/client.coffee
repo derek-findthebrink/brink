@@ -1,9 +1,9 @@
-contact = require("./contact")
+contact = require("./types/contact")
 
 {SUBMIT_CONTACT} = contact.actions
 {submitContact} = contact.operations
 
-notify = require("./notifications.coffee")
+notify = require("./types/notifications.coffee")
 {NOTIFY_SUCCESS, NOTIFY_ERROR} = notify.actions
 {notifySuccess, notifyError} = notify.operations
 

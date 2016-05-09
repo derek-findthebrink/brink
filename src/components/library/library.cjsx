@@ -2,7 +2,7 @@ React = require("react")
 {asyncConnect} = require("redux-async-connect")
 
 {Field, ButtonField} = require("../form/form.cjsx")
-{ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../actions/library").actions
+{ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../actions/types/library").actions
 
 addInitial = {
 	url: ""
