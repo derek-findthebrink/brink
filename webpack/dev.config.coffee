@@ -1,7 +1,7 @@
 nodepath = require("path")
 webpack = require("webpack")
 
-ROOT = nodepath.resolve(process.env.APP_ROOT)
+ROOT = nodepath.resolve(".", "..")
 
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 _webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
@@ -78,7 +78,7 @@ _cjsxLoaderBrowser = {
 # Browser
 browser = {
 	name: "browser-app"
-	context: nodepath.resolve(__dirname, "..")
+	context: ROOT
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
 	resolve:

@@ -1,11 +1,11 @@
 #!/usr/bin/env coffee
-
 require("coffee-react/register")
+nodepath = require("path")
 
 if process.env.PM2
 	require("dotenv").config()
 
-rootDir = process.env.APP_ROOT || nodepath.resolve(".", "..")
+rootDir = nodepath.resolve(".", "..")
 
 global.__CLIENT__ = false
 global.__SERVER__ = true

@@ -26,7 +26,6 @@ ContactCallout = React.createClass({
 
 Base = React.createClass({
 	render: ->
-		console.log props:@props
 		product = @props.product
 		inputs = product.learnData.inputs.map (x, i)->
 			<InputImg {...x} key={i} />
