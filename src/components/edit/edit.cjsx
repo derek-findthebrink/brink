@@ -3,6 +3,7 @@ _ = require("lodash")
 {Link} = require("react-router")
 
 {Field, ButtonField} = require("../form/form.cjsx")
+Sidebar = require("../sidebar/sidebar.cjsx")
 
 try
 	log = appLogger.child({
@@ -14,6 +15,20 @@ catch
 	log.info = console.log
 
 
+
+EditContainer = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		<div>
+			<Sidebar title="edit">
+				<Link to="/admin/edit/products">Products</Link>
+				<Link to="/admin/edit/stack">Stack</Link>
+				<Link to="/admin/edit/portfolio">Portfolio</Link>
+				<Link to="/admin/edit/about">About</Link>
+			</Sidebar>
+			{@props.children}
+		</div>
+	})
 
 
 ListBase = React.createClass({
@@ -72,7 +87,7 @@ PortfolioListItem = React.createClass({
 
 
 
-Edit = React.createClass({
+EditPre = React.createClass({
 	render: ->
 		section = @props.params.section
 		switch section
@@ -106,8 +121,11 @@ mapStateToProps = (state)->
 		portfolio: state.portfolio.get("items")
 	}
 
-Final = connect(
+EditList = connect(
 	mapStateToProps
-	)(Edit)
+	)(EditPre)
 
-module.exports = Final
+module.exports = {
+	EditContainer
+	EditList
+}
