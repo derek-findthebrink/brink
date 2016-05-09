@@ -9,45 +9,48 @@ PageContainer = require("../../components/page/container-page.cjsx")
 PortfolioItem = React.createClass({
 	render: ->
 		styles = require("./portfolio.sass")
+		console.log props:@props
+
+		includes = @props.includes.map (x, i)->
+			<li key={i}>{x}</li>
+
+		icons = @props.includesImg.map (x, i)->
+			<img key={i} src={x.img} />
 
 		<div className={styles.row}>
 			<div className={styles.img}>
-				<iron-image src="/brink-logo-small.svg" sizing="cover" />
+				<iron-image src={@props.img} sizing="cover" />
 				<div className={styles.imgOverlay} />
 			</div>
 			<div className={styles.header}>
 				<div className={styles.headerInner}>
 					<h2>{@props.title}</h2>
 					<div className={styles.icons}>
-						<img src="/icons/brink-icons_uptime.svg" />
-						<img src="/icons/brink-icons_uptime.svg" />
-						<img src="/icons/brink-icons_uptime.svg" />
+						{icons}
 					</div>
 				</div>
 				<table className={styles.data}>
 					<tbody>
 						<tr>
 							<th>type</th>
-							<td>front-end development</td>
+							<td>{@props.type}</td>
 						</tr>
 						<tr>
 							<th>commissioner</th>
-							<td>Cleanify Inc.</td>
+							<td>{@props.commissioner}</td>
 						</tr>
 						<tr>
 							<th>status</th>
-							<td>live</td>
+							<td>{@props.status}</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<hr className={styles.hr} />
 			<div className={styles.description}>
-				<p>We did some really great things with this company</p>
+				<p>{@props.description}</p>
 				<ul>
-					<li>site maintenance</li>
-					<li>conforming design to brand</li>
-					<li>increasing server performance</li>
+					{includes}
 				</ul>
 			</div>
 		</div>

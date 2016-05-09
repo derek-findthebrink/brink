@@ -14,7 +14,7 @@
 	.img
 		@include span-columns(1.2 of 4)
 	&:hover .imgOverlay
-		background-color: rgba($theme-base, 0.3)
+		background-color: rgba($theme-base, 0)
 	@include reset-display()
 
 .header
@@ -23,6 +23,8 @@
 	.headerInner, table
 		display: table-cell
 		vertical-align: middle
+		h2
+			margin-bottom: 7px
 	.headerInner
 		text-align: center
 	h2
@@ -57,6 +59,15 @@
 	
 
 .data
+	border-collapse: collapse
+	td, th
+		border: 1px solid rgba($theme-base, 0.7)
+		padding: 0 5px
+	th
+		font-family: $fonts-header
+		background-color: lighten($theme-base, 30%)
+		color: white
+
 
 .icons
 	@include row(table)

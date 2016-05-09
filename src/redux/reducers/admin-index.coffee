@@ -83,7 +83,7 @@ editReducer = (state = editInitial, action)->
 			console.log arr:arr, final:y
 			return y
 		when UPDATE_EDITOR
-			# console.log action:action
+			console.log action:action
 			y = _.set(_.assign({}, state), action.keys, action.value)
 			return y
 		else
