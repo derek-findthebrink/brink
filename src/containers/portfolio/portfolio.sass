@@ -13,6 +13,8 @@
 	// overflow: hidden
 	.img
 		@include span-columns(1.2 of 4)
+	&:hover .imgOverlay
+		background-color: rgba($theme-base, 0.3)
 	@include reset-display()
 
 .header
@@ -35,7 +37,6 @@
 	max-height: 5em
 	width: 100%
 	position: relative
-	background-color: rgba($theme-base, 0.7)
 	z-index: 10
 	iron-image
 		// @include square(18em)
@@ -47,6 +48,7 @@
 		left: 0
 
 .imgOverlay
+	@include transition(0.25s)
 	display: inline-block
 	position: absolute
 	width: 100%

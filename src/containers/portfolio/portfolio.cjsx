@@ -12,7 +12,7 @@ PortfolioItem = React.createClass({
 
 		<div className={styles.row}>
 			<div className={styles.img}>
-				<iron-image src="/img/oo-arctic-07.jpg" sizing="cover" />
+				<iron-image src="/brink-logo-small.svg" sizing="cover" />
 				<div className={styles.imgOverlay} />
 			</div>
 			<div className={styles.header}>
