@@ -4,6 +4,8 @@ exports.actions = {
 	SAVE_EDIT: "edit/SAVE_MODEL"
 	UPDATE_EDITOR: "edit/UPDATE_EDITOR"
 	CREATE_EDITOR: "edit/CREATE_EDITOR"
+	VALUE_PUSH: "edit/VALUE_PUSH"
+	VALUE_SPLICE: "edit/VALUE_SLICE"
 }
 
 saveEdit = (action, {getState, dispatch})->

@@ -59,7 +59,7 @@ stackReducer = (state = stackInitial, action)->
 
 # Edit
 # ----------------------------------------------
-{CREATE_EDITOR, UPDATE_EDITOR} = require("../../actions/types/model").actions
+{CREATE_EDITOR, UPDATE_EDITOR, VALUE_PUSH, VALUE_SPLICE} = require("../../actions/types/model").actions
 
 editInitial = {}
 
@@ -67,6 +67,20 @@ editReducer = (state = editInitial, action)->
 	switch action.type
 		when CREATE_EDITOR
 			y = _.assign {}, action.model
+			return y
+		when VALUE_SPLICE
+			console.log action:action, state:state
+			arr = _.get(state, action.keys)
+			arr.splice(action.index, 1)
+			y = _.set(_.assign({}, state), action.keys, arr)
+			console.log arr:arr
+			console.log state:y, "final"
+			return y
+		when VALUE_PUSH
+			arr = _.get(state, action.keys)
+			arr.push(action.initial)
+			y = _.set(_.assign({}, state), action.keys, arr)
+			console.log arr:arr, final:y
 			return y
 		when UPDATE_EDITOR
 			# console.log action:action

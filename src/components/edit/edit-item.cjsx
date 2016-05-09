@@ -1,7 +1,7 @@
 React = require("react")
 _ = require("lodash")
 {connect} = require("react-redux")
-{SAVE_EDIT, UPDATE_EDITOR, CREATE_EDITOR} = require("../../actions/types/model").actions
+{SAVE_EDIT, UPDATE_EDITOR, CREATE_EDITOR, VALUE_PUSH, VALUE_SPLICE} = require("../../actions/types/model").actions
 
 {Field, ButtonField} = require("../form/form.cjsx")
 
@@ -29,11 +29,22 @@ FormBase = React.createClass({
 
 # Products
 
+imageInitial = {
+	img: ""
+	alt: ""
+	description: ""
+}
+includesInitial = ""
+
 ProductsItem = React.createClass({
 	render: ->
 		model = @props.model
 		includes = model.includes.map (x, i)=>
-			<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} key={i} />
+			styles = require("./edit.sass")
+			<div className={styles.listEditor} key={i}>
+				<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} />
+				<iron-icon icon="icons:remove" onClick={@props.valueSlice("includes", i)} />
+			</div>
 
 		libraryOptions = @props.library.map (x, i)->
 			<option key={i} value={x.url}>{x.title}</option>
@@ -42,9 +53,13 @@ ProductsItem = React.createClass({
 			styles = require("./edit.sass")
 			model.learnData[segment].map (x,i)=>
 				root = "learnData." + segment + "[" + i + "]"
+				_seg = "learnData." + segment
 
 				<div className={styles.learnImage} key={i}>
-					<img src={x.img} />
+					<div className={styles.menu}>
+						<img src={x.img} />
+						<iron-icon icon="icons:remove" onClick={@props.valueSlice(_seg, i)} />
+					</div>
 					<div>
 						<label>img</label>
 						<select name="img" value={x.img} onChange={@props.change(root + ".img")}>
@@ -74,12 +89,17 @@ ProductsItem = React.createClass({
 				<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
 				<Field type="custom" label="includes">
 					{includes}
+					<iron-icon icon="icons:add" onClick={@props.push("includes", includesInitial)} />
 				</Field>
 			<h3>Image</h3>
 				<Field type="custom">
 					<img src={model.img} className={styles.editImage} />
 				</Field>
-				<Field name="img" type="text" value={model.img} change={@props.change("img")} /> 
+				<Field type="custom" label="img">
+					<select name="img" value={model.img} onChange={@props.change("img")}>
+						{libraryOptions}
+					</select>
+				</Field>
 			<h3>Price and Units</h3>
 				<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
 				<Field type="currency" value={model.price} label="price" change={@props.change} />
@@ -88,14 +108,17 @@ ProductsItem = React.createClass({
 				<Field type="textarea" name="description" value={model.learnData.description} change={@props.change("learnData.description")} />
 				<Field type="custom" label="inputs">
 					{inputs}
+					<iron-icon icon="icons:add" onClick={@props.push("learnData.inputs", imageInitial)} />
 				</Field>
 				<hr />
 				<Field type="custom" label="process">
 					{process}
+					<iron-icon icon="icons:add" onClick={@props.push("learnData.process", imageInitial)} />
 				</Field>
 				<hr />
 				<Field type="custom" label="outputs">
 					{outputs}
+					<iron-icon icon="icons:add" onClick={@props.push("learnData.outputs", imageInitial)} />
 				</Field>
 				<hr />
 				<Field name="result" type="text" value={model.learnData.result} change={@props.change("learnData.result")} />
@@ -180,6 +203,20 @@ ConnectPortfolio = connect(
 
 
 EditItem = React.createClass({
+	push: (keys, initial)->
+		return =>
+			@props.dispatch({
+				type: VALUE_PUSH
+				keys: keys
+				initial: initial
+				})
+	splice: (keys, index)->
+		return =>
+			@props.dispatch({
+				type: VALUE_SPLICE
+				keys: keys
+				index: index
+				})
 	change: (keys)->
 		return (e)=>
 			@props.dispatch({
@@ -212,7 +249,7 @@ EditItem = React.createClass({
 			when "portfolio" then ItemClass = ConnectPortfolio
 			else
 				return console.error new Error "could not parse edit item"
-		Item = <ItemClass change={@change} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
+		Item = <ItemClass valueSlice={@splice} change={@change} push={@push} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
 			{Item}
