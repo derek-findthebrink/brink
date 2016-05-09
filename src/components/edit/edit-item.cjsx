@@ -55,7 +55,7 @@ ProductsItem = React.createClass({
 				root = "learnData." + segment + "[" + i + "]"
 				_seg = "learnData." + segment
 
-				<div className={styles.learnImage} key={i}>
+				<div className={styles.learnImage} key={segment + String i}>
 					<div className={styles.menu}>
 						<img src={x.img} />
 						<iron-icon icon="icons:remove" onClick={@props.valueSlice(_seg, i)} />
