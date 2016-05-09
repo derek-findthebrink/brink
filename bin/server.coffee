@@ -13,7 +13,7 @@ log = require("bunyan").createLogger({
 	name: "server-init"
 	})
 
-rootDir = nodepath.resolve(".", "..")
+rootDir = nodepath.resolve(process.env.APP_ROOT)
 
 global.__CLIENT__ = false
 global.__SERVER__ = true

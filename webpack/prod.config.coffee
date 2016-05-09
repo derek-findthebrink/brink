@@ -3,12 +3,11 @@ nodepath = require("path")
 webpack = require("webpack")
 os = require("os")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
-_webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
-webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 ClosureCompilerPlugin = require("webpack-closure-compiler")
 
 # Plugins
@@ -18,7 +17,7 @@ plugins = [
 		allChunks: true
 		})
 	# new webpack.NoErrorsPlugin()
-	webpackIsomorphicToolsPlugin
+	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
 	new webpack.DefinePlugin({
 		__DEVELOPMENT__: false
 		__DEVTOOLS__: false

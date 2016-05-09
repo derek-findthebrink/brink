@@ -5,7 +5,7 @@ nodepath = require("path")
 if process.env.PM2
 	require("dotenv").config()
 
-rootDir = nodepath.resolve(".", "..")
+rootDir = nodepath.resolve(process.env.APP_ROOT)
 
 global.__CLIENT__ = false
 global.__SERVER__ = true

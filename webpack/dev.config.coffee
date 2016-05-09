@@ -1,11 +1,10 @@
 nodepath = require("path")
 webpack = require("webpack")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 ExtractTextPlugin = require("extract-text-webpack-plugin")
-_webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
-webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 
 
 _host = process.env.HOST || "localhost"
@@ -22,7 +21,7 @@ _browserPlugins = [
 		__DEVELOPMENT__: true
 		__DEVTOOLS__: true
 		})
-	webpackIsomorphicToolsPlugin.development()
+	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee")).development()
 ]
 
 
