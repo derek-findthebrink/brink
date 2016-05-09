@@ -17,6 +17,7 @@ models = {
 	products: mongoose.model("Product")
 	stack: mongoose.model("Stack")
 	portfolio: mongoose.model("Portfolio")
+	about: mongoose.model("About")
 }
 
 deleteLibrary = (req, res)->

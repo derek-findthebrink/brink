@@ -153,8 +153,20 @@ AboutItem = React.createClass({
 		model = @props.model
 		change = @props.change
 
+		libraryOptions = makeLibraryOptions(@props.library)
+		styles = require("./edit.sass")
+
 		<FormBase submit={@props.submit}>
 			<Field name="name" value={model.name} change={change("name")} />
+			<Field name="description" type="textarea" value={model.description} change={change("description")} />
+			<Field type="custom">
+				<img src={model.image} className={styles.editImage} />
+			</Field>
+			<Field type="custom" label="image">
+				<select value={model.image} onChange={change("image")}>
+					{libraryOptions}
+				</select>
+			</Field>
 		</FormBase>
 	})
 
