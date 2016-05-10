@@ -1,10 +1,11 @@
 WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 
 module.exports = {
-	debug: false
+	debug: true
 	assets:
+		html:
+			extensions: ["html"]
 		style_modules:
-
 			extensions: ["scss", "sass"]
 			filter: (module, regex, options, log)->
 				if options.development

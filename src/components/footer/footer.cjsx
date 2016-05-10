@@ -24,8 +24,8 @@ Footer = React.createClass({
 				</ul>
 				<ul className={styles.linkList}>
 					<li><h3>Legal</h3></li>
-					<li><a href="/terms-and-conditions">Terms and Conditions</a></li>
-					<li><a href="/privacy-policy">Privacy Policy</a></li>
+					<li><Link to="/terms-and-conditions">Terms and Conditions</Link></li>
+					<li><Link to="/privacy-policy">Privacy Policy</Link></li>
 				</ul>
 			</div>
 			<hr />
