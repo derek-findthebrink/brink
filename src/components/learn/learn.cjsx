@@ -4,6 +4,7 @@ _ = require("lodash")
 $ = require("jquery")
 {asyncConnect} = require("redux-async-connect")
 {connect} = require("react-redux")
+{Link} = require("react-router")
 
 
 InputImg = React.createClass({
@@ -18,9 +19,9 @@ InputImg = React.createClass({
 ContactCallout = React.createClass({
 	render: ->
 		styles = require("./learn.sass")
+		link = ["/contact?product=", @props.id].join("")
 		<div className={styles.callout}>
-			<a href="#">+1.604.762.6133</a>
-			<a href="#">I'm ready.</a>
+			<Link to={link}>I'm ready.</Link>
 		</div>
 	})
 
@@ -65,7 +66,7 @@ Base = React.createClass({
 				</div>
 			</div>
 
-			<ContactCallout />
+			<ContactCallout id={@props.product._id} />
 		</div>
 	})
 
