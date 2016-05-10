@@ -30,6 +30,8 @@ content = require("../../content/index")
 	Contact
 	Learn
 	NotFound
+	PP
+	TAC
 } = require("../containers")
 
 AppRouter = (history)->
@@ -44,6 +46,9 @@ AppRouter = (history)->
 			<Route path="stack" component={Stack} />
 			<Route path="contact" component={Contact} />
 			<Route path="learn/:product" component={Learn} />
+
+			<Route path="/privacy-policy" component={PP} />
+			<Route path="/terms-and-conditions" component={TAC} />
 		</Route>
 		<Route path="*" component={NotFound} />
 	</Router>
