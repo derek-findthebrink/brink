@@ -21,7 +21,7 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
 global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
 
 global.__DISABLE_SSR__ = process.env.DISABLE_SSR == "true" || false
-global.__DISABLE_SSR__ = true
+global.__DISABLE_SSR__ = process.env.NODE_ENV == "development" ? true || process.env.DISABLE_SSR == "false"
 
 
 global.apiHost = process.env.API_HOST

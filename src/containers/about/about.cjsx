@@ -34,6 +34,7 @@ PersonItem = React.createClass({
 			</div>
 			<div className={styles.description}>
 				<h2 className={styles.name}>{@props.name}</h2>
+				<h4>Principal Designer</h4>
 				<p className={styles.personDescription}>
 					{@props.description}
 				</p>

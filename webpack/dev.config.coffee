@@ -68,6 +68,10 @@ _cjsxLoaderBrowser = {
 	# loaders: ["react-hot", "coffee", "cjsx"]
 	loaders: ["react-hot", "coffee", "cjsx"]
 }
+_htmlLoader = {
+	test: /\.html$/
+	loaders: ["html"]
+}
 
 
 
@@ -102,7 +106,13 @@ browser = {
 		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "http://" + _host + ":" + _port + "/"
 	module:
-		loaders: _loaders.concat([_cssLoaderBrowser, _scssLoaderBrowser, _sassLoaderBrowser, _cjsxLoaderBrowser])
+		loaders: _loaders.concat([
+			_cssLoaderBrowser
+			_scssLoaderBrowser
+			_sassLoaderBrowser
+			_cjsxLoaderBrowser
+			_htmlLoader
+			])
 }
 
 module.exports = browser

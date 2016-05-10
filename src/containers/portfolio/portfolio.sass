@@ -6,3 +6,86 @@
 	& > div
 		@include row(table)
 		@include thin-border
+
+.row
+	@include row(table)
+	// padding: 0.5em
+	// overflow: hidden
+	.img
+		@include span-columns(1.2 of 4)
+	&:hover .imgOverlay
+		background-color: rgba($theme-base, 0)
+	@include reset-display()
+
+.header
+	@include span-columns(2.8 of 4)
+	@include row(table)
+	.headerInner, table
+		display: table-cell
+		vertical-align: middle
+		h2
+			margin-bottom: 7px
+	.headerInner
+		text-align: center
+	h2
+		text-align: center
+		font-size: 200%
+		margin: 0.5em
+		color: darken($theme-base, 15%)
+	@include reset-display
+
+.img
+	overflow: hidden
+	max-height: 5em
+	width: 100%
+	position: relative
+	z-index: 10
+	border-right: 1px solid $theme-base
+	iron-image
+		// @include square(18em)
+		height: 100%
+		width: 100%
+		display: inline-block
+		position: absolute
+		z-index: -10
+		left: 0
+
+.imgOverlay
+	@include transition(0.25s)
+	display: inline-block
+	position: absolute
+	width: 100%
+	height: 100%
+	background-color: rgba($theme-base, 0.7)
+	
+
+.data
+	border-collapse: collapse
+	td, th
+		border: 1px solid rgba($theme-base, 0.7)
+		padding: 0 5px
+	th
+		font-family: $fonts-header
+		background-color: lighten($theme-base, 30%)
+		color: white
+
+
+.icons
+	@include row(table)
+	// padding: 15px
+	img
+		width: 3em
+		margin: 5px
+	@include reset-display
+
+.hr
+	width: 50%
+	color: $theme-base
+
+.description
+	width: 70%
+	margin: 0 auto
+	ul
+		padding-left: 4em
+		li
+			list-style-type: initial

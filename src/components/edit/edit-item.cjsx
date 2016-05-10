@@ -36,49 +36,68 @@ imageInitial = {
 }
 includesInitial = ""
 
+
+makeLibraryOptions = (library)->
+	return library.map (x, i)->
+		<option key={i} value={x.url}>{x.title}</option>
+
+makeImageList = (root, segment, model)->
+	styles = require("./edit.sass")
+
+	libraryOptions = makeLibraryOptions(@props.library)
+
+	if root
+		list = model[root][segment]
+	else
+		list = model[segment]
+	# model.learnData[segment]
+	list.map (x,i)=>
+		if root
+			_root = root + "." + segment + "[" + i + "]"
+			_seg = root + "." + segment
+		else
+			_root = segment + "[" + i + "]"
+			_seg = segment
+
+		<div className={styles.learnImage} key={_root + String i}>
+			<div className={styles.menu}>
+				<img src={x.img} />
+				<iron-icon icon="icons:remove" onClick={@props.valueSlice(_seg, i)} />
+			</div>
+			<div>
+				<label>img</label>
+				<select name="img" value={x.img} onChange={@props.change(_root + ".img")}>
+					{libraryOptions}
+				</select>
+			</div>
+			<div>
+				<label>alt</label>
+				<input type="text" name="alt" value={x.alt} onChange={@props.change(_root + ".alt")} />
+			</div>
+			<div>
+				<label>description</label>
+				<input type="text" name="description" value={x.description} onChange={@props.change(_root + ".description")} />
+			</div>
+		</div>
+
+createIncludes = (x, i)->
+	styles = require("./edit.sass")
+	<div className={styles.listEditor} key={i}>
+		<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} />
+		<iron-icon icon="icons:remove" onClick={@props.valueSlice("includes", i)} />
+	</div>
+
 ProductsItem = React.createClass({
 	render: ->
 		model = @props.model
-		includes = model.includes.map (x, i)=>
-			styles = require("./edit.sass")
-			<div className={styles.listEditor} key={i}>
-				<input type="text" onChange={@props.change("includes[" + i + "]")} value={x} />
-				<iron-icon icon="icons:remove" onClick={@props.valueSlice("includes", i)} />
-			</div>
+		includes = model.includes.map createIncludes.bind(this)
 
-		libraryOptions = @props.library.map (x, i)->
-			<option key={i} value={x.url}>{x.title}</option>
+		libraryOptions = makeLibraryOptions(@props.library)
 
-		makeImageList = (segment)=>
-			styles = require("./edit.sass")
-			model.learnData[segment].map (x,i)=>
-				root = "learnData." + segment + "[" + i + "]"
-				_seg = "learnData." + segment
 
-				<div className={styles.learnImage} key={segment + String i}>
-					<div className={styles.menu}>
-						<img src={x.img} />
-						<iron-icon icon="icons:remove" onClick={@props.valueSlice(_seg, i)} />
-					</div>
-					<div>
-						<label>img</label>
-						<select name="img" value={x.img} onChange={@props.change(root + ".img")}>
-							{libraryOptions}
-						</select>
-					</div>
-					<div>
-						<label>alt</label>
-						<input type="text" name="alt" value={x.alt} onChange={@props.change(root + ".alt")} />
-					</div>
-					<div>
-						<label>description</label>
-						<input type="text" name="description" value={x.description} onChange={@props.change(root + ".description")} />
-					</div>
-				</div>
-
-		inputs = makeImageList("inputs")
-		process = makeImageList("process")
-		outputs = makeImageList("outputs")
+		inputs = makeImageList.bind(this)("learnData", "inputs", model)
+		process = makeImageList.bind(this)("learnData", "process", model)
+		outputs = makeImageList.bind(this)("learnData", "outputs", model)
 
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
@@ -134,8 +153,20 @@ AboutItem = React.createClass({
 		model = @props.model
 		change = @props.change
 
+		libraryOptions = makeLibraryOptions(@props.library)
+		styles = require("./edit.sass")
+
 		<FormBase submit={@props.submit}>
 			<Field name="name" value={model.name} change={change("name")} />
+			<Field name="description" type="textarea" value={model.description} change={change("description")} />
+			<Field type="custom">
+				<img src={model.image} className={styles.editImage} />
+			</Field>
+			<Field type="custom" label="image">
+				<select value={model.image} onChange={change("image")}>
+					{libraryOptions}
+				</select>
+			</Field>
 		</FormBase>
 	})
 
@@ -148,8 +179,37 @@ PortfolioItem = React.createClass({
 		model = @props.model
 		change = @props.change
 
+		libraryOptions = makeLibraryOptions(@props.library)
+
+		includes = model.includes.map createIncludes.bind(this)
+
+		includeImgs = makeImageList.bind(this)(null, "includesImg", model)
+		# includeImg = null
+
+		styles = require("./edit.sass")
 		<FormBase submit={@props.submit}>
 			<Field name="title" value={model.title} change={change("title")} />
+			<Field name="type" value={model.type} change={change("type")} />
+			<Field type="custom">
+				<img src={model.img} className={styles.editImage} />
+			</Field>
+			<Field label="img" type="custom">
+				<select value={model.img} onChange={change("img")}>
+					{libraryOptions}
+				</select>
+			</Field>
+			<Field name="alt" value={model.alt} change={change("alt")} />
+			<Field name="commissioner" value={model.commissioner} change={change("commissioner")} />
+			<Field name="status" value={model.status} change={change("status")} />
+			<Field name="description" type="textarea" value={model.description} change={change("description")} />
+			<Field type="custom" label="includes">
+				{includes}
+				<iron-icon icon="icons:add" onClick={@props.push("includes", includesInitial)} />
+			</Field>
+			<Field type="custom" label="images">
+				{includeImgs}
+				<iron-icon icon="icons:add" onClick={@props.push("includesImg", imageInitial)} />
+			</Field>
 		</FormBase>
 	})
 
@@ -248,7 +308,7 @@ EditItem = React.createClass({
 			when "portfolio" then ItemClass = ConnectPortfolio
 			else
 				return console.error new Error "could not parse edit item"
-		Item = <ItemClass valueSlice={@splice} change={@change} push={@push} library={@props.library} changeSub={@changeSub} submit={@save} action={action} />
+		Item = <ItemClass valueSlice={@splice} change={@change} push={@push} library={@props.library} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
 			{Item}

@@ -69,6 +69,7 @@ $bottom-border: 1px solid rgba($theme-base, 0.4)
 	@extend %learn-row
 .outputs
 	@extend %learn-row
+	border-bottom: none
 	.descriptor
 		top: 0
 .results
@@ -81,11 +82,22 @@ $bottom-border: 1px solid rgba($theme-base, 0.4)
 	height: 2em
 	margin-bottom: 1em
 	font-family: $fonts-content
+	border: none
 	a
-		@include span-columns(1 of 2)
+		// @include span-columns(1 of 2)
+		@include transition(0.25s)
+		display: block
+		width: 50%
+		margin: 0 auto
+		padding: 0.5em
+		min-width: 10em
 		vertical-align: middle
-		background-color: $theme-base
+		background-color: $go-green
 		color: white
 		border: 2px solid white
 		border-radius: 10px
 		text-decoration: none
+		&:hover
+			border-color: $go-green
+			background-color: white
+			color: $go-green
