@@ -6,23 +6,8 @@ $ = require("jquery")
 {SUBMIT_CONTACT} = require("../../actions/types/contact").actions
 {NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/types/notifications").actions
 
-initial = {
-	name: ""
-	email: ""
-	product: ""
-	description: ""
-	error:
-		name: false
-		email: false
-		product: false
-		description: false
-	}
+ReCaptcha = require("react-google-recaptcha")
 
-Captcha = React.createClass({
-	render: ->
-		styles = require("./contact.sass")
-		<div className={styles["g-recaptcha"]} data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
-	})
 
 
 SelectedProduct = React.createClass({
@@ -67,6 +52,21 @@ LocationInfo = React.createClass({
 		</div>
 	})
 
+initial = {
+	name: ""
+	email: ""
+	phone: ""
+	product: ""
+	description: ""
+	callYou: null
+	termsAgree: null
+	recaptcha: false
+	error:
+		name: false
+		email: false
+		product: false
+		description: false
+	}
 
 ContactForm = React.createClass({
 	getInitialState: ->
@@ -119,6 +119,22 @@ ContactForm = React.createClass({
 				x[key] = val
 				return x
 				)
+	checkbox: (key)->
+		return =>
+			prev = @state[key]
+			if prev
+				next = null
+			else
+				next = on
+			@setState(->
+				x = {}
+				x[key] = next
+				return x
+				)
+	captcha: (val)->
+		@setState({
+			recaptcha: val
+			})
 	render: ->
 		items = @props.products.map (x, i)->
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
@@ -132,6 +148,7 @@ ContactForm = React.createClass({
 			<h2 className={styles["form-header"]}>send us a message</h2>
 			<Field error={@state.error.name} name="name" value={@state.name} change={@change("name")} />
 			<Field error={@state.error.email} name="email" label="email address" value={@state.email} change={@change("email")} />
+			<Field name="phone" label="phone" value={@state.phone} change={@change("phone")} />
 			<Field type="custom">
 				<SelectedProduct product={@state.product} list={@props.products} />
 			</Field>
@@ -141,7 +158,13 @@ ContactForm = React.createClass({
 				</select>
 			</Field>
 			<Field error={@state.error.description} name="description" type="textarea" change={@change("description")} value={@state.description} />
-			<Captcha />
+			<Field type="checkbox" raw={true} value={@state.callYou} change={@checkbox("callYou")}>
+				<p>would you like someone to call you?</p>
+			</Field>
+			<Field type="checkbox" raw={true} value={@state.termsAgree} change={@checkbox("termsAgree")}>
+				<p>I agree to the <a target="_blank" href="/terms-and-conditions">terms and conditions</a></p>
+			</Field>
+			<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
 			<ButtonField>
 				<input type="submit" value="submit" />
 			</ButtonField>

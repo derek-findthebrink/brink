@@ -24,6 +24,7 @@ app.flux = new Flux(store)
 
 if __DEVELOPMENT__
 	app.client = new Client()
+	window.$ = $
 
 # google analytics
 require("autotrack")

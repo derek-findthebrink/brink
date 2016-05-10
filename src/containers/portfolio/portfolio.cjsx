@@ -9,7 +9,6 @@ PageContainer = require("../../components/page/container-page.cjsx")
 PortfolioItem = React.createClass({
 	render: ->
 		styles = require("./portfolio.sass")
-		console.log props:@props
 
 		includes = @props.includes.map (x, i)->
 			<li key={i}>{x}</li>

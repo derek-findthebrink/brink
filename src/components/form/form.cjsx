@@ -6,16 +6,27 @@ InputSwitch = React.createClass({
 		styles = require("./form.sass")
 		fancyCheckbox = require("./refills_switch.scss")
 
-		if @props.value
-			_i = <input {...@props} checked />
-		else
-			_i = <input {...@props} />
+		_i = <input {...@props} />
 
 		<div className={styles["form-field"]}>
 			<label className={fancyCheckbox["checkbox-fancy"]}>
 				{_i}
 				<div className={fancyCheckbox.checkbox} />
 			</label>
+		</div>
+	})
+
+RawInputSwitch = React.createClass({
+	render: ->
+		styles = require("./form.sass")
+		fancyCheckbox = require("./refills_switch.scss")
+		_i = <input type="checkbox" value={@props.value} name={@props.name} />
+		<div className={styles["form-field"]}>
+			<label className={fancyCheckbox["checkbox-fancy"]}>
+				{_i}
+				<div className={fancyCheckbox.checkbox} />
+			</label>
+			{@props.children}
 		</div>
 	})
 
@@ -79,7 +90,10 @@ Field = React.createClass({
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)
 		else if type == "checkbox"
-			_i = React.createElement(InputSwitch, x)
+			if @props.raw
+				_i = React.createElement(RawInputSwitch, x, @props.children)
+			else
+				_i = React.createElement(InputSwitch, x)
 		else if type == "custom"
 			_i = @props.children
 		else
