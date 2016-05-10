@@ -71,6 +71,10 @@ _json = {
 	test: /\.json$/
 	loader: "json-loader"
 }
+_htmlLoader = {
+	test: /\.html$/
+	loaders: ["html"]
+}
 
 
 
@@ -101,6 +105,6 @@ module.exports = {
 			_sass
 			_scss
 			_cjsx
-			_json
+			_htmlLoader
 			])
 }
