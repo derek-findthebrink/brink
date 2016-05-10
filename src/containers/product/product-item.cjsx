@@ -37,7 +37,7 @@ ProductItem = React.createClass({
 						<h2>
 							<span className={styles.currency}>$</span>
 							{@props.price.value}
-							<span className={styles.currency}> {@props.price.currency}</span>
+							<span className={styles.currency}> {@props.price.currency}<span className={styles.addTax}> +tax</span></span>
 						</h2>
 						<p>{@props.price.priceType}</p>
 					</div>
