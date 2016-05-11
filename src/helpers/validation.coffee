@@ -26,8 +26,11 @@ contactValidate = (action)->
 contactSanitize = (action)->
 	model = action.model
 	# escape characters
+	console.log action:action
 	x = _.mapValues model, (x)->
-		return validator.escape(x)
+		if x
+			return validator.escape(x)
+		return x
 	x.email = validator.normalizeEmail(x.email)
 	# ? - do xss sanitization?
 	# ? - verify model equality
