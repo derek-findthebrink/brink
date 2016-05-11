@@ -10,4 +10,5 @@ module.exports = {
 	NotFound: require("../components/404/404.cjsx")
 	TAC: require("../components/TAC/TAC.cjsx")
 	PP: require("../components/PP/PP.cjsx")
+	CampaignOne: require("./campaign/one.cjsx")
 }

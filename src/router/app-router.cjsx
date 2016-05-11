@@ -32,6 +32,7 @@ content = require("../../content/index")
 	NotFound
 	PP
 	TAC
+	CampaignOne
 } = require("../containers")
 
 AppRouter = (history)->
@@ -49,6 +50,9 @@ AppRouter = (history)->
 
 			<Route path="/privacy-policy" component={PP} />
 			<Route path="/terms-and-conditions" component={TAC} />
+
+			<Route path="/wave-one-funding" component={CampaignOne} />
+
 		</Route>
 		<Route path="*" component={NotFound} />
 	</Router>
