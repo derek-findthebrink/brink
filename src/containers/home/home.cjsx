@@ -25,10 +25,6 @@ Home = React.createClass({
 		home = @context.content["Home"]
 		<PageContainer {...home}>
 			<Story />
-			<div className={styles.check}>
-				<BlogWidget />
-				<FeaturedProducts />
-			</div>
 		</PageContainer>
 	})
 

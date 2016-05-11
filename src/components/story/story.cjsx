@@ -1,6 +1,6 @@
 React = require("react")
 
-
+{RouterButton} = require("../buttons/buttons.cjsx")
 
 items = [
 	{
@@ -8,7 +8,7 @@ items = [
 		description: "this is why we exist"
 	}
 	{
-		title: "by using the latest tricks and tools"
+		title: "by using the latest tricks and tools:"
 		description: "this is how we do our thing"
 	}
 	{
@@ -16,7 +16,7 @@ items = [
 		description: "this is why you should choose us"
 	}
 	{
-		title: "check out our products"
+		title: "what's next?"
 		description: "this is what you should do now"
 	}
 ]
@@ -36,28 +36,35 @@ How = React.createClass({
 			<h2>{items[1].title}</h2>
 			<div className={styles.twoCol}>
 				<div>
-					<div className={styles.colorContainer}>
-						<img src="/img/universe.png" />
-						<h3>Universal Code</h3>
+					<PictureItem title="Universal Code" img="/img/universe.png">
 						<p>
 							Gone are the days of using a different language for each target device. Our custom servers, web sites and 
 							applications are all written in universal javascript. 
 						</p>
-					</div>
+					</PictureItem>
 					<h3 className={styles.callout}>One codebase, one language, super fast development.</h3>
 				</div>
 				<div>
-					<div className={styles.colorContainer}>
-						<img src="/img/rabbit.png" />
-						<h3>Sprint Development</h3>
+					<PictureItem title="Sprint Development" img="/img/rabbit.png">
 						<p>
 							We like to get things done quickly too. Our tools help us move quickly, freeing up more time for working
 							with you to make the best online presence for your business.
 						</p>
-					</div>
+					</PictureItem>
 					<h3 className={styles.callout}>Less time developing, more time earning.</h3>
 				</div>
 			</div>
+		</div>
+	})
+
+PictureItem = React.createClass({
+	render: ->
+		styles = require("./story.sass")
+		<div className={styles.pictureItem}>
+			<img src={@props.img} />
+			<h3>{@props.title}</h3>
+			<hr />
+			{@props.children}
 		</div>
 	})
 
@@ -67,31 +74,25 @@ Benefits = React.createClass({
 		<div>
 			<h2>{items[2].title}</h2>
 			<div className={styles.threeCol}>
-				<div>
-					<img src="/brink-logo-small.svg" />
-					<h3>speed</h3>
+				<PictureItem title="speed" img="/brink-logo-small.svg">
 					<p>
 						Want it done fast? No problem. Our tools (which we love) and our philosophy
 						lets us move quickly from conception to completion.
 					</p>
-				</div>
-				<div>
-					<img src="/img/wallet.png" />
-					<h3>money in your pocket</h3>
+				</PictureItem>
+				<PictureItem title="money in your pocket" img="/img/wallet.png">
 					<p>
 						We're cheap! It's true, check out our competition. Being a startup teaches
 						you how to keep your operation lean. Our lean operation keeps our costs down and your
 						wallet happy.
 					</p>
-				</div>
-				<div>
-					<img src="/img/future-code.png" />
-					<h3>quality, reusable code</h3>
+				</PictureItem>
+				<PictureItem title="quality, reusable code" img="/img/future-code.png">
 					<p>
 						The internet is getting smarter. Newcomers like React, Node and the Isomorphic philosophy have enabled us
 						to write compatible, standards-compliant code quickly using our custom-built library.
 					</p>
-				</div>
+				</PictureItem>
 			</div>
 			<h3 className={styles.callout}>
 				Your business will love our universal codebase. Let us build your online presence.
@@ -101,8 +102,19 @@ Benefits = React.createClass({
 
 Now = React.createClass({
 	render: ->
+		styles = require("./story.sass")
 		<div>
 			<h2>{items[3].title}</h2>
+			<div className={styles.twoCol}>
+				<div>
+					<h3>what can we do for you?</h3>
+					<RouterButton href="/products-and-services" title="products & services" type="go" />
+				</div>
+				<div>
+					<h3>find out what technology we use.</h3>
+					<RouterButton href="/stack" title="our stack" type="go" />
+				</div>
+			</div>
 		</div>
 	})
 
@@ -111,7 +123,11 @@ Now = React.createClass({
 StoryItem = React.createClass({
 	render: ->
 		styles = require("./story.sass")
-		<div className={styles.storyItem}>
+		if @props.altStyle
+			styleClass = [styles.storyItem, @props.altStyle].join(" ")
+		else
+			styleClass = styles.storyItem
+		<div className={styleClass}>
 			<div className={styles.inner}>
 				{@props.children}
 			</div>
@@ -129,13 +145,13 @@ Story = React.createClass({
 			<StoryItem>
 				<Why />
 			</StoryItem>
-			<StoryItem>
+			<StoryItem altStyle={styles.color}>
 				<How />
 			</StoryItem>
 			<StoryItem>
 				<Benefits />
 			</StoryItem>
-			<StoryItem>
+			<StoryItem altStyle={styles.now}>
 				<Now />
 			</StoryItem>
 

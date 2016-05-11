@@ -11,11 +11,12 @@ React = require("react")
 {ReduxAsyncConnect} = require("redux-async-connect")
 {syncHistoryWithStore} = require("react-router-redux")
 
+
 router = require("./router/app-router.cjsx")
 store = require("./redux")(null)
 Client = require("./helpers/api-client")
 Flux = require("./flux")
-
+useScroll = require("scroll-behavior")
 
 app = {}
 window.app = app
@@ -55,7 +56,10 @@ ga('send', 'pageview');
 if __DEVELOPMENT__
 	app.store = store
 container = $("#app-container")[0]
-history = syncHistoryWithStore(browserHistory, store)
+_h = useScroll(browserHistory, (prev, loc)->
+	return true
+	)
+history = syncHistoryWithStore(_h, store)
 routes = router(history, store)
 
 _asyncRender = (props)->
@@ -65,7 +69,7 @@ match({history, routes}, (err, redirect, props)->
 	main = React.createClass({
 		render: ->
 			<Provider store={store} key="provider">
-				<Router {...props} render={_asyncRender} history={browserHistory} />
+				<Router {...props} render={_asyncRender} history={history} />
 			</Provider>
 		}) 
 	render(React.createElement(main), container)

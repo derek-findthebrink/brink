@@ -1,6 +1,8 @@
 React = require("react")
 {Link} = require("react-router")
 
+{RouterButton} = require("../../components/buttons/buttons.cjsx")
+
 
 ProductItem = React.createClass({
 	render: ->
@@ -44,8 +46,8 @@ ProductItem = React.createClass({
 				</div>
 				
 				<div className={styles["action-callout"]}>
-					<Link to={_hrefLearn} className={styles.learn}>learn more</Link>
-					<Link to={_hrefContact} className={styles.quote}>quote</Link>
+					<RouterButton title="learn more" href={_hrefLearn} type="info">learn more</RouterButton>
+					<RouterButton title="quote" href={_hrefContact} type="go">quote</RouterButton>
 				</div>
 			</div>
 

@@ -1,7 +1,7 @@
 WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
 
 module.exports = {
-	debug: true
+	debug: false
 	assets:
 		html:
 			extensions: ["html"]

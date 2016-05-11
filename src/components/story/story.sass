@@ -6,20 +6,29 @@
 	padding-bottom: 2em
 	& > div
 		margin-top: 1em
-	& > div:nth-child(even)
-		// background-color: rgba(lighten($theme-base, 30%), 0.5)
-		background-color: rgba($theme-base, 0.9)
-		color: white
-		p
-			color: mix(white, $theme-base, 80%)
 		// width: 90%
-	& > div:nth-child(odd)
+	// & > div:nth-child(odd)
 		background-color: rgba(white, 0.4)
 		p
 			color: mix(white, black, 30%)
 	img
 		// max-width: 15em
 		width: 100%
+	h2
+		font-size: 1.8em
+	h3
+		font-size: 1.4em
+
+.color
+	background-color: rgba($theme-base, 0.9)
+	color: white
+	p
+		color: mix(white, $theme-base, 80%)
+	h2, h3
+		color: white
+
+.now
+	background-color: white
 
 .storyItem
 	@include row()
@@ -28,6 +37,7 @@
 	text-align: center
 	// font-size: 110%
 	// width: 80%
+	padding-bottom: 1em
 	margin: 0 auto
 	p
 		font-size: 95%
@@ -53,16 +63,26 @@
 	& > div
 		@include span-columns(1 of 2)
 
-.callout
-	font-family: $fonts-header
-	font-size: 130%
-
-.colorContainer
+.pictureItem
+	background-color: white
 	padding: 1em
 	border-radius: 2em
-	background-color: white
 	color: $theme-base
 	h3
-		color: black
+		color: black !important
+		margin: 0 auto
+		padding-bottom: 5px
+		width: 70%
 	p
 		color: $theme-base !important
+	hr
+		margin: 0 auto
+		margin-top: 1px
+		width: 7em
+		color: $theme-base
+
+
+.callout
+	font-family: $fonts-header
+	font-size: 2em !important
+	color: black

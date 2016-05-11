@@ -7,7 +7,6 @@ PP = React.createClass({
 		<div>
 			<h2>Privacy Policy</h2>
 			<div dangerouslySetInnerHTML={__html: html} />
-			<Footer />
 		</div>
 	})
 
