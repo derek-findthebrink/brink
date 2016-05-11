@@ -15,26 +15,28 @@
 	// margin: 1em 0
 	padding: 0 0.5em
 	& > div
-		@include transition(0.7s)
+		@include span-columns(1 of 4)
 		h4
 			color: $theme-base
 			margin-bottom: 5px
 		padding: 1em
-	.title, .price
-		@include span-columns(1 of 2)
+	.title
+		text-align: center
+		border-right: 1px solid $theme-base
 	.why, .description
-		@include span-columns(0)
-		opacity: 0
+		// @include span-columns(0)
 		p
-			display: none
+			@include transition(0.7s)
+			// opacity: 0
+			// display: none
 	.title, .price
 		vertical-align: top
 	&:hover
 		.why, .description, .title, .price
 			@include span-columns(1 of 4)
-			opacity: 1
 			overflow: hidden
 			p
+				opacity: 1
 				display: block
 				// position: absolute
 				// top: 0
@@ -57,3 +59,33 @@
 	.priceSpan
 		font-size: 1.2em
 		color: $theme-base
+
+.total
+	@include fill-parent
+	@include row(table)
+	font-size: 1.5em
+	// color: $theme-base
+	border-top: 1px solid $theme-base
+	h2, p
+		@include span-columns(1 of 4)
+		padding: 1em
+		text-align: right
+	p
+		// padding-right: 1em
+
+.offers
+	padding-left: 2em
+	list-style-type: initial
+
+.signOff
+	padding-left: 4em
+	margin: 3em 0
+
+.header
+	text-align: center
+	h1
+		border-bottom: 1px solid $theme-base
+		color: $theme-base
+		width: 5em
+		margin: 1em auto
+	h2
