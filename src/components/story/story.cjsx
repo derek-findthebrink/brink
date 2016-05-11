@@ -111,8 +111,8 @@ Now = React.createClass({
 					<RouterButton href="/products-and-services" title="products & services" type="go" />
 				</div>
 				<div>
-					<h3>find out what technology we use</h3>
-					<RouterButton href="/stack" title="stack" type="go" />
+					<h3>find out what technology we use.</h3>
+					<RouterButton href="/stack" title="our stack" type="go" />
 				</div>
 			</div>
 		</div>
@@ -123,7 +123,11 @@ Now = React.createClass({
 StoryItem = React.createClass({
 	render: ->
 		styles = require("./story.sass")
-		<div className={styles.storyItem}>
+		if @props.altStyle
+			styleClass = [styles.storyItem, @props.altStyle].join(" ")
+		else
+			styleClass = styles.storyItem
+		<div className={styleClass}>
 			<div className={styles.inner}>
 				{@props.children}
 			</div>
@@ -141,13 +145,13 @@ Story = React.createClass({
 			<StoryItem>
 				<Why />
 			</StoryItem>
-			<StoryItem>
+			<StoryItem altStyle={styles.color}>
 				<How />
 			</StoryItem>
 			<StoryItem>
 				<Benefits />
 			</StoryItem>
-			<StoryItem>
+			<StoryItem altStyle={styles.now}>
 				<Now />
 			</StoryItem>
 
