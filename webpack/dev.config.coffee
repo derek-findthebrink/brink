@@ -5,6 +5,7 @@ ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
+BrowserSyncPlugin = require("browser-sync-webpack-plugin")
 
 
 _host = process.env.HOST || "localhost"
@@ -22,6 +23,13 @@ _browserPlugins = [
 		__DEVTOOLS__: true
 		})
 	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee")).development()
+	new BrowserSyncPlugin({
+		host: "localhost"
+		port: 3000
+		proxy: "http://localhost:2150"
+		}, {
+			reload: false
+			})
 ]
 
 
