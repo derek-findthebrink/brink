@@ -16,7 +16,10 @@ _ = require("lodash")
 Q = require("q")
 {ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
+
+
 Client = require("./api-client")
+ieTest = require("./ie-support")
 
 try
 	log = appLogger.child({
@@ -72,11 +75,12 @@ render = (segment)->
 				)
 			return def.promise
 
-		_generatePage = (html, css, app)->
+		_generatePage = (html, css, app, polyfill)->
 			res.render("layout", {
 				content: html
 				appCss: css
 				appJsSrc: app
+				polyfill: polyfill
 				})
 
 		if __DEVELOPMENT__
@@ -85,6 +89,10 @@ render = (segment)->
 		assets = webpackIsomorphicTools.assets()
 		css = assets.styles[_app] || null
 		app = assets.javascript[_app] || null
+		if ieTest.test(req)
+			polyfill = assets.javascript.polyfill
+		else
+			polyfill = null
 
 		if __DISABLE_SSR__
 			log.info "SSR is disabled"
@@ -102,11 +110,10 @@ render = (segment)->
 		routes = require(_routeGenerator)(_h, store)
 		location = _h.createLocation(req.originalUrl)
 
-
-		_getHtml(routes, location, store)
+		_getHtml(routes, location, store, polyfill)
 		.then(
 			(html)->
-				_generatePage(html, css, app)
+				_generatePage(html, css, app, polyfill)
 			(reason)->
 				log.error err:reason, "error rendering data"
 				res.status(500)

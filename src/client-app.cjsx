@@ -2,6 +2,13 @@ global.__CLIENT__ = true
 global.__SERVER__ = false
 global.__ADMIN__ = false
 
+
+# IE testing
+# ie = require("./helpers/ie-support")
+# if ie.test()
+# 	ie.polyfill()
+
+
 io = require("socket.io-client")
 $ = require("jquery")
 React = require("react")

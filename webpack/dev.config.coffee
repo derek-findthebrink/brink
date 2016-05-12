@@ -23,13 +23,13 @@ _browserPlugins = [
 		__DEVTOOLS__: true
 		})
 	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee")).development()
-	new BrowserSyncPlugin({
-		host: "localhost"
-		port: 3000
-		proxy: "http://localhost:2150"
-		}, {
-			reload: false
-			})
+	# new BrowserSyncPlugin({
+	# 	host: "localhost"
+	# 	port: 3000
+	# 	proxy: "http://localhost:2150"
+	# 	}, {
+	# 		reload: false
+	# 		})
 ]
 
 
@@ -42,6 +42,9 @@ _entryApp = [
 _entryAdmin = [
 	hotMiddlewareScript
 	nodepath.resolve(ROOT, "src/admin-app.cjsx")
+]
+_entryPolyfill = [
+	nodepath.resolve(ROOT, "src/helpers/polyfill.coffee")
 ]
 
 
@@ -107,6 +110,7 @@ browser = {
 	entry: {
 		app: _entryApp
 		admin: _entryAdmin
+		polyfill: _entryPolyfill
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")
