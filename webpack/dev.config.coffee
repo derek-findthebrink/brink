@@ -23,13 +23,13 @@ _browserPlugins = [
 		__DEVTOOLS__: true
 		})
 	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee")).development()
-	# new BrowserSyncPlugin({
-	# 	host: "localhost"
-	# 	port: 3000
-	# 	proxy: "http://localhost:2150"
-	# 	}, {
-	# 		reload: false
-	# 		})
+	new BrowserSyncPlugin({
+		host: "localhost"
+		port: 3000
+		proxy: "http://localhost:2150"
+		}, {
+			reload: false
+			})
 ]
 
 

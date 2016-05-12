@@ -58,19 +58,20 @@ $pricing-color: darken($theme-base, 10%)
 .products-list
 	margin: 0 auto
 	width: 80%
-	& > div
-		@include row(table)
 
 
 .product-item
 	// shell display options
 	// --------------------------------
+	@include row(table)
 	@include transition(0.25s)
 	@include thin-border
 	margin-bottom: 0.5em
 	// adds visual cue to engage deeper
 	&:hover
 		border-color: lighten($theme-base, 15%)
+	& > div
+		vertical-align: top
 
 	// content options
 	// --------------------------------
@@ -95,6 +96,8 @@ $bcg: lighten($theme-base, 40%)
 	padding: 2em
 	img
 		width: 100%
+		min-width: 5em
+		min-height: 5em
 	// text options for right-side
 .header
 	font-size: 120%
@@ -110,12 +113,13 @@ $bcg: lighten($theme-base, 40%)
 		font-size: 80%
 
 .details
-	@include align-items(stretch)
 	@include display(flex)
 	@include flex-direction(row)
 	@include justify-content(flex-start)
+	@include align-items(flex-start)
 .includes
 	@include span-columns(1 of 2)
+	vertical-align: top
 	p
 		margin: 0
 		color: $header
