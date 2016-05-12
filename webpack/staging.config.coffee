@@ -22,11 +22,6 @@ plugins = [
 		__DEVELOPMENT__: false
 		__DEVTOOLS__: false
 		})
-	new ClosureCompilerPlugin({
-		compiler:
-			compilation_level: "SIMPLE_OPTIMIZATIONS"
-		concurrency: os.cpus.length
-		})
 	new webpack.optimize.OccurrenceOrderPlugin(true)
 ]
 
