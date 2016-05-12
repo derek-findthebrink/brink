@@ -63,39 +63,62 @@ $pricing-color: darken($theme-base, 10%)
 .product-item
 	// shell display options
 	// --------------------------------
-	@include row(table)
 	@include transition(0.25s)
 	@include thin-border
+	@include media($bp-desktop)
+		@include row(table)
 	margin-bottom: 0.5em
 	// adds visual cue to engage deeper
 	&:hover
 		border-color: lighten($theme-base, 15%)
 	& > div
 		vertical-align: top
+	.img
+		@include media($bp-desktop)
+			@include span-columns(3 of 10)
+			vertical-align: middle
+		@include media($bp-smartphone)
+			@include row(table)
+			// @include span-columns(1 of 1)
+	.description
+		@include media($bp-desktop)
+			@include span-columns(7 of 10)
+		@include media($bp-smartphone)
+			@include row(table)
+	@include reset-display()
 
-	// content options
-	// --------------------------------
-	// left-side image options
 
 $bcg: lighten($theme-base, 40%)
 
 
 .description
-	@include span-columns(7 of 10)
 	height: 100%
-	padding-top: 1em
-	padding-left: 0.5em
-	padding-bottom: 1em
 	vertical-align: top
-	padding-right: 2em
+	@include media($bp-desktop)
+		padding-top: 1em
+		padding-left: 0.5em
+		padding-bottom: 1em
+		padding-right: 2em
+	@include media($bp-tablet)
+		padding: 1em
+	@include media($bp-smartphone)
+		padding: 1em
 	// & > div
 	// 	@include row(table)
 .img
-	@include span-columns(3 of 10)
 	vertical-align: middle
 	padding: 2em
 	img
-		width: 100%
+		@include media($bp-desktop)
+			width: 100%
+		@include media($bp-tablet)
+			width: 60%
+			margin: 0 auto
+			display: block
+		@include media($bp-smartphone)
+			width: 60%
+			margin: 0 auto
+			display: block
 		min-width: 5em
 		min-height: 5em
 	// text options for right-side
@@ -113,36 +136,50 @@ $bcg: lighten($theme-base, 40%)
 		font-size: 80%
 
 .details
-	@include display(flex)
-	@include flex-direction(row)
-	@include justify-content(flex-start)
-	@include align-items(flex-start)
+	// @include display(flex)
+	// @include flex-direction(row)
+	// @include justify-content(flex-start)
+	// @include align-items(flex-start)
+	@include media($bp-desktop)
+		@include row(table)
+
 .includes
-	@include span-columns(1 of 2)
 	vertical-align: top
+	li
+		background-color: lighten($theme-base, 50%)
+		border-radius: 5px
+		margin-bottom: 2px
+		text-align: center
+		color: darken($theme-base, 15%)
 	p
 		margin: 0
 		color: $header
-	ul
-		padding: 0
-		margin: 3px 0
-		// list-style-type: circle
-		width: 70%
-		padding-left: 2.5em
-		li
-			background-color: lighten($theme-base, 50%)
-			border-radius: 5px
-			margin-bottom: 2px
-			text-align: center
-			color: darken($theme-base, 15%)
+	@include media($bp-desktop)
+		@include span-columns(1 of 2)
+		ul
+			padding: 0
+			margin: 3px 0
+			// list-style-type: circle
+			// width: 70%
+			padding-left: 2.5em
+	@include media($bp-tablet)
+		@include fill-parent()
+		text-align: center
+		ul
+			margin: 3px auto
+			padding: 0
+
 .pricing
-	@include span-columns(1 of 2)
+	@include media($bp-desktop)
+		@include span-columns(1 of 2)
+	@include media($bp-smartphone)
+		@include fill-parent()
 	font-size: 125%
 	text-align: center
 	color: $pricing-color
 	h2
 		display: inline-block
-		width: 60%
+		// width: 60%
 		text-align: left
 		// margin-top: 1.5em
 		margin-bottom: 0
@@ -154,9 +191,9 @@ $bcg: lighten($theme-base, 40%)
 			display: table
 			clear: both
 	p
-		display: inline-block
-		width: 55%
-		text-align: right
+		// display: inline-block
+		// width: 55%
+		text-align: center
 		font-size: 80%
 		margin: 0
 

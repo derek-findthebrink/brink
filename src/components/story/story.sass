@@ -50,18 +50,24 @@
 	// @include fill-parent()
 	@include row(table)
 	& > div
-		@include span-columns(1 of 3)
 		@include thin-border(false)
 		padding: 1em
 		border-top: none
 		border-bottom: none
 		border: none
+		@include media($bp-desktop)
+			@include span-columns(1 of 3)
+		@include media($bp-smartphone)
+			// @include span-columns(1 of 1)
 		@include reset-display
 
 .twoCol
 	@include fill-parent()
 	& > div
-		@include span-columns(1 of 2)
+		@include media($bp-desktop)
+			@include span-columns(1 of 2)
+		@include media($bp-smartphone)
+			@include span-columns(1 of 1)
 
 .pictureItem
 	background-color: white
