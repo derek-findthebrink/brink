@@ -29,7 +29,7 @@ mailgun = require("mailgun-js")(config)
 
 Email = React.createClass({
 	render: ->
-		log.info props:@props
+		# log.info props:@props
 		<div>
 			<p>Hello {@props.name},</p>
 			<p>
@@ -60,7 +60,7 @@ Email = React.createClass({
 sendWelcome = (action)->
 	def = Q.defer()
 	model = action.model.toJSON()
-	log.info action:action, "sendWelcome action"
+	# log.info action:action, "sendWelcome action"
 	# create html
 	_e = React.createElement(Email, model)
 	html = renderToStaticMarkup(_e)
@@ -81,17 +81,18 @@ sendWelcome = (action)->
 			to: model.email
 			message: message.toString("ascii")
 		}
-		log.info data:data, "outgoing email data"
-		mailgun.messages().sendMime(data, (sendErr, body)->
-			# return error status
-			if sendErr
-				log.error err:sendErr, "error sending mailgun message"
-				console.error sendErr
-				return def.reject(sendErr)
-			else
-				log.info body:body, "success sending mailgun welcome"
-				return def.resolve(body)
-			)
+		# log.info data:data, "outgoing email data"
+		def.resolve(true)
+		# mailgun.messages().sendMime(data, (sendErr, body)->
+		# 	# return error status
+		# 	if sendErr
+		# 		log.error err:sendErr, "error sending mailgun message"
+		# 		console.error sendErr
+		# 		return def.reject(sendErr)
+		# 	else
+		# 		log.info body:body, "success sending mailgun welcome"
+		# 		return def.resolve(body)
+		# 	)
 	return def.promise
 
 

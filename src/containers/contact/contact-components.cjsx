@@ -58,14 +58,14 @@ initial = {
 	phone: ""
 	product: ""
 	description: ""
-	callYou: null
-	termsAgree: null
+	shouldCall: null
 	recaptcha: false
 	error:
 		name: false
 		email: false
 		product: false
 		description: false
+		recaptcha: false
 	}
 
 ContactForm = React.createClass({
@@ -91,6 +91,7 @@ ContactForm = React.createClass({
 					type: NOTIFY_SUCCESS
 					msg: "Your message has successfully been sent!"
 					})
+				self.refs.recaptcha.reset()
 			(err)->
 				if err.type == "validation"
 					self.setState({
@@ -125,7 +126,7 @@ ContactForm = React.createClass({
 			if prev
 				next = null
 			else
-				next = on
+				next = "on"
 			@setState(->
 				x = {}
 				x[key] = next
@@ -148,7 +149,7 @@ ContactForm = React.createClass({
 			<h2 className={styles["form-header"]}>send us a message</h2>
 			<Field error={@state.error.name} name="name" value={@state.name} change={@change("name")} />
 			<Field error={@state.error.email} name="email" label="email address" value={@state.email} change={@change("email")} />
-			<Field name="phone" label="phone" value={@state.phone} change={@change("phone")} />
+			<Field error={@state.error.phone} name="phone" label="phone" value={@state.phone} change={@change("phone")} />
 			<Field type="custom">
 				<SelectedProduct product={@state.product} list={@props.products} />
 			</Field>
@@ -158,11 +159,11 @@ ContactForm = React.createClass({
 				</select>
 			</Field>
 			<Field error={@state.error.description} name="description" label="message" type="textarea" change={@change("description")} value={@state.description} />
-			<Field type="checkbox" raw={true} value={@state.callYou} change={@checkbox("callYou")}>
+			<Field type="checkbox" raw={true} value={@state.shouldCall} change={@checkbox("shouldCall")}>
 				<p>would you like someone to call you?</p>
 			</Field>
-			<Field type="custom">
-				<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
+			<Field error={@state.error.recaptcha} type="custom">
+				<ReCaptcha ref="recaptcha" className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
 			</Field>
 			<ButtonField>
 				<input type="submit" value="submit" />

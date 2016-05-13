@@ -4,7 +4,6 @@ test = (req)->
 	else
 		ua = window.navigator.userAgent
 	msie = ua.indexOf("MSIE ")
-	console.log ua, msie
 
 	if (msie > 0 || !!ua.match(/Trident.*rv\:11\./))
 		# it's MSIE, now do something

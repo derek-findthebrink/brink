@@ -25,6 +25,10 @@ App = React.createClass({
 
 		appLinks = [
 			{
+				to: "/"
+				title: "home"
+			}
+			{
 				to: "/products-and-services"
 				title: "products"
 			}

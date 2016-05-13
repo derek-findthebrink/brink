@@ -14,6 +14,10 @@ contactValidate = (action)->
 		err.email = "email is not valid"
 	if validator.isNull(model.email)
 		err.email = "email is required"
+	if model.shouldCall && validator.isNull(model.phone)
+		err.phone = "phone is required if you would like us to call you"
+	if !model.recaptcha
+		err.recaptcha = "please solve the recaptcha"
 	# email should be email and is required
 	
 	# warning on description?
@@ -32,6 +36,8 @@ contactSanitize = (action)->
 			return validator.escape(x)
 		return x
 	x.email = validator.normalizeEmail(x.email)
+	x.shouldCall = validator.toBoolean(x.shouldCall)
+
 	# ? - do xss sanitization?
 	# ? - verify model equality
 	action.model = x
