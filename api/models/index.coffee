@@ -7,4 +7,5 @@ module.exports = {
 	Stack: require("./stack")
 	Users: require("./users")
 	Library: require("./library")
+	Email: require("./email")
 }

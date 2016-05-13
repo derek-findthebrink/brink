@@ -25,6 +25,7 @@ EditContainer = React.createClass({
 				<Link to="/admin/edit/stack">Stack</Link>
 				<Link to="/admin/edit/portfolio">Portfolio</Link>
 				<Link to="/admin/edit/about">About</Link>
+				<Link to="/admin/edit/emails">Emails</Link>
 			</Sidebar>
 			{@props.children}
 		</div>
@@ -85,6 +86,15 @@ PortfolioListItem = React.createClass({
 		</ListBase>
 	})
 
+EmailListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.title}</h2>
+			</div>
+		</ListBase>
+	})
+
 
 
 EditPre = React.createClass({
@@ -95,6 +105,7 @@ EditPre = React.createClass({
 			when "stack" then ItemClass = StackListItem
 			when "about" then ItemClass = AboutListItem
 			when "portfolio" then ItemClass = PortfolioListItem
+			when "emails" then ItemClass = EmailListItem
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
 				
@@ -119,6 +130,7 @@ mapStateToProps = (state)->
 		stack: state.stack.get("items")
 		about: state.about.get("items")
 		portfolio: state.portfolio.get("items")
+		emails: state.emails.get("items")
 	}
 
 EditList = connect(

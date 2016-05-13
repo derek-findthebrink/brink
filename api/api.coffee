@@ -38,11 +38,11 @@ csrfProtection = csrf({
 	})
 app = express()
 app.use(helmet())
+server = new http.Server(app)
 
 # websocket
-server = new http.Server(app)
-io = new SocketIo(server)
-io.path("/ws")
+# io = new SocketIo(server)
+# io.path("/ws")
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({

@@ -175,6 +175,22 @@ portfolioReducer = (state = portfolioInitial, action)->
 		else
 			return state
 
+# Emails
+# ------------------------------------------------
+emailInitial = Map {
+	items: List []
+}
+
+emailReducer =(state = emailInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "emails"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
 # Exports
 # ---------------------------------------------
 
@@ -188,6 +204,7 @@ _reducers = {
 	library: libraryReducer
 	portfolio: portfolioReducer
 	about: aboutReducer
+	emails: emailReducer
 	}
 
 App = combineReducers(_reducers)
