@@ -7,23 +7,9 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 
 // Layouts
 // ----------------------------------
-%list
-	// @include fill-parent
-	// overflow: auto
-	// padding: 0
-	// li
-	// 	height: 100%
-	// a
-	// 	display: block
-	// 	position: relative
-	// 	height: 100%
-	// 	div
-	// 		margin: 0 auto
 
 .listMain
 	@include outer-container(100%)
-	// @extend %list
-	// @include fill-parent()
 	padding: 0
 	li
 		@include row(table)
@@ -39,7 +25,6 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 
 .listSecondary
 	@include outer-container(80%)
-	// @extend %list
 	margin: 2em auto
 	@include media($bp-smartphone)
 		li
@@ -60,20 +45,24 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 // -------------------------------------------------
 %tradeBase
 	@include fill-parent
-	// background-position: center center
-	// background-size: 100%
-	// background-repeat: no-repeat
 	a
 		display: block
 		height: 100%
-	iron-image
+	iron-image, img
 		display: block
 		height: 100%
 		width: 100%
 
+.mainStack
+	@include media($bp-smartphone)
+		.mainTradeImg
+			@include row(table)
+			padding: 0.5em
+		.mainDescription
+			@include row(table)
+
 .mainTradeImg
 	@extend %tradeBase
-	// @include square(7em)
 	height: 7em
 
 .secondaryTradeImg
@@ -114,63 +103,6 @@ $overlay-background: rgba(lighten($theme-base, 15%), 0.5)
 
 .overlay-text
 	color: white
-	// background-color: rgba($theme-base, 0.4)
-	// display: block
 	text-align: center
 	font-weight: bold
 	whitespace: nowrap
-
-
-// &:hover .overlay, .overlay:hover
-// 	width: 100%
-// 	background: rgba(lighten($theme-base, 15%), 0.7)
-
-// .trade-image-header
-// 	display: block
-// 	border-bottom: $border
-// 	color: $header-color
-// 	margin: 0
-
-// .listMain
-// 	li
-// 		@include row(table)
-// 		div
-// 			// @include omega(2n)
-// 			vertical-align: middle
-// .trade-img
-// 	@include span-columns(3 of 8)
-// 	@include pad(0.7em)
-// .description
-// 	@include span-columns(5 of 8)
-// 	// padding-top: 2.5em
-// 	padding-left: 0.5em
-// 	.img
-// 		height: 5em
-
-
-// .listSecondary
-// 	@include outer-container(100%)
-// 	.stack-item
-// 		@include transition-duration(0.5s)
-// 		@include transition-property(border)
-// 		@include thin-border(false)
-// 		// border-radius: 10px
-// 		margin-bottom: 0.5em
-
-// 		// media queries
-// 		@include media($bp-desktop)
-// 			@include span-columns(1 of 6)
-// 			@include omega(6n)
-// 		@include media($bp-tablet)
-// 			@include span-columns(1 of 4)
-// 			@include omega(4n)
-// 		@include media($bp-smartphone)
-// 			@include span-columns(1 of 2)
-// 			@include omega(2n)
-
-		
-
-// 		.trade-img
-// 			padding: 0.5em
-// 			.img
-// 				height: 3.6em

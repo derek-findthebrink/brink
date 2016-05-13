@@ -2,6 +2,7 @@ global.__CLIENT__ = true
 global.__SERVER__ = false
 global.__ADMIN__ = false
 
+
 io = require("socket.io-client")
 $ = require("jquery")
 React = require("react")

@@ -16,25 +16,28 @@ $bottom-border: 1px solid rgba($theme-base, 0.4)
 	border-bottom: $bottom-border
 
 .descriptor
-	display: block
+	display: inline-block
 	font-family: $fonts-header
 	position: absolute
 	top: 0
-	// bottom: 0
 	left: -0.5em
 	font-size: 900%
 	z-index: -1000
 	font-weight: bold
+	// max-width: 100%
 	color: rgba($theme-base, 0.08)
 
 .container
 	@include outer-container(80%)
+	// overflow: hidden
 	text-align: center
 
 .learnInputImage
 	font-family: "ff-enzo-web"
+	@include align-items(flex-start)
 	img
 		width: 5em
+		height: 5em
 		display: inline-block
 	p
 		text-align: center
@@ -58,25 +61,36 @@ $bottom-border: 1px solid rgba($theme-base, 0.4)
 		font-family: $fonts-content
 		color: $c
 		text-align: left
+
 .description
 	@extend %learn-row
 	font-family: $fonts-content
-	p
 
-.inputs
+.inputs, .process, .outputs
 	@extend %learn-row
-.process
-	@extend %learn-row
+
 .outputs
-	@extend %learn-row
 	border-bottom: none
 	.descriptor
 		top: 0
+
 .results
 	@extend %learn-row
 	border-bottom: none
-	h3
-		width: 100%
+	@include media($bp-desktop)
+	@include media($bp-tablet)
+		@include row(table)
+		h3, div
+			@include row(table)
+		h3
+			margin: 2em 0
+	@include media($bp-smartphone)
+		@include row(table)
+		h3, div
+			@include row(table)
+		h3
+			margin: 2em 0
+
 .callout
 	@include row(table)
 	height: 2em

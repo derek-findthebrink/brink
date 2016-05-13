@@ -1,26 +1,45 @@
 @import "../../style/_config.sass"
 
 .container
-	@include outer-container(80%)
+	@include media($bp-desktop)
+		@include outer-container(80%)
+	@include media($bp-tablet)
+		@include outer-container(95%)
+	@include media($bp-smartphone)
+		@include outer-container(95%)
 	padding: 1em 0
 	& > div
-		@include row(table)
 		@include thin-border
 
 .row
 	@include row(table)
-	// padding: 0.5em
-	// overflow: hidden
-	.img
-		@include span-columns(1.2 of 4)
+	@include media($bp-desktop)
+		.img
+			@include span-columns(1.2 of 4)
+	@include media($bp-tablet)
+		margin: 1em 0
+		.img
+			@include row(table)
+			height: 10em
+	@include media($bp-smartphone)
+		margin: 1em 0
+		.img
+			@include row(table)
+			height: 10em
+		.header .headerInner
+			@include row(table)
 	&:hover .imgOverlay
 		background-color: rgba($theme-base, 0)
 	@include reset-display()
 
 .header
-	@include span-columns(2.8 of 4)
-	@include row(table)
-	.headerInner, table
+	// @include span-columns(2.8 of 4)
+	@include media($bp-desktop)
+		@include row(table)
+	@include media($bp-tablet)
+		@include row(table)
+	@include media($bp-smartphone)
+	.headerInner, .dataContainer
 		display: table-cell
 		vertical-align: middle
 		h2
@@ -41,10 +60,12 @@
 	position: relative
 	z-index: 10
 	border-right: 1px solid $theme-base
-	iron-image
+	iron-image, img
 		// @include square(18em)
 		height: 100%
 		width: 100%
+		min-height: 2em
+		min-width: 2em
 		display: inline-block
 		position: absolute
 		z-index: -10
@@ -57,10 +78,22 @@
 	width: 100%
 	height: 100%
 	background-color: rgba($theme-base, 0.7)
-	
+
+.dataContainer
+	// text-align: center
+	@include media($bp-smartphone)
+		@include clearfix
+		width: 80%
+		margin: 0 auto
+		display: block
+	// @include media($bp-smartphone)
+		// margin: 0 auto
+		// display: block
+		// @include row(table)
 
 .data
 	border-collapse: collapse
+	// @include row(table)
 	td, th
 		border: 1px solid rgba($theme-base, 0.7)
 		padding: 0 5px
@@ -83,7 +116,12 @@
 	color: $theme-base
 
 .description
-	width: 70%
+	@include media($bp-desktop)
+		padding: 0 2em
+	@include media($bp-tablet)
+		padding: 0 1em
+	@include media($bp-smartphone)
+		padding: 0 1em
 	margin: 0 auto
 	ul
 		padding-left: 4em

@@ -43,6 +43,9 @@ _entryAdmin = [
 	hotMiddlewareScript
 	nodepath.resolve(ROOT, "src/admin-app.cjsx")
 ]
+_entryPolyfill = [
+	nodepath.resolve(ROOT, "src/helpers/polyfill.coffee")
+]
 
 
 _loaders = [
@@ -107,6 +110,7 @@ browser = {
 	entry: {
 		app: _entryApp
 		admin: _entryAdmin
+		polyfill: _entryPolyfill
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")
