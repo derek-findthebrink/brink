@@ -157,11 +157,13 @@ ContactForm = React.createClass({
 					{items}
 				</select>
 			</Field>
-			<Field error={@state.error.description} name="description" type="textarea" change={@change("description")} value={@state.description} />
+			<Field error={@state.error.description} name="description" label="message" type="textarea" change={@change("description")} value={@state.description} />
 			<Field type="checkbox" raw={true} value={@state.callYou} change={@checkbox("callYou")}>
 				<p>would you like someone to call you?</p>
 			</Field>
-			<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
+			<Field type="custom">
+				<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
+			</Field>
 			<ButtonField>
 				<input type="submit" value="submit" />
 			</ButtonField>
