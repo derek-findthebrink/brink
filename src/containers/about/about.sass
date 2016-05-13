@@ -3,14 +3,22 @@
 .container
 	padding-top: 1em
 	padding-bottom: 1em
-	@include outer-container(80%)
+	@include media($bp-desktop)
+		@include outer-container(80%)
+	@include media($bp-smartphone)
+		@include outer-container(100%)
 
 .row
 	@include row(table)
 	// @include thin-border
-	& > div
-		@include span-columns(1 of 2)
-		// vertical-align: middle
+	@include media($bp-desktop)
+		.img, .description
+			@include span-columns(1 of 2)
+	@include media($bp-smartphone)
+		.img, .description
+			@include row(table)
+		.description
+			padding: 1em 0
 
 .img
 	text-align: center
@@ -44,5 +52,8 @@
 		margin-bottom: 0.5em
 		color: darken($theme-base, 15%)
 	p
-		margin: 1em 3em
+		@include media($bp-desktop)
+			margin: 1em 3em
+		@include media($bp-smartphone)
+			margin: 1em 1em
 		// padding-left: 0.5em

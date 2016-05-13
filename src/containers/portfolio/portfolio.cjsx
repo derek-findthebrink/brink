@@ -28,22 +28,24 @@ PortfolioItem = React.createClass({
 						{icons}
 					</div>
 				</div>
-				<table className={styles.data}>
-					<tbody>
-						<tr>
-							<th>type</th>
-							<td>{@props.type}</td>
-						</tr>
-						<tr>
-							<th>commissioner</th>
-							<td>{@props.commissioner}</td>
-						</tr>
-						<tr>
-							<th>status</th>
-							<td>{@props.status}</td>
-						</tr>
-					</tbody>
-				</table>
+				<div className={styles.dataContainer}>
+					<table className={styles.data}>
+						<tbody>
+							<tr>
+								<th>type</th>
+								<td>{@props.type}</td>
+							</tr>
+							<tr>
+								<th>commissioner</th>
+								<td>{@props.commissioner}</td>
+							</tr>
+							<tr>
+								<th>status</th>
+								<td>{@props.status}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<hr className={styles.hr} />
 			<div className={styles.description}>
