@@ -4,18 +4,20 @@
   "description": "",
   "main": "app.coffee",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
+    "start": "concurrently --kill-others \"npm run start-prod\" \"npm run start-prod-api\" \"npm run start-prod-blog\"",
+    "dev": "concurrently --raw --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\" \"npm run start-dev-blog\"",
     "start-prod": "better-npm-run start-prod",
     "start-prod-api": "better-npm-run start-prod-api",
+    "start-prod-blog": "better-npm-run start-prod-blog",
     "start-dev": "better-npm-run start-dev",
     "start-dev-api": "better-npm-run start-dev-api",
+    "start-dev-blog": "better-npm-run start-dev-blog",
     "prestartdev": "npm run ui:css && webpack --progress --display-error-details",
     "launch": "npm run build && npm start",
     "launch-staging": "npm run build:staging && npm start",
     "watch-client": "better-npm-run watch-client",
     "build": "better-npm-run build",
     "build:staging": "better-npm-run build-staging",
-    "dev": "concurrently --raw --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
     "test": "mocha --compilers coffee:coffee-script --require coffee-script/register",
     "ui:css": "node-sass ./src/style/global.sass ./assets/public/global.css",
     "deploy:staging": "pm2 deploy ecosystem.json staging",
@@ -32,6 +34,20 @@
       "command": "coffee ./bin/server.coffee | bunyan",
       "env": {
         "NODE_ENV": "development",
+        "LOG_REQUESTS": "false"
+      }
+    },
+    "start-dev-blog": {
+      "command": "coffee ./bin/blog.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "development",
+        "LOG_REQUESTS": "false"
+      }
+    },
+    "start-prod-blog": {
+      "command": "coffee ./bin/blog.coffee | bunyan",
+      "env": {
+        "NODE_ENV": "production",
         "LOG_REQUESTS": "false"
       }
     },
@@ -94,6 +110,7 @@
     "css-loader": "^0.23.1",
     "csurf": "^1.8.3",
     "dotenv": "^2.0.0",
+    "draft-js": "^0.7.0",
     "es5-shim": "^4.5.8",
     "es6-promise": "^3.1.2",
     "event-source-polyfill": "0.0.7",
@@ -103,6 +120,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "flux": "^2.1.1",
+    "ghost": "^0.7.9",
     "helmet": "^2.0.0",
     "html-loader": "^0.4.3",
     "http-proxy": "^1.13.2",
