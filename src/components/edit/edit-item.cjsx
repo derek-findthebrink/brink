@@ -240,7 +240,7 @@ EmailItem = React.createClass({
 		model = @props.model
 		<FormBase action={@props.action} submit={@props.submit}>
 			<Field name="title" value={model.title} change={@props.change("title")} />
-			<Field name="content" type="textarea" value={model.content} change={@props.change("content")} />
+			<Field name="content" type="rich" value={model.content} change={@props.change("content")} />
 		</FormBase>
 	})
 
@@ -307,7 +307,7 @@ EditItem = React.createClass({
 	componentWillMount: ->
 		id = @props.params.id
 		@section = @props.params.section
-		console.log section:@section, id:id, items:@props[@section]
+		# console.log section:@section, id:id, items:@props[@section]
 		@model = _.find @props[@section], (x, i)->
 			return id == x._id
 		dispatch = @props.dispatch

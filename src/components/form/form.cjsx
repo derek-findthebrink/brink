@@ -1,5 +1,21 @@
 React = require("react")
 
+{Editor, EditorState} = require("draft-js")
+
+DraftEditor = React.createClass({
+	onChange: (editorState)->
+		@setState({editorState})
+	componentWillMount: ->
+		@setState({
+			editorState: EditorState.createEmpty()
+			})
+	render: ->
+		console.log state:@state
+		<div>
+			<link href="/css/Draft.css" rel="stylesheet" />
+			<Editor editorState={@state.editorState} onChange={@onChange} />
+		</div>
+	})
 
 InputSwitch = React.createClass({
 	render: ->
@@ -89,6 +105,8 @@ Field = React.createClass({
 			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)
+		else if type == "rich"
+			_i = React.createElement(DraftEditor, x)
 		else if type == "checkbox"
 			if @props.raw
 				_i = React.createElement(RawInputSwitch, x, @props.children)

@@ -6,7 +6,7 @@ module.exports = {
 		html:
 			extensions: ["html"]
 		style_modules:
-			extensions: ["scss", "sass"]
+			extensions: ["scss", "sass", "css"]
 			filter: (module, regex, options, log)->
 				if options.development
 					return WebpackIsomorphicToolsPlugin.style_loader_filter(module, regex, options, log)
