@@ -10,7 +10,8 @@ catch
 	log.info = console.log
 
 {ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../src/actions/types/library").actions
-{SAVE_EDIT} = require("../../src/actions/types/model").actions
+
+{SAVE_EDIT, ADD_ITEM} = require("../../src/actions/types/model").actions
 
 models = {
 	library: mongoose.model("Library")
@@ -18,7 +19,20 @@ models = {
 	stack: mongoose.model("Stack")
 	portfolio: mongoose.model("Portfolio")
 	about: mongoose.model("About")
+	emails: mongoose.model("Email")
 }
+
+addModel = (req, res)->
+	action = req.body
+	x = new models[action.model]().save()
+	.then(
+		(val)->
+			log.info val:val, "created model"
+			res.json(val).end()
+		(err)->
+			log.error err:err, "error creating model"
+			res.status(500).end()
+		)
 
 deleteLibrary = (req, res)->
 	action = req.body
@@ -72,7 +86,8 @@ module.exports = go = (req, res)->
 		when SAVE_EDIT then return saveEdit(req, res)
 		when DELETE_ASSET then return deleteLibrary(req, res)
 		when EDIT_ASSET then return editAsset(req, res)
+		when ADD_ITEM then return addModel(req, res)
 		else
 			err = new Error("could not parse action")
-			log.error err:err, action:action, "error post-admin"
+			log.error err:err, action:action, "error post-admin no parse"
 			return res.status(500).end()

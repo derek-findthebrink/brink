@@ -3,6 +3,7 @@ _ = require("lodash")
 {Link} = require("react-router")
 
 {Field, ButtonField} = require("../form/form.cjsx")
+{ADD_ITEM} = require("../../actions/types/model").actions
 Sidebar = require("../sidebar/sidebar.cjsx")
 
 try
@@ -90,7 +91,7 @@ EmailListItem = React.createClass({
 	render: ->
 		<ListBase to={@props.to}>
 			<div>
-				<h2>{@props.title}</h2>
+				<h2>{@props.title || "--New Item--"}</h2>
 			</div>
 		</ListBase>
 	})
@@ -98,6 +99,13 @@ EmailListItem = React.createClass({
 
 
 EditPre = React.createClass({
+	addItem: ->
+		section = @props.params.section
+		action = {
+			type: ADD_ITEM
+			model: section
+		}
+		app.flux.dispatch(action)
 	render: ->
 		section = @props.params.section
 		switch section
@@ -115,6 +123,7 @@ EditPre = React.createClass({
 
 		styles = require("./edit.sass")
 		<div className={styles.container}>
+			<button onClick={@addItem}>Add</button>
 			<ul>
 				{items}
 			</ul>

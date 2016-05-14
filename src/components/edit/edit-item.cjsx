@@ -234,6 +234,17 @@ StackItem = React.createClass({
 		</FormBase>
 	})
 
+EmailItem = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		model = @props.model
+		<FormBase action={@props.action} submit={@props.submit}>
+			<Field name="title" value={model.title} change={@props.change("title")} />
+			<Field name="content" type="textarea" value={model.content} change={@props.change("content")} />
+		</FormBase>
+	})
+
+
 baseMapState = (state)->
 	return {
 		model: state.edit
@@ -254,6 +265,10 @@ ConnectAbout = connect(
 ConnectPortfolio = connect(
 	baseMapState
 	)(PortfolioItem)
+
+ConnectEmail = connect(
+	baseMapState
+	)(EmailItem)
 
 
 
@@ -292,6 +307,7 @@ EditItem = React.createClass({
 	componentWillMount: ->
 		id = @props.params.id
 		@section = @props.params.section
+		console.log section:@section, id:id, items:@props[@section]
 		@model = _.find @props[@section], (x, i)->
 			return id == x._id
 		dispatch = @props.dispatch
@@ -306,6 +322,7 @@ EditItem = React.createClass({
 			when "products" then ItemClass = ConnectProduct
 			when "about" then ItemClass = ConnectAbout
 			when "portfolio" then ItemClass = ConnectPortfolio
+			when "emails" then ItemClass = ConnectEmail
 			else
 				return console.error new Error "could not parse edit item"
 		Item = <ItemClass valueSlice={@splice} change={@change} push={@push} library={@props.library} submit={@save} action={action} />
@@ -322,6 +339,7 @@ mapStateToProps = (state)->
 		library: state.library.get("items")
 		about: state.about.get("items")
 		portfolio: state.portfolio.get("items")
+		emails: state.emails.get("items")
 	}
 
 Final = connect(
