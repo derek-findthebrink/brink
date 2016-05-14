@@ -77,6 +77,10 @@ AsyncAdmin = asyncConnect({
 		{dispatch, getState} = store
 		if (!isLoaded("portfolio", getState()))
 			return get("portfolio")
+	emails: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("emails", getState()))
+			return get("emails")
 	})(Admin)
 
 module.exports = AsyncAdmin

@@ -11,6 +11,7 @@ exports.actions = {
 
 submitContact = (action, store)->
 	def = Q.defer()
+	console.log action:action
 	promise = validate(action)
 	.then(
 		(a)->

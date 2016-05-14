@@ -58,7 +58,14 @@ if __DEVELOPMENT__
 	app.store = store
 container = $("#app-container")[0]
 _h = useScroll(browserHistory, (prev, loc)->
-	return true
+	pattern = /\/products-and-services/
+	if prev
+		# console.log prev:prev.pathname, loc:loc.pathname
+		test = pattern.test(prev.pathname) && pattern.test(loc.pathname)
+		# console.log test:test
+		return !test
+	else
+		return true
 	)
 history = syncHistoryWithStore(_h, store)
 routes = router(history, store)

@@ -7,7 +7,8 @@ cookieParser = require("cookie-parser")
 MongoStore = require("connect-mongo")(session)
 SocketIo = require "socket.io"
 http = require("http")
-
+helmet = require("helmet")
+csrf = require("csurf")
 
 # Logger
 # ------------------------------------------
@@ -30,15 +31,18 @@ log = appLogger.child({
 mongoose = require("./config/mongoose").mongoose
 Account = mongoose.model("Account")
 
-
 # Initialization
 # ---------------------------------
+csrfProtection = csrf({
+	cookie: true
+	})
 app = express()
+app.use(helmet())
+server = new http.Server(app)
 
 # websocket
-server = new http.Server(app)
-io = new SocketIo(server)
-io.path("/ws")
+# io = new SocketIo(server)
+# io.path("/ws")
 
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({
@@ -46,12 +50,8 @@ app.use bodyParser.urlencoded({
 	})
 app.use cookieParser()
 
-
-
-
 # Auth
 # ------------------------
-
 mongoStoreOptions = {
 	mongooseConnection: mongoose.connection
 	ttl: 14 * 24 * 60 * 60
@@ -63,8 +63,11 @@ app.use session({
 	store: new MongoStore(mongoStoreOptions)
 	resave: false
 	saveUninitialized: true
+	cookie:
+		httpOnly: true
+		# secure: true
+		# domain: 
 })
-
 
 # Flux
 # --------------------------------------
@@ -78,28 +81,27 @@ isLoggedIn = (req, res, next)->
 
 # Routes
 # -------------------------------------
-
 auth = require("./config/auth")
 auth(app, passport, Account)
 
 # app data
 getAppData = require("./routes/get-app")
-app.get("/app", getAppData)
+app.get("/app", csrfProtection, getAppData)
+
+
+check = (req, res, next)->
+	log.info cookies:req.cookies, "check middleware"
+	return next()
+
 
 postData = require("./routes/post-app")
-app.use("/post", postData)
+app.post("/post", postData)
 
 adminAuth = require("./routes/admin-auth")(passport)
 app.use("/admin-auth", adminAuth)
 
 postAdmin = require("./routes/post-admin")
 app.use("/admin/post", isLoggedIn, postAdmin)
-
-
-# Services
-# ----------------------------------------------
-# mailgun
-
 
 # Server Start
 # ------------------------------------------------
@@ -115,7 +117,6 @@ server.listen(process.env.API_PORT, ->
 	# 	)
 
 	# io.listen(server)
-
 
 	host = server.address().address
 	port = server.address().port

@@ -15,6 +15,7 @@ models = {
 	stack: mongoose.model("Stack")
 	contact: mongoose.model("Contact")
 	library: mongoose.model("Library")
+	emails: mongoose.model("Email")
 }
 
 try

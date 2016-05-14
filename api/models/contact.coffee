@@ -20,6 +20,7 @@ model = new Schema({
 		type: Schema.Types.ObjectId
 		ref: "Product"
 	description: String
+	shouldCall: Boolean
 	received:
 		type: Date
 		default: new Date()
