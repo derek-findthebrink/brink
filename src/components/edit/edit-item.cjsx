@@ -339,6 +339,10 @@ _email = {
 		name: "content"
 		type: "rich"
 		label: "content"
+	ident:
+		name: "ident"
+		type: "text"
+		label: "identifier"
 }
 
 EmailItem = React.createClass({
@@ -349,6 +353,7 @@ EmailItem = React.createClass({
 
 			<Field settings={_email.title} model={model} change={@props.change} />
 			<Field settings={_email.content} model={model} change={@props.change} />
+			<Field settings={_email.ident} model={model} change={@props.change} />
 		
 		</FormBase>
 	})
