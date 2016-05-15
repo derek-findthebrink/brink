@@ -3,12 +3,12 @@ React = require("react")
 {InputSwitch, RawInputSwitch} = require("./checkbox.cjsx")
 {DraftEditor} = require("./rich-text.cjsx")
 {Currency, NumberInput} = require("./number.cjsx")
-console.log DraftEditor
 
 
 Field = React.createClass({
 	render: ->
 		styles = require("./form.sass")
+		console.log props:@props
 		label = @props.label || @props.name
 		type = @props.type
 		change = @props.change
@@ -22,12 +22,8 @@ Field = React.createClass({
 			type: type
 		}
 		_i = null
-		if type == "textarea"
-			_i = React.createElement("textarea", x)
-		else if type == "currency"
+		if type == "currency"
 			_i = React.createElement(Currency, x)
-		else if type == "select"
-			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)
 		else if type == "rich"
@@ -37,6 +33,10 @@ Field = React.createClass({
 				_i = React.createElement(RawInputSwitch, x, @props.children)
 			else
 				_i = React.createElement(InputSwitch, x)
+		else if type == "textarea"
+			_i = React.createElement("textarea", x)
+		else if type == "select"
+			_i = React.createElement("select", x, @props.children)
 		else if type == "custom"
 			_i = @props.children
 		else
