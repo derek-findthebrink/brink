@@ -4,6 +4,13 @@ React = require("react")
 {Field, ButtonField} = require("../form/form.cjsx")
 {ADD_ASSET, DELETE_ASSET, EDIT_ASSET} = require("../../actions/types/library").actions
 
+
+_add = {
+	url:
+		type: "text"
+		name: "url"
+}
+
 addInitial = {
 	url: ""
 }
@@ -42,12 +49,27 @@ Add = React.createClass({
 	render: ->
 		<form>
 			<h3>Add</h3>
-			<Field type="text" name="url" value={@state.url} change={@change("url")} />
+			<Field settings={_add.url} model={@state} change={@change} />
 			<ButtonField>
 				<input type="submit" value="submit!" onClick={@submit} />
 			</ButtonField>
 		</form>
 	})
+
+_library = {
+	alt:
+		type: "text"
+		name: "alt"
+	url:
+		type: "text"
+		name: "url"
+	type:
+		type: "select"
+		name: "type"
+	title:
+		type: "text"
+		name: "title"
+}
 
 ListItem = React.createClass({
 	change: (key)->
@@ -85,13 +107,13 @@ ListItem = React.createClass({
 				<Field type="custom">
 					<img src={model.url} className={styles.img} />
 				</Field>
-				<Field name="alt" value={model.alt} change={change("alt")} />
-				<Field name="url" value={model.url} change={change("url")} />
-				<Field name="type" type="select" value={model.type} change={change("type")}>
+				<Field settings={_library.alt} model={model} change={change} />
+				<Field settings={_library.url} model={model} change={change} />
+				<Field settings={_library.type} model={model} change={change}>
 					<option>icon</option>
 					<option>image</option>
 				</Field>
-				<Field name="title" value={model.title} change={change("title")} />
+				<Field settings={_library.title} model={model} change={change} />
 				<ButtonField>
 					<button onClick={@delete}>delete</button>
 					<input type="submit" value="submit!" onClick={@submit} />

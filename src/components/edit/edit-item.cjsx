@@ -87,14 +87,56 @@ createIncludes = (x, i)->
 		<iron-icon icon="icons:remove" onClick={@props.valueSlice("includes", i)} />
 	</div>
 
+
+
+
+
+
+# Products
+_product = {
+	category:
+		type: "text"
+		name: "category"
+	title:
+		type: "text"
+		name: "title"
+	product:
+		type: "text"
+		name: "product"
+	description:
+		type: "textarea"
+		name: "description"
+	unitsAvailable:
+		type: "number"
+		name: "unitsAvailable"
+	price:
+		name: "price"
+		type: "currency"
+		label: "price"
+	active:
+		type: "checkbox"
+		name: "active"
+		label: "is active"
+	learn:
+		description:
+			type: "textarea"
+			label: "description"
+			name: "learn-description"
+			keyLocation: "learnData.description"
+		result:
+			type: "text"
+			label: "result"
+			name: "learn-result"
+			keyLocation: "learnData.result"
+}
+
 ProductsItem = React.createClass({
 	render: ->
 		model = @props.model
+		change = @props.change
+
 		includes = model.includes.map createIncludes.bind(this)
-
 		libraryOptions = makeLibraryOptions(@props.library)
-
-
 		inputs = makeImageList.bind(this)("learnData", "inputs", model)
 		process = makeImageList.bind(this)("learnData", "process", model)
 		outputs = makeImageList.bind(this)("learnData", "outputs", model)
@@ -102,10 +144,10 @@ ProductsItem = React.createClass({
 		styles = require("./edit.sass")
 		<FormBase action={@props.action} submit={@props.submit}>
 			<h3>General</h3>
-				<Field name="category" type="text" value={model.category} change={@props.change("category")} />
-				<Field name="title" type="text" value={model.title} change={@props.change("title")} />
-				<Field name="product" label="slug" type="text" value={model.product} change={@props.change("product")} />
-				<Field name="description" type="textarea" value={model.description} change={@props.change("description")} />
+				<Field settings={_product.category} model={model} change={change} />
+				<Field settings={_product.title} model={model} change={change} />
+				<Field settings={_product.product} model={model} change={change} />
+				<Field settings={_product.description} model={model} change={change} />
 				<Field type="custom" label="includes">
 					{includes}
 					<iron-icon icon="icons:add" onClick={@props.push("includes", includesInitial)} />
@@ -120,11 +162,11 @@ ProductsItem = React.createClass({
 					</select>
 				</Field>
 			<h3>Price and Units</h3>
-				<Field name="unitsAvailable" label="units available" type="number" change={@props.change("unitsAvailable")} value={model.unitsAvailable} />
-				<Field type="currency" value={model.price} label="price" change={@props.change} />
-				<Field name="active" label="is active" type="checkbox" value={model.active} change={@props.change("active")} />
+				<Field settings={_product.unitsAvailable} model={model} change={change} />
+				<Field settings={_product.price} model={model} change={change} />
+				<Field settings={_product.active} model={model} change={change} />
 			<h3>Learn</h3>
-				<Field type="textarea" name="description" value={model.learnData.description} change={@props.change("learnData.description")} />
+				<Field settings={_product.learn.description} model={model} change={change} />
 				<Field type="custom" label="inputs">
 					{inputs}
 					<iron-icon icon="icons:add" onClick={@props.push("learnData.inputs", imageInitial)} />
@@ -140,12 +182,20 @@ ProductsItem = React.createClass({
 					<iron-icon icon="icons:add" onClick={@props.push("learnData.outputs", imageInitial)} />
 				</Field>
 				<hr />
-				<Field name="result" type="text" value={model.learnData.result} change={@props.change("learnData.result")} />
+				<Field settings={_product.learn.result} model={model} change={change} />
 		</FormBase>
 	})
 
 
 # About
+_about = {
+	name:
+		name: "name"
+		type: "text"
+	description:
+		name: "description"
+		type: "textarea"
+}
 
 AboutItem = React.createClass({
 	render: ->
@@ -157,8 +207,8 @@ AboutItem = React.createClass({
 		styles = require("./edit.sass")
 
 		<FormBase submit={@props.submit}>
-			<Field name="name" value={model.name} change={change("name")} />
-			<Field name="description" type="textarea" value={model.description} change={change("description")} />
+			<Field settings={_about.name} model={model} change={change} />
+			<Field settings={_about.description} model={model} change={change} />
 			<Field type="custom">
 				<img src={model.image} className={styles.editImage} />
 			</Field>
@@ -171,7 +221,30 @@ AboutItem = React.createClass({
 	})
 
 
-# About
+# Portfolio
+_portfolio = {
+	title:
+		type: "text"
+		name: "title"
+	type:
+		type: "text"
+		name: "type"
+	img:
+		type: "custom"
+		name: "img"
+	alt:
+		type: "text"
+		name: "alt"
+	commissioner:
+		type: "text"
+		name: "commissioner"
+	status:
+		type: "text"
+		name: "status"
+	description:
+		type: "textarea"
+		name: "description"
+}
 
 PortfolioItem = React.createClass({
 	render: ->
@@ -180,16 +253,12 @@ PortfolioItem = React.createClass({
 		change = @props.change
 
 		libraryOptions = makeLibraryOptions(@props.library)
-
 		includes = model.includes.map createIncludes.bind(this)
-
 		includeImgs = makeImageList.bind(this)(null, "includesImg", model)
-		# includeImg = null
 
-		styles = require("./edit.sass")
 		<FormBase submit={@props.submit}>
-			<Field name="title" value={model.title} change={change("title")} />
-			<Field name="type" value={model.type} change={change("type")} />
+			<Field settings={_portfolio.title} model={model} change={change} />
+			<Field settings={_portfolio.type} model={model} change={change} />
 			<Field type="custom">
 				<img src={model.img} className={styles.editImage} />
 			</Field>
@@ -198,10 +267,10 @@ PortfolioItem = React.createClass({
 					{libraryOptions}
 				</select>
 			</Field>
-			<Field name="alt" value={model.alt} change={change("alt")} />
-			<Field name="commissioner" value={model.commissioner} change={change("commissioner")} />
-			<Field name="status" value={model.status} change={change("status")} />
-			<Field name="description" type="textarea" value={model.description} change={change("description")} />
+			<Field settings={_portfolio.alt} model={model} change={change} />
+			<Field settings={_portfolio.commissioner} model={model} change={change} />
+			<Field settings={_portfolio.status} model={model} change={change} />
+			<Field settings={_portfolio.description} model={model} change={change} />
 			<Field type="custom" label="includes">
 				{includes}
 				<iron-icon icon="icons:add" onClick={@props.push("includes", includesInitial)} />
@@ -216,6 +285,30 @@ PortfolioItem = React.createClass({
 
 # Stack
 
+_stack = {
+	imgSrc:
+		name: "img-src"
+		label: "img src"
+		type: "text"
+		keyLocation: "img.src"
+	imgAlt:
+		name: "img-alt"
+		label: "img alt"
+		type: "text"
+		keyLocation: "img.alt"
+	imgHref:
+		name: "img-href"
+		label: "img href"
+		type: "text"
+		keyLocation: "img.href"
+	title:
+		name: "title"
+		type: "text"
+	description:
+		name: "description"
+		type: "textarea"
+}
+
 StackItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
@@ -223,26 +316,44 @@ StackItem = React.createClass({
 
 		<FormBase action={@props.action} submit={@props.submit}>
 			<Field type="custom">
-				<img src={model.img.src} className={styles.editImage} />
+				<img src={@props.model.img.src} className={styles.editImage} />
 			</Field>
-			<Field name="img-src" label="img src" type="text" value={model.img.src} change={@props.change("img.src")} />
-			<Field type="text" label="img alt" value={model.img.alt} change={@props.change("img.alt")} />
-			<Field type="text" label="img href" value={model.img.href} change={@props.change("img.href")} />
-			<Field name="title" type="text" value={model.title} change={@props.change("title")} />
-			<Field name="description" type="textarea" change={@props.change("description")} value={model.description} />
-			<Field name="secondary" label="is secondary" type="checkbox" change={@props.change("secondary")} value={model.secondary} />
+			<Field settings={_stack.imgSrc} model={model} change={@props.change} />
+			<Field settings={_stack.imgAlt} model={model} change={@props.change} />
+			<Field settings={_stack.imgHref} model={model} change={@props.change} />
+			<Field settings={_stack.title} model={model} change={@props.change} />
+			<Field settings={_stack.description} model={model} change={@props.change} />
 		</FormBase>
 	})
+
+
+# Email
+
+_email = {
+	title:
+		name: "title"
+		keyLocation: "title"
+		type: "text"
+		label: "title"
+	content:
+		name: "content"
+		type: "rich"
+		label: "content"
+}
 
 EmailItem = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
 		model = @props.model
 		<FormBase action={@props.action} submit={@props.submit}>
-			<Field name="title" value={model.title} change={@props.change("title")} />
-			<Field name="content" type="rich" value={model.content} change={@props.change("content")} />
+
+			<Field settings={_email.title} model={model} change={@props.change} />
+			<Field settings={_email.content} model={model} change={@props.change} />
+		
 		</FormBase>
 	})
+			# <Field name="title" value={model.title} change={@props.change("title")} />
+			# <Field name="content" type="rich" value={model.content} change={@props.change("content")} />
 
 
 baseMapState = (state)->
@@ -275,6 +386,7 @@ ConnectEmail = connect(
 # Editor Class
 # ---------------------------------------------------------
 
+propTypes = React.PropTypes
 
 EditItem = React.createClass({
 	push: (keys, initial)->
@@ -298,6 +410,7 @@ EditItem = React.createClass({
 				keys: keys
 				value: e.target.value
 				})
+			console.log "editor updated"
 	save: (e)->
 		e.preventDefault()
 		app.flux.dispatch({
@@ -325,7 +438,7 @@ EditItem = React.createClass({
 			when "emails" then ItemClass = ConnectEmail
 			else
 				return console.error new Error "could not parse edit item"
-		Item = <ItemClass valueSlice={@splice} change={@change} push={@push} library={@props.library} submit={@save} action={action} />
+		Item = <ItemClass model={@model} valueSlice={@splice} change={@change} push={@push} library={@props.library} submit={@save} action={action} />
 		styles = require("./edit.sass")
 		<div className={styles.container}>
 			{Item}

@@ -52,6 +52,32 @@ LocationInfo = React.createClass({
 		</div>
 	})
 
+_contact = {
+	name:
+		type: "text"
+		name: "name"
+	email:
+		type: "text"
+		name: "email"
+	phone:
+		type: "text"
+		name: "phone"
+	product:
+		type: "custom"
+	description:
+		type: "textarea"
+		name: "description"
+		label: "message"
+	shouldCall:
+		type: "checkbox"
+		name: "shouldCall"
+		label: ""
+		raw: true
+	recaptcha:
+		type: "custom"
+		name: "recaptcha"
+	}
+
 initial = {
 	name: ""
 	email: ""
@@ -66,7 +92,7 @@ initial = {
 		product: false
 		description: false
 		recaptcha: false
-	}
+}
 
 ContactForm = React.createClass({
 	getInitialState: ->
@@ -147,9 +173,9 @@ ContactForm = React.createClass({
 		styles = require("./contact.sass")
 		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
 			<h2 className={styles["form-header"]}>send us a message</h2>
-			<Field error={@state.error.name} name="name" value={@state.name} change={@change("name")} />
-			<Field error={@state.error.email} name="email" label="email address" value={@state.email} change={@change("email")} />
-			<Field error={@state.error.phone} name="phone" label="phone" value={@state.phone} change={@change("phone")} />
+			<Field settings={_contact.name} model={@state} change={@change} />
+			<Field settings={_contact.email} model={@state} change={@change} />
+			<Field settings={_contact.phone} model={@state} change={@change} />
 			<Field type="custom">
 				<SelectedProduct product={@state.product} list={@props.products} />
 			</Field>
@@ -158,8 +184,8 @@ ContactForm = React.createClass({
 					{items}
 				</select>
 			</Field>
-			<Field error={@state.error.description} name="description" label="message" type="textarea" change={@change("description")} value={@state.description} />
-			<Field type="checkbox" raw={true} value={@state.shouldCall} change={@checkbox("shouldCall")}>
+			<Field settings={_contact.description} model={@state} change={@change} />
+			<Field settings={_contact.shouldCall} model={@state} change={@checkbox}>
 				<p>would you like someone to call you?</p>
 			</Field>
 			<Field error={@state.error.recaptcha} type="custom">
