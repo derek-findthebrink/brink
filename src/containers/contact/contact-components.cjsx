@@ -7,6 +7,7 @@ $ = require("jquery")
 {NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/types/notifications").actions
 
 ReCaptcha = require("react-google-recaptcha")
+recaptchaKey = "6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9"
 
 
 
@@ -97,37 +98,42 @@ initial = {
 ContactForm = React.createClass({
 	getInitialState: ->
 		return initial
-	initial: ->
-		return initial
+	reset: ->
+		@setState(initial, =>
+			@refs.recaptcha.reset()
+			)
+	validationError: (details)->
+		app.flux.dispatch({
+			type: NOTIFY_ERROR
+			msg: "Sorry, we couldn't send that. Please check the form for more information."
+			})
+		@setState({
+			error: details.err
+			})
 	submit: (e)->
 		self = this
 		e.preventDefault()
-		console.log state:@state
+		console.log state:@state, "pre-send state"
+
 		app.flux.dispatch({
 			type: SUBMIT_CONTACT
 			model: @state
 			})
 		.done(
 			()->
-				console.log "form submitted successfully!"
-				self.setState(self.initial(), ->
-					console.log state:self.state
-					)
+				self.reset()
 				app.flux.dispatch({
 					type: NOTIFY_SUCCESS
-					msg: "Your message has successfully been sent!"
+					msg: "Success! We will get back to you shortly."
 					})
-				self.refs.recaptcha.reset()
 			(err)->
 				if err.type == "validation"
-					self.setState({
-						error: err.err
-						}, ->
-							console.log state:self.state
-							)
+					self.validationError(err)
 				else
-					# message user that submission failed
 					console.error err
+					app.flux.dispatch({
+						type: NOTIFY_UNHANDLED
+						})
 					self.setState({
 						error: initial.error
 						})
@@ -163,6 +169,7 @@ ContactForm = React.createClass({
 			recaptcha: val
 			})
 	render: ->
+		console.log state:@state, "form state"
 		items = @props.products.map (x, i)->
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
 		# add general question field
@@ -189,7 +196,7 @@ ContactForm = React.createClass({
 				<p>would you like someone to call you?</p>
 			</Field>
 			<Field error={@state.error.recaptcha} type="custom">
-				<ReCaptcha ref="recaptcha" className={styles["g-recaptcha"]} ref="recaptcha" sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" onChange={@captcha} />
+				<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey={recaptchaKey} onChange={@captcha} />
 			</Field>
 			<ButtonField>
 				<input type="submit" value="submit" />

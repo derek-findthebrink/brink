@@ -8,8 +8,8 @@ React = require("react")
 	convertFromHTML
 	RichUtils 
 	} = require("draft-js")
-draft = require("draft-js")
-console.log draft:draft, ContentState:ContentState
+# draft = require("draft-js")
+# console.log draft:draft, ContentState:ContentState
 
 backdraft = require("backdraft-js")
 

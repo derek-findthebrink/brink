@@ -1,5 +1,7 @@
 express = require("express")
 mongoose = require("mongoose")
+Q = require("q")
+superagent = require("superagent")
 
 mailgun = require("../services/mailgun")
 {SEND_WELCOME} = mailgun.actions
@@ -18,12 +20,51 @@ models = {
 	contact: mongoose.model("Contact")
 }
 
+verifyRecaptcha = (recaptcha, ip)->
+	def = Q.defer()
+	googleRecaptchaVerifyUrl = "https://www.google.com/recaptcha/api/siteverify"
+	# if __DEVELOPMENT__
+	# 	ip = 
+	gdata = {
+		# remoteip: ip || null
+		secret: process.env.GOOGLE_RECAPTCHA_SECRET
+		response: recaptcha
+	}
+	log.info gdata:gdata, "outgoing recaptcha data"
+	superagent
+	.get(googleRecaptchaVerifyUrl)
+	.query(gdata)
+	.end (err, res)->
+		if err
+			log.error err:err, gdata:gdata, "google recaptcha verify server error"
+			return def.reject(err)
+		else
+			json = JSON.parse(res.text)
+			if json.success
+				return def.resolve(true)
+			else
+				log.warn response:res, data:json, "google recaptcha user rejection"
+				return def.reject(json["error-codes"])
+	return def.promise
+
 submitContact = (req, res)->
 	action = req.body
+	contact = models.contact
 	log.info action:action, "submit contact action"
 	if req.user
 		action.model.user = req.user._id
-	models.contact.add(action.model)
+
+	ip = req.ip
+	recaptcha = action.model.recaptcha
+
+	verifyRecaptcha(recaptcha, ip)
+	.then(
+		(val)->
+			return contact.add(action.model)
+		(err)->
+			log.error err:err, "recaptcha error"
+			throw err
+		)
 	.then(
 		(contact)->
 			log.info contact:contact, "new contact created"

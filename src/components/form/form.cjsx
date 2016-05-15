@@ -41,6 +41,7 @@ Field = React.createClass({
 				value: value
 				type: type
 			}
+			console.log x
 
 		_i = null
 		if type == "currency"
