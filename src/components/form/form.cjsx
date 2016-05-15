@@ -1,84 +1,10 @@
 React = require("react")
 
-{Editor, EditorState} = require("draft-js")
+{InputSwitch, RawInputSwitch} = require("./checkbox.cjsx")
+{DraftEditor} = require("./rich-text.cjsx")
+{Currency, NumberInput} = require("./number.cjsx")
+console.log DraftEditor
 
-DraftEditor = React.createClass({
-	onChange: (editorState)->
-		@setState({editorState})
-	componentWillMount: ->
-		@setState({
-			editorState: EditorState.createEmpty()
-			})
-	render: ->
-		console.log state:@state
-		<div>
-			<link href="/css/Draft.css" rel="stylesheet" />
-			<Editor editorState={@state.editorState} onChange={@onChange} />
-		</div>
-	})
-
-InputSwitch = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		fancyCheckbox = require("./refills_switch.scss")
-
-		_i = <input {...@props} />
-
-		<div className={styles["form-field"]}>
-			<label className={fancyCheckbox["checkbox-fancy"]}>
-				{_i}
-				<div className={fancyCheckbox.checkbox} />
-			</label>
-		</div>
-	})
-
-RawInputSwitch = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		fancyCheckbox = require("./refills_switch.scss")
-		_i = <input type="checkbox" value={@props.value} name={@props.name} onChange={@props.onChange} />
-		<div className={styles["form-field"]}>
-			<label className={fancyCheckbox["checkbox-fancy"]}>
-				{_i}
-				<div className={fancyCheckbox.checkbox} />
-			</label>
-			{@props.children}
-		</div>
-	})
-
-Currency = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		val = @props.value.value
-
-		<div className={styles.currency}>
-			<NumberInput value={val} onChange={@props.onChange("price.value")} />
-			<select value={@props.value.currency} onChange={@props.onChange("price.currency")}>
-				<option value="CAD">CAD</option>
-				<option value="USD">USD</option>
-				<option value="MXN">MXN</option>
-				<option value="EUR">EUR</option>
-			</select>
-			<select value={@props.value.priceType} onChange={@props.onChange("price.priceType")}>
-				<option value="base price">base price</option>
-				<option value="per hour">per hour</option>
-				<option value="per month">per month</option>
-				<option value="starting price">starting price</option>
-			</select>
-		</div>
-	})
-
-NumberInput = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		<div className={styles.number}>
-			<input {...@props} />
-			<div>
-				<iron-icon icon="icons:add" />
-				<iron-icon icon="icons:remove" />
-			</div>
-		</div>
-	})
 
 Field = React.createClass({
 	render: ->
@@ -95,7 +21,6 @@ Field = React.createClass({
 			value: value
 			type: type
 		}
-
 		_i = null
 		if type == "textarea"
 			_i = React.createElement("textarea", x)
