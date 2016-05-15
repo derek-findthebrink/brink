@@ -3,6 +3,14 @@ _ = require("lodash")
 
 {Field, ButtonField} = require("../form/form.cjsx")
 
+_login = {
+	email:
+		type: "text"
+		name: "email"
+	password:
+		type: "password"
+		name: "password"
+}
 
 Login = React.createClass({
 	getInitialState: ->
@@ -25,15 +33,12 @@ Login = React.createClass({
 
 	render: ->
 		styles = require("./login.sass")
-		if @props.title == "register"
-			username = <Field name="username" type="text" value={@state.username} change={@change("username")} />
 		<div className={styles.container}>
 			<h2>Login</h2>
 			<form action="/api/admin-auth/login" method="post">
 				<h2>{@props.title}</h2>
-				<Field name="email" value={@state.email} change={@change("email")} />
-				<Field name="password" type="password" value={@state.password} change={@change("password")} />
-				{username || null}
+				<Field settings={_login.email} model={@state} change={@change} />
+				<Field settings={_login.password} model={@state} change={@change} />
 				<ButtonField>
 					<input type="submit" value="Submit" />
 				</ButtonField>
