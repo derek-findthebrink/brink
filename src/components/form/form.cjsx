@@ -1,4 +1,5 @@
 React = require("react")
+_ = require("lodash")
 
 {InputSwitch, RawInputSwitch} = require("./checkbox.cjsx")
 {DraftEditor} = require("./rich-text.cjsx")
