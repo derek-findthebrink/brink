@@ -7,7 +7,18 @@ exports.actions = {
 	VALUE_PUSH: "edit/VALUE_PUSH"
 	VALUE_SPLICE: "edit/VALUE_SLICE"
 	ADD_ITEM: "add/ADD_MODEL"
+	UPDATE_MODEL: "update/MODEL"
 }
+
+updateModel = (action, {getState, dispatch})->
+	client = new Client()
+	client.post(action)
+	.then(
+		(val)->
+			console.log val:val, "returned updated"
+		(err)->
+			console.error err, "error returning updated model"
+		)
 
 saveEdit = (action, {getState, dispatch})->
 	client = new Client()
@@ -17,7 +28,7 @@ saveEdit = (action, {getState, dispatch})->
 		(val)->
 			console.log val:val, "returned"
 		(err)->
-			console.error err:err, "error returning"
+			console.error err, "error returning"
 		)
 
 addModel = (action)->
@@ -28,7 +39,7 @@ addModel = (action)->
 		(val)->
 			console.log val:val, "returned add model success"
 		(err)->
-			console.error err:err, "returned add model error"
+			console.error err, "returned add model error"
 		)
 
 exports.operations = {

@@ -3,11 +3,19 @@ Client = require("../../helpers/api-client")
 
 {validate, sanitize} = require("../../helpers/validation").contact
 
-SUBMIT_CONTACT = "contact/SUBMIT"
-
 exports.actions = {
-	SUBMIT_CONTACT
+	SUBMIT_CONTACT: "contact/SUBMIT"
+	MARK_CONTACT_COMPLETE: "contact/MARK_COMPLETE"
+	MARK_CONTACT_IGNORE: "contact/MARK_IGNORE"
 }
+
+markComplete = (action, store)->
+	console.log action:action, "mark complete"
+	action.model.isNewContact = false
+
+markIgnore = (action, store)->
+	console.log action:action, "mark ignore"
+	action.model.isNewContact = false
 
 submitContact = (action, store)->
 	def = Q.defer()
@@ -47,4 +55,6 @@ submitContact = (action, store)->
 
 exports.operations = {
 	submitContact
+	markComplete
+	markIgnore
 }

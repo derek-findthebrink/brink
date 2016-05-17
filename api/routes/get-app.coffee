@@ -1,6 +1,7 @@
 express = require("express")
 Q = require("q")
 mongoose = require("mongoose")
+_ = require("lodash")
 
 actions = require("../services/actions")
 
@@ -14,9 +15,14 @@ models = {
 	about: mongoose.model("About")
 	stack: mongoose.model("Stack")
 	contact: mongoose.model("Contact")
+}
+
+secureModels = {
 	library: mongoose.model("Library")
 	emails: mongoose.model("Email")
+	contacts: mongoose.model("Contact")
 }
+
 
 try
 	log = appLogger.child({
@@ -27,8 +33,13 @@ catch
 	log = console
 	log.info = console.log
 
+
 getPageData = (req, res, action)->
 	model = models[action.page]
+	if (!model && req.user && action.isAdmin)
+		log.info action:action, "secure routes enabled for request"
+		models = _.extend(models, secureModels)
+		model = models[action.page]
 	model.find().exec()
 	.then(
 		(docs)->

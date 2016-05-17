@@ -7,6 +7,7 @@ _ = require("lodash")
 Client = require("../../helpers/api-client")
 
 {LOAD, LOADED} = require("../../actions/types/async-load").actions
+{UPDATE_CSRF} = require("../../actions/types/csrf").actions
 
 # Products
 # ----------------------------------------
@@ -99,10 +100,13 @@ editReducer = (state = editInitial, action)->
 userInitial = Map {
 	isLoggedIn: false
 	data: Map {}
+	csrf: false
 }
 
 userReducer = (state = userInitial, action)->
 	switch action.type
+		when UPDATE_CSRF
+			return state.set("csrf", action.value)
 		when LOADED
 			if action.key == "user"
 				if action.data
@@ -191,6 +195,23 @@ emailReducer =(state = emailInitial, action)->
 		else
 			return state
 
+
+# Contacts
+# ---------------------------------------------
+contactsInitial = Map {
+	items: List []
+}
+
+contactsReducer = (state = contactsInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "contacts"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
 # Exports
 # ---------------------------------------------
 
@@ -205,6 +226,7 @@ _reducers = {
 	portfolio: portfolioReducer
 	about: aboutReducer
 	emails: emailReducer
+	contacts: contactsReducer
 	}
 
 App = combineReducers(_reducers)

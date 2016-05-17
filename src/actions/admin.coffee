@@ -7,8 +7,14 @@ library = require("./types/library")
 {addAsset, editAsset, deleteAsset} = library.operations
 
 model = require("./types/model")
-{ADD_ITEM} = model.actions
-{addModel} = model.operations
+{ADD_ITEM, UPDATE_MODEL} = model.actions
+{addModel, updateModel} = model.operations
+
+contact = require("./types/contact")
+{MARK_COMPLETE, MARK_IGNORE} = contact.actions
+{markComplete, markIgnore} = contact.operations
+
+{UPDATE_CSRF} = require("./types/csrf").actions
 
 module.exports = dispatch = (store)->
 	return (action)->
@@ -18,6 +24,9 @@ module.exports = dispatch = (store)->
 			when EDIT_ASSET then return editAsset(action)
 			when DELETE_ASSET then return deleteAsset(action)
 			when ADD_ITEM then return addModel(action)
+			when MARK_COMPLETE then return markComplete(action, store)
+			when MARK_IGNORE then return markIgnore(action, store)
+			when UPDATE_CSRF then return store.dispatch(action)
 			else
 				console.log action:action, "error"
 				console.error new Error("could not parse action")
