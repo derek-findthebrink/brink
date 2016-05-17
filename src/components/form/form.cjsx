@@ -1,94 +1,84 @@
 React = require("react")
+_ = require("lodash")
 
+{InputSwitch, RawInputSwitch} = require("./checkbox.cjsx")
+{DraftEditor} = require("./rich-text.cjsx")
+{Currency, NumberInput} = require("./number.cjsx")
+{Input, Textarea} = require("./text.cjsx")
 
-InputSwitch = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		fancyCheckbox = require("./refills_switch.scss")
-
-		if @props.value
-			_i = <input {...@props} checked />
-		else
-			_i = <input {...@props} />
-
-		<div className={styles["form-field"]}>
-			<label className={fancyCheckbox["checkbox-fancy"]}>
-				{_i}
-				<div className={fancyCheckbox.checkbox} />
-			</label>
-		</div>
-	})
-
-Currency = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		val = @props.value.value
-
-		<div className={styles.currency}>
-			<NumberInput value={val} onChange={@props.onChange(["price", "value"])} />
-			<select value={@props.value.currency} onChange={@props.onChange(["price", "currency"])}>
-				<option>CAD</option>
-				<option>USD</option>
-				<option>MXN</option>
-				<option>EUR</option>
-			</select>
-			<select value={@props.value.priceType} onChange={@props.onChange(["price", "priceType"])}>
-				<option>base price</option>
-				<option>per hour</option>
-				<option>per month</option>
-			</select>
-		</div>
-	})
-
-NumberInput = React.createClass({
-	render: ->
-		styles = require("./form.sass")
-		<div className={styles.number}>
-			<input {...@props} />
-			<div>
-				<iron-icon icon="icons:add" />
-				<iron-icon icon="icons:remove" />
-			</div>
-		</div>
-	})
+propTypes = React.PropTypes
 
 Field = React.createClass({
 	render: ->
 		styles = require("./form.sass")
-		label = @props.label || @props.name
-		type = @props.type
-		change = @props.change
-		value = @props.value
-		x = {
-			name: @props.name
-			label: label
-			type: type
-			onChange: change
-			value: value
-		}
-		if @props.multiple
-			x.multiple = true
+
+		if @props.type == "custom"
+			type = "custom"
+			label = @props.label || ""
+			error = @props.error
+		else
+			settings = @props.settings
+			model = @props.model
+			_change = @props.change
+
+			label = settings.label || settings.name
+			type = settings.type
+			fieldName = settings.name
+
+			if settings.keyLocation
+				change = _change(settings.keyLocation)
+				value = _.get model, settings.keyLocation
+				error = _.get model.error, settings.keyLocation
+			else
+				change = _change(fieldName)
+				value = _.get model, fieldName
+				error = _.get model.error, fieldName
+			
+			x = {
+				name: fieldName
+				# label: label
+				onChange: change
+				value: value
+				type: type
+			}
+			# console.log x
 
 		_i = null
-		if type == "textarea"
-			_i = React.createElement("textarea", x)
-		else if type == "currency"
+		if type == "currency"
+			x.onChange = _change
 			_i = React.createElement(Currency, x)
-		else if type == "select"
-			_i = React.createElement("select", x, @props.children)
 		else if type == "number"
 			_i = React.createElement(NumberInput, x)
+		else if type == "rich"
+			_i = React.createElement(DraftEditor, x)
 		else if type == "checkbox"
-			_i = React.createElement(InputSwitch, x)
+			if settings.raw
+				_i = React.createElement(RawInputSwitch, x, @props.children)
+			else
+				_i = React.createElement(InputSwitch, x)
+		else if type == "textarea"
+			_i = React.createElement(Textarea, x)
+		else if type == "select"
+			_i = React.createElement("select", x, @props.children)
 		else if type == "custom"
 			_i = @props.children
 		else
-			_i = React.createElement("input", x)
+			_i = React.createElement(Input, x)
 
-		<div className={styles["form-field"]}>
-			<label htmlFor={@props.name}>{label}</label>
+		if error
+			fieldClass = styles["fieldError"]
+			errorMsg = error
+		else
+			fieldClass = styles["form-field"]
+			errorMsg = null
+
+		<div className={fieldClass}>
+			<label htmlFor={fieldName}>{label}</label>
 			<div className={styles.field}>
 				{_i}
+				<div className={styles.error}>
+					<span>{errorMsg}</span>
+				</div>
 			</div>
 		</div>
 	})

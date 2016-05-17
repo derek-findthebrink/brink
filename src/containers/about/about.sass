@@ -3,17 +3,57 @@
 .container
 	padding-top: 1em
 	padding-bottom: 1em
-	@include outer-container(80%)
+	@include media($bp-desktop)
+		@include outer-container(80%)
+	@include media($bp-smartphone)
+		@include outer-container(100%)
 
 .row
 	@include row(table)
-	@include thin-border
-	& > div
-		vertical-align: middle
-		@include span-columns(1 of 2)
+	// @include thin-border
+	@include media($bp-desktop)
+		.img, .description
+			@include span-columns(1 of 2)
+	@include media($bp-smartphone)
+		.img, .description
+			@include row(table)
+		.description
+			padding: 1em 0
 
 .img
 	text-align: center
+	background-color: $theme-base
+	vertical-align: middle
 	img
-		width: 50%
+		vertical-align: middle
+		margin: 1em
+		width: 40%
 		display: inline-block
+		border-radius: 50%
+		min-width: 10em
+
+.description
+	padding: 1em
+	background-color: lighten($theme-base, 20%)
+	color: mix(white, $theme-base, 80%)
+	h2, h4
+		text-align: center
+	h2
+		border-bottom: 1px solid $theme-base
+		margin-left: auto
+		width: 60%
+		margin-right: auto
+		color: white
+		margin-top: 0
+		padding-bottom: 0.2em
+		margin-bottom: 0.2em
+	h4
+		margin-top: 0
+		margin-bottom: 0.5em
+		color: darken($theme-base, 15%)
+	p
+		@include media($bp-desktop)
+			margin: 1em 3em
+		@include media($bp-smartphone)
+			margin: 1em 1em
+		// padding-left: 0.5em

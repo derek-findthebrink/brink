@@ -1,3 +1,8 @@
+global.__CLIENT__ = true
+global.__SERVER__ = false
+global.__ADMIN__ = false
+
+
 io = require("socket.io-client")
 $ = require("jquery")
 React = require("react")
@@ -7,18 +12,24 @@ React = require("react")
 {ReduxAsyncConnect} = require("redux-async-connect")
 {syncHistoryWithStore} = require("react-router-redux")
 
+
 router = require("./router/app-router.cjsx")
 store = require("./redux")(null)
-Client = require("./helpers/apiClient")
-
+Client = require("./helpers/api-client")
+Flux = require("./flux")
+useScroll = require("scroll-behavior")
 
 app = {}
+window.app = app
+
+app.flux = new Flux(store)
 
 if __DEVELOPMENT__
-	window.app = app
 	app.client = new Client()
+	window.$ = $
 
 # google analytics
+require("autotrack")
 `
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -26,6 +37,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-52466507-2', 'auto');
+ga("require", "autotrack");
 ga('send', 'pageview');
 `
 # socket
@@ -45,7 +57,17 @@ ga('send', 'pageview');
 if __DEVELOPMENT__
 	app.store = store
 container = $("#app-container")[0]
-history = syncHistoryWithStore(browserHistory, store)
+_h = useScroll(browserHistory, (prev, loc)->
+	pattern = /\/products-and-services/
+	if prev
+		# console.log prev:prev.pathname, loc:loc.pathname
+		test = pattern.test(prev.pathname) && pattern.test(loc.pathname)
+		# console.log test:test
+		return !test
+	else
+		return true
+	)
+history = syncHistoryWithStore(_h, store)
 routes = router(history, store)
 
 _asyncRender = (props)->
@@ -55,7 +77,7 @@ match({history, routes}, (err, redirect, props)->
 	main = React.createClass({
 		render: ->
 			<Provider store={store} key="provider">
-				<Router {...props} render={_asyncRender} history={browserHistory} />
+				<Router {...props} render={_asyncRender} history={history} />
 			</Provider>
 		}) 
 	render(React.createElement(main), container)

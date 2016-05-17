@@ -3,16 +3,12 @@ React = require("react")
 
 Header = require("../../components/header/header.cjsx")
 DevTools = require("../../components/devtools.cjsx")
-Client = require("../../helpers/apiClient")
-Flux = require("../../flux")
+Client = require("../../helpers/api-client")
+Sidebar = require("../../components/sidebar/sidebar.cjsx")
 
 Admin = React.createClass({
 	childContextTypes: {
 			flux: React.PropTypes.object
-		}
-	getChildContext: ->
-		return {
-			flux: new Flux()
 		}
 	render: ->
 
@@ -26,6 +22,10 @@ Admin = React.createClass({
 				title: "edit"
 			}
 			{
+				to: "/admin/library"
+				title: "library"
+			}
+			{
 				to: "/admin/settings"
 				title: "settings"
 			}
@@ -37,9 +37,11 @@ Admin = React.createClass({
 		else
 			dev = null
 
+		styles = require("./admin.sass")
+
 		<div>
-			<Header links={adminLinks} title="brink admininstration" titleLink="/admin" />
-			<main>
+			<Header links={adminLinks} admin={true} title="brink admininstration" titleLink="/admin" />
+			<main className={styles.main}>
 				{@props.children}
 			</main>
 			{dev}
@@ -63,6 +65,26 @@ AsyncAdmin = asyncConnect({
 		{dispatch, getState} = store
 		if (!isLoaded("stack", getState()))
 			return get("stack")
+	library: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("stack", getState()))
+			return get("library")
+	about: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("about", getState()))
+			return get("about")
+	portfolio: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("portfolio", getState()))
+			return get("portfolio")
+	emails: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("emails", getState()))
+			return get("emails")
+	contacts: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("contacts", getState()))
+			return get("contacts")
 	})(Admin)
 
 module.exports = AsyncAdmin

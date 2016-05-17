@@ -12,7 +12,13 @@ Header = React.createClass({
 		titleTo = @props.titleLink || "/"
 
 		styles = require("./header.sass")
-		<header className={styles.app}>
+		if @props.admin
+			containerClass = styles.admin
+		else
+			containerClass = styles.app
+			# add admin styles/features here
+
+		<header className={containerClass}>
 			<Link to={titleTo}>
 				<img src="/brink-logo-small.svg" />
 				<h1>{title}</h1>

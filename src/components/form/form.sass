@@ -1,5 +1,9 @@
 @import "../../style/_config.sass"
 
+$error-field: #FDBCBC
+$error-text: red
+
+
 .form-field
 	@include row(table)
 	margin-top: 0.5em
@@ -16,6 +20,29 @@
 	// 	text-align: center
 	// 	// margin: 5px 0
 	// @include reset-display
+.g-recaptcha
+	@include clearfix
+	float: none
+	
+.error
+	@include fill-parent
+	// display: table-cell
+	vertical-align: middle
+	text-align: center
+.fieldError
+	@extend .form-field
+	background-color: $error-field
+	input, select, textarea
+		margin: 5px
+		border: 1px solid $error-text
+		&:hover
+			border: 1px solid $error-text
+	span
+		font-size: 90%
+		margin-bottom: 7px
+		color: $error-text
+
+
 .field
 	@include span-columns(7.5 of 10)
 	input, select, textarea
@@ -29,6 +56,16 @@
 	button, input[type="submit"], input[type="reset"]
 		@include span-columns(1 of 5)
 		// display: block
+	input, button
+		@include transition(0.5s)
+		padding: 0.5em
+		border: none
+		cursor: pointer
+	input[type="submit"]
+		background-color: $go-green
+		color: white
+		&:hover
+			background-color: lighten($go-green, 15%)
 
 .number
 	$bc: grey
@@ -42,6 +79,7 @@
 		margin-left: 10px
 		border-radius: 3px
 		iron-icon
+			@include transition(0.5s)
 			cursor: pointer
 			&:first-child
 				border-right: 1px solid $bc

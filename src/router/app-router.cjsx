@@ -20,7 +20,20 @@ content = require("../../content/index")
 
 # Views
 # --------------------------------
-{App, Home, Product, Portfolio, About, Stack, Contact} = require("../containers")
+{
+	App
+	Home
+	Product
+	Portfolio
+	About
+	Stack
+	Contact
+	Learn
+	NotFound
+	CampaignOne
+	PP
+	TAC
+} = require("../containers")
 
 AppRouter = (history)->
 	# log.info views:views, "views"
@@ -33,7 +46,15 @@ AppRouter = (history)->
 			<Route path="about" component={About} />
 			<Route path="stack" component={Stack} />
 			<Route path="contact" component={Contact} />
+			<Route path="learn/:product" component={Learn} />
+
+			<Route path="/privacy-policy" component={PP} />
+			<Route path="/terms-and-conditions" component={TAC} />
+
+			<Route path="/donate" component={CampaignOne} />
+
 		</Route>
+		<Route path="*" component={NotFound} />
 	</Router>
 
 module.exports = AppRouter

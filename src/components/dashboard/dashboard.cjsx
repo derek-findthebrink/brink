@@ -1,34 +1,72 @@
 React = require("react")
 ReactDOM = require("react-dom")
 _ = require("lodash")
+{connect} = require("react-redux")
 
+{MARK_COMPLETE, MARK_IGNORE} = require("../../actions/types/contact")
 
-StatsItem = React.createClass({
+DashboardItem = React.createClass({
 	render: ->
-		href = ["/admin/edit", @props.title].join("/")
-
 		<li>
 			<h3>{@props.title}</h3>
-			<a href={href}>edit {@props.title}</a>
+			{@props.children}
 		</li>
 	})
 
 
+ContactItem = React.createClass({
+	markComplete: ->
+		app.flux.dispatch({
+			type: MARK_COMPLETE
+			model: @props.model
+			})
+	render: ->
+		styles = require("./dashboard.sass")
+		model = @props.model
+		<li className={styles.contactItem}>
+			<div>
+				<span>{model.email}</span>
+			</div>
+			<div className={styles.menu}>
+				<iron-icon icon="icons:done" onClick={@markComplete} />
+				<iron-icon icon="icons:remove" />
+			</div>
+		</li>
+	})
+
 Dashboard = React.createClass({
 	render: ->
-		<div>
-			<h2>Dashboard</h2>
-			<div>
-				<h3>Unique Visits</h3>
-			</div>
-			<div>
-				<h3>Contact Requests</h3>
-			</div>
-			<div>
-				<h3>Active Clients</h3>
-			</div>
+		contactItems = @props.contacts.map (x, i)->
+			if !x.isNewContact
+				return
+			return <ContactItem model={x} key={i} />
 
+		styles = require("./dashboard.sass")
+		<div className={styles.container}>
+			<ul>
+				<div className={styles.mainItems}>
+					<DashboardItem title="new contacts">
+						<ul>
+							{contactItems}
+						</ul>
+					</DashboardItem>
+					<DashboardItem title="messages" />
+				</div>
+				<DashboardItem title="analytics" />
+				<DashboardItem title="open projects" />
+				<DashboardItem title="content" />
+				<DashboardItem title="library" />
+			</ul>
 		</div>
 	})
 
-module.exports = Dashboard
+mapToProps = (state, ownProps)->
+	return {
+		contacts: state.contacts.get("items")
+	}
+
+Final = connect(
+	mapToProps
+	)(Dashboard)
+
+module.exports = Final

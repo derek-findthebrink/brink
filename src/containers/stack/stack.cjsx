@@ -42,7 +42,7 @@ TradeImage = React.createClass({
 StackItemMain = React.createClass({
 	render: ->
 		styles = require("./stack.sass")
-		<li>
+		<li className={styles.mainStack}>
 			<TradeImage {...@props.img} title={@props.title} />
 			<div className={styles.mainDescription}>
 				<h3 className={styles.stackHeader}>{@props.title}</h3>
@@ -77,8 +77,6 @@ Stack = React.createClass({
 			<StackItemMain key={i} {...x} />
 		secondary = _secondary.map (x, i)->
 			<StackItemSecondary key={i} {...x} />
-			
-
 
 		<PageContainer {...content}>
 			<ul className={styles.listMain}>

@@ -11,29 +11,35 @@ catch
 	log.info = console.log
 
 model = new Schema({
-	user: String
+	user:
+		type: Schema.Types.ObjectId
+		ref: "User"
 	name: String
 	email: String
 	product:
 		type: Schema.Types.ObjectId
 		ref: "Product"
 	description: String
+	shouldCall: Boolean
+	isNewContact:
+		type: Boolean
+		default: true
+	received:
+		type: Date
+		default: new Date()
 	})
 
 
-model.statics.add = (req)->
+model.statics.add = (model)->
 	self = this
-	body = req.body
-	if body.product == "none"
-		delete body.product
-	x = new self(body).save()
+	if model.product == "none" || model.product == ""
+		delete model.product
+	x = new self(model).save()
 	.then(
 		(val)->
-			log.info val:val, "saved new contact"
-			return true
+			return val
 		(err)->
-			log.error err:err, "error saving new contact"
-			return false
+			throw err
 		)
 	return x
 

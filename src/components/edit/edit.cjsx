@@ -3,6 +3,8 @@ _ = require("lodash")
 {Link} = require("react-router")
 
 {Field, ButtonField} = require("../form/form.cjsx")
+{ADD_ITEM} = require("../../actions/types/model").actions
+Sidebar = require("../sidebar/sidebar.cjsx")
 
 try
 	log = appLogger.child({
@@ -15,6 +17,22 @@ catch
 
 
 
+EditContainer = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		<div>
+			<Sidebar title="edit">
+				<Link to="/admin/edit/products">Products</Link>
+				<Link to="/admin/edit/stack">Stack</Link>
+				<Link to="/admin/edit/portfolio">Portfolio</Link>
+				<Link to="/admin/edit/about">About</Link>
+				<Link to="/admin/edit/emails">Emails</Link>
+			</Sidebar>
+			<link href="/css/Draft.css" rel="stylesheet" />
+			{@props.children}
+		</div>
+	})
+
 
 ListBase = React.createClass({
 	render: ->
@@ -25,8 +43,6 @@ ListBase = React.createClass({
 			</Link>
 		</li>
 	})
-
-
 
 
 ProductsListItem = React.createClass({
@@ -54,22 +70,61 @@ StackListItem = React.createClass({
 		</ListBase>
 	})
 
-Edit = React.createClass({
+AboutListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.name}</h2>
+			</div>
+		</ListBase>
+	})
+
+PortfolioListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.title}</h2>
+			</div>
+		</ListBase>
+	})
+
+EmailListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.title || "--New Item--"}</h2>
+			</div>
+		</ListBase>
+	})
+
+
+
+EditPre = React.createClass({
+	addItem: ->
+		section = @props.params.section
+		action = {
+			type: ADD_ITEM
+			model: section
+		}
+		app.flux.dispatch(action)
 	render: ->
 		section = @props.params.section
-		# console.log props:@props
 		switch section
 			when "products" then ItemClass = ProductsListItem
 			when "stack" then ItemClass = StackListItem
+			when "about" then ItemClass = AboutListItem
+			when "portfolio" then ItemClass = PortfolioListItem
+			when "emails" then ItemClass = EmailListItem
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
+				
 		items = @props[section].map (x, i)=>
 			to = ["/admin/edit", section, x._id].join("/")
 			<ItemClass {...x} to={to} key={i} />
 
 		styles = require("./edit.sass")
 		<div className={styles.container}>
-			<h2>{section}</h2>
+			<button onClick={@addItem}>Add</button>
 			<ul>
 				{items}
 			</ul>
@@ -80,14 +135,19 @@ Edit = React.createClass({
 
 mapStateToProps = (state)->
 	# console.log "map state to props ran"
-	console.log state:state
 	return {
 		products: state.products.get("items")
 		stack: state.stack.get("items")
+		about: state.about.get("items")
+		portfolio: state.portfolio.get("items")
+		emails: state.emails.get("items")
 	}
 
-Final = connect(
+EditList = connect(
 	mapStateToProps
-	)(Edit)
+	)(EditPre)
 
-module.exports = Final
+module.exports = {
+	EditContainer
+	EditList
+}

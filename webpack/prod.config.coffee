@@ -1,13 +1,14 @@
-# require("dotenv").config()
+require("dotenv").config()
 nodepath = require("path")
 webpack = require("webpack")
+os = require("os")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 autoprefixer = require("autoprefixer")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
-_webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
-webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
+ClosureCompilerPlugin = require("webpack-closure-compiler")
 
 # Plugins
 # -----------------------------------
@@ -16,19 +17,24 @@ plugins = [
 		allChunks: true
 		})
 	# new webpack.NoErrorsPlugin()
-	webpackIsomorphicToolsPlugin
+	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
 	new webpack.DefinePlugin({
-		__CLIENT__: true
-		__SERVER__: false
 		__DEVELOPMENT__: false
 		__DEVTOOLS__: false
 		})
+	new ClosureCompilerPlugin({
+		compiler:
+			compilation_level: "SIMPLE_OPTIMIZATIONS"
+		concurrency: os.cpus.length
+		})
+	new webpack.optimize.OccurrenceOrderPlugin(true)
 ]
 
 # Entry Points
 # --------------------------------------------
 app_entry = nodepath.resolve(ROOT, "src/client-app.cjsx")
 admin_entry = nodepath.resolve(ROOT, "src/admin-app.cjsx")
+polyfill_entry = nodepath.resolve(ROOT, "src/helpers/polyfill.coffee")
 
 # Loaders
 # ------------------------------
@@ -49,28 +55,14 @@ __w_sass = __css_pipe + "!sass?outputStyle=expanded&sourceMap=true&sourceMapCont
 _sass = {
 	test: /\.sass$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
-	# loaders: [
-	# 	__style_pipe
-	# 	__css_pipe
-	# 	"sass"
-	# ]
 }
 _scss = {
 	test: /\.scss$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __w_sass)
-	# loaders: [
-	# 	__style_pipe
-	# 	__css_pipe
-	# 	"sass"
-	# ]
 }
 _css = {
 	test: /\.css$/
 	loader: ExtractTextPlugin.extract(__style_pipe, __css_pipe)
-	# loaders: [
-	# 	__style_pipe
-	# 	"css?sourceMap"
-	# ]
 }
 _cjsx = {
 	test: /\.cjsx$/
@@ -79,6 +71,10 @@ _cjsx = {
 _json = {
 	test: /\.json$/
 	loader: "json-loader"
+}
+_htmlLoader = {
+	test: /\.html$/
+	loaders: ["html"]
 }
 
 
@@ -90,14 +86,12 @@ module.exports = {
 	entry: 
 		app: app_entry
 		admin: admin_entry
-	# target: "node"
+		polyfill: polyfill_entry
 	context: ROOT
 	plugins: plugins
-	devtool: "source-map"
+	# devtool: "source-map"
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
-		# extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"],
-		# root: [nodepath.resolve("."), nodepath.resolve("./loaders")]
 	resolve:
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
@@ -107,14 +101,12 @@ module.exports = {
 		filename: "[name].generated.js"
 		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "/"
-		# libraryTarget: "commonjs2"
-	# externals: /^[a-z\-0-9]+$/
 	module:
 		loaders: _loaders.concat([
 			_css
 			_sass
 			_scss
 			_cjsx
-			_json
+			_htmlLoader
 			])
 }

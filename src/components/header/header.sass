@@ -39,3 +39,21 @@
 		&:hover
 			background-color: lighten($theme-base, 20%)
 			border-radius: 5px
+		@include media($bp-desktop)
+		@include media($bp-tablet)
+		@include media($bp-smartphone)
+			padding: 0.45em
+
+.admin
+	@extend .app
+	text-align: left
+	img
+		display: none
+	h2
+		display: inline-block
+	nav, div
+		@include fill-parent
+	.nav
+		background-color: lighten($theme-base, 30%)
+		a
+			color: black !important

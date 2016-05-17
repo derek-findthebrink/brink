@@ -1,0 +1,39 @@
+@import "../../style/_config.sass"
+
+$go: $go-green
+$base: $theme-base
+$info: lighten(saturate($theme-base, 35%), 45%)
+
+
+%button
+	@include transition(0.25s)
+	padding: 0.5em 1em
+	// font-size: 1.2em
+	width: 50%
+	margin: 0 auto
+	display: inline-block
+	border-width: 2px
+	border-style: solid
+	border-radius: 5px
+	text-decoration: none
+
+.go
+	@extend %button
+	background-color: $go
+	color: white
+	border-color: white
+	&:hover
+		color: $go-green
+		background-color: white
+		border-color: $go-green
+
+.info
+	@extend %button
+	$c: mix($info, black, 10%)
+	background-color: $info
+	color: $c
+	border-color: $theme-base
+	&:hover
+		color: white
+		background-color: $theme-base
+		border-color: white

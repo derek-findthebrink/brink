@@ -19,23 +19,38 @@
 
 .contact-form
 	@include thin-border(false)
-	width: 70%
 	margin: 0 auto 2em auto
 	color: darken($theme-base, 25%)
 	border-top: none
 	border-bottom: none
 
+	p
+		margin: 5px 0
 	input, select, textarea, button
 		@include thin-border
 		padding: 0.5em
+	@include media($bp-desktop)
+		width: 70%
+	@include media($bp-tablet)
+		@include fill-parent
+	@include media($bp-smartphone)
+		@include fill-parent
 
 .g-recaptcha
-	margin: 1em auto
-	width: 10em
-	display: flex
-	content-align: center
-	display: block
-	text-align: center
+	// margin: 1em auto
+	// width: 6em
+	// display: flex
+	// content-align: center
+	margin-top: 1em
+	display: inline-block
+	float: left
+	@include media($bp-tablet)
+		// @include transform-origin(left top)
+		// @include transform(scale(0.77))
+	@include media($bp-smartphone)
+		@include transform(scale(0.77))
+		margin-top: 0.5em
+		margin-left: -1em
 
 .form-header
 	text-align: center

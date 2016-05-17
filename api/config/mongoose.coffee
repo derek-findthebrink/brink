@@ -13,29 +13,29 @@ catch e
 		file: "mongoose"
 		})
 
+defs = {}
 
-# loadModels = (arr)->
-# 	modelDir = "../api/models"
-# 	_.map arr, (x)->
-# 		loc = modelDir + "/" + x
-# 		require(loc)
-
-# Models = ["account", "applications", "products"]
-# loadModels(Models)
-
-require("../models/users")
-require("../models/account")
-require("../models/stack")
-require("../models/products")
-require("../models/contact")
-require("../models/about")
-require("../models/portfolio")
+index = require("../models")
+# makeDefs = (obj, cb)->
+# 	models = mongoose.modelNames()
+# 	_.map models, (val)->
+# 		y = mongoose.model(val)
+# 		x = new y().toJSON({
+# 			getters: true
+# 			depopulate: true
+# 			minimize: false
+# 			})
+# 		obj[val] = x
+# 	cb(obj)
+# makeDefs(defs, console.log)
 
 url = process.env.MONGOOSE_DB
 mongoose.connect(url, (err)->
 	if err
 		return log.error {err:err}, "mongoose connection error"
+	# console.log models:mongoose.modelNames()
 	)
 # mongoose.Promise = require("q")
+
 
 exports.mongoose = mongoose

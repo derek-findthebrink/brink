@@ -4,13 +4,10 @@
 _ = require("lodash")
 {List, Map} = require("immutable")
 
-Client = require("../../helpers/apiClient")
+Client = require("../../helpers/api-client")
 
-{actions} = require("../actions")
-
-# console.log actions:actions
-
-{LOAD, LOADED} = actions.LoadActions
+{LOAD, LOADED} = require("../../actions/types/async-load").actions
+{UPDATE_CSRF} = require("../../actions/types/csrf").actions
 
 # Products
 # ----------------------------------------
@@ -63,8 +60,7 @@ stackReducer = (state = stackInitial, action)->
 
 # Edit
 # ----------------------------------------------
-CREATE_EDITOR = "CREATE_EDITOR"
-UPDATE_EDITOR = "UPDATE_EDITOR"
+{CREATE_EDITOR, UPDATE_EDITOR, VALUE_PUSH, VALUE_SPLICE} = require("../../actions/types/model").actions
 
 editInitial = {}
 
@@ -73,8 +69,22 @@ editReducer = (state = editInitial, action)->
 		when CREATE_EDITOR
 			y = _.assign {}, action.model
 			return y
+		when VALUE_SPLICE
+			console.log action:action, state:state
+			arr = _.get(state, action.keys)
+			arr.splice(action.index, 1)
+			y = _.set(_.assign({}, state), action.keys, arr)
+			console.log arr:arr
+			console.log state:y, "final"
+			return y
+		when VALUE_PUSH
+			arr = _.get(state, action.keys)
+			arr.push(action.initial)
+			y = _.set(_.assign({}, state), action.keys, arr)
+			console.log arr:arr, final:y
+			return y
 		when UPDATE_EDITOR
-			# console.log action:action
+			console.log action:action
 			y = _.set(_.assign({}, state), action.keys, action.value)
 			return y
 		else
@@ -90,10 +100,13 @@ editReducer = (state = editInitial, action)->
 userInitial = Map {
 	isLoggedIn: false
 	data: Map {}
+	csrf: false
 }
 
 userReducer = (state = userInitial, action)->
 	switch action.type
+		when UPDATE_CSRF
+			return state.set("csrf", action.value)
 		when LOADED
 			if action.key == "user"
 				if action.data
@@ -113,6 +126,91 @@ userReducer = (state = userInitial, action)->
 
 
 
+# Library
+# ------------------------------------------------
+libraryInitial = Map {
+	items: List []
+}
+
+libraryReducer = (state = libraryInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "library"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
+
+
+# About
+# ---------------------------------------------
+aboutInitial = Map {
+	items: List []
+}
+
+aboutReducer = (state = aboutInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "about"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
+
+
+
+# Portfolio
+# ---------------------------------------------
+portfolioInitial = Map {
+	items: List []
+}
+
+portfolioReducer = (state = portfolioInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "portfolio"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
+# Emails
+# ------------------------------------------------
+emailInitial = Map {
+	items: List []
+}
+
+emailReducer =(state = emailInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "emails"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
+
+
+# Contacts
+# ---------------------------------------------
+contactsInitial = Map {
+	items: List []
+}
+
+contactsReducer = (state = contactsInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "contacts"
+				return state.set "items", action.data
+			else
+				return state
+		else
+			return state
 
 # Exports
 # ---------------------------------------------
@@ -124,6 +222,11 @@ _reducers = {
 	stack: stackReducer
 	edit: editReducer
 	user: userReducer
+	library: libraryReducer
+	portfolio: portfolioReducer
+	about: aboutReducer
+	emails: emailReducer
+	contacts: contactsReducer
 	}
 
 App = combineReducers(_reducers)

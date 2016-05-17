@@ -84,7 +84,7 @@ Portfolio = {
 Stack = {
 	header:
 		title: "stack"
-		description: "what we use and why we like to use it"
+		description: "what we use and why we use it"
 	list: [
 		{
 			title: "node.js"

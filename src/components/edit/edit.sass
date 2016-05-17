@@ -3,18 +3,44 @@
 
 @include reset-display()
 
+%menu-icon
+	@include square(3em)
+	border-radius: 50%
+	background-color: rgba(grey, 0.3)
+	cursor: pointer
+
 .editItem
-	@include thin-border
 	margin-bottom: 1em
 	padding: 1em
 	list-style-type: none
+	margin-right: 2em
+	form h3
+		margin: 1em 0
+		padding-bottom: 5px
+		border-bottom: 1px solid $theme-base
+	iron-icon
+		cursor: pointer
+		&:hover
+			fill: green
 
 .container
-	@include outer-container(80%)
+	// padding-left: 3em
+	display: table-cell
 	position: relative
 	margin-bottom: 5em
+	ul
+		margin: 0
 	& > h2
 		text-align: center
+	
+
+.listEditor
+	@include row(table)
+	input
+		@include span-columns(6 of 7)
+	iron-icon
+		@include span-columns(1 of 7)
+
 .footerButtons
 	@extend .button-field
 	background-color: rgba(white, 0.7)
@@ -25,14 +51,44 @@
 	width: 100%
 
 .listBase
-	@include fill-parent
+	// @include fill-parent
+	padding: 1em
+	// border-radius: 10px
+	&:nth-child(even)
+		background-color: lighten($theme-base, 40%)
 	a
 		display: block
 		color: inherit
 		text-decoration: none
 		& > div
-			@include span-columns(1 of 2)
+			// @include span-columns(1 of 2)
 
 .editImage
 	display: inline-block
 	max-width: 100%
+	height: 5em
+
+
+.learnImage
+	padding: 10px
+	border: 2px solid $theme-base
+	border-radius: 5px
+	margin: 5px
+	iron-icon
+		@extend %menu-icon
+		&:hover
+			fill: red
+	& > div
+		@include row(table)
+	img
+		margin: 0 auto
+		display: inline-block
+		width: 5em
+.menu
+	@include row(table)
+	img, iron-icon
+		vertical-align: middle
+	iron-icon
+		float: right
+		
+	@include reset-display()

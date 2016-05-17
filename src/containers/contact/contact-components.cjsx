@@ -2,18 +2,20 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
+{connect} = require("react-redux")
 
-Captcha = React.createClass({
-	render: ->
-		styles = require("./contact.sass")
-		<div className={styles["g-recaptcha"]} data-sitekey="6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9" />
-	})
+{SUBMIT_CONTACT} = require("../../actions/types/contact").actions
+{NOTIFY_SUCCESS, NOTIFY_ERROR, NOTIFY_UNHANDLED} = require("../../actions/types/notifications").actions
+
+ReCaptcha = require("react-google-recaptcha")
+recaptchaKey = "6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9"
+
 
 
 SelectedProduct = React.createClass({
 	render: ->
 		styles = require("./contact.sass")
-		if !@props.product || @props.product == "none"
+		if !@props.product || @props.product == ""
 			return null
 		else
 			productId = @props.product
@@ -26,78 +28,6 @@ SelectedProduct = React.createClass({
 				<p>${actual.price.value} {actual.price.currency} / {actual.price.priceType}</p>
 			</div>
 	})
-
-ContactForm = React.createClass({
-	getInitialState: ->
-		if @props.selected then product = @props.selected._id
-		return {
-			name: ""
-			email: ""
-			product: product || ""
-			description: ""
-		}
-	submit: (e)->
-		console.log "submit clicked"
-		# e.preventDefault()
-		# console.log state:@state, props:@props
-		# # add recaptcha here
-		# # make sure to capture any other needed data (user? csrf? etc.)
-		# app.flux.dispatch({
-		# 	action: "submit_contact"
-		# 	payload: @state
-		# 	})
-		console.log state:@state
-		# e.preventDefault()
-		return
-	change: (key)->
-		# console.log key:key
-		return (e)=>
-			val = e.target.value
-			# console.log val:val, "change ran"
-			@setState(->
-				x = {}
-				x[key] = val
-				return x
-				)
-	componentWillMount: ->
-		# console.log props: @props, state: @state
-		if @props.user
-			name = @props.user.name || ""
-			email = @props.user.email || ""
-			@setState({
-				name: name
-				email: email
-				})
-	render: ->
-		items = @props.products.map (x, i)->
-			if !x.active
-				return
-			<option key={i} value={x._id}>{x.category} - {x.product}</option>
-		# add general question field
-		items.unshift(
-			<option key={items.length} value={"none"}>general question</option>
-			)
-
-		styles = require("./contact.sass")
-		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
-			{@props.children}
-			<Field name="name" value={@state.name} change={@change("name")} />
-			<Field name="email" label="email address" value={@state.email} change={@change("email_address")} />
-			<Field type="custom">
-				<SelectedProduct product={@state.product} list={@props.products} />
-			</Field>
-			<Field name="product" multiple={false} type="select" value={@state.product} change={@change("product")}>
-				{items}
-			</Field>
-			<Field name="description" type="textarea" change={@change("description")} value={@state.description} />
-			<Captcha />
-			<ButtonField>
-				<input type="submit" value="submit" />
-			</ButtonField>
-		</form>
-	})
-
-
 
 LocationRow = React.createClass({
 	render: ->
@@ -113,7 +43,6 @@ LocationRow = React.createClass({
 	})
 
 
-
 LocationInfo = React.createClass({
 	render: ->
 		styles = require("./contact.sass")
@@ -125,7 +54,174 @@ LocationInfo = React.createClass({
 		</div>
 	})
 
+_contact = {
+	name:
+		type: "text"
+		name: "name"
+	email:
+		type: "text"
+		name: "email"
+	phone:
+		type: "text"
+		name: "phone"
+	product:
+		type: "custom"
+	description:
+		type: "textarea"
+		name: "description"
+		label: "message"
+	shouldCall:
+		type: "checkbox"
+		name: "shouldCall"
+		label: " "
+		raw: true
+	recaptcha:
+		type: "custom"
+		name: "recaptcha"
+	}
+
+initial = {
+	# csrf: ""
+	name: ""
+	email: ""
+	phone: ""
+	product: ""
+	description: ""
+	shouldCall: null
+	recaptcha: false
+	error:
+		name: false
+		email: false
+		product: false
+		description: false
+		recaptcha: false
+}
+
+ContactForm = React.createClass({
+	getInitialState: ->
+		return initial
+	reset: ->
+		@setState(initial, =>
+			@refs.recaptcha.reset()
+			)
+	validationError: (details)->
+		app.flux.dispatch({
+			type: NOTIFY_ERROR
+			msg: "Sorry, we couldn't send that. Please check the form for more information."
+			})
+		@setState({
+			error: details.err
+			})
+	submit: (e)->
+		self = this
+		e.preventDefault()
+		console.log state:@state, "pre-send state"
+
+		app.flux.dispatch({
+			type: SUBMIT_CONTACT
+			model: @state
+			})
+		.done(
+			()->
+				self.reset()
+				app.flux.dispatch({
+					type: NOTIFY_SUCCESS
+					msg: "Success! We will get back to you shortly."
+					})
+			(err)->
+				if err.type == "validation"
+					self.validationError(err)
+				else
+					console.error err
+					app.flux.dispatch({
+						type: NOTIFY_UNHANDLED
+						})
+					self.setState({
+						error: initial.error
+						})
+			)
+	componentWillMount: ->
+		if @props.selected
+			selected = @props.selected
+			@setState({
+				product: selected
+				})
+		@setState({
+			csrf: @props.csrf
+			})
+	change: (key)->
+		return (e)=>
+			val = e.target.value
+			@setState(->
+				x = {}
+				x[key] = val
+				return x
+				)
+	checkbox: (key)->
+		return =>
+			prev = @state[key]
+			if prev
+				next = null
+			else
+				next = "on"
+			@setState(->
+				x = {}
+				x[key] = next
+				return x
+				)
+	captcha: (val)->
+		@setState({
+			recaptcha: val
+			})
+	render: ->
+		console.log state:@state, props:@props, "form state"
+		items = @props.products.map (x, i)->
+			<option key={i} value={x._id}>{x.category} - {x.product}</option>
+		# add general question field
+		items.unshift(
+			<option key={items.length} value={""}>general question</option>
+			)
+
+		styles = require("./contact.sass")
+		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
+			<input type="hidden" name="_csrf" value={@state.csrf} />
+			<h2 className={styles["form-header"]}>send us a message</h2>
+			<Field settings={_contact.name} model={@state} change={@change} />
+			<Field settings={_contact.email} model={@state} change={@change} />
+			<Field settings={_contact.phone} model={@state} change={@change} />
+			<Field type="custom">
+				<SelectedProduct product={@state.product} list={@props.products} />
+			</Field>
+			<Field error={@state.error.product} type="custom" label="product">
+				<select name="product" value={@state.product} onChange={@change("product")}>
+					{items}
+				</select>
+			</Field>
+			<Field settings={_contact.description} model={@state} change={@change} />
+			<Field settings={_contact.shouldCall} model={@state} change={@checkbox}>
+				<p>would you like someone to call you?</p>
+			</Field>
+			<Field error={@state.error.recaptcha} type="custom">
+				<ReCaptcha className={styles["g-recaptcha"]} ref="recaptcha" sitekey={recaptchaKey} onChange={@captcha} />
+			</Field>
+			<ButtonField>
+				<input type="submit" value="submit" />
+			</ButtonField>
+		</form>
+	})
+
+
+mapToProps = (state, ownProps)->
+	console.log state:state
+	return {
+		csrf: state.app.csrf
+	}
+
+ConnectContact = connect(
+	mapToProps
+	)(ContactForm)
+
 module.exports = {
 	LocationInfo
-	ContactForm
+	ContactForm: ConnectContact
 }

@@ -1,3 +1,5 @@
+# Requires
+# ------------------------------------
 nodepath = require("path")
 # rendering
 React = require("react")
@@ -14,7 +16,10 @@ _ = require("lodash")
 Q = require("q")
 {ReduxAsyncConnect, loadOnServer} = require("redux-async-connect")
 {Provider} = require("react-redux")
-_Client = require("./apiClient")
+
+
+Client = require("./api-client")
+ieTest = require("./ie-support")
 
 try
 	log = appLogger.child({
@@ -29,11 +34,9 @@ catch
 # VARS
 # -----------------------------------
 
-__DISABLE_SSR__ = true
 
-
-
-
+# Rendering
+# ---------------------------------------------
 
 render = (segment)->
 	# define segment-specific components here
@@ -41,23 +44,52 @@ render = (segment)->
 	_routeGenerator = segment.routesLocation
 	_baseName = segment.baseName || null
 	_app = segment.app
+
 	return (req, res)->
-		log.info "request begins"
-		client = new _Client(req)
+		_generatePage = (html, css, app, polyfill)->
+			res.render("layout", {
+				content: html
+				appCss: css
+				appJsSrc: app
+				polyfill: polyfill
+				})
+
+		if __DEVELOPMENT__
+			webpackIsomorphicTools.refresh()
+
+		assets = webpackIsomorphicTools.assets()
+		css = assets.styles[_app] || null
+		app = assets.javascript[_app] || null
+
+		if __DISABLE_SSR__
+			log.info "SSR is disabled"
+			return _generatePage("<div>disabled ssr</div>", css, app)
+
+		
+		if ieTest.test(req)
+			polyfill = assets.javascript.polyfill
+		else
+			polyfill = null
+
+		_h = createMemoryHistory()
+		store = require(_storeGenerator)(null)
+		routes = require(_routeGenerator)(_h, store)
+		location = _h.createLocation(req.originalUrl)
+		
+		client = new Client(req)
+
 		_getHtml = (routes, location, store)->
-			log.info "get html"
 			def = Q.defer()
 			match({routes, location}, (err, redirect, props)->
 				if err
 					log.error err:err, "rendering error"
 					return def.reject(err)
 				else if redirect
-					log.warn redirect:redirect, "redirect requested"
-					return
+					res.redirect(redirect.pathname + redirect.search)
 				else if props
 					loadOnServer(props, store, client)
 					.then(
-						()->
+						()-> 
 							final = (
 								<Provider store={store}>
 									<ReduxAsyncConnect {...props} helpers={client} />
@@ -75,45 +107,16 @@ render = (segment)->
 				)
 			return def.promise
 
-		_generatePage = (html, css, app)->
-			res.render("layout", {
-				content: html
-				appCss: css
-				appJsSrc: app
-				})
 
-		if __DEVELOPMENT__
-			webpackIsomorphicTools.refresh()
-
-		assets = webpackIsomorphicTools.assets()
-		css = assets.styles[_app] || null
-		app = assets.javascript[_app] || null
-
-		if __DISABLE_SSR__
-			return _generatePage("<div>disabled ssr</div>", css, app)
-
-		# if _baseName
-		# 	log.info "creating history w/ basename"
-		# 	_h = useRouterHistory(createMemoryHistory)({
-		# 		base: _baseName
-		# 		})
-		# else
-		_h = createMemoryHistory()
-
-		log.info "generating else"
-		store = require(_storeGenerator)(null)
-		routes = require(_routeGenerator)(_h, store)
-		location = _h.createLocation(req.originalUrl)
-
-
-		_getHtml(routes, location, store)
+		_getHtml(routes, location, store, polyfill)
 		.then(
 			(html)->
-				_generatePage(html, css, app)
-				log.info "data rendering complete"
+				_generatePage(html, css, app, polyfill)
 			(reason)->
 				log.error err:reason, "error rendering data"
-				res.status(500).end()
+				res.status(500)
+				_generatePage("<div>error loading page, hydrating...</div>")
 			)
+		.catch(log.error)
 
 module.exports = render

@@ -1,11 +1,11 @@
 nodepath = require("path")
 webpack = require("webpack")
 
-ROOT = nodepath.resolve(__dirname, "..")
+ROOT = nodepath.resolve(process.env.APP_ROOT)
 
 ExtractTextPlugin = require("extract-text-webpack-plugin")
-_webpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
-webpackIsomorphicToolsPlugin = new _webpackIsomorphicToolsPlugin(require("./iso-config.coffee"))
+WebpackIsomorphicToolsPlugin = require("webpack-isomorphic-tools/plugin")
+BrowserSyncPlugin = require("browser-sync-webpack-plugin")
 
 
 _host = process.env.HOST || "localhost"
@@ -19,12 +19,17 @@ _browserPlugins = [
 	new webpack.HotModuleReplacementPlugin()
 	new webpack.IgnorePlugin(/webpack-stats\.json$/)
 	new webpack.DefinePlugin({
-		__CLIENT__: true
-		__SERVER__: false
 		__DEVELOPMENT__: true
 		__DEVTOOLS__: true
 		})
-	webpackIsomorphicToolsPlugin.development()
+	new WebpackIsomorphicToolsPlugin(require("./iso-config.coffee")).development()
+	new BrowserSyncPlugin({
+		host: "localhost"
+		port: 3000
+		proxy: "http://localhost:2150"
+		}, {
+			reload: false
+			})
 ]
 
 
@@ -37,6 +42,9 @@ _entryApp = [
 _entryAdmin = [
 	hotMiddlewareScript
 	nodepath.resolve(ROOT, "src/admin-app.cjsx")
+]
+_entryPolyfill = [
+	nodepath.resolve(ROOT, "src/helpers/polyfill.coffee")
 ]
 
 
@@ -71,6 +79,10 @@ _cjsxLoaderBrowser = {
 	# loaders: ["react-hot", "coffee", "cjsx"]
 	loaders: ["react-hot", "coffee", "cjsx"]
 }
+_htmlLoader = {
+	test: /\.html$/
+	loaders: ["html"]
+}
 
 
 
@@ -80,7 +92,7 @@ _cjsxLoaderBrowser = {
 # Browser
 browser = {
 	name: "browser-app"
-	context: nodepath.resolve(__dirname, "..")
+	context: ROOT
 	resolveLoader:
 		modulesDirectories: ["node_modules"]
 	resolve:
@@ -89,7 +101,8 @@ browser = {
 		alias:
 			React: "react"
 			react: "react"
-	devtool: "eval-source-map"
+	devtool: "eval-cheap-module-source-map"
+	debug: true
 	progress: true
 
 	plugins: _browserPlugins
@@ -97,6 +110,7 @@ browser = {
 	entry: {
 		app: _entryApp
 		admin: _entryAdmin
+		polyfill: _entryPolyfill
 	}
 	output:
 		path: nodepath.resolve(ROOT, "assets/public/")
@@ -104,7 +118,13 @@ browser = {
 		chunkFilename: "[name]-[chunkhash].js"
 		publicPath: "http://" + _host + ":" + _port + "/"
 	module:
-		loaders: _loaders.concat([_cssLoaderBrowser, _scssLoaderBrowser, _sassLoaderBrowser, _cjsxLoaderBrowser])
+		loaders: _loaders.concat([
+			_cssLoaderBrowser
+			_scssLoaderBrowser
+			_sassLoaderBrowser
+			_cjsxLoaderBrowser
+			_htmlLoader
+			])
 }
 
 module.exports = browser

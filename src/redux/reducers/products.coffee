@@ -1,7 +1,5 @@
 _ = require("lodash")
-{actions, selectProduct} = require("../actions/products")
-
-{SELECT_PRODUCT, LOAD} = actions
+{LOADED} = require("../../actions/types/async-load").actions
 
 
 initialState = {
@@ -11,16 +9,13 @@ initialState = {
 
 products = (state = initialState, action)->
 	switch action.type
-		when LOAD
-			if action.key != "products"
+		when LOADED
+			if action.key == "products"
+				s = _.clone(state)
+				s.items = action.data
+				return s
+			else
 				return state
-			s = _.clone(state)
-			s.items = action.data
-			return s
-		when SELECT_PRODUCT
-			s = _.clone(state)
-			s.selected = action.value
-			return s
 		else
 			return state
 

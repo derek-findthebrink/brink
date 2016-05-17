@@ -1,6 +1,8 @@
 React = require("react")
 {Link} = require("react-router")
 
+{RouterButton} = require("../../components/buttons/buttons.cjsx")
+
 
 ProductItem = React.createClass({
 	render: ->
@@ -37,15 +39,15 @@ ProductItem = React.createClass({
 						<h2>
 							<span className={styles.currency}>$</span>
 							{@props.price.value}
-							<span className={styles.currency}> {@props.price.currency}</span>
+							<span className={styles.currency}> {@props.price.currency}<span className={styles.addTax}> +tax</span></span>
 						</h2>
 						<p>{@props.price.priceType}</p>
 					</div>
 				</div>
 				
 				<div className={styles["action-callout"]}>
-					<Link to={_hrefLearn} className={styles.learn}>learn more</Link>
-					<Link to={_hrefContact} className={styles.quote}>quote</Link>
+					<RouterButton title="learn more" href={_hrefLearn} type="info">learn more</RouterButton>
+					<RouterButton title="quote" href={_hrefContact} type="go">quote</RouterButton>
 				</div>
 			</div>
 

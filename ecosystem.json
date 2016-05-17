@@ -19,11 +19,11 @@
       "host": "staging.findthebrink.com",
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
-      "path": "~/programs/staging/brink-website",
-      "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json",
+      "path": "~/staging/brink",
+      "post-deploy": "npm install && npm run build && pm2 startOrRestart ecosystem.json --env staging",
       "env": {
         "PM2": true,
-        "NODE_ENV": "development"
+        "NODE_ENV": "production"
       }
     },
     "production": {
@@ -33,8 +33,8 @@
       "host": "findthebrink.com",
       "ref": "origin/develop",
       "repo": "git@github.com:findthebrink/brink.git",
-      "path": "~/programs/production/brink-website",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json",
+      "path": "~/production/brink",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
       "env": {
         "PM2": true,
         "NODE_ENV": "production"
