@@ -36,7 +36,7 @@ catch
 
 getPageData = (req, res, action)->
 	model = models[action.page]
-	if (!model && req.user && action.isAdmin)
+	if (!model && req.user)
 		log.info action:action, "secure routes enabled for request"
 		models = _.extend(models, secureModels)
 		model = models[action.page]

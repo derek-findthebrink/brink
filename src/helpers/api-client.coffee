@@ -34,8 +34,6 @@ class Client
 			.set("Accept", "application/json")
 			if __SERVER__ && req.get("cookie")
 				request.set("cookie", req.get("cookie"))
-			if __ADMIN__
-				action.isAdmin = true
 			request.query(action)
 			.end (err, body)->
 				if __CLIENT__ && body.headers.csrf
