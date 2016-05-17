@@ -32,10 +32,15 @@ class Client
 			url = segmentUrl "app"
 			request = superagent.get(url)
 			.set("Accept", "application/json")
-			.query(action)
 			if __SERVER__ && req.get("cookie")
 				request.set("cookie", req.get("cookie"))
-			request.end (err, body)->
+			request.query(action)
+			.end (err, body)->
+				if __CLIENT__ && body.headers.csrf
+					app.flux.dispatch({
+						type: "csrf/UPDATE"
+						value: body.headers.csrf
+						})
 				if err then return def.reject(err)
 				if body.type == "application/json"
 					return def.resolve JSON.parse(body.text)

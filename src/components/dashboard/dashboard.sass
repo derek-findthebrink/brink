@@ -1,0 +1,28 @@
+@import "../../style/_config.sass"
+
+.container
+	padding: 1em
+	& > ul
+		margin: 0
+
+.mainItems
+	@include row(table)
+	& > li
+		@include span-columns(1 of 2)
+		padding: 0.5em
+
+.contactItem
+	@include row(table)
+	margin: 2px 0
+	background-color: white
+	border-radius: 4px
+	padding: 3px
+	vertical-align: middle
+	& > div
+		@include span-columns(1 of 2)
+
+.menu
+	iron-icon
+		cursor: pointer
+		&:hover
+			fill: $go-green

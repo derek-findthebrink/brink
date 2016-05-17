@@ -28,6 +28,7 @@ EditContainer = React.createClass({
 				<Link to="/admin/edit/about">About</Link>
 				<Link to="/admin/edit/emails">Emails</Link>
 			</Sidebar>
+			<link href="/css/Draft.css" rel="stylesheet" />
 			{@props.children}
 		</div>
 	})

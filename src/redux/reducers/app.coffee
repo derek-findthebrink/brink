@@ -3,6 +3,8 @@ _ = require("lodash")
 LOADING = "reduxAsyncConnect/LOAD"
 LOADING_DONE = "reduxAsyncConnect/LOAD_SUCCESS"
 
+{UPDATE_CSRF} = require("../../actions/types/csrf").actions
+
 defState = {
 	loading: false
 	isLoggedIn: false
@@ -26,6 +28,10 @@ app = (state = defState, action)->
 				s.isLoggedIn = action.data.isLoggedIn
 				if action.data.isLoggedIn
 					s.user = action.data.user
+			return s
+		when UPDATE_CSRF
+			s = _.clone(state)
+			s.csrf = action.value
 			return s
 		else
 			return state

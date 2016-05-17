@@ -20,8 +20,14 @@ $error-text: red
 	// 	text-align: center
 	// 	// margin: 5px 0
 	// @include reset-display
+.g-recaptcha
+	@include clearfix
+	float: none
+	
 .error
 	@include fill-parent
+	// display: table-cell
+	vertical-align: middle
 	text-align: center
 .fieldError
 	@extend .form-field

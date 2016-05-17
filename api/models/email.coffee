@@ -3,7 +3,8 @@ Schema = mongoose.Schema
 
 model = new Schema({
 	title: String
-	content: String
+	content: {}
+	ident: String
 	})
 
 mongoose.model("Email", model)

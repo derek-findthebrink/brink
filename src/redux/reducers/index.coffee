@@ -9,6 +9,7 @@ _reducers = {
 	routing: routerReducer
 	reduxAsyncConnect: reducer
 	products: products
+	app: app
 	}
 
 # if __CLIENT__

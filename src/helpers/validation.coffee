@@ -28,16 +28,23 @@ contactValidate = (action)->
 		return Q(action)
 
 contactSanitize = (action)->
-	model = action.model
+	{name, email, phone, product, description, shouldCall, recaptcha, csrf} = action.model
 	# escape characters
 	console.log action:action
-	x = _.mapValues model, (x)->
-		if x
-			return validator.escape(x)
-		return x
-	x.email = validator.normalizeEmail(x.email)
-	x.shouldCall = validator.toBoolean(x.shouldCall)
-
+	escape = (val)->
+		console.log val:val
+		return validator.escape(val)
+	x = {
+		name: escape(name)
+		email: validator.normalizeEmail(escape(email))
+		phone: escape(phone)
+		product: escape(product)
+		description: escape(description)
+		shouldCall: if shouldCall then true else false
+		recaptcha: escape(recaptcha)
+		_csrf: escape(csrf)
+	}
+	console.log x:x
 	# ? - do xss sanitization?
 	# ? - verify model equality
 	action.model = x

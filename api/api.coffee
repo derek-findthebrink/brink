@@ -34,7 +34,7 @@ Account = mongoose.model("Account")
 # Initialization
 # ---------------------------------
 csrfProtection = csrf({
-	cookie: true
+	cookie: false
 	})
 app = express()
 app.use(helmet())
@@ -85,22 +85,35 @@ auth = require("./config/auth")
 auth(app, passport, Account)
 
 # app data
-getAppData = require("./routes/get-app")
-app.get("/app", csrfProtection, getAppData)
 
 
 check = (req, res, next)->
-	log.info cookies:req.cookies, "check middleware"
+	obj = {
+		cookies: req.cookies
+		session: req.session
+		body: req.body
+		headers: req.headers
+	}
+	log.info obj, "check middleware"
+	return next()
+
+modifyTokenPlacement = (req, res, next)->
+	body = req.body
+	model = body.model
+	if model._csrf
+		body._csrf = model._csrf
+		delete model._csrf
 	return next()
 
 
+getAppData = require("./routes/get-app")
 postData = require("./routes/post-app")
-app.post("/post", postData)
-
 adminAuth = require("./routes/admin-auth")(passport)
-app.use("/admin-auth", adminAuth)
-
 postAdmin = require("./routes/post-admin")
+
+app.get("/app", csrfProtection, getAppData)
+app.post("/post", check, modifyTokenPlacement, csrfProtection, postData)
+app.use("/admin-auth", adminAuth)
 app.use("/admin/post", isLoggedIn, postAdmin)
 
 # Server Start

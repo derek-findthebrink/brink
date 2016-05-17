@@ -21,6 +21,9 @@ model = new Schema({
 		ref: "Product"
 	description: String
 	shouldCall: Boolean
+	isNewContact:
+		type: Boolean
+		default: true
 	received:
 		type: Date
 		default: new Date()

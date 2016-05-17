@@ -46,10 +46,13 @@ render = (segment)->
 	_app = segment.app
 
 	return (req, res)->
-
-		if __DISABLE_SSR__
-			log.info "SSR is disabled"
-			return _generatePage("<div>disabled ssr</div>", css, app)
+		_generatePage = (html, css, app, polyfill)->
+			res.render("layout", {
+				content: html
+				appCss: css
+				appJsSrc: app
+				polyfill: polyfill
+				})
 
 		if __DEVELOPMENT__
 			webpackIsomorphicTools.refresh()
@@ -57,6 +60,11 @@ render = (segment)->
 		assets = webpackIsomorphicTools.assets()
 		css = assets.styles[_app] || null
 		app = assets.javascript[_app] || null
+
+		if __DISABLE_SSR__
+			log.info "SSR is disabled"
+			return _generatePage("<div>disabled ssr</div>", css, app)
+
 		
 		if ieTest.test(req)
 			polyfill = assets.javascript.polyfill
@@ -99,13 +107,6 @@ render = (segment)->
 				)
 			return def.promise
 
-		_generatePage = (html, css, app, polyfill)->
-			res.render("layout", {
-				content: html
-				appCss: css
-				appJsSrc: app
-				polyfill: polyfill
-				})
 
 		_getHtml(routes, location, store, polyfill)
 		.then(
