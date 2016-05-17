@@ -2,9 +2,10 @@ React = require("react")
 _ = require("lodash")
 $ = require("jquery")
 {Field, ButtonField} = require("../../components/form/form.cjsx")
+{connect} = require("react-redux")
 
 {SUBMIT_CONTACT} = require("../../actions/types/contact").actions
-{NOTIFY_SUCCESS, NOTIFY_ERROR} = require("../../actions/types/notifications").actions
+{NOTIFY_SUCCESS, NOTIFY_ERROR, NOTIFY_UNHANDLED} = require("../../actions/types/notifications").actions
 
 ReCaptcha = require("react-google-recaptcha")
 recaptchaKey = "6LcEyRwTAAAAAOhoaR6dCTQPOnLdSfcfIvRE-0n9"
@@ -72,7 +73,7 @@ _contact = {
 	shouldCall:
 		type: "checkbox"
 		name: "shouldCall"
-		label: ""
+		label: " "
 		raw: true
 	recaptcha:
 		type: "custom"
@@ -80,6 +81,7 @@ _contact = {
 	}
 
 initial = {
+	# csrf: ""
 	name: ""
 	email: ""
 	phone: ""
@@ -144,6 +146,9 @@ ContactForm = React.createClass({
 			@setState({
 				product: selected
 				})
+		@setState({
+			csrf: @props.csrf
+			})
 	change: (key)->
 		return (e)=>
 			val = e.target.value
@@ -169,7 +174,7 @@ ContactForm = React.createClass({
 			recaptcha: val
 			})
 	render: ->
-		console.log state:@state, "form state"
+		console.log state:@state, props:@props, "form state"
 		items = @props.products.map (x, i)->
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
 		# add general question field
@@ -179,6 +184,7 @@ ContactForm = React.createClass({
 
 		styles = require("./contact.sass")
 		<form className={styles["contact-form"]} method="post" action="/api/post/contact" onSubmit={@submit}>
+			<input type="hidden" name="_csrf" value={@state.csrf} />
 			<h2 className={styles["form-header"]}>send us a message</h2>
 			<Field settings={_contact.name} model={@state} change={@change} />
 			<Field settings={_contact.email} model={@state} change={@change} />
@@ -205,7 +211,17 @@ ContactForm = React.createClass({
 	})
 
 
+mapToProps = (state, ownProps)->
+	console.log state:state
+	return {
+		csrf: state.app.csrf
+	}
+
+ConnectContact = connect(
+	mapToProps
+	)(ContactForm)
+
 module.exports = {
 	LocationInfo
-	ContactForm
+	ContactForm: ConnectContact
 }

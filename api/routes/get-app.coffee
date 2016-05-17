@@ -27,11 +27,13 @@ catch
 	log = console
 	log.info = console.log
 
-getPageData = (action, res)->
+getPageData = (req, res, action)->
 	model = models[action.page]
 	model.find().exec()
 	.then(
 		(docs)->
+			log.info csrf: req.csrfToken(), "csrf token"
+			res.append("csrf", req.csrfToken())
 			return res.json(docs).end()
 		(err)->
 			log.error err:err, action:action, "error retrieving model"
@@ -48,7 +50,7 @@ getAuth = (req, res)->
 go = (req, res)->
 	action = req.query
 	switch action.type
-		when GET_PAGE then return getPageData(action, res)
+		when GET_PAGE then return getPageData(req, res, action)
 		when GET_AUTH then return getAuth(req, res)
 		else
 			err = new Error("could not parse action")

@@ -3,21 +3,26 @@ ReactDOM = require("react-dom")
 _ = require("lodash")
 
 
-StatsItem = React.createClass({
+DashboardItem = React.createClass({
 	render: ->
-		href = ["/admin/edit", @props.title].join("/")
-
 		<li>
 			<h3>{@props.title}</h3>
-			<a href={href}>edit {@props.title}</a>
 		</li>
 	})
 
 
 Dashboard = React.createClass({
 	render: ->
-		<div>
-			<h2>Dashboard</h2>
+		styles = require("./dashboard.sass")
+		<div className={styles.container}>
+			<ul>
+				<DashboardItem title="messages" />
+				<DashboardItem title="new contacts" />
+				<DashboardItem title="analytics" />
+				<DashboardItem title="open projects" />
+				<DashboardItem title="content" />
+				<DashboardItem title="library" />
+			</ul>
 		</div>
 	})
 

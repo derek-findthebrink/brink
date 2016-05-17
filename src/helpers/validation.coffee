@@ -28,7 +28,7 @@ contactValidate = (action)->
 		return Q(action)
 
 contactSanitize = (action)->
-	{name, email, phone, product, description, shouldCall, recaptcha} = action.model
+	{name, email, phone, product, description, shouldCall, recaptcha, csrf} = action.model
 	# escape characters
 	console.log action:action
 	escape = (val)->
@@ -42,6 +42,7 @@ contactSanitize = (action)->
 		description: escape(description)
 		shouldCall: if shouldCall then true else false
 		recaptcha: escape(recaptcha)
+		_csrf: escape(csrf)
 	}
 	console.log x:x
 	# ? - do xss sanitization?
