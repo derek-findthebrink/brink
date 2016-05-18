@@ -9,6 +9,8 @@ SocketIo = require "socket.io"
 http = require("http")
 helmet = require("helmet")
 csrf = require("csurf")
+redisClient = require("redis").createClient()
+nodepath = require("path")
 
 # Logger
 # ------------------------------------------
@@ -16,10 +18,28 @@ bunyan = require("bunyan")
 
 logBase = require("./config/logger")
 
-global.appLogger = bunyan.createLogger({
+logOpts = {
 	name: "brink-api-server"
-	src: process.env.NODE_ENV == "development"
-	})
+}
+if process.env.NODE_ENV == "development"
+	logOpts.src = true
+
+if process.env.NODE_ENV == "production"
+	logsRoot = nodepath.join(__dirname, "../logs")
+	logOpts.streams = [
+		{
+			path: nodepath.resolve(logsRoot, "api-access.log")
+			name: "ACCESS"
+			level: "info"
+		}
+		{
+			path: nodepath.resolve(logsRoot, "api-error.log")
+			name: "ERROR"
+			level: "error"
+		}
+	]
+
+global.appLogger = bunyan.createLogger(logOpts)
 
 log = appLogger.child({
 	type: "server"
@@ -50,6 +70,9 @@ app.use bodyParser.urlencoded({
 	})
 app.use cookieParser()
 
+if (app.get("env") == "production")
+	app.set("trust proxy", 1)
+
 # Auth
 # ------------------------
 mongoStoreOptions = {
@@ -57,7 +80,7 @@ mongoStoreOptions = {
 	ttl: 14 * 24 * 60 * 60
 }
 
-app.use session({
+sessOpts = {
 	secret: process.env.SESSION_KEY
 	name: "bt-ap1"
 	store: new MongoStore(mongoStoreOptions)
@@ -65,9 +88,41 @@ app.use session({
 	saveUninitialized: true
 	cookie:
 		httpOnly: true
-		# secure: true
-		# domain: 
-})
+}
+
+if (app.get("env") == "production")
+	sessOpts.cookie.secure = true
+	sessOpts.cookie.domain = process.env.HOST
+	
+app.use session(sessOpts)
+
+
+# Limiter
+# ---------------------------------------
+# limit login requests to 150 per hour
+
+limiter = require("express-limiter")(app, redisClient)
+limiter({
+	path: "/admin-auth/login"
+	method: "post"
+	lookup: ["headers.x-forwarded-for"]
+	total: 150
+	expire: 1000 * 60 * 60
+	})
+limiter({
+	path: "/app"
+	method: "get"
+	lookup: ["headers.x-forwarded-for"]
+	total: 1000
+	expire: 1000 * 60 * 60
+	})
+limiter({
+	path: "/post"
+	method: "post"
+	lookup: ["headers.x-forwarded-for"]
+	total: 1000
+	expire: 1000 * 60 * 60
+	})
 
 # Flux
 # --------------------------------------
@@ -112,7 +167,7 @@ adminAuth = require("./routes/admin-auth")(passport)
 postAdmin = require("./routes/post-admin")
 
 app.get("/app", csrfProtection, getAppData)
-app.post("/post", check, modifyTokenPlacement, csrfProtection, postData)
+app.post("/post", modifyTokenPlacement, csrfProtection, postData)
 app.use("/admin-auth", adminAuth)
 app.use("/admin/post", isLoggedIn, postAdmin)
 

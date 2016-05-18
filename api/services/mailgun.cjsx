@@ -72,7 +72,7 @@ send = (data)->
 			console.error sendErr
 			return def.reject(sendErr)
 		else
-			log.info body:body, "success sending mailgun welcome"
+			# log.info body:body, "success sending mailgun welcome"
 			return def.resolve(body)
 		)
 
@@ -98,7 +98,7 @@ convertEmail = (model)->
 	return _v.join("<br />")
 
 injectVars = (markup, model)->
-	log.info markup:markup, model:model, "inject vars begins"
+	# log.info markup:markup, model:model, "inject vars begins"
 	template = handlebars.compile(markup)
 	final = template(model)
 	return final

@@ -43,7 +43,7 @@ getPageData = (req, res, action)->
 	model.find().exec()
 	.then(
 		(docs)->
-			log.info csrf: req.csrfToken(), "csrf token"
+			# log.info csrf: req.csrfToken(), "csrf token"
 			res.append("csrf", req.csrfToken())
 			return res.json(docs).end()
 		(err)->

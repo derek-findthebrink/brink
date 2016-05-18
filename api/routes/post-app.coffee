@@ -50,7 +50,7 @@ verifyRecaptcha = (recaptcha, ip)->
 submitContact = (req, res)->
 	action = req.body
 	contact = models.contact
-	log.info action:action, "submit contact action"
+	# log.info action:action, "submit contact action"
 	if req.user
 		action.model.user = req.user._id
 
@@ -75,7 +75,7 @@ submitContact = (req, res)->
 				})
 			return res.status(200).end()
 		(reason)->
-			log.error err:reason, "new contact creation failed"
+			log.error err:reason, action:action, "new contact creation failed"
 			return res.status(500).end()
 		)
 
