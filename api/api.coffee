@@ -109,20 +109,20 @@ limiter({
 	total: 150
 	expire: 1000 * 60 * 60
 	})
-limiter({
-	path: "/app"
-	method: "get"
-	lookup: ["headers.x-forwarded-for"]
-	total: 1000
-	expire: 1000 * 60 * 60
-	})
-limiter({
-	path: "/post"
-	method: "post"
-	lookup: ["headers.x-forwarded-for"]
-	total: 1000
-	expire: 1000 * 60 * 60
-	})
+# limiter({
+# 	path: "/app"
+# 	method: "get"
+# 	lookup: ["headers.x-forwarded-for"]
+# 	total: 1000
+# 	expire: 1000 * 60 * 60
+# 	})
+# limiter({
+# 	path: "/post"
+# 	method: "post"
+# 	lookup: ["headers.x-forwarded-for"]
+# 	total: 1000
+# 	expire: 1000 * 60 * 60
+# 	})
 
 # Flux
 # --------------------------------------
