@@ -115,7 +115,7 @@ ContactForm = React.createClass({
 	submit: (e)->
 		self = this
 		e.preventDefault()
-		console.log state:@state, "pre-send state"
+		# console.log state:@state, "pre-send state"
 
 		app.flux.dispatch({
 			type: SUBMIT_CONTACT
@@ -132,7 +132,7 @@ ContactForm = React.createClass({
 				if err.type == "validation"
 					self.validationError(err)
 				else
-					console.error err
+					# console.error err
 					app.flux.dispatch({
 						type: NOTIFY_UNHANDLED
 						})
@@ -174,7 +174,7 @@ ContactForm = React.createClass({
 			recaptcha: val
 			})
 	render: ->
-		console.log state:@state, props:@props, "form state"
+		# console.log state:@state, props:@props, "form state"
 		items = @props.products.map (x, i)->
 			<option key={i} value={x._id}>{x.category} - {x.product}</option>
 		# add general question field
@@ -212,7 +212,7 @@ ContactForm = React.createClass({
 
 
 mapToProps = (state, ownProps)->
-	console.log state:state
+	# console.log state:state
 	return {
 		csrf: state.app.csrf
 	}

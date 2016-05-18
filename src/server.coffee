@@ -22,11 +22,31 @@ STATIC_DIR = nodepath.resolve(ROOT, process.env.STATIC_DIR)
 logBase = require("../api/config/logger")
 
 # Global
-global.appLogger = bunyan.createLogger({
-	name: "brink-main-server"
-	src: process.env.NODE_ENV == "development"
-	})
+logOpts = {
+	name: "brink-render-server"
+}
 
+
+if process.env.NODE_ENV == "development"
+	# logOpts.stream = "process.stdout"
+	logOpts.src = true
+
+if process.env.NODE_ENV == "production"
+	logsRoot = nodepath.join(__dirname, "../logs")
+	logOpts.streams = [
+		{
+			path: nodepath.resolve(logsRoot, "render-server-access.log")
+			name: "ACCESS"
+			level: "info"
+		}
+		{
+			path: nodepath.resolve(logsRoot, "render-server-error.log")
+			name: "ERROR"
+			level: "error"
+		}
+	]
+
+global.appLogger = bunyan.createLogger(logOpts)
 # File-Local
 log = appLogger.child({
 	type: "app"

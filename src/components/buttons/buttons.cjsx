@@ -18,7 +18,16 @@ RouterButton = React.createClass({
 		</Link>
 	})
 
+SimpleButton = React.createClass({
+	render: ->
+		styles = require("./buttons.sass")
+		<a className={styles[@props.type]} href={@props.href} onClick={@props.onClick}>
+			{@props.title}
+		</a>
+	})
+
 module.exports = {
 	LinkButton
 	RouterButton
+	SimpleButton
 }
