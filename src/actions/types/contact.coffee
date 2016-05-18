@@ -19,7 +19,7 @@ markIgnore = (action, store)->
 
 submitContact = (action, store)->
 	def = Q.defer()
-	console.log action:action
+	# console.log action:action
 	promise = validate(action)
 	.then(
 		(a)->
@@ -35,7 +35,7 @@ submitContact = (action, store)->
 		)
 	.then(
 		(final)->
-			console.log final:final
+			# console.log final:final
 			client = new Client()
 			.post(final)
 			.then(
@@ -49,7 +49,7 @@ submitContact = (action, store)->
 	.catch (err)->
 		if err.err == "invalid"
 			return
-		console.error err
+		# console.error err
 	return def.promise
 
 

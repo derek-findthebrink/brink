@@ -42,6 +42,10 @@ Admin = React.createClass({
 		<div>
 			<Header links={adminLinks} admin={true} title="brink admininstration" titleLink="/admin" />
 			<main className={styles.main}>
+				<ul>
+					<li><a href="/api/admin-auth/logout">logout</a></li>
+					<li><a href="/">website</a></li>
+				</ul>
 				{@props.children}
 			</main>
 			{dev}

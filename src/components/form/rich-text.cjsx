@@ -26,12 +26,12 @@ DraftEditor = React.createClass({
 	onChange: (editorState)->
 		@setState({editorState})
 	onBlur: ->
-		console.log "on blur ran"
+		# console.log "on blur ran"
 		editorState = @state.editorState.getCurrentContent()
 		# val = backdraft(convertToRaw(editorState), markup)
 		val = convertToRaw(editorState)
 		# final = val.join("<br />")
-		console.log val:val
+		# console.log val:val
 		e = {
 			target:
 				value: val
@@ -39,7 +39,7 @@ DraftEditor = React.createClass({
 		# console.log val:val, final:final
 		@props.onChange(e)
 	componentWillMount: ->
-		console.log props:@props
+		# console.log props:@props
 		if @props.value
 			val = @props.value
 			if !val.entityMap
@@ -55,7 +55,7 @@ DraftEditor = React.createClass({
 			e.preventDefault()
 			@onChange(RichUtils.toggleInlineStyle(@state.editorState, type))
 	render: ->
-		console.log state:@state, props:@props
+		# console.log state:@state, props:@props
 		styles = require("./form.sass")
 		richStyles = require("./rich-styles.sass")
 

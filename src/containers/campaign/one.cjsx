@@ -8,18 +8,18 @@ convertUSD = (USD)->
 	return (USD * USDRate)
 
 list = [
-	{
-		title: "SSL Certificate"
-		price: convertUSD(295)
-		currency: "CAD (USD => CAD)"
-		priceFor: "for one year"
-		category: "Security"
-		description: [
-			"provides a secure tunnel through which clients can connect to and interact with the website"
-			"improves google search rankings"
-		]
-		why: "every website that collects sensitive user data should use a security certificate to protect those customers"
-	}
+	# {
+	# 	title: "SSL Certificate"
+	# 	price: convertUSD(295)
+	# 	currency: "CAD (USD => CAD)"
+	# 	priceFor: "for one year"
+	# 	category: "Security"
+	# 	description: [
+	# 		"provides a secure tunnel through which clients can connect to and interact with the website"
+	# 		"improves google search rankings"
+	# 	]
+	# 	why: "every website that collects sensitive user data should use a security certificate to protect those customers"
+	# }
 	{
 		title: "PCI Quarterly Compliance Scanning"
 		price: convertUSD(79)
@@ -31,11 +31,11 @@ list = [
 	}
 	{
 		title: "Wave One Campaign Advertising Fund"
-		price: 200
+		price: 500
 		currency: "CAD"
 		description: "to get the company advertising on Google and Facebook"
 		why: "to recruit initial customers"
-		priceFor: "for one month"
+		priceFor: "for two months"
 		category: "Marketing"
 	}
 	{
@@ -47,15 +47,15 @@ list = [
 		priceFor: "for three months"
 		category: "Business Expenses"
 	}
-	# {
-	# 	title: "Groceries"
-	# 	price: 200
-	# 	currency: "CAD"
-	# 	description: "New businesses need food too. Help Derek eat well!"
-	# 	why: "because even coders get hungry sometimes"
-	# 	priceFor: "for one month"
-	# 	category: "Living Expenses"
-	# }
+	{
+		title: "Groceries"
+		price: 200
+		currency: "CAD"
+		description: "New businesses need food too. Help Derek eat well!"
+		why: "because even coders get hungry sometimes"
+		priceFor: "for one month"
+		category: "Living Expenses"
+	}
 ]
 
 List = React.createClass({
@@ -191,6 +191,10 @@ One = React.createClass({
 			<p>
 				Once you've done that, email me at <a href="mailto:derek@findthebrink.com">derek@findthebrink.com</a>, let me know the amount
 				that you have donated and then tell me know what I can do for you!
+			</p>
+			<p>
+				An email transfer would work well too. If you want to go that route, just write your request in the message
+				input and fire it off to <a href="mailto:derek@findthebrink.com">derek@findthebrink.com</a>.
 			</p>
 			<p>
 				This is a pretty exciting time for me, I'm really stoked to get going on this company. Your help and support

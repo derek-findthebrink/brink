@@ -3,6 +3,7 @@ _ = require("lodash")
 PageContainer = require("../../components/page/container-page.cjsx")
 {asyncConnect} = require("redux-async-connect")
 
+{RouterButton} = require("../../components/buttons/buttons.cjsx")
 
 # Trade Image
 # --------------------------------------------------------
@@ -85,6 +86,10 @@ Stack = React.createClass({
 			<ul className={styles.listSecondary}>
 				{secondary}
 			</ul>
+			<div className={styles.stackCallout}>
+				<h3>Looks good? Good. Now check out our products!</h3>
+				<RouterButton href="/products-and-services" type="go" title="products" />
+			</div>
 		</PageContainer>
 	})
 

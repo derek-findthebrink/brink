@@ -10,3 +10,4 @@ webpack-stats.json
 webpack-assets.json
 dumps
 config
+logs

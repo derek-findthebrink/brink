@@ -39,7 +39,7 @@ How = React.createClass({
 					<PictureItem title="Universal Code" img="/img/universe.png">
 						<p>
 							Gone are the days of using a different language for each target device. Our custom servers, web sites and 
-							applications are all written in universal javascript. 
+							applications are all written in universal javascript. Write once, deploy anywhere.
 						</p>
 					</PictureItem>
 					<h3 className={styles.callout}>One codebase, one language, super fast development.</h3>
@@ -103,7 +103,7 @@ Benefits = React.createClass({
 Now = React.createClass({
 	render: ->
 		styles = require("./story.sass")
-		<div>
+		<div className={@props.altStyle}>
 			<h2>{items[3].title}</h2>
 			<div className={styles.twoCol}>
 				<div>

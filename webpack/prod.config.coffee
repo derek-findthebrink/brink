@@ -96,6 +96,10 @@ module.exports = {
 		extensions: ["", ".js", ".coffee", ".cjsx", ".sass", ".scss", ".css"]
 		root: ROOT
 		modulesDirectories: ["node_modules", "assets/public/lib", "src"]
+		alias:
+			React: "react"
+			react: "react"
+			redux: "redux/dist/redux.min.js"
 	output:
 		path: nodepath.resolve(ROOT, "assets/public")
 		filename: "[name].generated.js"

@@ -17,7 +17,7 @@ Contact = React.createClass({
 		content = @context.content["Contact"]
 		_q = @props.location.query
 		product = _q.product || ""
-		console.log props:@props, "contact container"
+		# console.log props:@props, "contact container"
 
 		<PageContainer {...content}>
 			<LocationInfo {...content} />

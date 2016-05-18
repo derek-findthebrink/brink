@@ -1,4 +1,35 @@
 @import "../../style/_config.sass"
 
-.container
-	@include outer-container(100%)
+%container
+	// @include outer-container(100%)
+	background-color: rgba(white, 0.9)
+	font-size: 0.8em
+	text-align: center
+
+.jsWarn
+	@extend %container
+	position: fixed
+	bottom: 0
+	width: 100vw
+	z-index: 10000
+
+.cookieWarn
+	@extend %container
+	padding: 15px
+	margin: 0.5em
+	border-radius: 5px
+	@include media($bp-desktop)
+		position: fixed
+		top: 0
+		right: 0
+		width: 20em
+		z-index: 10000
+	@include media($bp-tablet)
+
+	@include media($bp-smartphone)
+	p
+		margin: 0 0 10px 0
+	.description
+		@include clearfix
+	.menu
+		// @include span-columns(1 of 4)

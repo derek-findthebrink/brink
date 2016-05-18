@@ -6,6 +6,7 @@ React = require("react")
 Footer = React.createClass({
 	render: ->
 		styles = require("./refills_footer.scss")
+		year = new Date().getFullYear()
 		<footer className={styles.container} role="contentinfo">
 			<div className={styles.logo}>
 				<img src="/brink-logo-small.svg" alt="Logo image" />
@@ -29,7 +30,7 @@ Footer = React.createClass({
 				</ul>
 			</div>
 			<hr />
-			<p>Disclaimer area lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nostrum repudiandae saepe.</p>
+			<p>&copy; {year} Brink Technology Co. All Rights Reserved.</p>
 		</footer>
 	})
 

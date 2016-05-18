@@ -7,6 +7,7 @@ DevTools = require("../../components/devtools.cjsx")
 Footer = require("../../components/footer/footer.cjsx")
 Header = require("../../components/header/header.cjsx")
 Loading = require("../../components/loading/loading.cjsx")
+{JSWarn, CookieWarn} = require("../../components/js-warn/js-warn.cjsx")
 
 content = require("../../../content/index.coffee")
 # console.log content
@@ -58,8 +59,10 @@ App = React.createClass({
 		loading = null
 		
 		<div>
+			<JSWarn />
 			<Header links={appLinks} />
 			<main>
+				<CookieWarn />
 				{@props.children}
 			</main>
 			{dev}

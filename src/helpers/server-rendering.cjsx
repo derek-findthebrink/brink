@@ -61,15 +61,17 @@ render = (segment)->
 		css = assets.styles[_app] || null
 		app = assets.javascript[_app] || null
 
-		if __DISABLE_SSR__
-			log.info "SSR is disabled"
-			return _generatePage("<div>disabled ssr</div>", css, app)
-
-		
 		if ieTest.test(req)
+			console.log "polyfill required"
 			polyfill = assets.javascript.polyfill
 		else
 			polyfill = null
+
+		if __DISABLE_SSR__
+			log.info "SSR is disabled"
+			return _generatePage("<div>disabled ssr</div>", css, app, polyfill)
+
+		
 
 		_h = createMemoryHistory()
 		store = require(_storeGenerator)(null)
