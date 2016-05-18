@@ -42,12 +42,12 @@ renderAdmin = render({
 
 
 isLoggedIn = (req, res, next)->
-	log.info user:req.user, cookies:req.cookies, "user auth"
+	# log.info user:req.user, cookies:req.cookies, "user auth"
 	client = new Client(req)
 	client.auth()
 	.then(
 		(val)->
-			log.info val:val, "isLogged in val"
+			# log.info val:val, "isLogged in val"
 			if !val
 				res.redirect("/login")
 			else

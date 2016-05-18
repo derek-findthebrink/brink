@@ -31,16 +31,21 @@
 			// display: none
 	.title, .price
 		vertical-align: top
-	&:hover
-		.why, .description, .title, .price
-			@include span-columns(1 of 4)
-			overflow: hidden
-			p
-				opacity: 1
-				display: block
-				// position: absolute
-				// top: 0
-				// left: 0
+	@include media($bp-smartphone)
+		.why, .description
+			display: none
+		.title, .price
+			@include span-columns(1 of 2)
+	// &:hover
+	// 	.why, .description, .title, .price
+	// 		@include span-columns(1 of 4)
+	// 		overflow: hidden
+	// 		p
+	// 			opacity: 1
+	// 			display: block
+	// 			// position: absolute
+	// 			// top: 0
+	// 			// left: 0
 
 .why, .description
 	p, h4
@@ -74,12 +79,14 @@
 		// padding-right: 1em
 
 .offers
-	padding-left: 2em
+	padding-left: 4em
 	list-style-type: initial
 
 .signOff
 	padding-left: 4em
 	margin: 3em 0
+	@include media($bp-smartphone)
+		padding-left: 2em
 
 .header
 	text-align: center

@@ -2,7 +2,7 @@ React = require("react")
 
 Currency = React.createClass({
 	render: ->
-		console.log props:@props
+		# console.log props:@props
 		styles = require("./form.sass")
 		val = @props.value.value
 

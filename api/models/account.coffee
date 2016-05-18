@@ -17,6 +17,11 @@ acctOpts = {
 	usernameQueryFields: ["email"]
 }
 
+Msg = {
+	title: String
+	type: String
+	msg: String
+}
 
 Account = new Schema({
 	username: String
@@ -27,6 +32,7 @@ Account = new Schema({
 	accessAdmin:
 		type: Boolean
 		default: false
+	messages: [Msg]
 	adminType: String
 	})
 

@@ -17,7 +17,7 @@ Input = React.createClass({
 		@props.onChange(e)
 	render: ->
 		<div>
-			<input name={@props.name} value={@state.value} onChange={@change} onBlur={@onBlur} />
+			<input type={@props.type} name={@props.name} value={@state.value} onChange={@change} onBlur={@onBlur} />
 		</div>
 	})
 
