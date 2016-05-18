@@ -30,9 +30,9 @@ contactValidate = (action)->
 contactSanitize = (action)->
 	{name, email, phone, product, description, shouldCall, recaptcha, csrf} = action.model
 	# escape characters
-	console.log action:action
+	# console.log action:action
 	escape = (val)->
-		console.log val:val
+		# console.log val:val
 		return validator.escape(val)
 	x = {
 		name: escape(name)
@@ -44,7 +44,7 @@ contactSanitize = (action)->
 		recaptcha: escape(recaptcha)
 		_csrf: escape(csrf)
 	}
-	console.log x:x
+	# console.log x:x
 	# ? - do xss sanitization?
 	# ? - verify model equality
 	action.model = x
