@@ -4,20 +4,14 @@ nodepath = require("path")
 if process.env.PM2
 	require("dotenv").config()
 
-global.__CLIENT__ = false
-global.__SERVER__ = true
-global.__DEVELOPMENT__ = process.env.NODE_ENV == "development"
-global.__DEVTOOLS__ = process.env.DEVTOOLS == "true"
-
-log = require("bunyan").createLogger({
-	name: "server-init"
-	})
 
 rootDir = nodepath.resolve(process.env.APP_ROOT)
 
 global.__CLIENT__ = false
 global.__SERVER__ = true
 global.__DEVELOPMENT__ = process.env.NODE_ENV != "production"
+
+global.__DEVTOOLS__ = process.env.DEVTOOLS == "true"
 global.__DEVTOOLS__ = process.env.NODE_ENV != "production"
 
 global.__DISABLE_SSR__ = process.env.DISABLE_SSR == "true" || false
@@ -36,18 +30,6 @@ if __DEVELOPMENT__
 	}
 	if !require("piping")(opts)
 		return
-
-
-log.info {
-	"env-vars":
-		client: __CLIENT__
-		server: __SERVER__
-		ssrDisabled: __DISABLE_SSR__
-		development: __DEVELOPMENT__
-	env:
-		node: process.env.NODE_ENV
-	root: rootDir
-}, "initializing webpack with vars"
 
 WebpackIsomorphicTools = require("webpack-isomorphic-tools")
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require("../webpack/iso-config"))

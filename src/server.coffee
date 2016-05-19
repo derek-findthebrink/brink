@@ -127,6 +127,6 @@ server.listen(process.env.PORT, (err)->
 	if host == "::"
 		host = "localhost"
 	log.info {host: host, port: port, env: process.env.NODE_ENV}, "\n----- Server Initialization -----\n"
-	log.info {api: targetUrl}, "api target"
+	# log.info {api: targetUrl}, "api target"
 	)
 

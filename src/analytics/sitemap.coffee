@@ -34,8 +34,6 @@ sitemap = sm.createSitemap({
 	]
 	})
 
-log.info sitemap:sitemap, "sitemap"
-
 getSitemap = (req, res)->
 	sitemap.toXML (err, xml)->
 		if err

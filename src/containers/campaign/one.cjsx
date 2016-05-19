@@ -1,5 +1,6 @@
 React = require("react")
 _ = require("lodash")
+Helmet = require("react-helmet")
 
 
 USDRate = 1.29229
@@ -152,7 +153,8 @@ One = React.createClass({
 	render: ->
 		styles = require("./campaign.sass")
 		<div className={styles.container}>
-			<Header title="Wave One" raised=0 />
+			<Helmet title="Donate" />
+			<Header title="Wave One" raised=100 />
 			<p>
 				Hello friends and family!
 			</p>

@@ -1,9 +1,7 @@
 # Requires
 # ----------------------------------
 nodepath = require("path")
-# server
 express = require "express"
-# rendering
 React = require("react")
 ReactServer = require("react-dom/server")
 render = require("./helpers/server-rendering")

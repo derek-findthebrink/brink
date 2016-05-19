@@ -1,5 +1,3 @@
-require("babel-polyfill")
-
 global.__CLIENT__ = true
 global.__SERVER__ = false
 global.__ADMIN__ = false
@@ -29,6 +27,7 @@ app.flux = new Flux(store)
 if __DEVELOPMENT__
 	app.client = new Client()
 	window.$ = $
+	window.React = React
 
 
 # google analytics
