@@ -22,6 +22,7 @@ Footer = React.createClass({
 					<li><Link to="/about">About</Link></li>
 					<li><Link to="/contact">Contact</Link></li>
 					<li><Link to="/products-and-services">Products</Link></li>
+					<li><Link to="/sitemap">Site Map</Link></li>
 				</ul>
 				<ul className={styles.linkList}>
 					<li><h3>Legal</h3></li>

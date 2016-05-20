@@ -2,6 +2,7 @@ React = require("react")
 {Link} = require("react-router")
 {connect} = require("react-redux")
 {asyncConnect} = require("redux-async-connect")
+Helmet = require("react-helmet")
 
 DevTools = require("../../components/devtools.cjsx")
 Footer = require("../../components/footer/footer.cjsx")
@@ -10,7 +11,8 @@ Loading = require("../../components/loading/loading.cjsx")
 {JSWarn, CookieWarn} = require("../../components/js-warn/js-warn.cjsx")
 
 content = require("../../../content/index.coffee")
-# console.log content
+config = require("../../config")
+
 
 App = React.createClass({
 	childContextTypes: {
@@ -23,42 +25,16 @@ App = React.createClass({
 			dev = <DevTools />
 		else
 			dev = null
-
 		appLinks = [
-			{
-				to: "/"
-				title: "home"
-			}
-			{
-				to: "/products-and-services"
-				title: "products"
-			}
-			{
-				to: "/portfolio"
-				title: "portfolio"
-			}
-			{
-				to: "/about"
-				title: "about"
-			}
-			{
-				to: "/stack"
-				title: "stack"
-			}
-			{
-				to: "/contact"
-				title: "contact"
-			}
+			{to: "/", title: "home"}
+			{to: "/products-and-services", title: "products"}
+			{to: "/portfolio", title: "portfolio"}
+			{to: "/about", title: "about"}
+			{to: "/stack", title: "stack"}
+			{to: "/contact", title: "contact"}
 		]
-
-		# apply loading module
-		# if __CLIENT__
-		# 	loading = <Loading />
-		# else
-		# 	loading = null
-		loading = null
-		
-		<div>
+		<div key="main-app">
+			<Helmet {...config.app.head} />
 			<JSWarn />
 			<Header links={appLinks} />
 			<main>
@@ -67,7 +43,6 @@ App = React.createClass({
 			</main>
 			{dev}
 			<Footer />
-			{loading}
 		</div>
 	})
 
