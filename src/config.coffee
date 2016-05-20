@@ -22,6 +22,7 @@ config = {
 		head:
 			titleTemplate: "%s | brink technology co."
 			defaultTitle: "ambitious javascript design"
+			htmlAttributes: {"lang": "en"}
 			meta: [
 				{charset: "utf-8"}
 				{name: "description", content: base.description}
