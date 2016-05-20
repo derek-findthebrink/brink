@@ -33,6 +33,7 @@ content = require("../../content/index")
 	CampaignOne
 	PP
 	TAC
+	Sitemap
 } = require("../containers")
 
 AppRouter = (history)->
@@ -50,6 +51,7 @@ AppRouter = (history)->
 
 			<Route path="/privacy-policy" component={PP} />
 			<Route path="/terms-and-conditions" component={TAC} />
+			<Route path="/sitemap" component={Sitemap} />
 
 			<Route path="/donate" component={CampaignOne} />
 

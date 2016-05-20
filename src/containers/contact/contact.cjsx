@@ -2,6 +2,7 @@ React = require("react")
 _ = require("lodash")
 {asyncConnect} = require("redux-async-connect")
 cookies = require("browser-cookies")
+Helmet = require("react-helmet")
 
 PageContainer = require("../../components/page/container-page.cjsx")
 {LocationInfo, ContactForm} = require("./contact-components.cjsx")
@@ -20,6 +21,7 @@ Contact = React.createClass({
 		# console.log props:@props, "contact container"
 
 		<PageContainer {...content}>
+			<Helmet title="Contact Us" />
 			<LocationInfo {...content} />
 			<ContactForm products={@props.products.data} selected={product} />
 		</PageContainer>

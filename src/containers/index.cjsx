@@ -11,4 +11,5 @@ module.exports = {
 	TAC: require("../components/TAC/TAC.cjsx")
 	PP: require("../components/PP/PP.cjsx")
 	CampaignOne: require("./campaign/one.cjsx")
+	Sitemap: require("../components/sitemap/sitemap.cjsx")
 }

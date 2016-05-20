@@ -1,14 +1,13 @@
 # Requires
 # ----------------------------------
 nodepath = require("path")
-# server
 express = require "express"
-# rendering
 React = require("react")
 ReactServer = require("react-dom/server")
 render = require("./helpers/server-rendering")
 Q = require("q")
 Client = require("./helpers/api-client")
+sitemap = require("./analytics/sitemap")
 
 
 # Logger
@@ -82,6 +81,8 @@ home = express.Router()
 home.get "/login", renderLogin
 home.get "/admin", isLoggedIn, renderAdmin
 home.get "/admin/*", isLoggedIn, renderAdmin
+home.get "/sitemap.xml", sitemap
+
 home.get "*", renderApp
 
 module.exports = home

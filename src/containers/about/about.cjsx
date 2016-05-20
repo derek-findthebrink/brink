@@ -1,4 +1,5 @@
 React = require("react")
+Helmet = require("react-helmet")
 
 PageContainer = require("../../components/page/container-page.cjsx")
 {asyncConnect} = require("redux-async-connect")
@@ -17,6 +18,7 @@ About = React.createClass({
 			<PersonItem {...x} key={i} />
 
 		<PageContainer {...header}>
+			<Helmet title="About" />
 			<div className={styles.container}>
 				{items}
 			</div>

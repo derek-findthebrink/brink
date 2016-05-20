@@ -1,5 +1,6 @@
 React = require("react")
 {asyncConnect} = require("redux-async-connect")
+Helmet = require("react-helmet")
 
 PageContainer = require("../../components/page/container-page.cjsx")
 
@@ -17,6 +18,7 @@ PortfolioItem = React.createClass({
 			<img key={i} src={x.img} />
 
 		<div className={styles.row}>
+			<Helmet title="Portfolio" />
 			<div className={styles.img}>
 				<iron-image src={@props.img} sizing="cover" />
 				<div className={styles.imgOverlay} />

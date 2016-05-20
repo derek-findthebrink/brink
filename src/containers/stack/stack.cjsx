@@ -2,6 +2,7 @@ React = require("react")
 _ = require("lodash")
 PageContainer = require("../../components/page/container-page.cjsx")
 {asyncConnect} = require("redux-async-connect")
+Helmet = require("react-helmet")
 
 {RouterButton} = require("../../components/buttons/buttons.cjsx")
 
@@ -80,6 +81,7 @@ Stack = React.createClass({
 			<StackItemSecondary key={i} {...x} />
 
 		<PageContainer {...content}>
+			<Helmet title="Stack" />
 			<ul className={styles.listMain}>
 				{primary}
 			</ul>
