@@ -33,7 +33,6 @@ SliderMenu = React.createClass({
 
 Header = React.createClass({
 	navClick: ->
-		console.log "nav button clicked"
 		@refs.slider.setState (state)->
 			visible: !state.visible
 	render: ->

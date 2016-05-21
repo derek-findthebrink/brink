@@ -80,8 +80,15 @@ Stack = React.createClass({
 		secondary = _secondary.map (x, i)->
 			<StackItemSecondary key={i} {...x} />
 
+		_meta = [
+			{
+				name: "description"
+				content: "This is the technology that we use. Some you might know, many you may never have heard of before. We like these because they're fast, reliable, and isomorphic. Take a look!"
+			}
+		]
+
 		<PageContainer {...content}>
-			<Helmet title="Stack" />
+			<Helmet title="Stack" meta={_meta} />
 			<ul className={styles.listMain}>
 				{primary}
 			</ul>

@@ -36,6 +36,12 @@ Products = React.createClass({
 		section = @props.params.section
 		helmetTitle = titleParser(section)
 
+		_meta = [
+			{
+				name: "description"
+				content: "Here's what we have to offer your business. Scalable, reliable, fast and inexpensive web solutions for your business. Find out more!"
+			}
+		]
 
 		# if section, then filter out items to match category
 		if section
@@ -55,7 +61,7 @@ Products = React.createClass({
 			items = <ProductItem title="no items available" />
 
 		<PageContainer {...content}>
-			<Helmet title={helmetTitle} />
+			<Helmet title={helmetTitle} meta={_meta} />
 			<HorizontalMenu menu={content.menu} location={@props.location} />
 			<ul className={styles["products-list"]}>
 				<ReactCSSTransitionGroup 

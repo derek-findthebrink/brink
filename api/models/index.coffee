@@ -9,4 +9,5 @@ module.exports = {
 	Library: require("./library")
 	Email: require("./email")
 	Page: require("./page")
+	Settings: require("./settings")
 }
