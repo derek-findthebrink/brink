@@ -20,8 +20,15 @@ Contact = React.createClass({
 		product = _q.product || ""
 		# console.log props:@props, "contact container"
 
+		_meta = [
+			{
+				name: "description"
+				content: "Ready to take the plunge? Don't sweat it, your business will love our universal code base. Send us a message and let's get started."
+			}
+		]
+
 		<PageContainer {...content}>
-			<Helmet title="Contact Us" />
+			<Helmet title="Contact Us" meta={_meta} />
 			<LocationInfo {...content} />
 			<ContactForm products={@props.products.data} selected={product} />
 		</PageContainer>

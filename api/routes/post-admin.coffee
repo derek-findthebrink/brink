@@ -20,6 +20,7 @@ models = {
 	portfolio: mongoose.model("Portfolio")
 	about: mongoose.model("About")
 	emails: mongoose.model("Email")
+	pages: mongoose.model("Page")
 }
 
 addModel = (req, res)->

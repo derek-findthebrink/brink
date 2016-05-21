@@ -212,6 +212,22 @@ contactsReducer = (state = contactsInitial, action)->
 		else
 			return state
 
+# Pages
+# ----------------------------------------------
+pagesInitial = Map {
+	items: List []
+}
+
+pagesReducer = (state = pagesInitial, action)->
+	switch action.type
+		when LOADED
+			if action.key == "pages"
+				return state.set("items", action.data)
+			else
+				return state
+		else
+			return state
+
 # Exports
 # ---------------------------------------------
 
@@ -227,6 +243,7 @@ _reducers = {
 	about: aboutReducer
 	emails: emailReducer
 	contacts: contactsReducer
+	pages: pagesReducer
 	}
 
 App = combineReducers(_reducers)

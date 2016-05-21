@@ -17,8 +17,16 @@ About = React.createClass({
 		items = about.map (x, i)->
 			<PersonItem {...x} key={i} />
 
+		_meta = [
+			{
+				name: "description"
+				content: "Want to know more about who we are and why we can do what we do? Take a look here."
+			}
+		]
+
+
 		<PageContainer {...header}>
-			<Helmet title="About" />
+			<Helmet title="About" meta={_meta} />
 			<div className={styles.container}>
 				{items}
 			</div>
