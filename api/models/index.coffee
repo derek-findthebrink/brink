@@ -8,4 +8,6 @@ module.exports = {
 	Users: require("./users")
 	Library: require("./library")
 	Email: require("./email")
+	Page: require("./page")
+	Settings: require("./settings")
 }

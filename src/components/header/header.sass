@@ -1,6 +1,7 @@
 @import "../../style/_config.sass"
 
 .app
+	position: relative
 	font-family: $fonts-header
 	background-color: $theme-base
 	text-align: center
@@ -19,7 +20,16 @@
 		font-weight: lighter
 	nav, div
 		width: 60%
-		margin: 0 auto 
+		margin: 0 auto
+	.sideMenu
+		width: 5em
+		height: 2em
+		text-align: right
+		position: absolute
+		z-index: 100 
+		top: 15px
+		right: 15px
+		// margin: 5px 5px 0 0
 
 .nav
 	background-color: $theme-base
@@ -57,3 +67,13 @@
 		background-color: lighten($theme-base, 30%)
 		a
 			color: black !important
+
+.sliderMenu
+	@include transition(0.5s)
+	overflow: hidden
+	background-color: rgba(lighten($theme-base, 15%), 0.8)
+	text-align: left
+	ul
+		padding: 0.5em
+		margin: 0
+	li

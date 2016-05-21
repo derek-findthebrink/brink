@@ -21,12 +21,16 @@ EditContainer = React.createClass({
 	render: ->
 		styles = require("./edit.sass")
 		<div>
-			<Sidebar title="edit">
+			<Sidebar title="">
+				<h4>Content</h4>
 				<Link to="/admin/edit/products">Products</Link>
 				<Link to="/admin/edit/stack">Stack</Link>
 				<Link to="/admin/edit/portfolio">Portfolio</Link>
 				<Link to="/admin/edit/about">About</Link>
+				<h4>Resources</h4>
 				<Link to="/admin/edit/emails">Emails</Link>
+				<h4>Pages</h4>
+				<Link to="/admin/edit/pages">Pages</Link>
 			</Sidebar>
 			<link href="/css/Draft.css" rel="stylesheet" />
 			{@props.children}
@@ -97,6 +101,15 @@ EmailListItem = React.createClass({
 		</ListBase>
 	})
 
+PageListItem = React.createClass({
+	render: ->
+		<ListBase to={@props.to}>
+			<div>
+				<h2>{@props.title || "--New Item--"}</h2>
+			</div>
+		</ListBase>
+	})
+
 
 
 EditPre = React.createClass({
@@ -115,6 +128,7 @@ EditPre = React.createClass({
 			when "about" then ItemClass = AboutListItem
 			when "portfolio" then ItemClass = PortfolioListItem
 			when "emails" then ItemClass = EmailListItem
+			when "pages" then ItemClass = PageListItem
 			else
 				return log.error err: new Error("Could not parse section type"), "error parsing section"
 				
@@ -141,6 +155,7 @@ mapStateToProps = (state)->
 		about: state.about.get("items")
 		portfolio: state.portfolio.get("items")
 		emails: state.emails.get("items")
+		pages: state.pages.get("items")
 	}
 
 EditList = connect(
