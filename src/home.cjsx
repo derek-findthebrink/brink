@@ -8,6 +8,7 @@ render = require("./helpers/server-rendering")
 Q = require("q")
 Client = require("./helpers/api-client")
 sitemap = require("./analytics/sitemap")
+robots = require("./analytics/robots")
 
 
 # Logger
@@ -82,6 +83,7 @@ home.get "/login", renderLogin
 home.get "/admin", isLoggedIn, renderAdmin
 home.get "/admin/*", isLoggedIn, renderAdmin
 home.get "/sitemap.xml", sitemap
+home.get "/robots.txt", robots
 
 home.get "*", renderApp
 
