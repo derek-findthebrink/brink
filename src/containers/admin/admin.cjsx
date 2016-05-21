@@ -13,23 +13,10 @@ Admin = React.createClass({
 	render: ->
 
 		adminLinks = [
-			{
-				to: "/admin"
-				title: "dashboard"
-			}
-			{
-				to: "/admin/edit"
-				title: "edit"
-			}
-			{
-				to: "/admin/library"
-				title: "library"
-			}
-			{
-				to: "/admin/settings"
-				title: "settings"
-			}
-
+			{to: "/admin", title: "dashboard"}
+			{to: "/admin/edit", title: "edit"}
+			{to: "/admin/library", title: "library"}
+			{to: "/admin/settings", title: "settings"}
 		]
 
 		if __DEVTOOLS__
@@ -37,15 +24,15 @@ Admin = React.createClass({
 		else
 			dev = null
 
-		styles = require("./admin.sass")
+		sliderLinks = [
+			{href: "/api/admin-auth/logout", title: "logout"}
+			{href: "/", title: "website"}
+		]
 
+		styles = require("./admin.sass")
 		<div>
-			<Header links={adminLinks} admin={true} title="brink admininstration" titleLink="/admin" />
+			<Header links={adminLinks} admin={true} slider={true} sliderLinks={sliderLinks} title="brink admininstration" titleLink="/admin" />
 			<main className={styles.main}>
-				<ul>
-					<li><a href="/api/admin-auth/logout">logout</a></li>
-					<li><a href="/">website</a></li>
-				</ul>
 				{@props.children}
 			</main>
 			{dev}
@@ -89,6 +76,10 @@ AsyncAdmin = asyncConnect({
 		{dispatch, getState} = store
 		if (!isLoaded("contacts", getState()))
 			return get("contacts")
+	pages: (params, {store, get})->
+		{dispatch, getState} = store
+		if (!isLoaded("pages", getState()))
+			return get("pages")
 	})(Admin)
 
 module.exports = AsyncAdmin

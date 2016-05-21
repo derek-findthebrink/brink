@@ -26,8 +26,17 @@ SimpleButton = React.createClass({
 		</a>
 	})
 
+NavButton = React.createClass({
+	render: ->
+		styles = require("./buttons.sass")
+		<a className={styles.navButton} href={@props.href || "#"}>
+			<iron-icon icon="icons:menu" onClick={@props.onClick} />
+		</a>
+	})
+
 module.exports = {
 	LinkButton
 	RouterButton
 	SimpleButton
+	NavButton
 }
