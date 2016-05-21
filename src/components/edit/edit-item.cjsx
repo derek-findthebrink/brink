@@ -357,9 +357,33 @@ EmailItem = React.createClass({
 		
 		</FormBase>
 	})
-			# <Field name="title" value={model.title} change={@props.change("title")} />
-			# <Field name="content" type="rich" value={model.content} change={@props.change("content")} />
 
+_page = {
+	title:
+		name: "title"
+		type: "text"
+	description:
+		name: "description"
+		type: "textarea"
+	link:
+		name: "link"
+		type: "text"
+	type:
+		name: "type"
+		type: "text"
+}
+
+PageItem = React.createClass({
+	render: ->
+		styles = require("./edit.sass")
+		model = @props.model
+		<FormBase action={@props.action} submit={@props.submit}>
+			<Field settings={_page.title} model={model} change={@props.change} />
+			<Field settings={_page.description} model={model} change={@props.change} />
+			<Field settings={_page.link} model={model} change={@props.change} />
+			<Field settings={_page.type} model={model} change={@props.change} />
+		</FormBase>
+	})
 
 baseMapState = (state)->
 	return {
@@ -385,6 +409,10 @@ ConnectPortfolio = connect(
 ConnectEmail = connect(
 	baseMapState
 	)(EmailItem)
+
+ConnectPage = connect(
+	baseMapState
+	)(PageItem)
 
 
 
@@ -441,6 +469,7 @@ EditItem = React.createClass({
 			when "about" then ItemClass = ConnectAbout
 			when "portfolio" then ItemClass = ConnectPortfolio
 			when "emails" then ItemClass = ConnectEmail
+			when "pages" then ItemClass = ConnectPage
 			else
 				return console.error new Error "could not parse edit item"
 		Item = <ItemClass model={@model} valueSlice={@splice} change={@change} push={@push} library={@props.library} submit={@save} action={action} />
@@ -458,6 +487,7 @@ mapStateToProps = (state)->
 		about: state.about.get("items")
 		portfolio: state.portfolio.get("items")
 		emails: state.emails.get("items")
+		pages: state.pages.get("items")
 	}
 
 Final = connect(

@@ -21,6 +21,7 @@ secureModels = {
 	library: mongoose.model("Library")
 	emails: mongoose.model("Email")
 	contacts: mongoose.model("Contact")
+	pages: mongoose.model("Page")
 }
 
 

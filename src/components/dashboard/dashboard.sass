@@ -9,8 +9,19 @@
 	@include row(table)
 	& > li
 		@include span-columns(1 of 2)
-		padding: 0.5em
+		// padding: 0.5em
 
+.dashboardItem
+	.dashInner
+		margin: 0.25em
+		padding-left: 10px
+		overflow: auto
+		border-radius: 5px
+		box-shadow: 0px 1px 3px 1px rgba(mix(black, white), 0.5)
+		background-color: white
+
+
+// Contact
 .contactItem
 	@include row(table)
 	margin: 2px 0

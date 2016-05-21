@@ -7,9 +7,12 @@ _ = require("lodash")
 
 DashboardItem = React.createClass({
 	render: ->
-		<li>
-			<h3>{@props.title}</h3>
-			{@props.children}
+		styles = require("./dashboard.sass")
+		<li className={styles.dashboardItem}>
+			<div className={styles.dashInner}>
+				<h3>{@props.title}</h3>
+				{@props.children}
+			</div>
 		</li>
 	})
 
@@ -54,7 +57,6 @@ Dashboard = React.createClass({
 				</div>
 				<DashboardItem title="analytics" />
 				<DashboardItem title="open projects" />
-				<DashboardItem title="content" />
 				<DashboardItem title="library" />
 			</ul>
 		</div>

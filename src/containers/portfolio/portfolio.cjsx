@@ -11,6 +11,13 @@ PortfolioItem = React.createClass({
 	render: ->
 		styles = require("./portfolio.sass")
 
+		_meta = [
+			{
+				name: "description"
+				content: "Here's what we've done so far. Look good? Good stuff. We would love to do the same for you."
+			}
+		]
+
 		includes = @props.includes.map (x, i)->
 			<li key={i}>{x}</li>
 
@@ -18,7 +25,7 @@ PortfolioItem = React.createClass({
 			<img key={i} src={x.img} />
 
 		<div className={styles.row}>
-			<Helmet title="Portfolio" />
+			<Helmet title="Portfolio" meta={_meta} />
 			<div className={styles.img}>
 				<iron-image src={@props.img} sizing="cover" />
 				<div className={styles.imgOverlay} />
